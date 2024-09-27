@@ -3,51 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sovereign</title>
+    <title>Left-Side Navigation Menu</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            height: 100vh;
+            display: flex;
+        }
+        /* Sidebar styling */
+        nav {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            gap: 10px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            text-align: center;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        /* Main content area */
+        #content {
+            flex: 1;
+            padding: 20px;
+            background-color: #fafafa;
+            overflow-y: auto;
         }
         header {
             background-color: #333;
             color: white;
             padding: 10px;
             text-align: center;
-        }
-        nav {
-            background-color: #f4f4f4;
-            padding: 5px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
-            padding: 5px 10px;
-            border: 1px solid #ccc;
-            border-radius: 2px;
-        }
-        nav a:hover {
-            background-color: #ddd;
-        }
-        #content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
+            width: 100%;
         }
     </style>
 </head>
 <body>
-
-    <header>
-        <Span>Sovereign Master Node</Span>
-    </header>
 
     <!-- <nav>
         <a href="#" data-page="equity_intraday_recommendation.html">Page 1</a>
@@ -59,9 +63,13 @@
     <nav id="nav-menu">
         <!-- Navigation links will be loaded here from JavaScript -->
     </nav>
+
 	
 
     <div id="content">
+		<header>
+			<Span>Sovereign Master Node</Span>
+		</header>
         <!-- Content will be loaded here dynamically -->
         <iframe id="google-sheet" src="https://docs.google.com/spreadsheets/d/1m_NwkIaWe538XKk2Doz3gEQlHmCP4HW7Q99dyqzlBYE/edit?usp=sharing" width="100%" height="1000"></iframe>
     </div>
