@@ -49,12 +49,16 @@
         <Span>Sovereign Master Node</Span>
     </header>
 
-    <nav>
+    <!-- <nav>
         <a href="#" data-page="equity_intraday_recommendation.html">Page 1</a>
         <a href="#" data-page="trade_signals.html">Page 2</a>
         <a href="#" data-page="crypto_trigger_summary.html">Page 3</a>
-    </nav>
+    </nav>-->
 	
+	
+    <nav id="nav-menu">
+        <!-- Navigation links will be loaded here from JavaScript -->
+    </nav>
 	
 
     <div id="content">
@@ -63,6 +67,30 @@
     </div>
 
     <script>
+	
+		const navItems = [
+            { name: 'Home', page: 'equity_intraday_recommendation.html' },
+            { name: 'About', page: 'trade_signals.html' },
+            { name: 'Services', page: 'crypto_trigger_summary.html' }
+        ];
+		
+		function loadNavMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navItems.forEach(item => {
+                // Create an anchor element for each nav item
+                const a = document.createElement('a');
+                a.textContent = item.name;
+                a.href = item.page;
+                a.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    loadPage(item.page);
+                });
+                // Append the anchor element to the nav menu
+                navMenu.appendChild(a);
+            });
+        }
+		
+		
         // Function to load HTML content dynamically into the content div
         function loadPage(page) {
             const contentDiv = document.getElementById('content');
@@ -77,6 +105,8 @@
                 });
         }
 
+		document.addEventListener('DOMContentLoaded', loadNavMenu);
+
         // Add click event listeners to menu links
         document.querySelectorAll('nav a').forEach(link => {
             link.addEventListener('click', (event) => {
@@ -85,6 +115,7 @@
                 loadPage(page);
             });
         });
+		
     </script>
 
 </body>
