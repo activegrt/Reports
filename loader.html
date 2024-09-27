@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Page with Menu and Iframe</title>
+    <title>Sovereign</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,14 +38,8 @@
         }
         #content {
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        iframe {
-            width: 90%;
-            height: 90%;
-            border: none;
+            padding: 20px;
+            overflow-y: auto;
         }
     </style>
 </head>
@@ -56,16 +50,40 @@
     </header>
 
     <nav>
-        <!-- When clicked, these links will load content in the iframe -->
-        <a href="equity_intraday_recommendation.html" target="content-frame">Page 1</a>
-        <a href="trade_signals.html" target="content-frame">Page 2</a>
-        <a href="crypto_trigger_summary.html" target="content-frame">Page 3</a>
+        <a href="#" data-page="equity_intraday_recommendation.html">Page 1</a>
+        <a href="#" data-page="trade_signals.html">Page 2</a>
+        <a href="#" data-page="crypto_trigger_summary.html">Page 3</a>
     </nav>
 
     <div id="content">
-        <!-- The iframe where content will be loaded -->
-        <iframe name="content-frame" src="default.html"></iframe>
+        <!-- Content will be loaded here dynamically -->
+        <p>Welcome to my website. Click on a menu link to load content.</p>
     </div>
+
+    <script>
+        // Function to load HTML content dynamically into the content div
+        function loadPage(page) {
+            const contentDiv = document.getElementById('content');
+            fetch(page)
+                .then(response => response.text())
+                .then(data => {
+                    contentDiv.innerHTML = data;
+                })
+                .catch(error => {
+                    contentDiv.innerHTML = `<p>Error loading content. Please try again later.</p>`;
+                    console.error('Error fetching page:', error);
+                });
+        }
+
+        // Add click event listeners to menu links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const page = link.getAttribute('data-page');
+                loadPage(page);
+            });
+        });
+    </script>
 
 </body>
 </html>
