@@ -1,6 +1,13 @@
 <html>
                           <head></head>
                           <body>
+            <button onclick="viewPDF('Millioniare_portfolio_summary.pdf')">Read Report</button>
+            <button onclick="downloadPDF('Millioniare_portfolio_summary.pdf')">Download Report</button>
+    
+            <!-- PDF iframe container -->
+            <div id="pdf-container" style="margin-top: 20px;">
+                <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
+            </div>
                           <H2>100X Portfolio Summary</H2><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -27,10 +34,10 @@
       <td>12.50</td>
       <td>0.30</td>
       <td>0.62</td>
-      <td style="background-color: red;">-1%</td>
+      <td>0%</td>
       <td>25.75</td>
       <td>106%</td>
-      <td>0.2973000000</td>
+      <td>0.3018000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CRVUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CRVUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -44,7 +51,7 @@
       <td>7%</td>
       <td>25.71</td>
       <td>106%</td>
-      <td>1.3244000000</td>
+      <td>1.3317000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=LDOUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/LDOUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -58,7 +65,7 @@
       <td>8%</td>
       <td>25.31</td>
       <td>103%</td>
-      <td>0.4363000000</td>
+      <td>0.4299000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MNWUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MNWUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -69,10 +76,10 @@
       <td>12.50</td>
       <td>0.04</td>
       <td>0.08</td>
-      <td style="background-color: red;">-2%</td>
+      <td>0%</td>
       <td>25.06</td>
       <td>100%</td>
-      <td>0.0399900000</td>
+      <td>0.0403400000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=XCHNGUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/XCHNGUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -86,7 +93,7 @@
       <td>0%</td>
       <td>25.67</td>
       <td>105%</td>
-      <td>0.2911000000</td>
+      <td>0.2914000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SANDUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SANDUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -100,7 +107,7 @@
       <td style="background-color: red;">-2%</td>
       <td>25.09</td>
       <td>101%</td>
-      <td>0.2989000000</td>
+      <td>0.2997000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SDAOUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SDAOUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -111,10 +118,10 @@
       <td>12.50</td>
       <td>0.09</td>
       <td>0.18</td>
-      <td>2%</td>
+      <td>3%</td>
       <td>25.21</td>
       <td>102%</td>
-      <td>0.0915900000</td>
+      <td>0.0928200000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VAIUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/VAIUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -125,10 +132,10 @@
       <td>12.50</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td style="background-color: red;">-7%</td>
+      <td style="background-color: red;">-5%</td>
       <td>25.07</td>
       <td>101%</td>
-      <td>0.0013330000</td>
+      <td>0.0013570000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=DUKOUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DUKOUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -139,10 +146,10 @@
       <td>12.50</td>
       <td>0.01</td>
       <td>0.02</td>
-      <td>18%</td>
+      <td>21%</td>
       <td>25.12</td>
       <td>101%</td>
-      <td>0.0094800000</td>
+      <td>0.0095370000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=FOXYUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/FOXYUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -153,10 +160,10 @@
       <td>12.50</td>
       <td>0.50</td>
       <td>1.01</td>
-      <td>19%</td>
+      <td>17%</td>
       <td>25.23</td>
       <td>102%</td>
-      <td>0.5949000000</td>
+      <td>0.5891000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=HTUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HTUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -167,10 +174,10 @@
       <td>12.50</td>
       <td>0.62</td>
       <td>1.25</td>
-      <td style="background-color: red;">-2%</td>
+      <td style="background-color: red;">-1%</td>
       <td>25.08</td>
       <td>101%</td>
-      <td>0.6125000000</td>
+      <td>0.6151000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=FLOWUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/FLOWUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -181,10 +188,10 @@
       <td>12.50</td>
       <td>0.13</td>
       <td>0.26</td>
-      <td style="background-color: red;">-2%</td>
+      <td>0%</td>
       <td>25.14</td>
       <td>101%</td>
-      <td>0.1243000000</td>
+      <td>0.1276000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ALTUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ALTUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -198,7 +205,7 @@
       <td style="background-color: red;">-3%</td>
       <td>25.80</td>
       <td>106%</td>
-      <td>4.3070000000</td>
+      <td>4.2960000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TRIASUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TRIASUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -212,7 +219,7 @@
       <td style="background-color: red;">-3%</td>
       <td>25.17</td>
       <td>101%</td>
-      <td>0.0945000000</td>
+      <td>0.0951600000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=UOSUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/UOSUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -226,7 +233,7 @@
       <td>2%</td>
       <td>25.60</td>
       <td>105%</td>
-      <td>0.2537000000</td>
+      <td>0.2532000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=BSTUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BSTUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -237,10 +244,10 @@
       <td>12.50</td>
       <td>0.04</td>
       <td>0.07</td>
-      <td>1%</td>
+      <td style="background-color: red;">-1%</td>
       <td>25.36</td>
       <td>103%</td>
-      <td>0.0346300000</td>
+      <td>0.0345400000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CHEQUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CHEQUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -251,10 +258,10 @@
       <td>12.50</td>
       <td>1.55</td>
       <td>3.20</td>
-      <td>17%</td>
+      <td>19%</td>
       <td>25.81</td>
       <td>106%</td>
-      <td>1.8010000000</td>
+      <td>1.8305000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SUIUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SUIUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -268,7 +275,7 @@
       <td style="background-color: red;">-2%</td>
       <td>25.35</td>
       <td>103%</td>
-      <td>0.3427000000</td>
+      <td>0.3433000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CELUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CELUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -282,7 +289,7 @@
       <td>15%</td>
       <td>25.36</td>
       <td>103%</td>
-      <td>0.4013000000</td>
+      <td>0.4031000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ADAUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ADAUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -296,7 +303,7 @@
       <td style="background-color: red;">-5%</td>
       <td>25.59</td>
       <td>105%</td>
-      <td>0.0059830000</td>
+      <td>0.0060110000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MEWUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MEWUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -307,10 +314,10 @@
       <td>12.50</td>
       <td>6.25</td>
       <td>12.60</td>
-      <td>5%</td>
+      <td>7%</td>
       <td>25.20</td>
       <td>102%</td>
-      <td>6.7010000000</td>
+      <td>6.7040000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=RENDERUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/RENDERUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -324,7 +331,7 @@
       <td style="background-color: red;">-1%</td>
       <td>25.42</td>
       <td>103%</td>
-      <td>5.8280000000</td>
+      <td>5.8530000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TONUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TONUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -335,10 +342,10 @@
       <td>12.50</td>
       <td>0.13</td>
       <td>0.26</td>
-      <td>2%</td>
+      <td>3%</td>
       <td>26.00</td>
       <td>108%</td>
-      <td>0.1276000000</td>
+      <td>0.1303000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=FORTUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/FORTUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -349,10 +356,10 @@
       <td>12.50</td>
       <td>0.05</td>
       <td>0.11</td>
-      <td>3%</td>
+      <td>2%</td>
       <td>26.25</td>
       <td>110%</td>
-      <td>0.0510900000</td>
+      <td>0.0507900000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=STBUUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/STBUUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -363,10 +370,10 @@
       <td>12.50</td>
       <td>1.15</td>
       <td>2.40</td>
-      <td>3%</td>
+      <td>5%</td>
       <td>26.09</td>
       <td>109%</td>
-      <td>1.2033000000</td>
+      <td>1.2659000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AEROUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AEROUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -377,10 +384,10 @@
       <td>12.50</td>
       <td>1.60</td>
       <td>3.21</td>
-      <td>1%</td>
+      <td>2%</td>
       <td>25.08</td>
       <td>101%</td>
-      <td>1.6320000000</td>
+      <td>1.6200000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=FETUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/FETUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -391,10 +398,10 @@
       <td>12.50</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td style="background-color: red;">-4%</td>
+      <td style="background-color: red;">-6%</td>
       <td>25.54</td>
       <td>104%</td>
-      <td>0.0000021800</td>
+      <td>0.0000021900</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=QUBICUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/QUBICUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -405,10 +412,10 @@
       <td>12.50</td>
       <td>5.40</td>
       <td>10.90</td>
-      <td>1%</td>
+      <td>4%</td>
       <td>25.23</td>
       <td>102%</td>
-      <td>5.4320000000</td>
+      <td>5.5750000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NEARUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NEARUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -422,7 +429,7 @@
       <td>0%</td>
       <td>25.28</td>
       <td>102%</td>
-      <td>0.9068000000</td>
+      <td>0.9078000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MANTAUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MANTAUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -433,10 +440,10 @@
       <td>12.50</td>
       <td>1.06</td>
       <td>2.20</td>
-      <td>0%</td>
+      <td>4%</td>
       <td>25.94</td>
       <td>108%</td>
-      <td>1.0580000000</td>
+      <td>1.0970000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=DYDXUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DYDXUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -447,10 +454,10 @@
       <td>12.50</td>
       <td>5.35</td>
       <td>10.80</td>
-      <td>1%</td>
+      <td>2%</td>
       <td>25.23</td>
       <td>102%</td>
-      <td>5.4410000000</td>
+      <td>5.4490000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AXSUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AXSUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -461,10 +468,10 @@
       <td>12.50</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td>11%</td>
+      <td>12%</td>
       <td>26.10</td>
       <td>109%</td>
-      <td>0.0001003300</td>
+      <td>0.0001008900</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=LUNCUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/LUNCUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -475,10 +482,10 @@
       <td>12.50</td>
       <td>0.17</td>
       <td>0.34</td>
-      <td style="background-color: red;">-3%</td>
+      <td style="background-color: red;">-2%</td>
       <td>25.45</td>
       <td>104%</td>
-      <td>0.1620200000</td>
+      <td>0.1628400000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=KASUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KASUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -492,7 +499,7 @@
       <td style="background-color: red;">-2%</td>
       <td>25.35</td>
       <td>103%</td>
-      <td>0.4131000000</td>
+      <td>0.4126000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AZEROUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AZEROUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -503,10 +510,10 @@
       <td>12.50</td>
       <td>42.30</td>
       <td>85.00</td>
-      <td>1%</td>
+      <td>2%</td>
       <td>25.12</td>
       <td>101%</td>
-      <td>42.6700000000</td>
+      <td>43.0800000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=BANANAUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BANANAUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -517,10 +524,10 @@
       <td>12.50</td>
       <td>0.47</td>
       <td>0.95</td>
-      <td>4%</td>
+      <td>5%</td>
       <td>25.32</td>
       <td>103%</td>
-      <td>0.4875000000</td>
+      <td>0.4930000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NTRNUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NTRNUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -531,10 +538,10 @@
       <td>12.50</td>
       <td>0.42</td>
       <td>0.84</td>
-      <td>1%</td>
+      <td>3%</td>
       <td>25.24</td>
       <td>102%</td>
-      <td>0.4205000000</td>
+      <td>0.4282000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IDUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IDUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -548,7 +555,7 @@
       <td style="background-color: red;">-3%</td>
       <td>25.25</td>
       <td>102%</td>
-      <td>0.2879000000</td>
+      <td>0.2898000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=WILDUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/WILDUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -562,7 +569,7 @@
       <td style="background-color: red;">-3%</td>
       <td>25.27</td>
       <td>102%</td>
-      <td>0.7170000000</td>
+      <td>0.7184000000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ZETAUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ZETAUSDT/">🎯</a></td>
     </tr>
     <tr>
@@ -573,14 +580,14 @@
       <td>12.50</td>
       <td>0.06</td>
       <td>0.13</td>
-      <td style="background-color: red;">-1%</td>
+      <td>1%</td>
       <td>25.56</td>
       <td>104%</td>
-      <td>0.0608600000</td>
+      <td>0.0619400000</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=HBARUSDT&interval=1W">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HBARUSDT/">🎯</a></td>
     </tr>
   </tbody>
 </table>
-                          <p>Page last refreshed on 2024-09-29 20:19</p></body>
+                          <p>Page last refreshed on 2024-09-29 22:55</p></body>
                           </html>
                           
