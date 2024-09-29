@@ -136,6 +136,20 @@
                 loadPage(selectedPage);
             });
         });
+
+        function viewPDF(pdfFilePath) {
+            const pdfFrame = document.getElementById('pdf-frame');
+            pdfFrame.src = pdfFilePath;
+            pdfFrame.style.display = 'block'; // Show the iframe with the PDF
+        }
+
+        function downloadPDF(pdfFilePath) {
+            const link = document.createElement('a');
+            link.href = pdfFilePath;
+            link.download = pdfFilePath; // Suggest file name for download
+            link.click();
+        }
+
     </script>
 
 </body>
