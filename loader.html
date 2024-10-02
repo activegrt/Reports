@@ -100,8 +100,8 @@
             <!--<iframe id="google-sheet" src="https://docs.google.com/spreadsheets/d/1m_NwkIaWe538XKk2Doz3gEQlHmCP4HW7Q99dyqzlBYE/edit?usp=sharing" width="100%" height="1000"></iframe> -->
 		
 		<div class="container">
-			<a href="EquityDaily-5EScalping_trade_signals.html" class="link" target="content">5E-EQ-Day</a>
-			<a href="EquityWeek-5EScalping_trade_signals.html" class="link" target="content">5E-EQ-Week</a>
+			<a href="EquityDaily-5EScalping_trade_signals.html" class="link">5E-EQ-Day</a>
+			<a href="EquityWeek-5EScalping_trade_signals.html" class="link">5E-EQ-Week</a>
 			<a href="EquityMonth-5EScalping_trade_signals.html" class="link">5E-EQ-Month</a>
 			<a href="EquityHour-GTD_trade_signals.html" class="link">GTD-EQ-Hour</a>
 			<a href="EquityDaily-GTD_trade_signals.html" class="link">GTD-EQ-Day</a>
@@ -186,6 +186,32 @@
                 loadPage(selectedPage);
             });
         });
+		
+		
+		function loadContent(url) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(data => {
+                document.getElementById('content').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Error loading content:', error);
+            });
+		}
+
+		// Add event listeners to all links
+		document.querySelectorAll('.link').forEach(link => {
+			link.addEventListener('click', function(e) {
+				e.preventDefault(); // Prevent the default anchor behavior
+				const url = this.getAttribute('href'); // Get the href attribute of the clicked link
+				loadContent(url); // Load the content dynamically
+			});
+		});
 
         function viewPDF(pdfFilePath) {
             const pdfFrame = document.getElementById('pdf-frame');
