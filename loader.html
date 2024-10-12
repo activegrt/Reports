@@ -195,7 +195,12 @@
             const dropdownMenu = document.getElementById('dropdown-menu');
             dropdownMenu.addEventListener('change', (event) => {
                 const selectedPage = event.target.value;
-                loadPage(selectedPage);
+		// If '#' is selected, refresh the page
+		if (selectedPage === '#') {
+		    location.reload();  // Refresh the entire page
+		} else {
+		    loadPage(selectedPage);  // Load the selected page content dynamically
+		}
             });
         });
 		
