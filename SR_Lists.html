@@ -5,7 +5,125 @@
             <!-- PDF iframe container -->
             <div id="pdf-container" style="margin-top: 20px;">
                 <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
-            </div><H2>SR Nearing List</H2><table border="1" class="dataframe">
+            </div><H2>Trade List</H2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th style="background-color: blue; color: white; text-align: center;">#</th>
+      <th style="background-color: blue; color: white; text-align: center;">symbolname</th>
+      <th style="background-color: blue; color: white; text-align: center;">totalbuyvalue</th>
+      <th style="background-color: blue; color: white; text-align: center;">totalsellvalue</th>
+      <th style="background-color: blue; color: white; text-align: center;">netvalue</th>
+      <th style="background-color: blue; color: white; text-align: center;">buyavgprice</th>
+      <th style="background-color: blue; color: white; text-align: center;">sellavgprice</th>
+      <th style="background-color: blue; color: white; text-align: center;">diffqty</th>
+      <th style="background-color: blue; color: white; text-align: center;">ltp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>BATAINDIA</td>
+      <td>0.00</td>
+      <td>2563.60</td>
+      <td>2563.60</td>
+      <td>0.00</td>
+      <td>1281.80</td>
+      <td style="background-color: red;">-2.0</td>
+      <td>1285.7</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>GSFC</td>
+      <td>0.00</td>
+      <td>5723.10</td>
+      <td>5723.10</td>
+      <td>0.00</td>
+      <td>190.77</td>
+      <td style="background-color: red;">-30.0</td>
+      <td>191.81</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>KAJARIACER</td>
+      <td>0.00</td>
+      <td>2269.70</td>
+      <td>2269.70</td>
+      <td>0.00</td>
+      <td>1134.85</td>
+      <td style="background-color: red;">-2.0</td>
+      <td>1137.05</td>
+    </tr>
+  </tbody>
+</table><H2>Trading Tracker</H2><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th style="background-color: blue; color: white; text-align: center;">#</th>
+      <th style="background-color: blue; color: white; text-align: center;">symbol</th>
+      <th style="background-color: blue; color: white; text-align: center;">direction</th>
+      <th style="background-color: blue; color: white; text-align: center;">status</th>
+      <th style="background-color: blue; color: white; text-align: center;">rank</th>
+      <th style="background-color: blue; color: white; text-align: center;">ltp</th>
+      <th style="background-color: blue; color: white; text-align: center;">trade_type</th>
+      <th style="background-color: blue; color: white; text-align: center;">trade_per</th>
+      <th style="background-color: blue; color: white; text-align: center;">trade_count</th>
+      <th style="background-color: blue; color: white; text-align: center;">retrade_count</th>
+      <th style="background-color: blue; color: white; text-align: center;">trade_price</th>
+      <th style="background-color: blue; color: white; text-align: center;">target_price</th>
+      <th style="background-color: blue; color: white; text-align: center;">Multiplier</th>
+      <th style="background-color: blue; color: white; text-align: center;">order_ref</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>BATAINDIA-EQ</td>
+      <td>S</td>
+      <td>Triggered</td>
+      <td>308.0</td>
+      <td>1281.75</td>
+      <td>real</td>
+      <td>0.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1281.80</td>
+      <td>1269.0</td>
+      <td>5.0</td>
+      <td>241122100017422</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>GSFC-EQ</td>
+      <td>S</td>
+      <td>Triggered</td>
+      <td>519.0</td>
+      <td>191.06</td>
+      <td>real</td>
+      <td style="background-color: red;">-0.7</td>
+      <td>1</td>
+      <td>0</td>
+      <td>189.76</td>
+      <td>187.9</td>
+      <td>5.0</td>
+      <td>241122100032013</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>KAJARIACER-EQ</td>
+      <td>S</td>
+      <td>Triggered</td>
+      <td>299.0</td>
+      <td>1133.90</td>
+      <td>real</td>
+      <td>0.1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1134.70</td>
+      <td>1123.4</td>
+      <td>5.0</td>
+      <td>241122100051754</td>
+    </tr>
+  </tbody>
+</table><H2>SR Nearing List</H2><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th style="background-color: blue; color: white; text-align: center;">#</th>
@@ -44,146 +162,14 @@
   <tbody>
     <tr>
       <td>1</td>
-      <td>BAJFINANCE</td>
-      <td>12.0</td>
-      <td>6465.65</td>
-      <td>0.6</td>
-      <td>low3m</td>
-      <td>6425.000000</td>
-      <td>0</td>
-      <td>N</td>
-      <td>6425.000000</td>
-      <td>6375.700195</td>
-      <td>6187.799805</td>
-      <td>7824.000000</td>
-      <td>7824.000000</td>
-      <td>7830.000000</td>
-      <td>0.6</td>
-      <td>1.4</td>
-      <td>4.3</td>
-      <td>17.4</td>
-      <td>17.4</td>
-      <td>17.4</td>
-      <td>5935.75</td>
-      <td>8.2</td>
-      <td>7254.85</td>
-      <td>10.9</td>
-      <td>6187.80</td>
-      <td>7830.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>SBILIFE</td>
-      <td>48.0</td>
-      <td>1477.95</td>
-      <td>0.7</td>
-      <td>low3m</td>
-      <td>1468.099976</td>
-      <td>0</td>
-      <td>N</td>
-      <td>1468.099976</td>
-      <td>1307.699951</td>
-      <td>1307.699951</td>
-      <td>1936.000000</td>
-      <td>1936.000000</td>
-      <td>1936.000000</td>
-      <td>0.7</td>
-      <td>11.5</td>
-      <td>11.5</td>
-      <td>23.7</td>
-      <td>23.7</td>
-      <td>23.7</td>
-      <td>1370.60</td>
-      <td>7.3</td>
-      <td>1675.20</td>
-      <td>11.8</td>
-      <td>1307.70</td>
-      <td>1936.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>UGROCAP</td>
-      <td>936.0</td>
-      <td>225.53</td>
-      <td>1.0</td>
-      <td>low6m</td>
-      <td>223.199997</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>223.199997</td>
-      <td>213.000000</td>
-      <td>300.000000</td>
-      <td>317.000000</td>
-      <td>317.000000</td>
-      <td></td>
-      <td>1.0</td>
-      <td>5.6</td>
-      <td>24.8</td>
-      <td>28.9</td>
-      <td>28.9</td>
-      <td>183.28</td>
-      <td>18.7</td>
-      <td>274.92</td>
-      <td>18.0</td>
-      <td>213.00</td>
-      <td>317.00</td>
-      <td></td>
-      <td></td>
-      <td>2.5</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>AMBIKCO</td>
-      <td>1255.0</td>
-      <td>1429.40</td>
-      <td>1.0</td>
-      <td>low6m</td>
-      <td>1415.000000</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>1415.000000</td>
-      <td>1385.650024</td>
-      <td>2197.649902</td>
-      <td>2197.649902</td>
-      <td>2197.649902</td>
-      <td></td>
-      <td>1.0</td>
-      <td>3.1</td>
-      <td>35.0</td>
-      <td>35.0</td>
-      <td>35.0</td>
-      <td>1157.70</td>
-      <td>19.0</td>
-      <td>1736.60</td>
-      <td>17.7</td>
-      <td>1385.65</td>
-      <td>2197.65</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>5</td>
       <td>BATAINDIA</td>
       <td>308.0</td>
-      <td>1281.55</td>
+      <td>1281.75</td>
       <td>1.0</td>
       <td>low6m, low12m</td>
       <td>1269.000000</td>
-      <td>0</td>
-      <td>N</td>
+      <td>1</td>
+      <td>Y</td>
       <td></td>
       <td>1269.000000</td>
       <td>1269.000000</td>
@@ -202,50 +188,149 @@
       <td>9.2</td>
       <td>1269.00</td>
       <td>1724.25</td>
+      <td>1281.80</td>
+      <td>1269.0</td>
+      <td>5.0</td>
+      <td>241122100017422</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>KAJARIACER</td>
+      <td>299.0</td>
+      <td>1133.90</td>
+      <td>1.0</td>
+      <td>low6m</td>
+      <td>1122.849976</td>
+      <td>1</td>
+      <td>Y</td>
+      <td></td>
+      <td>1122.849976</td>
+      <td>1110.349976</td>
+      <td>1578.699951</td>
+      <td>1578.699951</td>
+      <td>1578.699951</td>
+      <td></td>
+      <td>1.0</td>
+      <td>2.1</td>
+      <td>28.2</td>
+      <td>28.2</td>
+      <td>28.2</td>
+      <td>932.45</td>
+      <td>17.8</td>
+      <td>1398.65</td>
+      <td>18.9</td>
+      <td>1110.35</td>
+      <td>1578.70</td>
+      <td>1134.70</td>
+      <td>1123.4</td>
+      <td>5.0</td>
+      <td>241122100051754</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>GSFC</td>
+      <td>519.0</td>
+      <td>191.06</td>
+      <td>1.7</td>
+      <td>low6m</td>
+      <td>187.800003</td>
+      <td>1</td>
+      <td>Y</td>
+      <td></td>
+      <td>187.800003</td>
+      <td>179.100006</td>
+      <td>267.000000</td>
+      <td>274.700012</td>
+      <td>322.250000</td>
+      <td></td>
+      <td>1.7</td>
+      <td>6.3</td>
+      <td>28.4</td>
+      <td>30.4</td>
+      <td>40.7</td>
+      <td>155.07</td>
+      <td>18.8</td>
+      <td>232.61</td>
+      <td>17.9</td>
+      <td>179.20</td>
+      <td>322.25</td>
+      <td>189.76</td>
+      <td>187.9</td>
+      <td>5.0</td>
+      <td>241122100032013</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>SBILIFE</td>
+      <td>48.0</td>
+      <td>1480.65</td>
+      <td>0.8</td>
+      <td>low3m</td>
+      <td>1468.099976</td>
+      <td>0</td>
+      <td>N</td>
+      <td>1468.099976</td>
+      <td>1307.699951</td>
+      <td>1307.699951</td>
+      <td>1936.000000</td>
+      <td>1936.000000</td>
+      <td>1936.000000</td>
+      <td>0.8</td>
+      <td>11.7</td>
+      <td>11.7</td>
+      <td>23.5</td>
+      <td>23.5</td>
+      <td>23.5</td>
+      <td>1370.60</td>
+      <td>7.4</td>
+      <td>1675.20</td>
+      <td>11.6</td>
+      <td>1307.70</td>
+      <td>1936.00</td>
       <td></td>
       <td></td>
       <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>UGROCAP</td>
+      <td>936.0</td>
+      <td>225.21</td>
+      <td>0.9</td>
+      <td>low6m</td>
+      <td>223.199997</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>223.199997</td>
+      <td>213.000000</td>
+      <td>300.000000</td>
+      <td>317.000000</td>
+      <td>317.000000</td>
+      <td></td>
+      <td>0.9</td>
+      <td>5.4</td>
+      <td>24.9</td>
+      <td>29.0</td>
+      <td>29.0</td>
+      <td>183.28</td>
+      <td>18.6</td>
+      <td>274.92</td>
+      <td>18.1</td>
+      <td>213.00</td>
+      <td>317.00</td>
+      <td></td>
+      <td></td>
+      <td>2.5</td>
       <td></td>
     </tr>
     <tr>
       <td>6</td>
-      <td>CHEMCON</td>
-      <td>1240.0</td>
-      <td>228.04</td>
-      <td>1.1</td>
-      <td>low6m, low12m</td>
-      <td>225.500000</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>225.500000</td>
-      <td>225.500000</td>
-      <td>298.299988</td>
-      <td>298.299988</td>
-      <td>311.799988</td>
-      <td></td>
-      <td>1.1</td>
-      <td>1.1</td>
-      <td>23.6</td>
-      <td>23.6</td>
-      <td>26.9</td>
-      <td>185.32</td>
-      <td>18.7</td>
-      <td>277.98</td>
-      <td>18.0</td>
-      <td>225.50</td>
-      <td>311.80</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>7</td>
       <td>INDIAMART</td>
       <td>336.0</td>
-      <td>2253.95</td>
-      <td>1.1</td>
+      <td>2251.20</td>
+      <td>0.9</td>
       <td>low6m, low12m</td>
       <td>2230.000000</td>
       <td>0</td>
@@ -257,15 +342,15 @@
       <td>3198.399902</td>
       <td>3198.399902</td>
       <td></td>
-      <td>1.1</td>
-      <td>1.1</td>
-      <td>29.5</td>
-      <td>29.5</td>
-      <td>29.5</td>
+      <td>0.9</td>
+      <td>0.9</td>
+      <td>29.6</td>
+      <td>29.6</td>
+      <td>29.6</td>
       <td>2036.90</td>
-      <td>9.6</td>
-      <td>2489.55</td>
       <td>9.5</td>
+      <td>2489.55</td>
+      <td>9.6</td>
       <td>2230.00</td>
       <td>3198.40</td>
       <td></td>
@@ -274,33 +359,66 @@
       <td></td>
     </tr>
     <tr>
-      <td>8</td>
-      <td>ICICIGI</td>
-      <td>102.0</td>
-      <td>1804.70</td>
-      <td>1.2</td>
+      <td>7</td>
+      <td>BAJFINANCE</td>
+      <td>12.0</td>
+      <td>6492.40</td>
+      <td>1.0</td>
       <td>low3m</td>
-      <td>1782.150024</td>
+      <td>6425.000000</td>
       <td>0</td>
       <td>N</td>
-      <td>1782.150024</td>
-      <td>1480.500000</td>
-      <td>1336.000000</td>
-      <td>2301.899902</td>
-      <td>2301.899902</td>
-      <td>2301.899902</td>
-      <td>1.2</td>
-      <td>18.0</td>
-      <td>26.0</td>
-      <td>21.6</td>
-      <td>21.6</td>
-      <td>21.6</td>
-      <td>1656.80</td>
-      <td>8.2</td>
-      <td>2025.00</td>
-      <td>10.9</td>
-      <td>1353.50</td>
-      <td>2301.90</td>
+      <td>6425.000000</td>
+      <td>6375.700195</td>
+      <td>6187.799805</td>
+      <td>7824.000000</td>
+      <td>7824.000000</td>
+      <td>7830.000000</td>
+      <td>1.0</td>
+      <td>1.8</td>
+      <td>4.7</td>
+      <td>17.0</td>
+      <td>17.0</td>
+      <td>17.1</td>
+      <td>5935.75</td>
+      <td>8.6</td>
+      <td>7254.85</td>
+      <td>10.5</td>
+      <td>6187.80</td>
+      <td>7830.00</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>SAPPHIRE</td>
+      <td>452.0</td>
+      <td>300.00</td>
+      <td>1.0</td>
+      <td>low3m</td>
+      <td>297.000000</td>
+      <td>0</td>
+      <td>N</td>
+      <td>297.000000</td>
+      <td>259.309998</td>
+      <td>242.600006</td>
+      <td>401.000000</td>
+      <td>401.000000</td>
+      <td>401.000000</td>
+      <td>1.0</td>
+      <td>13.6</td>
+      <td>19.1</td>
+      <td>25.2</td>
+      <td>25.2</td>
+      <td>25.2</td>
+      <td>245.05</td>
+      <td>18.3</td>
+      <td>367.55</td>
+      <td>18.4</td>
+      <td>259.31</td>
+      <td>401.00</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -308,43 +426,10 @@
     </tr>
     <tr>
       <td>9</td>
-      <td>IKIO</td>
-      <td>912.0</td>
-      <td>248.80</td>
-      <td>1.3</td>
-      <td>low6m, low12m</td>
-      <td>245.449997</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>245.449997</td>
-      <td>245.449997</td>
-      <td>342.950012</td>
-      <td>342.950012</td>
-      <td>375.000000</td>
-      <td></td>
-      <td>1.3</td>
-      <td>1.3</td>
-      <td>27.5</td>
-      <td>27.5</td>
-      <td>33.7</td>
-      <td>201.50</td>
-      <td>19.0</td>
-      <td>302.20</td>
-      <td>17.7</td>
-      <td>245.45</td>
-      <td>363.95</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>10</td>
       <td>KRYSTAL</td>
       <td>1164.0</td>
-      <td>636.35</td>
-      <td>1.3</td>
+      <td>635.15</td>
+      <td>1.1</td>
       <td>low6m, low12m</td>
       <td>627.950012</td>
       <td>0</td>
@@ -356,15 +441,15 @@
       <td>1021.950012</td>
       <td>1021.950012</td>
       <td></td>
-      <td>1.3</td>
-      <td>1.3</td>
-      <td>26.5</td>
-      <td>37.7</td>
-      <td>37.7</td>
+      <td>1.1</td>
+      <td>1.1</td>
+      <td>26.7</td>
+      <td>37.8</td>
+      <td>37.8</td>
       <td>517.55</td>
-      <td>18.7</td>
+      <td>18.5</td>
       <td>776.35</td>
-      <td>18.0</td>
+      <td>18.2</td>
       <td>627.95</td>
       <td>1021.95</td>
       <td></td>
@@ -373,33 +458,66 @@
       <td></td>
     </tr>
     <tr>
-      <td>11</td>
-      <td>SAPPHIRE</td>
-      <td>452.0</td>
-      <td>300.95</td>
-      <td>1.3</td>
-      <td>low3m</td>
-      <td>297.000000</td>
+      <td>10</td>
+      <td>AMBIKCO</td>
+      <td>1255.0</td>
+      <td>1431.55</td>
+      <td>1.2</td>
+      <td>low6m</td>
+      <td>1415.000000</td>
       <td>0</td>
       <td>N</td>
-      <td>297.000000</td>
-      <td>259.309998</td>
-      <td>242.600006</td>
-      <td>401.000000</td>
-      <td>401.000000</td>
-      <td>401.000000</td>
+      <td></td>
+      <td>1415.000000</td>
+      <td>1385.650024</td>
+      <td>2197.649902</td>
+      <td>2197.649902</td>
+      <td>2197.649902</td>
+      <td></td>
+      <td>1.2</td>
+      <td>3.2</td>
+      <td>34.9</td>
+      <td>34.9</td>
+      <td>34.9</td>
+      <td>1157.70</td>
+      <td>19.1</td>
+      <td>1736.60</td>
+      <td>17.6</td>
+      <td>1385.65</td>
+      <td>2197.65</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>TNPETRO</td>
+      <td>1299.0</td>
+      <td>76.59</td>
       <td>1.3</td>
-      <td>13.8</td>
-      <td>19.4</td>
-      <td>25.0</td>
-      <td>25.0</td>
-      <td>25.0</td>
-      <td>245.05</td>
-      <td>18.6</td>
-      <td>367.55</td>
-      <td>18.1</td>
-      <td>259.31</td>
-      <td>401.00</td>
+      <td>low6m, low12m</td>
+      <td>75.599998</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>75.599998</td>
+      <td>75.599998</td>
+      <td>110.769997</td>
+      <td>110.769997</td>
+      <td>114.000000</td>
+      <td></td>
+      <td>1.3</td>
+      <td>1.3</td>
+      <td>30.9</td>
+      <td>30.9</td>
+      <td>32.8</td>
+      <td>61.84</td>
+      <td>19.3</td>
+      <td>92.76</td>
+      <td>17.4</td>
+      <td>75.60</td>
+      <td>114.00</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -442,7 +560,7 @@
       <td>13</td>
       <td>AUROPHARMA</td>
       <td>128.0</td>
-      <td>1220.00</td>
+      <td>1220.05</td>
       <td>1.4</td>
       <td>low3m</td>
       <td>1203.000000</td>
@@ -473,32 +591,32 @@
     </tr>
     <tr>
       <td>14</td>
-      <td>KANSAINER</td>
-      <td>272.0</td>
-      <td>255.45</td>
-      <td>1.4</td>
+      <td>CHEMCON</td>
+      <td>1240.0</td>
+      <td>229.17</td>
+      <td>1.6</td>
       <td>low6m, low12m</td>
-      <td>251.850006</td>
+      <td>225.500000</td>
       <td>0</td>
       <td>N</td>
       <td></td>
-      <td>251.850006</td>
-      <td>251.850006</td>
-      <td>320.500000</td>
-      <td>320.500000</td>
-      <td>357.299988</td>
+      <td>225.500000</td>
+      <td>225.500000</td>
+      <td>298.299988</td>
+      <td>298.299988</td>
+      <td>311.799988</td>
       <td></td>
-      <td>1.4</td>
-      <td>1.4</td>
-      <td>20.3</td>
-      <td>20.3</td>
-      <td>28.5</td>
-      <td>208.90</td>
-      <td>18.2</td>
-      <td>313.30</td>
-      <td>18.5</td>
-      <td>251.85</td>
-      <td>357.30</td>
+      <td>1.6</td>
+      <td>1.6</td>
+      <td>23.2</td>
+      <td>23.2</td>
+      <td>26.5</td>
+      <td>185.32</td>
+      <td>19.1</td>
+      <td>277.98</td>
+      <td>17.6</td>
+      <td>225.50</td>
+      <td>311.80</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -506,32 +624,32 @@
     </tr>
     <tr>
       <td>15</td>
-      <td>KOLTEPATIL</td>
-      <td>735.0</td>
-      <td>349.95</td>
-      <td>1.4</td>
-      <td>low3m, low6m, low12m</td>
-      <td>345.000000</td>
+      <td>LINCOLN</td>
+      <td>1134.0</td>
+      <td>615.60</td>
+      <td>1.7</td>
+      <td>low3m</td>
+      <td>604.900024</td>
       <td>0</td>
       <td>N</td>
-      <td>345.000000</td>
-      <td>345.000000</td>
-      <td>345.000000</td>
-      <td>464.299988</td>
-      <td>574.000000</td>
-      <td>585.000000</td>
-      <td>1.4</td>
-      <td>1.4</td>
-      <td>1.4</td>
-      <td>24.6</td>
-      <td>39.0</td>
-      <td>40.2</td>
-      <td>286.40</td>
-      <td>18.2</td>
-      <td>429.60</td>
-      <td>18.5</td>
-      <td>345.00</td>
-      <td>585.00</td>
+      <td>604.900024</td>
+      <td>534.799988</td>
+      <td>476.299988</td>
+      <td>811.849976</td>
+      <td>811.849976</td>
+      <td>811.849976</td>
+      <td>1.7</td>
+      <td>13.1</td>
+      <td>22.6</td>
+      <td>24.2</td>
+      <td>24.2</td>
+      <td>24.2</td>
+      <td>498.75</td>
+      <td>19.0</td>
+      <td>748.15</td>
+      <td>17.7</td>
+      <td>534.80</td>
+      <td>811.85</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -539,32 +657,32 @@
     </tr>
     <tr>
       <td>16</td>
-      <td>GSFC</td>
-      <td>519.0</td>
-      <td>190.39</td>
-      <td>1.4</td>
+      <td>XCHANGING</td>
+      <td>1106.0</td>
+      <td>104.18</td>
+      <td>1.8</td>
       <td>low6m</td>
-      <td>187.800003</td>
+      <td>102.300003</td>
       <td>0</td>
       <td>N</td>
       <td></td>
-      <td>187.800003</td>
-      <td>179.100006</td>
-      <td>267.000000</td>
-      <td>274.700012</td>
-      <td>322.250000</td>
+      <td>102.300003</td>
+      <td>87.500000</td>
+      <td>142.949997</td>
+      <td>142.949997</td>
+      <td>176.500000</td>
       <td></td>
-      <td>1.4</td>
-      <td>5.9</td>
-      <td>28.7</td>
-      <td>30.7</td>
-      <td>40.9</td>
-      <td>155.07</td>
-      <td>18.6</td>
-      <td>232.61</td>
-      <td>18.2</td>
-      <td>179.20</td>
-      <td>322.25</td>
+      <td>1.8</td>
+      <td>16.0</td>
+      <td>27.1</td>
+      <td>27.1</td>
+      <td>41.0</td>
+      <td>84.26</td>
+      <td>19.1</td>
+      <td>126.40</td>
+      <td>17.6</td>
+      <td>93.25</td>
+      <td>176.50</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -572,32 +690,32 @@
     </tr>
     <tr>
       <td>17</td>
-      <td>TNPETRO</td>
-      <td>1299.0</td>
-      <td>76.81</td>
-      <td>1.6</td>
+      <td>ADORWELD</td>
+      <td>975.0</td>
+      <td>1127.15</td>
+      <td>1.8</td>
       <td>low6m, low12m</td>
-      <td>75.599998</td>
+      <td>1107.050049</td>
       <td>0</td>
       <td>N</td>
       <td></td>
-      <td>75.599998</td>
-      <td>75.599998</td>
-      <td>110.769997</td>
-      <td>110.769997</td>
-      <td>114.000000</td>
+      <td>1107.050049</td>
+      <td>1107.050049</td>
+      <td>1489.000000</td>
+      <td>1650.000000</td>
+      <td>1770.000000</td>
       <td></td>
-      <td>1.6</td>
-      <td>1.6</td>
-      <td>30.7</td>
-      <td>30.7</td>
-      <td>32.6</td>
-      <td>61.84</td>
-      <td>19.5</td>
-      <td>92.76</td>
-      <td>17.2</td>
-      <td>75.60</td>
-      <td>114.00</td>
+      <td>1.8</td>
+      <td>1.8</td>
+      <td>24.3</td>
+      <td>31.7</td>
+      <td>36.3</td>
+      <td>923.10</td>
+      <td>18.1</td>
+      <td>1384.60</td>
+      <td>18.6</td>
+      <td>1107.05</td>
+      <td>1770.00</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -605,32 +723,32 @@
     </tr>
     <tr>
       <td>18</td>
-      <td>KAJARIACER</td>
-      <td>299.0</td>
-      <td>1140.95</td>
-      <td>1.6</td>
-      <td>low6m</td>
-      <td>1122.849976</td>
+      <td>IKIO</td>
+      <td>912.0</td>
+      <td>250.15</td>
+      <td>1.9</td>
+      <td>low6m, low12m</td>
+      <td>245.449997</td>
       <td>0</td>
       <td>N</td>
       <td></td>
-      <td>1122.849976</td>
-      <td>1110.349976</td>
-      <td>1578.699951</td>
-      <td>1578.699951</td>
-      <td>1578.699951</td>
+      <td>245.449997</td>
+      <td>245.449997</td>
+      <td>342.950012</td>
+      <td>342.950012</td>
+      <td>375.000000</td>
       <td></td>
-      <td>1.6</td>
-      <td>2.7</td>
-      <td>27.7</td>
-      <td>27.7</td>
-      <td>27.7</td>
-      <td>932.45</td>
-      <td>18.3</td>
-      <td>1398.65</td>
-      <td>18.4</td>
-      <td>1110.35</td>
-      <td>1578.70</td>
+      <td>1.9</td>
+      <td>1.9</td>
+      <td>27.1</td>
+      <td>27.1</td>
+      <td>33.3</td>
+      <td>201.50</td>
+      <td>19.4</td>
+      <td>302.20</td>
+      <td>17.2</td>
+      <td>245.45</td>
+      <td>363.95</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -638,10 +756,43 @@
     </tr>
     <tr>
       <td>19</td>
+      <td>HNDFDS</td>
+      <td>629.0</td>
+      <td>530.95</td>
+      <td>2.0</td>
+      <td>low3m</td>
+      <td>520.150024</td>
+      <td>0</td>
+      <td>N</td>
+      <td>520.150024</td>
+      <td>471.799988</td>
+      <td>467.000000</td>
+      <td>686.400024</td>
+      <td>686.400024</td>
+      <td>686.400024</td>
+      <td>2.0</td>
+      <td>11.1</td>
+      <td>12.0</td>
+      <td>22.6</td>
+      <td>22.6</td>
+      <td>22.6</td>
+      <td>431.50</td>
+      <td>18.7</td>
+      <td>647.30</td>
+      <td>18.0</td>
+      <td>467.00</td>
+      <td>686.40</td>
+      <td></td>
+      <td></td>
+      <td>2.5</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>20</td>
       <td>JCHAC</td>
       <td>833.0</td>
-      <td>1833.90</td>
-      <td>1.7</td>
+      <td>1839.60</td>
+      <td>2.0</td>
       <td>low3m</td>
       <td>1802.400024</td>
       <td>0</td>
@@ -652,16 +803,16 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>1.7</td>
-      <td>47.3</td>
-      <td>48.1</td>
+      <td>2.0</td>
+      <td>47.5</td>
+      <td>48.3</td>
       <td></td>
       <td></td>
       <td></td>
       <td>1502.80</td>
-      <td>18.1</td>
+      <td>18.3</td>
       <td>2254.20</td>
-      <td>18.6</td>
+      <td>18.4</td>
       <td>951.35</td>
       <td>2620.10</td>
       <td></td>
@@ -670,11 +821,77 @@
       <td></td>
     </tr>
     <tr>
-      <td>20</td>
+      <td>21</td>
+      <td>SHILPAMED</td>
+      <td>709.0</td>
+      <td>939.70</td>
+      <td>2.1</td>
+      <td>high3m, high6m, high12m</td>
+      <td>959.500000</td>
+      <td>0</td>
+      <td>N</td>
+      <td>559.000000</td>
+      <td>417.600006</td>
+      <td>313.149994</td>
+      <td>959.500000</td>
+      <td>959.500000</td>
+      <td>959.500000</td>
+      <td>40.5</td>
+      <td>55.6</td>
+      <td>66.7</td>
+      <td>2.1</td>
+      <td>2.1</td>
+      <td>2.1</td>
+      <td>704.10</td>
+      <td>25.1</td>
+      <td>1056.20</td>
+      <td>11.0</td>
+      <td>313.15</td>
+      <td>959.50</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>SRF</td>
+      <td>112.0</td>
+      <td>2134.40</td>
+      <td>2.1</td>
+      <td>low6m, low12m</td>
+      <td>2089.100098</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>2089.100098</td>
+      <td>2089.100098</td>
+      <td>2659.000000</td>
+      <td>2693.949951</td>
+      <td>2693.949951</td>
+      <td></td>
+      <td>2.1</td>
+      <td>2.1</td>
+      <td>19.7</td>
+      <td>20.8</td>
+      <td>20.8</td>
+      <td>1979.55</td>
+      <td>7.3</td>
+      <td>2419.45</td>
+      <td>11.8</td>
+      <td>2089.10</td>
+      <td>2693.95</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>23</td>
       <td>TATACONSUM</td>
       <td>76.0</td>
-      <td>911.70</td>
-      <td>1.8</td>
+      <td>916.25</td>
+      <td>2.2</td>
       <td>low12m</td>
       <td>895.700012</td>
       <td>0</td>
@@ -687,14 +904,14 @@
       <td>1269.000000</td>
       <td></td>
       <td></td>
-      <td>1.8</td>
-      <td>26.9</td>
-      <td>26.9</td>
-      <td>28.2</td>
+      <td>2.2</td>
+      <td>26.5</td>
+      <td>26.5</td>
+      <td>27.8</td>
       <td>825.45</td>
-      <td>9.5</td>
+      <td>9.9</td>
       <td>1008.85</td>
-      <td>9.6</td>
+      <td>9.2</td>
       <td>900.50</td>
       <td>1256.44</td>
       <td></td>
@@ -703,132 +920,33 @@
       <td></td>
     </tr>
     <tr>
-      <td>21</td>
-      <td>BLAL</td>
-      <td>1191.0</td>
-      <td>219.63</td>
-      <td>1.9</td>
-      <td>low6m</td>
-      <td>215.350006</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>215.350006</td>
-      <td>156.050003</td>
-      <td>356.700012</td>
-      <td>356.700012</td>
-      <td>377.450012</td>
-      <td></td>
-      <td>1.9</td>
-      <td>28.9</td>
-      <td>38.4</td>
-      <td>38.4</td>
-      <td>41.8</td>
-      <td>177.95</td>
-      <td>19.0</td>
-      <td>266.93</td>
-      <td>17.7</td>
-      <td>156.60</td>
-      <td>377.45</td>
-      <td></td>
-      <td></td>
-      <td>2.5</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>22</td>
-      <td>HATSUN</td>
-      <td>263.0</td>
-      <td>1043.90</td>
-      <td>2.0</td>
-      <td>low3m</td>
-      <td>1023.049988</td>
-      <td>0</td>
-      <td>N</td>
-      <td>1023.049988</td>
-      <td>959.950012</td>
-      <td>959.950012</td>
-      <td>1400.000000</td>
-      <td>1400.000000</td>
-      <td>1400.000000</td>
-      <td>2.0</td>
-      <td>8.0</td>
-      <td>8.0</td>
-      <td>25.4</td>
-      <td>25.4</td>
-      <td>25.4</td>
-      <td>870.15</td>
-      <td>16.6</td>
-      <td>1305.25</td>
-      <td>20.0</td>
-      <td>959.95</td>
-      <td>1400.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td>XCHANGING</td>
-      <td>1106.0</td>
-      <td>104.44</td>
-      <td>2.0</td>
-      <td>low6m</td>
-      <td>102.300003</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>102.300003</td>
-      <td>87.500000</td>
-      <td>142.949997</td>
-      <td>142.949997</td>
-      <td>176.500000</td>
-      <td></td>
-      <td>2.0</td>
-      <td>16.2</td>
-      <td>26.9</td>
-      <td>26.9</td>
-      <td>40.8</td>
-      <td>84.26</td>
-      <td>19.3</td>
-      <td>126.40</td>
-      <td>17.4</td>
-      <td>93.25</td>
-      <td>176.50</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
       <td>24</td>
-      <td>LINCOLN</td>
-      <td>1134.0</td>
-      <td>617.20</td>
-      <td>2.0</td>
-      <td>low3m</td>
-      <td>604.900024</td>
+      <td>SANOFI</td>
+      <td>295.0</td>
+      <td>6031.70</td>
+      <td>2.3</td>
+      <td>low6m, low12m</td>
+      <td>5892.799805</td>
       <td>0</td>
       <td>N</td>
-      <td>604.900024</td>
-      <td>534.799988</td>
-      <td>476.299988</td>
-      <td>811.849976</td>
-      <td>811.849976</td>
-      <td>811.849976</td>
-      <td>2.0</td>
-      <td>13.4</td>
-      <td>22.8</td>
-      <td>24.0</td>
-      <td>24.0</td>
-      <td>24.0</td>
-      <td>498.75</td>
-      <td>19.2</td>
-      <td>748.15</td>
-      <td>17.5</td>
-      <td>534.80</td>
-      <td>811.85</td>
+      <td></td>
+      <td>5892.799805</td>
+      <td>5892.799805</td>
+      <td>7600.000000</td>
+      <td>10524.950195</td>
+      <td>10524.950195</td>
+      <td></td>
+      <td>2.3</td>
+      <td>2.3</td>
+      <td>20.6</td>
+      <td>42.7</td>
+      <td>42.7</td>
+      <td>4918.65</td>
+      <td>18.5</td>
+      <td>7377.95</td>
+      <td>18.2</td>
+      <td>5892.80</td>
+      <td>10524.95</td>
       <td></td>
       <td></td>
       <td>5.0</td>
@@ -836,207 +954,9 @@
     </tr>
     <tr>
       <td>25</td>
-      <td>SIEMENS</td>
-      <td>42.0</td>
-      <td>6641.65</td>
-      <td>2.1</td>
-      <td>low3m</td>
-      <td>6502.750000</td>
-      <td>0</td>
-      <td>N</td>
-      <td>6502.750000</td>
-      <td>5378.850098</td>
-      <td>3299.949951</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>2.1</td>
-      <td>19.0</td>
-      <td>50.3</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>5981.10</td>
-      <td>9.9</td>
-      <td>7310.20</td>
-      <td>9.1</td>
-      <td>3520.00</td>
-      <td>8129.90</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>26</td>
-      <td>AGSTRA</td>
-      <td>1251.0</td>
-      <td>79.31</td>
-      <td>2.1</td>
-      <td>low3m</td>
-      <td>77.669998</td>
-      <td>0</td>
-      <td>N</td>
-      <td>77.669998</td>
-      <td>65.099998</td>
-      <td>60.049999</td>
-      <td>118.400002</td>
-      <td>118.400002</td>
-      <td>126.750000</td>
-      <td>2.1</td>
-      <td>17.9</td>
-      <td>24.3</td>
-      <td>33.0</td>
-      <td>33.0</td>
-      <td>37.4</td>
-      <td>64.70</td>
-      <td>18.4</td>
-      <td>97.06</td>
-      <td>18.3</td>
-      <td>63.45</td>
-      <td>126.75</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>27</td>
-      <td>RADIANTCMS</td>
-      <td>1254.0</td>
-      <td>72.64</td>
-      <td>2.1</td>
-      <td>low6m, low12m</td>
-      <td>71.099998</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>71.099998</td>
-      <td>71.099998</td>
-      <td>91.500000</td>
-      <td>91.500000</td>
-      <td>102.000000</td>
-      <td></td>
-      <td>2.1</td>
-      <td>2.1</td>
-      <td>20.6</td>
-      <td>20.6</td>
-      <td>28.8</td>
-      <td>59.12</td>
-      <td>18.6</td>
-      <td>88.68</td>
-      <td>18.1</td>
-      <td>71.10</td>
-      <td>97.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>28</td>
-      <td>ADORWELD</td>
-      <td>975.0</td>
-      <td>1131.15</td>
-      <td>2.1</td>
-      <td>low6m, low12m</td>
-      <td>1107.050049</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>1107.050049</td>
-      <td>1107.050049</td>
-      <td>1489.000000</td>
-      <td>1650.000000</td>
-      <td>1770.000000</td>
-      <td></td>
-      <td>2.1</td>
-      <td>2.1</td>
-      <td>24.0</td>
-      <td>31.4</td>
-      <td>36.1</td>
-      <td>923.10</td>
-      <td>18.4</td>
-      <td>1384.60</td>
-      <td>18.3</td>
-      <td>1107.05</td>
-      <td>1770.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>29</td>
-      <td>MVGJL</td>
-      <td>1112.0</td>
-      <td>219.55</td>
-      <td>2.1</td>
-      <td>low3m</td>
-      <td>215.009995</td>
-      <td>0</td>
-      <td>N</td>
-      <td>215.009995</td>
-      <td>209.550003</td>
-      <td>165.000000</td>
-      <td>330.899994</td>
-      <td>330.899994</td>
-      <td>382.000000</td>
-      <td>2.1</td>
-      <td>4.6</td>
-      <td>24.8</td>
-      <td>33.7</td>
-      <td>33.7</td>
-      <td>42.5</td>
-      <td>178.70</td>
-      <td>18.6</td>
-      <td>268.10</td>
-      <td>18.1</td>
-      <td>165.00</td>
-      <td>378.40</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>30</td>
-      <td>HNDFDS</td>
-      <td>629.0</td>
-      <td>532.40</td>
-      <td>2.3</td>
-      <td>low3m</td>
-      <td>520.150024</td>
-      <td>0</td>
-      <td>N</td>
-      <td>520.150024</td>
-      <td>471.799988</td>
-      <td>467.000000</td>
-      <td>686.400024</td>
-      <td>686.400024</td>
-      <td>686.400024</td>
-      <td>2.3</td>
-      <td>11.4</td>
-      <td>12.3</td>
-      <td>22.4</td>
-      <td>22.4</td>
-      <td>22.4</td>
-      <td>431.50</td>
-      <td>19.0</td>
-      <td>647.30</td>
-      <td>17.8</td>
-      <td>467.00</td>
-      <td>686.40</td>
-      <td></td>
-      <td></td>
-      <td>2.5</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>31</td>
       <td>AAVAS</td>
       <td>440.0</td>
-      <td>1641.30</td>
+      <td>1641.65</td>
       <td>2.3</td>
       <td>low3m</td>
       <td>1603.300049</td>
@@ -1052,10 +972,10 @@
       <td>19.0</td>
       <td>20.4</td>
       <td>15.4</td>
-      <td>17.1</td>
-      <td>17.1</td>
+      <td>17.0</td>
+      <td>17.0</td>
       <td>1312.45</td>
-      <td>20.0</td>
+      <td>20.1</td>
       <td>1968.65</td>
       <td>16.6</td>
       <td>1307.00</td>
@@ -1066,308 +986,77 @@
       <td></td>
     </tr>
     <tr>
-      <td>32</td>
-      <td>SHILPAMED</td>
-      <td>709.0</td>
-      <td>936.00</td>
-      <td>2.4</td>
-      <td>high3m, high6m, high12m</td>
-      <td>959.500000</td>
-      <td>0</td>
-      <td>N</td>
-      <td>559.000000</td>
-      <td>417.600006</td>
-      <td>313.149994</td>
-      <td>959.500000</td>
-      <td>959.500000</td>
-      <td>959.500000</td>
-      <td>40.3</td>
-      <td>55.4</td>
-      <td>66.5</td>
-      <td>2.4</td>
-      <td>2.4</td>
-      <td>2.4</td>
-      <td>704.10</td>
-      <td>24.8</td>
-      <td>1056.20</td>
-      <td>11.4</td>
-      <td>313.15</td>
-      <td>959.50</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>33</td>
-      <td>HINDZINC</td>
-      <td>62.0</td>
-      <td>487.05</td>
-      <td>2.4</td>
+      <td>26</td>
+      <td>ICICIGI</td>
+      <td>102.0</td>
+      <td>1824.75</td>
+      <td>2.3</td>
       <td>low3m</td>
-      <td>475.399994</td>
+      <td>1782.150024</td>
       <td>0</td>
       <td>N</td>
-      <td>475.399994</td>
-      <td>294.149994</td>
-      <td>284.600006</td>
-      <td>717.000000</td>
-      <td>807.700012</td>
-      <td>807.700012</td>
-      <td>2.4</td>
-      <td>39.6</td>
-      <td>41.6</td>
-      <td>32.1</td>
-      <td>39.7</td>
-      <td>39.7</td>
-      <td>442.95</td>
-      <td>9.1</td>
-      <td>541.35</td>
-      <td>10.0</td>
-      <td>284.60</td>
-      <td>807.70</td>
-      <td></td>
-      <td></td>
-      <td>2.5</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>34</td>
-      <td>ELGIEQUIP</td>
-      <td>292.0</td>
-      <td>553.15</td>
-      <td>2.4</td>
-      <td>low6m</td>
-      <td>540.150024</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>540.150024</td>
-      <td>497.000000</td>
-      <td>762.200012</td>
-      <td>798.950012</td>
-      <td>798.950012</td>
-      <td></td>
-      <td>2.4</td>
-      <td>10.2</td>
-      <td>27.4</td>
-      <td>30.8</td>
-      <td>30.8</td>
-      <td>445.30</td>
-      <td>19.5</td>
-      <td>668.00</td>
-      <td>17.2</td>
-      <td>503.10</td>
-      <td>798.95</td>
+      <td>1782.150024</td>
+      <td>1480.500000</td>
+      <td>1336.000000</td>
+      <td>2301.899902</td>
+      <td>2301.899902</td>
+      <td>2301.899902</td>
+      <td>2.3</td>
+      <td>18.9</td>
+      <td>26.8</td>
+      <td>20.7</td>
+      <td>20.7</td>
+      <td>20.7</td>
+      <td>1656.80</td>
+      <td>9.2</td>
+      <td>2025.00</td>
+      <td>9.9</td>
+      <td>1353.50</td>
+      <td>2301.90</td>
       <td></td>
       <td></td>
       <td>5.0</td>
       <td></td>
     </tr>
     <tr>
-      <td>35</td>
-      <td>LXCHEM</td>
-      <td>573.0</td>
-      <td>245.90</td>
-      <td>2.4</td>
-      <td>low3m</td>
-      <td>240.050003</td>
-      <td>0</td>
-      <td>N</td>
-      <td>240.050003</td>
-      <td>220.000000</td>
-      <td>220.000000</td>
-      <td>325.500000</td>
-      <td>325.500000</td>
-      <td>325.500000</td>
-      <td>2.4</td>
-      <td>10.5</td>
-      <td>10.5</td>
-      <td>24.5</td>
-      <td>24.5</td>
-      <td>24.5</td>
-      <td>201.45</td>
-      <td>18.1</td>
-      <td>302.15</td>
-      <td>18.6</td>
-      <td>220.00</td>
-      <td>325.50</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>36</td>
-      <td>POWERMECH</td>
-      <td>512.0</td>
-      <td>2475.80</td>
+      <td>27</td>
+      <td>HATSUN</td>
+      <td>263.0</td>
+      <td>1049.70</td>
       <td>2.5</td>
       <td>low3m</td>
-      <td>2415.000000</td>
+      <td>1023.049988</td>
       <td>0</td>
       <td>N</td>
-      <td>2415.000000</td>
-      <td>2173.875000</td>
-      <td>1682.474976</td>
-      <td>3725.000000</td>
-      <td>3725.000000</td>
-      <td>3725.000000</td>
+      <td>1023.049988</td>
+      <td>959.950012</td>
+      <td>959.950012</td>
+      <td>1400.000000</td>
+      <td>1400.000000</td>
+      <td>1400.000000</td>
       <td>2.5</td>
-      <td>12.2</td>
-      <td>32.0</td>
-      <td>33.5</td>
-      <td>33.5</td>
-      <td>33.5</td>
-      <td>2029.05</td>
-      <td>18.0</td>
-      <td>3043.55</td>
-      <td>18.7</td>
-      <td>1957.55</td>
-      <td>3725.00</td>
+      <td>8.6</td>
+      <td>8.6</td>
+      <td>25.0</td>
+      <td>25.0</td>
+      <td>25.0</td>
+      <td>870.15</td>
+      <td>17.1</td>
+      <td>1305.25</td>
+      <td>19.6</td>
+      <td>959.95</td>
+      <td>1400.00</td>
       <td></td>
       <td></td>
       <td>5.0</td>
       <td></td>
     </tr>
     <tr>
-      <td>37</td>
-      <td>PONNIERODE</td>
-      <td>1534.0</td>
-      <td>396.10</td>
-      <td>2.5</td>
-      <td>low6m</td>
-      <td>386.000000</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>386.000000</td>
-      <td>363.250000</td>
-      <td>598.900024</td>
-      <td>598.900024</td>
-      <td>598.900024</td>
-      <td></td>
-      <td>2.5</td>
-      <td>8.3</td>
-      <td>33.9</td>
-      <td>33.9</td>
-      <td>33.9</td>
-      <td>323.90</td>
-      <td>18.2</td>
-      <td>485.80</td>
-      <td>18.5</td>
-      <td>363.25</td>
-      <td>598.90</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>38</td>
-      <td>VAIBHAVGBL</td>
-      <td>590.0</td>
-      <td>269.40</td>
-      <td>2.5</td>
-      <td>low6m, low12m</td>
-      <td>262.649994</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>262.649994</td>
-      <td>262.649994</td>
-      <td>352.750000</td>
-      <td>437.799988</td>
-      <td>542.400024</td>
-      <td></td>
-      <td>2.5</td>
-      <td>2.5</td>
-      <td>23.6</td>
-      <td>38.5</td>
-      <td>50.3</td>
-      <td>217.70</td>
-      <td>19.2</td>
-      <td>326.60</td>
-      <td>17.5</td>
-      <td>262.65</td>
-      <td>542.40</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>39</td>
-      <td>ASTRAZEN</td>
-      <td>377.0</td>
-      <td>6305.45</td>
-      <td>2.5</td>
-      <td>low3m</td>
-      <td>6150.000000</td>
-      <td>0</td>
-      <td>N</td>
-      <td>6150.000000</td>
-      <td>4800.149902</td>
-      <td>4510.000000</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>2.5</td>
-      <td>23.9</td>
-      <td>28.5</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>5197.30</td>
-      <td>17.6</td>
-      <td>7796.00</td>
-      <td>19.1</td>
-      <td>4600.70</td>
-      <td>8139.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>40</td>
-      <td>SRF</td>
-      <td>112.0</td>
-      <td>2143.65</td>
-      <td>2.5</td>
-      <td>low6m, low12m</td>
-      <td>2089.100098</td>
-      <td>0</td>
-      <td>N</td>
-      <td></td>
-      <td>2089.100098</td>
-      <td>2089.100098</td>
-      <td>2659.000000</td>
-      <td>2693.949951</td>
-      <td>2693.949951</td>
-      <td></td>
-      <td>2.5</td>
-      <td>2.5</td>
-      <td>19.4</td>
-      <td>20.4</td>
-      <td>20.4</td>
-      <td>1979.55</td>
-      <td>7.7</td>
-      <td>2419.45</td>
-      <td>11.4</td>
-      <td>2089.10</td>
-      <td>2693.95</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>41</td>
+      <td>28</td>
       <td>INFIBEAM</td>
       <td>467.0</td>
-      <td>25.92</td>
-      <td>2.6</td>
+      <td>25.90</td>
+      <td>2.5</td>
       <td>low6m</td>
       <td>25.250000</td>
       <td>0</td>
@@ -1379,13 +1068,13 @@
       <td>39.200001</td>
       <td>42.500000</td>
       <td></td>
-      <td>2.6</td>
-      <td>27.5</td>
+      <td>2.5</td>
+      <td>27.4</td>
       <td>24.2</td>
       <td>33.9</td>
-      <td>39.0</td>
+      <td>39.1</td>
       <td>21.42</td>
-      <td>17.4</td>
+      <td>17.3</td>
       <td>32.14</td>
       <td>19.4</td>
       <td>19.95</td>
@@ -1396,44 +1085,44 @@
       <td></td>
     </tr>
     <tr>
-      <td>42</td>
-      <td>CLEAN</td>
-      <td>363.0</td>
-      <td>1277.05</td>
-      <td>2.7</td>
-      <td>low6m, low12m</td>
-      <td>1243.000000</td>
+      <td>29</td>
+      <td>HINDZINC</td>
+      <td>62.0</td>
+      <td>487.70</td>
+      <td>2.5</td>
+      <td>low3m</td>
+      <td>475.399994</td>
       <td>0</td>
       <td>N</td>
+      <td>475.399994</td>
+      <td>294.149994</td>
+      <td>284.600006</td>
+      <td>717.000000</td>
+      <td>807.700012</td>
+      <td>807.700012</td>
+      <td>2.5</td>
+      <td>39.7</td>
+      <td>41.6</td>
+      <td>32.0</td>
+      <td>39.6</td>
+      <td>39.6</td>
+      <td>442.95</td>
+      <td>9.2</td>
+      <td>541.35</td>
+      <td>9.9</td>
+      <td>284.60</td>
+      <td>807.70</td>
       <td></td>
-      <td>1243.000000</td>
-      <td>1243.000000</td>
-      <td>1690.000000</td>
-      <td>1690.000000</td>
-      <td>1690.000000</td>
       <td></td>
-      <td>2.7</td>
-      <td>2.7</td>
-      <td>24.4</td>
-      <td>24.4</td>
-      <td>24.4</td>
-      <td>1032.60</td>
-      <td>19.1</td>
-      <td>1548.90</td>
-      <td>17.6</td>
-      <td>1243.00</td>
-      <td>1690.00</td>
-      <td></td>
-      <td></td>
-      <td>5.0</td>
+      <td>2.5</td>
       <td></td>
     </tr>
     <tr>
-      <td>43</td>
+      <td>30</td>
       <td>MASFIN</td>
       <td>661.0</td>
-      <td>277.30</td>
-      <td>2.8</td>
+      <td>276.50</td>
+      <td>2.5</td>
       <td>low12m</td>
       <td>269.450012</td>
       <td>0</td>
@@ -1446,14 +1135,14 @@
       <td>387.950012</td>
       <td></td>
       <td></td>
-      <td>2.8</td>
-      <td>9.1</td>
-      <td>16.3</td>
-      <td>28.5</td>
+      <td>2.5</td>
+      <td>9.3</td>
+      <td>16.6</td>
+      <td>28.7</td>
       <td>233.30</td>
-      <td>15.9</td>
+      <td>15.6</td>
       <td>349.90</td>
-      <td>20.7</td>
+      <td>21.0</td>
       <td>269.45</td>
       <td>387.95</td>
       <td></td>
@@ -1462,11 +1151,11 @@
       <td></td>
     </tr>
     <tr>
-      <td>44</td>
+      <td>31</td>
       <td>HDFCBANK</td>
       <td>3.0</td>
-      <td>1741.20</td>
-      <td>2.9</td>
+      <td>1746.85</td>
+      <td>2.6</td>
       <td>high3m, high6m, high12m</td>
       <td>1794.000000</td>
       <td>0</td>
@@ -1477,16 +1166,16 @@
       <td>1794.000000</td>
       <td>1794.000000</td>
       <td>1794.000000</td>
-      <td>8.8</td>
-      <td>18.1</td>
-      <td>21.7</td>
-      <td>2.9</td>
-      <td>2.9</td>
-      <td>2.9</td>
-      <td>1568.00</td>
-      <td>9.9</td>
-      <td>1916.45</td>
       <td>9.1</td>
+      <td>18.3</td>
+      <td>21.9</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>1568.00</td>
+      <td>10.2</td>
+      <td>1916.45</td>
+      <td>8.8</td>
       <td>1363.55</td>
       <td>1794.00</td>
       <td></td>
@@ -1495,11 +1184,539 @@
       <td></td>
     </tr>
     <tr>
+      <td>32</td>
+      <td>BLAL</td>
+      <td>1191.0</td>
+      <td>221.21</td>
+      <td>2.6</td>
+      <td>low6m</td>
+      <td>215.350006</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>215.350006</td>
+      <td>156.050003</td>
+      <td>356.700012</td>
+      <td>356.700012</td>
+      <td>377.450012</td>
+      <td></td>
+      <td>2.6</td>
+      <td>29.5</td>
+      <td>38.0</td>
+      <td>38.0</td>
+      <td>41.4</td>
+      <td>177.95</td>
+      <td>19.6</td>
+      <td>266.93</td>
+      <td>17.1</td>
+      <td>156.60</td>
+      <td>377.45</td>
+      <td></td>
+      <td></td>
+      <td>2.5</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>SURYAROSNI</td>
+      <td>620.0</td>
+      <td>564.25</td>
+      <td>2.6</td>
+      <td>low3m</td>
+      <td>549.299988</td>
+      <td>0</td>
+      <td>N</td>
+      <td>549.299988</td>
+      <td>510.000000</td>
+      <td>467.549988</td>
+      <td></td>
+      <td></td>
+      <td>841.650024</td>
+      <td>2.6</td>
+      <td>9.6</td>
+      <td>17.1</td>
+      <td></td>
+      <td></td>
+      <td>33.0</td>
+      <td>455.30</td>
+      <td>19.3</td>
+      <td>682.90</td>
+      <td>17.4</td>
+      <td>467.55</td>
+      <td>841.65</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>STERTOOLS</td>
+      <td>1154.0</td>
+      <td>622.30</td>
+      <td>2.7</td>
+      <td>high3m, high6m, high12m</td>
+      <td>639.849976</td>
+      <td>0</td>
+      <td>N</td>
+      <td>355.049988</td>
+      <td>309.000000</td>
+      <td>304.350006</td>
+      <td>639.849976</td>
+      <td>639.849976</td>
+      <td>639.849976</td>
+      <td>42.9</td>
+      <td>50.3</td>
+      <td>51.1</td>
+      <td>2.7</td>
+      <td>2.7</td>
+      <td>2.7</td>
+      <td>494.70</td>
+      <td>20.5</td>
+      <td>742.00</td>
+      <td>16.1</td>
+      <td>304.35</td>
+      <td>639.85</td>
+      <td></td>
+      <td></td>
+      <td>2.5</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>BAJAJCON</td>
+      <td>781.0</td>
+      <td>205.21</td>
+      <td>2.7</td>
+      <td>low12m</td>
+      <td>199.750000</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td></td>
+      <td>199.750000</td>
+      <td>288.950012</td>
+      <td>288.950012</td>
+      <td>288.950012</td>
+      <td></td>
+      <td></td>
+      <td>2.7</td>
+      <td>29.0</td>
+      <td>29.0</td>
+      <td>29.0</td>
+      <td>165.14</td>
+      <td>19.5</td>
+      <td>247.70</td>
+      <td>17.2</td>
+      <td>199.75</td>
+      <td>288.95</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>RADIANTCMS</td>
+      <td>1254.0</td>
+      <td>73.17</td>
+      <td>2.8</td>
+      <td>low6m, low12m</td>
+      <td>71.099998</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>71.099998</td>
+      <td>71.099998</td>
+      <td>91.500000</td>
+      <td>91.500000</td>
+      <td>102.000000</td>
+      <td></td>
+      <td>2.8</td>
+      <td>2.8</td>
+      <td>20.0</td>
+      <td>20.0</td>
+      <td>28.3</td>
+      <td>59.12</td>
+      <td>19.2</td>
+      <td>88.68</td>
+      <td>17.5</td>
+      <td>71.10</td>
+      <td>97.00</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>ASTRAZEN</td>
+      <td>377.0</td>
+      <td>6324.00</td>
+      <td>2.8</td>
+      <td>low3m</td>
+      <td>6150.000000</td>
+      <td>0</td>
+      <td>N</td>
+      <td>6150.000000</td>
+      <td>4800.149902</td>
+      <td>4510.000000</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2.8</td>
+      <td>24.1</td>
+      <td>28.7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>5197.30</td>
+      <td>17.8</td>
+      <td>7796.00</td>
+      <td>18.9</td>
+      <td>4600.70</td>
+      <td>8139.00</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>ELGIEQUIP</td>
+      <td>292.0</td>
+      <td>555.80</td>
+      <td>2.8</td>
+      <td>low6m</td>
+      <td>540.150024</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>540.150024</td>
+      <td>497.000000</td>
+      <td>762.200012</td>
+      <td>798.950012</td>
+      <td>798.950012</td>
+      <td></td>
+      <td>2.8</td>
+      <td>10.6</td>
+      <td>27.1</td>
+      <td>30.4</td>
+      <td>30.4</td>
+      <td>445.30</td>
+      <td>19.9</td>
+      <td>668.00</td>
+      <td>16.8</td>
+      <td>503.10</td>
+      <td>798.95</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>LXCHEM</td>
+      <td>573.0</td>
+      <td>246.95</td>
+      <td>2.8</td>
+      <td>low3m</td>
+      <td>240.050003</td>
+      <td>0</td>
+      <td>N</td>
+      <td>240.050003</td>
+      <td>220.000000</td>
+      <td>220.000000</td>
+      <td>325.500000</td>
+      <td>325.500000</td>
+      <td>325.500000</td>
+      <td>2.8</td>
+      <td>10.9</td>
+      <td>10.9</td>
+      <td>24.1</td>
+      <td>24.1</td>
+      <td>24.1</td>
+      <td>201.45</td>
+      <td>18.4</td>
+      <td>302.15</td>
+      <td>18.3</td>
+      <td>220.00</td>
+      <td>325.50</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>MVGJL</td>
+      <td>1112.0</td>
+      <td>221.10</td>
+      <td>2.8</td>
+      <td>low3m</td>
+      <td>215.009995</td>
+      <td>0</td>
+      <td>N</td>
+      <td>215.009995</td>
+      <td>209.550003</td>
+      <td>165.000000</td>
+      <td>330.899994</td>
+      <td>330.899994</td>
+      <td>382.000000</td>
+      <td>2.8</td>
+      <td>5.2</td>
+      <td>25.4</td>
+      <td>33.2</td>
+      <td>33.2</td>
+      <td>42.1</td>
+      <td>178.70</td>
+      <td>19.2</td>
+      <td>268.10</td>
+      <td>17.5</td>
+      <td>165.00</td>
+      <td>378.40</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>SIEMENS</td>
+      <td>42.0</td>
+      <td>6697.70</td>
+      <td>2.9</td>
+      <td>low3m</td>
+      <td>6502.750000</td>
+      <td>0</td>
+      <td>N</td>
+      <td>6502.750000</td>
+      <td>5378.850098</td>
+      <td>3299.949951</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2.9</td>
+      <td>19.7</td>
+      <td>50.7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>5981.10</td>
+      <td>10.7</td>
+      <td>7310.20</td>
+      <td>8.4</td>
+      <td>3520.00</td>
+      <td>8129.90</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>CLEAN</td>
+      <td>363.0</td>
+      <td>1279.85</td>
+      <td>2.9</td>
+      <td>low6m, low12m</td>
+      <td>1243.000000</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>1243.000000</td>
+      <td>1243.000000</td>
+      <td>1690.000000</td>
+      <td>1690.000000</td>
+      <td>1690.000000</td>
+      <td></td>
+      <td>2.9</td>
+      <td>2.9</td>
+      <td>24.3</td>
+      <td>24.3</td>
+      <td>24.3</td>
+      <td>1032.60</td>
+      <td>19.3</td>
+      <td>1548.90</td>
+      <td>17.4</td>
+      <td>1243.00</td>
+      <td>1690.00</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>PONNIERODE</td>
+      <td>1534.0</td>
+      <td>398.00</td>
+      <td>3.0</td>
+      <td>low6m</td>
+      <td>386.000000</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>386.000000</td>
+      <td>363.250000</td>
+      <td>598.900024</td>
+      <td>598.900024</td>
+      <td>598.900024</td>
+      <td></td>
+      <td>3.0</td>
+      <td>8.7</td>
+      <td>33.5</td>
+      <td>33.5</td>
+      <td>33.5</td>
+      <td>323.90</td>
+      <td>18.6</td>
+      <td>485.80</td>
+      <td>18.1</td>
+      <td>363.25</td>
+      <td>598.90</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>AGSTRA</td>
+      <td>1251.0</td>
+      <td>80.09</td>
+      <td>3.0</td>
+      <td>low3m</td>
+      <td>77.669998</td>
+      <td>0</td>
+      <td>N</td>
+      <td>77.669998</td>
+      <td>65.099998</td>
+      <td>60.049999</td>
+      <td>118.400002</td>
+      <td>118.400002</td>
+      <td>126.750000</td>
+      <td>3.0</td>
+      <td>18.7</td>
+      <td>25.0</td>
+      <td>32.4</td>
+      <td>32.4</td>
+      <td>36.8</td>
+      <td>64.70</td>
+      <td>19.2</td>
+      <td>97.06</td>
+      <td>17.5</td>
+      <td>63.45</td>
+      <td>126.75</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
       <td>45</td>
+      <td>IOLCP</td>
+      <td>920.0</td>
+      <td>341.55</td>
+      <td>3.1</td>
+      <td>low6m, low12m</td>
+      <td>330.850006</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>330.850006</td>
+      <td>330.850006</td>
+      <td>537.700012</td>
+      <td>537.700012</td>
+      <td>537.700012</td>
+      <td></td>
+      <td>3.1</td>
+      <td>3.1</td>
+      <td>36.5</td>
+      <td>36.5</td>
+      <td>36.5</td>
+      <td>273.40</td>
+      <td>20.0</td>
+      <td>410.10</td>
+      <td>16.7</td>
+      <td>330.85</td>
+      <td>537.70</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>BRITANNIA</td>
+      <td>69.0</td>
+      <td>4790.15</td>
+      <td>3.1</td>
+      <td>low6m</td>
+      <td>4641.000000</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>4641.000000</td>
+      <td>4347.700195</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3.1</td>
+      <td>9.2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>4323.00</td>
+      <td>9.8</td>
+      <td>5283.70</td>
+      <td>9.3</td>
+      <td>4626.00</td>
+      <td>6469.90</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>VAIBHAVGBL</td>
+      <td>590.0</td>
+      <td>271.50</td>
+      <td>3.3</td>
+      <td>low6m, low12m</td>
+      <td>262.649994</td>
+      <td>0</td>
+      <td>N</td>
+      <td></td>
+      <td>262.649994</td>
+      <td>262.649994</td>
+      <td>352.750000</td>
+      <td>437.799988</td>
+      <td>542.400024</td>
+      <td></td>
+      <td>3.3</td>
+      <td>3.3</td>
+      <td>23.0</td>
+      <td>38.0</td>
+      <td>49.9</td>
+      <td>217.70</td>
+      <td>19.8</td>
+      <td>326.60</td>
+      <td>16.9</td>
+      <td>262.65</td>
+      <td>542.40</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>48</td>
       <td>BAJAJFINSV</td>
       <td>29.0</td>
-      <td>1569.25</td>
-      <td>2.9</td>
+      <td>1575.45</td>
+      <td>3.3</td>
       <td>low3m</td>
       <td>1523.250000</td>
       <td>0</td>
@@ -1510,16 +1727,16 @@
       <td>2029.900024</td>
       <td>2029.900024</td>
       <td>2029.900024</td>
-      <td>2.9</td>
-      <td>9.6</td>
-      <td>9.6</td>
-      <td>22.7</td>
-      <td>22.7</td>
-      <td>22.7</td>
+      <td>3.3</td>
+      <td>9.9</td>
+      <td>9.9</td>
+      <td>22.4</td>
+      <td>22.4</td>
+      <td>22.4</td>
       <td>1436.70</td>
-      <td>8.4</td>
+      <td>8.8</td>
       <td>1756.00</td>
-      <td>10.6</td>
+      <td>10.3</td>
       <td>1419.05</td>
       <td>2029.90</td>
       <td></td>
@@ -1528,11 +1745,11 @@
       <td></td>
     </tr>
     <tr>
-      <td>46</td>
+      <td>49</td>
       <td>METROPOLIS</td>
       <td>483.0</td>
-      <td>2015.75</td>
-      <td>3.0</td>
+      <td>2024.50</td>
+      <td>3.4</td>
       <td>low3m</td>
       <td>1955.300049</td>
       <td>0</td>
@@ -1543,16 +1760,16 @@
       <td></td>
       <td></td>
       <td></td>
-      <td>3.0</td>
-      <td>17.1</td>
-      <td>30.5</td>
+      <td>3.4</td>
+      <td>17.4</td>
+      <td>30.8</td>
       <td></td>
       <td></td>
       <td></td>
       <td>1818.65</td>
-      <td>9.8</td>
+      <td>10.2</td>
       <td>2222.75</td>
-      <td>9.3</td>
+      <td>8.9</td>
       <td>1450.00</td>
       <td>2318.30</td>
       <td></td>
@@ -1561,37 +1778,70 @@
       <td></td>
     </tr>
     <tr>
-      <td>47</td>
-      <td>SANOFI</td>
-      <td>295.0</td>
-      <td>6076.70</td>
-      <td>3.0</td>
+      <td>50</td>
+      <td>KANSAINER</td>
+      <td>272.0</td>
+      <td>260.95</td>
+      <td>3.5</td>
       <td>low6m, low12m</td>
-      <td>5892.799805</td>
+      <td>251.850006</td>
       <td>0</td>
       <td>N</td>
       <td></td>
-      <td>5892.799805</td>
-      <td>5892.799805</td>
-      <td>7600.000000</td>
-      <td>10524.950195</td>
-      <td>10524.950195</td>
+      <td>251.850006</td>
+      <td>251.850006</td>
+      <td>320.500000</td>
+      <td>320.500000</td>
+      <td>357.299988</td>
       <td></td>
-      <td>3.0</td>
-      <td>3.0</td>
-      <td>20.0</td>
-      <td>42.3</td>
-      <td>42.3</td>
-      <td>4918.65</td>
-      <td>19.1</td>
-      <td>7377.95</td>
-      <td>17.6</td>
-      <td>5892.80</td>
-      <td>10524.95</td>
+      <td>3.5</td>
+      <td>3.5</td>
+      <td>18.6</td>
+      <td>18.6</td>
+      <td>27.0</td>
+      <td>208.90</td>
+      <td>19.9</td>
+      <td>313.30</td>
+      <td>16.7</td>
+      <td>251.85</td>
+      <td>357.30</td>
+      <td></td>
+      <td></td>
+      <td>5.0</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>POWERMECH</td>
+      <td>512.0</td>
+      <td>2519.95</td>
+      <td>4.2</td>
+      <td>low3m</td>
+      <td>2415.000000</td>
+      <td>0</td>
+      <td>N</td>
+      <td>2415.000000</td>
+      <td>2173.875000</td>
+      <td>1682.474976</td>
+      <td>3725.000000</td>
+      <td>3725.000000</td>
+      <td>3725.000000</td>
+      <td>4.2</td>
+      <td>13.7</td>
+      <td>33.2</td>
+      <td>32.4</td>
+      <td>32.4</td>
+      <td>32.4</td>
+      <td>2029.05</td>
+      <td>19.5</td>
+      <td>3043.55</td>
+      <td>17.2</td>
+      <td>1957.55</td>
+      <td>3725.00</td>
       <td></td>
       <td></td>
       <td>5.0</td>
       <td></td>
     </tr>
   </tbody>
-</table><p>Page last refreshed on 2024-11-22 09:11</p></body></html>
+</table><p>Page last refreshed on 2024-11-22 09:30</p></body></html>
