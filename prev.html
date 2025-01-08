@@ -82,7 +82,7 @@
             if (fileName) {
                 currentVideoId = fileName;
                 let videoLoaded = false;
-                let currentServer = 10; // Starting with server 10
+                let currentServer = 6;
 
                 // Function to check the video from the server
                 function tryVideoFromServer(serverId) {
@@ -112,7 +112,7 @@
                         })
                         .catch(() => {
                             // If there was an error with the request, try the next server
-                            if (serverId < 16 && !videoLoaded) {
+                            if (serverId < 17 && !videoLoaded) {
                                 tryVideoFromServer(serverId + 1);
                             }
                         });
