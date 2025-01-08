@@ -1,4 +1,78 @@
-let currentVideoId = 0;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player with Controls</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .panell {
+            width: 28%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .panelr {
+            width: 68%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+        }
+        .controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 150px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        video {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panell controls">
+        <h2>Video Controls</h2>
+        <input type="text" id="fileName" placeholder="Enter file name">
+        <button onclick="loadVideo()">Load Video</button>
+        <div>
+            <button onclick="changeVideo('prev')">Previous</button>
+            <button onclick="changeVideo('next')">Next</button>
+        </div>
+        <button onclick="downloadVideo()">Download Video</button>
+    </div>
+
+    <div class="panelr video-container">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        let currentVideoId = 0;
 const baseURL = "https://server10.masahub.cc/myfiless/id/";
 
 // Attempt to load the video from multiple servers
@@ -64,3 +138,8 @@ function downloadVideo() {
     a.download = currentVideoId + ".mp4";
     a.click();
 }
+
+    </script>
+
+</body>
+</html>
