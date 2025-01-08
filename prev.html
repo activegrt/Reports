@@ -1,115 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player with Controls</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: space-between;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-        .panell {
-            width: 28%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .panelr {
-            width: 68%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-        .video-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 80vh;
-        }
-        .controls {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-        input[type="text"] {
-            padding: 8px;
-            width: 150px;
-        }
-        button {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        video {
-            max-width: 100%;
-            height: auto;
-        }
-    </style>
-</head>
-<body>
+let currentVideoId = 0;
+const baseURL = "https://server10.masahub.cc/myfiless/id/";
 
-    <div class="panell controls">
-        <h2>Video Controls</h2>
-        <input type="text" id="fileName" placeholder="Enter file name">
-        <button onclick="loadVideo()">Load Video</button>
-        <div>
-            <button onclick="changeVideo('prev')">Previous</button>
-            <button onclick="changeVideo('next')">Next</button>
-        </div>
-        <button onclick="downloadVideo()">Download Video</button>
-    </div>
+// Attempt to load the video from multiple servers
+function loadVideo() {
+    const fileName = document.getElementById("fileName").value.trim();
+    if (fileName) {
+        currentVideoId = fileName;
+        let videoLoaded = false;
+        let currentServer = 10; // Starting with server 10
 
-    <div class="panelr video-container">
-        <video id="videoPlayer" controls>
-            <source id="videoSource" src="" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <script>
-        let currentVideoId = 0;
-        const baseURL = "https://server10.masahub.cc/myfiless/id/";
-
-        // Load the video from the input file name
-        function loadVideo() {
-            const fileName = document.getElementById("fileName").value.trim();
-            if (fileName) {
-                currentVideoId = fileName;
-                const videoURL = baseURL + currentVideoId + ".mp4";
-                document.getElementById("videoSource").src = videoURL;
-                document.getElementById("videoPlayer").load();
-                document.getElementById("videoPlayer").play();
-            } else {
-                alert("Please enter a valid video file name.");
-            }
+        // Function to check the video from the server
+        function tryVideoFromServer(serverId) {
+            const videoURL = `https://server${serverId}.masahub.cc/myfiless/id/${currentVideoId}.mp4`;
+            fetch(videoURL, { method: 'HEAD' }) // Check if the video exists
+                .then(response => {
+                    if (response.ok) {
+                        // If video exists, load it
+                        document.getElementById("videoSource").src = videoURL;
+                        document.getElementById("videoPlayer").load();
+                        document.getElementById("videoPlayer").play();
+                        videoLoaded = true;
+                    } else if (serverId < 16 && !videoLoaded) {
+                        // If the video is not found, try the next server
+                        tryVideoFromServer(serverId + 1);
+                    } else {
+                        // If video is not found in any server, show a message
+                        if (!videoLoaded) {
+                            document.getElementById("videoSource").src = "";
+                            alert("Video not found.");
+                        }
+                    }
+                })
+                .catch(() => {
+                    // If there was an error with the request, try the next server
+                    if (serverId < 16 && !videoLoaded) {
+                        tryVideoFromServer(serverId + 1);
+                    }
+                });
         }
 
-        // Change video to next or previous
-        function changeVideo(direction) {
-            if (direction === 'next') {
-                currentVideoId++;
-            } else if (direction === 'prev' && currentVideoId > 1) {
-                currentVideoId--;
-            }
-            document.getElementById("fileName").value = currentVideoId;
-            loadVideo();
-        }
+        tryVideoFromServer(currentServer); // Start checking from server 10
+    } else {
+        alert("Please enter a valid video file name.");
+    }
+}
 
-        // Download the video
-        function downloadVideo() {
-            const videoURL = baseURL + currentVideoId + ".mp4";
-            const a = document.createElement("a");
-            a.href = videoURL;
-            a.download = currentVideoId + ".mp4";
-            a.click();
-        }
-    </script>
+// Change video to next or previous
+function changeVideo(direction) {
+    if (direction === 'next') {
+        currentVideoId++;
+    } else if (direction === 'prev' && currentVideoId > 1) {
+        currentVideoId--;
+    }
+    document.getElementById("fileName").value = currentVideoId;
+    loadVideo();
+}
 
-</body>
-</html>
+// Download the video
+function downloadVideo() {
+    const videoURL = baseURL + currentVideoId + ".mp4";
+    const a = document.createElement("a");
+    a.href = videoURL;
+    a.download = currentVideoId + ".mp4";
+    a.click();
+}
