@@ -1,1830 +1,3145 @@
 <html>
                           <head></head>
                           <body>
-            <button onclick="viewPDF('equity_dividend.pdf')">Read Report</button>
-            <button onclick="downloadPDF('equity_dividend.pdf')">Download Report</button>
-    
-            <!-- PDF iframe container -->
-            <div id="pdf-container" style="margin-top: 20px;">
-                <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
-            </div>
                           <br/><br/><H2>Stock Dividend Announcements</H2><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Token</th>
+      <th>Symbol</th>
       <th>Rank</th>
       <th>Beta</th>
-      <th>%</th>
-      <th>Divident</th>
-      <th>🔊</th>
-      <th>Ex-Date</th>
-      <th>CMP</th>
-      <th>F-Score</th>
-      <th>UP</th>
-      <th>52W</th>
-      <th>FII</th>
-      <th>DII</th>
-      <th>MF</th>
-      <th>PRO</th>
-      <th>Reported</th>
-      <th>O.Amt</th>
-      <th>Turnover</th>
+      <th>MTF</th>
+      <th>Dividend%</th>
+      <th>Dividend</th>
+      <th>Priority</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Day</th>
+      <th>Holdings</th>
+      <th>Added</th>
+      <th>Exited</th>
+      <th>Ratings</th>
+      <th>High</th>
+      <th>Median</th>
+      <th>Low</th>
+      <th>3Y Gap%</th>
+      <th>2Y Gap%</th>
+      <th>1Y Gap%</th>
       <th>Reference</th>
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>GAIL</td>
+      <td>67</td>
+      <td>0.913</td>
+      <td>60</td>
+      <td>3.73</td>
+      <td>6.5</td>
+      <td></td>
+      <td>2025-02-07</td>
+      <td>174.34</td>
+      <td></td>
+      <td>21</td>
+      <td></td>
+      <td>3</td>
+      <td>buy</td>
+      <td>270</td>
+      <td>215</td>
+      <td>145</td>
+      <td>52.4</td>
+      <td>47.8</td>
+      <td>10.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GAIL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GAIL/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>ONGC</td>
+      <td>19</td>
+      <td>0.653</td>
+      <td>65</td>
+      <td>2.01</td>
+      <td>5.0</td>
+      <td></td>
+      <td>2025-02-07</td>
+      <td>249.00</td>
+      <td></td>
+      <td>17</td>
+      <td></td>
+      <td></td>
+      <td>buy</td>
+      <td>416</td>
+      <td>310</td>
+      <td>215</td>
+      <td>51.9</td>
+      <td>43.7</td>
+      <td>18.2</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ONGC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ONGC/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>CASTROLIND</td>
+      <td>298</td>
+      <td>0.662</td>
+      <td>60</td>
+      <td>5.38</td>
+      <td>9.5</td>
+      <td>🥇</td>
+      <td>2025-03-18</td>
+      <td>176.47</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CASTROLIND&interval=D">⬆️ 04-06-2024</a></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>260</td>
+      <td>236</td>
+      <td>190</td>
+      <td>43.9</td>
+      <td>39.1</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CASTROLIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CASTROLIND/">🎯</a></td>
+    </tr>
   </tbody>
 </table><br/><br/><H2>Low Dividend Stock</H2><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Token</th>
+      <th>Symbol</th>
+      <th>Company</th>
+      <th>Date</th>
+      <th>Price</th>
+      <th>Dividend</th>
+      <th>Bonus</th>
+      <th>Split</th>
+      <th>Tradeqty</th>
+      <th>Turnover</th>
       <th>Rank</th>
       <th>Beta</th>
-      <th>%</th>
-      <th>Divident</th>
-      <th>🔊</th>
-      <th>Ex-Date</th>
-      <th>CMP</th>
-      <th>F-Score</th>
-      <th>UP</th>
-      <th>52W</th>
-      <th>FII</th>
-      <th>DII</th>
-      <th>MF</th>
-      <th>PRO</th>
-      <th>Reported</th>
-      <th>O.Amt</th>
-      <th>Turnover</th>
+      <th>MTF</th>
+      <th>LTP</th>
+      <th>Day</th>
+      <th>Holdings</th>
+      <th>Added</th>
+      <th>Exited</th>
+      <th>IV</th>
+      <th>ROE</th>
+      <th>Ratings</th>
+      <th>High</th>
+      <th>Median</th>
+      <th>Low</th>
+      <th>F-PE</th>
+      <th>T-PE</th>
+      <th>3Y Gap%</th>
+      <th>2Y Gap%</th>
+      <th>1Y Gap%</th>
       <th>Reference</th>
+      <th>Dividend%</th>
+      <th>Priority</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>APCOTEXIND</td>
-      <td>693.0</td>
-      <td>1.04</td>
-      <td>0.56</td>
-      <td>2.00</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>360.0</td>
-      <td>4.94</td>
-      <td>8.0</td>
-      <td>32.0</td>
-      <td>-0.38</td>
-      <td>-0.08</td>
-      <td>0.0</td>
-      <td>0.01</td>
-      <td>29-01-2025</td>
-      <td>344.15</td>
-      <td>1.35</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=APCOTEXIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/APCOTEXIND/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>GESHIP</td>
-      <td>361.0</td>
-      <td>1.07</td>
-      <td>0.81</td>
-      <td>8.10</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>1000.05</td>
-      <td>6.94</td>
-      <td>34.0</td>
-      <td>16.0</td>
-      <td>1.15</td>
-      <td>-1.46</td>
-      <td>-1.67</td>
-      <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>908.9</td>
-      <td>56.96</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/shipping/greateasternshippingcompany/GES">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GESHIP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GESHIP/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>GODREJCP</td>
-      <td>53.0</td>
-      <td>0.61</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>1191.7</td>
-      <td>4.78</td>
-      <td>6.0</td>
-      <td>2.0</td>
-      <td>-0.38</td>
-      <td>0.26</td>
-      <td>0.08</td>
-      <td>-0.0</td>
-      <td>19-01-2025</td>
-      <td>1187.75</td>
-      <td>332.43</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/personalcare/godrejconsumerproducts/GCP">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GODREJCP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GODREJCP/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>JUBLINGREA</td>
-      <td>456.0</td>
-      <td></td>
-      <td>0.36</td>
-      <td>2.50</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>698.85</td>
-      <td></td>
-      <td>151.0</td>
-      <td>49.0</td>
-      <td>-0.85</td>
-      <td>2.53</td>
-      <td>2.52</td>
-      <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>659.0</td>
-      <td>9.62</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/speciality-chemicals/jubilantingrevia/JI14">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=JUBLINGREA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/JUBLINGREA/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>MGL</td>
-      <td>350.0</td>
-      <td>0.95</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>1373.5</td>
-      <td>5.83</td>
-      <td>7.0</td>
-      <td>3.0</td>
-      <td>1.36</td>
-      <td>0.03</td>
-      <td>-0.15</td>
-      <td>0.0</td>
-      <td>23-01-2025</td>
-      <td>1280.2</td>
-      <td>69.85</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/refineries/mahanagargas/MG02">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MGL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MGL/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>SHAREINDIA</td>
-      <td>599.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>242.31</td>
-      <td>5.91</td>
-      <td></td>
-      <td>25.0</td>
-      <td>0.26</td>
-      <td>-0.02</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>24-01-2025</td>
-      <td>258.55</td>
-      <td>6.02</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHAREINDIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHAREINDIA/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>SIYSIL</td>
-      <td>759.0</td>
-      <td>1.3</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>794.95</td>
-      <td>4.96</td>
-      <td>23.0</td>
-      <td>40.0</td>
-      <td>-0.05</td>
-      <td>-1.65</td>
-      <td>-1.75</td>
-      <td>0.0</td>
-      <td>23-01-2025</td>
-      <td>935.0</td>
-      <td>12.3</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SIYSIL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SIYSIL/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>WHEELS</td>
-      <td>978.0</td>
-      <td>1.11</td>
-      <td>0.64</td>
-      <td>4.50</td>
-      <td></td>
-      <td>03-02-2025</td>
-      <td>700.0</td>
-      <td>3.32</td>
-      <td></td>
-      <td>49.0</td>
-      <td>-0.0</td>
-      <td>0.04</td>
-      <td>0.04</td>
-      <td>0.58</td>
-      <td>29-01-2025</td>
-      <td>663.5</td>
-      <td>1.18</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=WHEELS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/WHEELS/">🎯</a></td>
-    </tr>
-    <tr>
       <td>AARTIDRUGS</td>
-      <td>612.0</td>
-      <td>0.97</td>
-      <td>0.24</td>
+      <td>AARTI DRUGS LTD.</td>
+      <td>2025-02-04</td>
+      <td>423.40</td>
       <td>1.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>191748</td>
+      <td>8.03</td>
+      <td>710</td>
+      <td>0.826</td>
+      <td>55</td>
+      <td>423.4</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AARTIDRUGS&interval=D">⬆️ 26-10-2023</a></td>
+      <td>1</td>
       <td></td>
-      <td>04-02-2025</td>
-      <td>413.05</td>
-      <td>5.08</td>
-      <td>8.0</td>
-      <td>24.0</td>
-      <td>-0.03</td>
-      <td>0.74</td>
-      <td>0.74</td>
-      <td>-0.11</td>
-      <td>30-01-2025</td>
-      <td>396.7</td>
-      <td>2.76</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/aartidrugs/AD">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AARTIDRUGS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AARTIDRUGS/">🎯</a></td>
+      <td></td>
+      <td>3.037368</td>
+      <td>0.12241</td>
+      <td>buy</td>
+      <td>465</td>
+      <td>465</td>
+      <td>465</td>
+      <td>19</td>
+      <td>25</td>
+      <td>25.9</td>
+      <td>25.9</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AARTIDRUGS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AARTIDRUGS/">🎯</a></td>
+      <td>0.24</td>
+      <td></td>
     </tr>
     <tr>
       <td>AURIONPRO</td>
-      <td>1174.0</td>
-      <td>0.63</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>AURIONPRO SOLUTIONS LTD.</td>
+      <td>2025-02-04</td>
+      <td>1464.00</td>
+      <td>1.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>41373</td>
+      <td>5.98</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.07</td>
       <td></td>
-      <td>04-02-2025</td>
-      <td>1500.8</td>
-      <td>4.63</td>
-      <td>-31.0</td>
-      <td>41.0</td>
-      <td>-0.22</td>
-      <td>-0.17</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>23-01-2025</td>
-      <td>1557.25</td>
-      <td>2.49</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AURIONPRO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AURIONPRO/">🎯</a></td>
     </tr>
     <tr>
       <td>DAAWAT</td>
-      <td>629.0</td>
-      <td>1.11</td>
+      <td>LT FOODS LTD.</td>
+      <td>2025-02-04</td>
       <td>0.00</td>
+      <td>0.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.00</td>
       <td></td>
-      <td>04-02-2025</td>
-      <td></td>
-      <td></td>
-      <td>54.0</td>
-      <td>39.0</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>20-01-2025</td>
-      <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=DAAWAT">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DAAWAT/">🎯</a></td>
     </tr>
     <tr>
       <td>EMAMILTD</td>
-      <td>256.0</td>
-      <td>1.12</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>04-02-2025</td>
-      <td>625.8</td>
-      <td>4.69</td>
-      <td>35.0</td>
-      <td>45.0</td>
-      <td>-0.13</td>
-      <td>-0.11</td>
-      <td>0.04</td>
+      <td>EMAMI LTD.-$</td>
+      <td>2025-02-04</td>
+      <td>614.30</td>
+      <td>4.00</td>
       <td>0.0</td>
-      <td>19-01-2025</td>
-      <td>564.85</td>
-      <td>52.64</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/personalcare/emami/E06">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=EMAMILTD">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/EMAMILTD/">🎯</a></td>
+      <td>0</td>
+      <td>839755</td>
+      <td>51.67</td>
+      <td>294</td>
+      <td>0.78</td>
+      <td>45</td>
+      <td>614.3</td>
+      <td></td>
+      <td>18</td>
+      <td></td>
+      <td>2</td>
+      <td>10.959857</td>
+      <td>0.30492002</td>
+      <td>buy</td>
+      <td>925</td>
+      <td>716</td>
+      <td>510</td>
+      <td>28</td>
+      <td>34</td>
+      <td>44.6</td>
+      <td>44.6</td>
+      <td>32.1</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=EMAMILTD">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/EMAMILTD/">🎯</a></td>
+      <td>0.65</td>
+      <td></td>
     </tr>
     <tr>
       <td>KPITTECH</td>
-      <td>201.0</td>
-      <td>1.83</td>
-      <td>0.18</td>
+      <td>KPIT Technologies Ltd</td>
+      <td>2025-02-04</td>
+      <td>1413.60</td>
       <td>2.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>828289</td>
+      <td>116.87</td>
+      <td>178</td>
+      <td>0.969</td>
+      <td>60</td>
+      <td>1413.6</td>
       <td></td>
-      <td>04-02-2025</td>
-      <td>1416.45</td>
-      <td>5.64</td>
-      <td>-16.0</td>
-      <td>9.0</td>
-      <td>3.13</td>
-      <td>-0.4</td>
-      <td>-0.25</td>
-      <td>-0.62</td>
-      <td>30-01-2025</td>
-      <td>1370.05</td>
-      <td>76.42</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/kpittech/kpittechnologies/KPITT54265">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=KPITTECH">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KPITTECH/">🎯</a></td>
+      <td>15</td>
+      <td></td>
+      <td></td>
+      <td>17.866531</td>
+      <td>0.33431</td>
+      <td>buy</td>
+      <td>2250</td>
+      <td>1655.5</td>
+      <td>1225</td>
+      <td>41</td>
+      <td>51</td>
+      <td>68.8</td>
+      <td>52.2</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=KPITTECH">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KPITTECH/">🎯</a></td>
+      <td>0.18</td>
+      <td></td>
     </tr>
     <tr>
       <td>ORIENTELEC</td>
-      <td>527.0</td>
-      <td>0.72</td>
-      <td>0.33</td>
+      <td>Orient Electric Ltd</td>
+      <td>2025-02-04</td>
+      <td>237.98</td>
       <td>0.75</td>
-      <td></td>
-      <td>04-02-2025</td>
-      <td>228.16</td>
-      <td>6.6</td>
-      <td>32.0</td>
-      <td>49.0</td>
-      <td>0.01</td>
-      <td>-0.37</td>
-      <td>-0.35</td>
       <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>219.9</td>
-      <td>3.33</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/consumer-goods-electronic/orientelectriclimited/ORIEN54130">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ORIENTELEC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ORIENTELEC/">🎯</a></td>
+      <td>0</td>
+      <td>881555</td>
+      <td>21.04</td>
+      <td>697</td>
+      <td>0.145</td>
+      <td>60</td>
+      <td>237.98</td>
+      <td></td>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td>7.9472365</td>
+      <td>0.09783</td>
+      <td>buy</td>
+      <td>325</td>
+      <td>275</td>
+      <td>225</td>
+      <td>38</td>
+      <td>79</td>
+      <td>20.6</td>
+      <td>20.6</td>
+      <td>20.6</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ORIENTELEC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ORIENTELEC/">🎯</a></td>
+      <td>0.32</td>
+      <td></td>
     </tr>
     <tr>
       <td>SRF</td>
-      <td>71.0</td>
-      <td>1.17</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>04-02-2025</td>
-      <td>2826.05</td>
-      <td>5.84</td>
-      <td>17.0</td>
-      <td>17.0</td>
-      <td>-0.9</td>
-      <td>0.82</td>
-      <td>0.05</td>
+      <td>SRF LTD.</td>
+      <td>2025-02-04</td>
+      <td>2942.70</td>
+      <td>3.60</td>
       <td>0.0</td>
-      <td>24-01-2025</td>
-      <td>2583.95</td>
-      <td>115.35</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/diversified/srf/SRF">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SRF">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SRF/">🎯</a></td>
+      <td>0</td>
+      <td>2457417</td>
+      <td>716.13</td>
+      <td>112</td>
+      <td>0.585</td>
+      <td>70</td>
+      <td>2942.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SRF&interval=D">⬆️ 17-10-2024</a></td>
+      <td>6</td>
+      <td></td>
+      <td></td>
+      <td>7.5989866</td>
+      <td>0.098850004</td>
+      <td>hold</td>
+      <td>3540</td>
+      <td>2701</td>
+      <td>1500</td>
+      <td>48</td>
+      <td>76</td>
+      <td>32</td>
+      <td>30.7</td>
+      <td>29</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SRF">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SRF/">🎯</a></td>
+      <td>0.12</td>
+      <td></td>
     </tr>
     <tr>
       <td>COROMANDEL</td>
-      <td>177.0</td>
-      <td>0.44</td>
-      <td>0.34</td>
+      <td>COROMANDEL INTERNATIONAL LTD.</td>
+      <td>2025-02-05</td>
+      <td>1811.70</td>
       <td>6.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>501819</td>
+      <td>90.95</td>
+      <td>215</td>
+      <td>0.409</td>
+      <td>70</td>
+      <td>1811.7</td>
       <td></td>
-      <td>05-02-2025</td>
-      <td>1789.5</td>
-      <td>5.35</td>
-      <td>27.0</td>
-      <td>18.0</td>
+      <td>18</td>
+      <td></td>
+      <td>1</td>
+      <td>5.658503</td>
+      <td>0.14079</td>
+      <td>buy</td>
+      <td>2347</td>
+      <td>2044</td>
+      <td>1575</td>
+      <td>24</td>
+      <td>32</td>
+      <td>59.7</td>
+      <td>53.7</td>
+      <td>43.4</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=COROMANDEL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/COROMANDEL/">🎯</a></td>
       <td>0.33</td>
-      <td>-0.66</td>
-      <td>0.3</td>
-      <td>-0.03</td>
-      <td>31-01-2025</td>
-      <td>1809.55</td>
-      <td>34.4</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/fertilisers/coromandelinternational/CI45">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=COROMANDEL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/COROMANDEL/">🎯</a></td>
+      <td></td>
     </tr>
     <tr>
       <td>GANHOLD</td>
-      <td>4500.0</td>
-      <td></td>
+      <td>GANESH HOLDINGS LTD.</td>
+      <td>2025-02-05</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>99.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GANHOLD">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GANHOLD/">🎯</a></td>
     </tr>
     <tr>
       <td>GTV</td>
-      <td>2323.0</td>
-      <td>0.08</td>
+      <td>GTV Engineering Ltd</td>
+      <td>2025-02-05</td>
       <td>0.00</td>
+      <td>0.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.00</td>
       <td></td>
-      <td>05-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>46.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>20-01-2025</td>
-      <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GTV">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GTV/">🎯</a></td>
     </tr>
     <tr>
       <td>IMFA</td>
-      <td>898.0</td>
-      <td>1.27</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td>703.95</td>
-      <td>5.67</td>
-      <td></td>
-      <td>77.0</td>
-      <td>-0.07</td>
-      <td>-0.0</td>
+      <td>INDIAN METALS & FERRO ALLOYS LTD.</td>
+      <td>2025-02-05</td>
+      <td>689.20</td>
+      <td>5.00</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>23-01-2025</td>
-      <td>848.85</td>
-      <td>4.81</td>
+      <td>0</td>
+      <td>81420</td>
+      <td>5.58</td>
+      <td>743</td>
+      <td>0.592</td>
+      <td></td>
+      <td>689.2</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IMFA&interval=D">⬆️ 31-01-2025</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.753944</td>
+      <td>0.18629</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>246</td>
+      <td>9</td>
+      <td>66.6</td>
+      <td>61.5</td>
+      <td>31.6</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IMFA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IMFA/">🎯</a></td>
+      <td>0.73</td>
+      <td></td>
     </tr>
     <tr>
       <td>LALPATHLAB</td>
-      <td>264.0</td>
-      <td>0.72</td>
-      <td>0.21</td>
+      <td>Dr. Lal PathLabs Ltd</td>
+      <td>2025-02-05</td>
+      <td>2817.25</td>
       <td>6.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td>2861.6</td>
-      <td>5.0</td>
-      <td>5.0</td>
-      <td>49.0</td>
-      <td>2.54</td>
-      <td>-0.08</td>
-      <td>-0.05</td>
       <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>2853.05</td>
-      <td>21.64</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/drlalpathlabs/DLP01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=LALPATHLAB">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/LALPATHLAB/">🎯</a></td>
+      <td>0</td>
+      <td>139251</td>
+      <td>39.12</td>
+      <td>293</td>
+      <td>0.297</td>
+      <td>70</td>
+      <td>2817.25</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=LALPATHLAB&interval=D">⬆️ 23-12-2024</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>12.676896</td>
+      <td>0.2117</td>
+      <td>hold</td>
+      <td>3770</td>
+      <td>3260</td>
+      <td>2286</td>
+      <td>47</td>
+      <td>56</td>
+      <td>37.5</td>
+      <td>37.5</td>
+      <td>31</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=LALPATHLAB">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/LALPATHLAB/">🎯</a></td>
+      <td>0.21</td>
+      <td></td>
     </tr>
     <tr>
       <td>MASFIN</td>
-      <td>582.0</td>
-      <td>1.38</td>
-      <td>0.40</td>
+      <td>MAS Financial Services Ltd</td>
+      <td>2025-02-05</td>
+      <td>251.70</td>
       <td>1.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td>251.1</td>
-      <td>4.84</td>
-      <td>38.0</td>
-      <td>31.0</td>
-      <td>-0.01</td>
-      <td>0.84</td>
-      <td>0.84</td>
       <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>260.7</td>
-      <td>14.0</td>
+      <td>0</td>
+      <td>124265</td>
+      <td>3.16</td>
+      <td>661</td>
+      <td>0.786</td>
+      <td>55</td>
+      <td>251.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MASFIN&interval=D">⬆️ 14-03-2024</a></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2.315313</td>
+      <td>0.13789</td>
+      <td>strong_buy</td>
+      <td>425</td>
+      <td>350</td>
+      <td>296</td>
+      <td>12</td>
+      <td>15</td>
+      <td>39</td>
+      <td>10</td>
+      <td></td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MASFIN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MASFIN/">🎯</a></td>
+      <td>0.40</td>
+      <td></td>
     </tr>
     <tr>
       <td>MIRCH</td>
-      <td>4579.0</td>
-      <td></td>
+      <td>Harshil Agrotech Ltd</td>
+      <td>2025-02-05</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>30-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MIRCH">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MIRCH/">🎯</a></td>
     </tr>
     <tr>
       <td>NIBL</td>
-      <td>2683.0</td>
-      <td>1.12</td>
+      <td>NRB INDUSTRIAL BEARINGS LTD.</td>
+      <td>2025-02-05</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td></td>
-      <td>2.86</td>
-      <td></td>
-      <td>47.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-0.05</td>
-      <td>24-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NIBL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NIBL/">🎯</a></td>
     </tr>
     <tr>
       <td>PANKAJPIYUS</td>
-      <td>4378.0</td>
-      <td>-0.33</td>
+      <td>Kairosoft AI Solutions Ltd</td>
+      <td>2025-02-05</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>120.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PANKAJPIYUS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PANKAJPIYUS/">🎯</a></td>
     </tr>
     <tr>
       <td>SHREECEM</td>
-      <td>54.0</td>
-      <td>0.97</td>
-      <td>0.18</td>
+      <td>SHREE CEMENT LTD.</td>
+      <td>2025-02-05</td>
+      <td>27555.35</td>
       <td>50.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>31317</td>
+      <td>85.42</td>
+      <td>86</td>
+      <td>0.397</td>
+      <td>70</td>
+      <td>27555.35</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHREECEM&interval=D">⬆️ 09-08-2024</a></td>
+      <td>10</td>
+      <td>1</td>
       <td></td>
-      <td>05-02-2025</td>
-      <td>27363.75</td>
-      <td>6.25</td>
-      <td>-9.0</td>
-      <td>5.0</td>
-      <td>0.14</td>
-      <td>0.84</td>
-      <td>0.37</td>
-      <td>-0.0</td>
-      <td>30-01-2025</td>
-      <td>26830.5</td>
-      <td>82.24</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/cementmajor/shreecements/SC12">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHREECEM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHREECEM/">🎯</a></td>
+      <td>4.802306</td>
+      <td>0.08566</td>
+      <td>hold</td>
+      <td>31000</td>
+      <td>27003</td>
+      <td>18000</td>
+      <td>51</td>
+      <td>81</td>
+      <td>35.2</td>
+      <td>22.3</td>
+      <td>14.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHREECEM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHREECEM/">🎯</a></td>
+      <td>0.18</td>
+      <td></td>
     </tr>
     <tr>
       <td>SMCGLOBAL</td>
-      <td>1177.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>05-02-2025</td>
-      <td>125.04</td>
-      <td>5.86</td>
-      <td></td>
-      <td>29.0</td>
-      <td>-0.0</td>
+      <td>SMC Global Securities Ltd</td>
+      <td>2025-02-05</td>
+      <td>123.83</td>
+      <td>1.20</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.01</td>
-      <td>30-01-2025</td>
-      <td>126.88</td>
-      <td>1.38</td>
+      <td>0</td>
+      <td>86115</td>
+      <td>1.07</td>
+      <td>1092</td>
+      <td>0.173</td>
+      <td>45</td>
+      <td>123.83</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.1832324</td>
+      <td>0.19950001</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>6</td>
+      <td>44.6</td>
+      <td>43.7</td>
+      <td>18.2</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SMCGLOBAL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SMCGLOBAL/">🎯</a></td>
+      <td>0.97</td>
+      <td></td>
     </tr>
     <tr>
       <td>SONACOMS</td>
-      <td>192.0</td>
-      <td></td>
-      <td>0.32</td>
+      <td>Sona BLW Precision Forgings Ltd</td>
+      <td>2025-02-05</td>
+      <td>485.50</td>
       <td>1.60</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>6332539</td>
+      <td>306.1</td>
+      <td>177</td>
+      <td>0.221</td>
+      <td>60</td>
+      <td>485.5</td>
       <td></td>
-      <td>05-02-2025</td>
-      <td>503.45</td>
-      <td>7.99</td>
-      <td>19.0</td>
-      <td>55.0</td>
-      <td>-0.29</td>
-      <td>-0.16</td>
-      <td>0.75</td>
-      <td>-0.06</td>
-      <td>27-01-2025</td>
-      <td>525.05</td>
-      <td>43.82</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/autoancillariescastingsforgings/sonablwprecisionforgings/SBP04">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SONACOMS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SONACOMS/">🎯</a></td>
+      <td>13</td>
+      <td></td>
+      <td></td>
+      <td>10.742814</td>
+      <td>0.144</td>
+      <td>buy</td>
+      <td>791</td>
+      <td>636</td>
+      <td>570</td>
+      <td>35</td>
+      <td>49</td>
+      <td>18</td>
+      <td>17.4</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SONACOMS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SONACOMS/">🎯</a></td>
+      <td>0.33</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>THINKINK</td>
+      <td>Thinkink Picturez Ltd</td>
+      <td>2025-02-05</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>2.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>ALPHAIND</td>
-      <td></td>
-      <td></td>
+      <td>Alphalogic Industries Ltd</td>
+      <td>2025-02-06</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>24-01-2025</td>
-      <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ALPHAIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ALPHAIND/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>CLEAN</td>
-      <td>271.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td>1441.35</td>
-      <td>7.51</td>
-      <td>9.0</td>
-      <td>39.0</td>
-      <td>-0.44</td>
-      <td>-0.05</td>
-      <td>0.25</td>
       <td>0.0</td>
-      <td>20-01-2025</td>
-      <td>1431.0</td>
-      <td>16.03</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/specialitychemicals/cleansciencetechnology/CST">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CLEAN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CLEAN/">🎯</a></td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>CONCOR</td>
-      <td>138.0</td>
-      <td>1.23</td>
-      <td>0.56</td>
+      <td>CONTAINER CORPORATION OF INDIA LTD.</td>
+      <td>2025-02-06</td>
+      <td>720.05</td>
       <td>4.25</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td>755.95</td>
-      <td>10.0</td>
-      <td>22.0</td>
-      <td>37.0</td>
-      <td>0.03</td>
-      <td>-0.41</td>
-      <td>-0.6</td>
       <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>780.1</td>
-      <td>124.96</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/transportlogistics/containercorporationindia/CCI">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CONCOR">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CONCOR/">🎯</a></td>
+      <td>0</td>
+      <td>1159961</td>
+      <td>83.93</td>
+      <td>146</td>
+      <td>0.592</td>
+      <td>65</td>
+      <td>720.05</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CONCOR&interval=D">⬆️ 15-03-2024</a></td>
+      <td>14</td>
+      <td></td>
+      <td>1</td>
+      <td>3.7106798</td>
+      <td>0.10624</td>
+      <td>hold</td>
+      <td>1025</td>
+      <td>875</td>
+      <td>613</td>
+      <td>27</td>
+      <td>33</td>
+      <td>23.1</td>
+      <td>22.9</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CONCOR">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CONCOR/">🎯</a></td>
+      <td>0.59</td>
+      <td></td>
     </tr>
     <tr>
       <td>IMPAL</td>
-      <td>1148.0</td>
-      <td>0.51</td>
-      <td>0.90</td>
+      <td>INDIA MOTOR PARTS & ACCESSORIES LTD.</td>
+      <td>2025-02-06</td>
+      <td>1098.75</td>
       <td>10.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1246</td>
+      <td>0.14</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.91</td>
       <td></td>
-      <td>06-02-2025</td>
-      <td>1106.55</td>
-      <td>5.86</td>
-      <td></td>
-      <td>33.0</td>
-      <td>0.06</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>1104.2</td>
-      <td>0.15</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IMPAL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IMPAL/">🎯</a></td>
     </tr>
     <tr>
       <td>IRB</td>
-      <td>254.0</td>
-      <td>1.68</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td>55.67</td>
-      <td></td>
-      <td>18.0</td>
-      <td>31.0</td>
-      <td>-0.18</td>
-      <td>0.02</td>
-      <td>0.04</td>
+      <td>IRB INFRASTRUCTURE DEVELOPERS LTD.</td>
+      <td>2025-02-06</td>
+      <td>53.14</td>
+      <td>0.10</td>
       <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>50.24</td>
-      <td>523.19</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/infrastructuregeneral/irbinfrastructuredevelopers/IID01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IRB">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IRB/">🎯</a></td>
+      <td>0</td>
+      <td>28485556</td>
+      <td>151.61</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.19</td>
+      <td></td>
     </tr>
     <tr>
       <td>KMGMILK</td>
-      <td>3293.0</td>
-      <td></td>
+      <td>KMG MILK FOOD LTD.</td>
+      <td>2025-02-06</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>11.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>24-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
+    </tr>
+    <tr>
+      <td>KSOLVES</td>
+      <td>Ksolves India Ltd</td>
+      <td>2025-02-06</td>
+      <td>982.70</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>29494</td>
+      <td>2.9</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=KMGMILK">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KMGMILK/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>MINOLTAF</td>
+      <td>MINOLTA FINANCE LTD.</td>
+      <td>2025-02-06</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>SHARDACROP</td>
-      <td>563.0</td>
-      <td>1.32</td>
-      <td>0.53</td>
+      <td>Sharda Cropchem Ltd</td>
+      <td>2025-02-06</td>
+      <td>547.85</td>
       <td>3.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td>563.45</td>
-      <td>5.25</td>
-      <td>49.0</td>
-      <td>66.0</td>
-      <td>-0.27</td>
-      <td>0.33</td>
-      <td>-0.09</td>
       <td>0.0</td>
-      <td>27-01-2025</td>
-      <td>611.25</td>
-      <td>12.48</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pesticidesagro-chemicals/shardacropchem/SC04">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHARDACROP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHARDACROP/">🎯</a></td>
+      <td>0</td>
+      <td>129137</td>
+      <td>7.17</td>
+      <td>797</td>
+      <td>1.104</td>
+      <td>55</td>
+      <td>547.85</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHARDACROP&interval=D">📛 16-05-2024</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>2.20942</td>
+      <td>0.099379994</td>
+      <td>strong_buy</td>
+      <td>870</td>
+      <td>791</td>
+      <td>649</td>
+      <td>14</td>
+      <td>20</td>
+      <td>41.9</td>
+      <td>41.9</td>
+      <td>41.9</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHARDACROP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHARDACROP/">🎯</a></td>
+      <td>0.55</td>
+      <td></td>
     </tr>
     <tr>
       <td>SHASHIJIT</td>
-      <td>4631.0</td>
-      <td>0.52</td>
+      <td>Shashijit Infraprojects Ltd</td>
+      <td>2025-02-06</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>36.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>-9.37</td>
-      <td>23-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHASHIJIT">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHASHIJIT/">🎯</a></td>
     </tr>
     <tr>
       <td>SUNPHARMA</td>
-      <td>19.0</td>
-      <td>0.69</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>06-02-2025</td>
-      <td>1742.2</td>
-      <td>4.38</td>
-      <td>18.0</td>
-      <td>7.0</td>
-      <td>0.87</td>
-      <td>-0.57</td>
-      <td>0.24</td>
+      <td>SUN PHARMACEUTICAL INDUSTRIES LTD.</td>
+      <td>2025-02-06</td>
+      <td>1740.60</td>
+      <td>10.50</td>
       <td>0.0</td>
-      <td>19-01-2025</td>
-      <td>1786.55</td>
-      <td>260.29</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/sunpharmaceuticalindustries/SPI">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SUNPHARMA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SUNPHARMA/">🎯</a></td>
+      <td>0</td>
+      <td>2210231</td>
+      <td>384.7</td>
+      <td>15</td>
+      <td>0.547</td>
+      <td>70</td>
+      <td>1740.6</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SUNPHARMA&interval=D">⬆️ 14-01-2025</a></td>
+      <td>38</td>
+      <td></td>
+      <td>1</td>
+      <td>6.559589</td>
+      <td>0.16771</td>
+      <td>buy</td>
+      <td>2450</td>
+      <td>2100</td>
+      <td>1625</td>
+      <td>31</td>
+      <td>36</td>
+      <td>54.6</td>
+      <td>47</td>
+      <td>28</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SUNPHARMA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SUNPHARMA/">🎯</a></td>
+      <td>0.60</td>
+      <td></td>
     </tr>
     <tr>
       <td>TRITURBINE</td>
-      <td>328.0</td>
-      <td>1.36</td>
-      <td>0.30</td>
+      <td>TRIVENI TURBINE LTD.</td>
+      <td>2025-02-06</td>
+      <td>634.00</td>
       <td>2.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1834003</td>
+      <td>119.42</td>
+      <td>316</td>
+      <td>0.751</td>
+      <td>50</td>
+      <td>634</td>
       <td></td>
-      <td>06-02-2025</td>
-      <td>659.9</td>
-      <td>7.25</td>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td>20.99755</td>
+      <td>0.31899</td>
+      <td>strong_buy</td>
+      <td>900</td>
+      <td>825</td>
+      <td>610</td>
+      <td>44</td>
+      <td>59</td>
+      <td>76.8</td>
+      <td>61.9</td>
+      <td>44.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TRITURBINE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TRITURBINE/">🎯</a></td>
+      <td>0.32</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>AGIIL</td>
+      <td>AGI Infra Ltd</td>
+      <td>2025-02-07</td>
+      <td>1635.00</td>
+      <td>0.00</td>
       <td>0.0</td>
-      <td>8.0</td>
-      <td>0.91</td>
-      <td>-0.62</td>
-      <td>-0.63</td>
-      <td>0.0</td>
-      <td>01-02-2025</td>
-      <td>670.35</td>
-      <td>73.91</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/electricequipment/triveniturbine/TT14">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TRITURBINE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TRITURBINE/">🎯</a></td>
+      <td>0</td>
+      <td>7846</td>
+      <td>1.28</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>BANARBEADS</td>
-      <td>2657.0</td>
-      <td>0.41</td>
+      <td>BANARAS BEADS LTD.</td>
+      <td>2025-02-07</td>
       <td>0.00</td>
+      <td>2.25</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.00</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td></td>
-      <td>5.94</td>
-      <td></td>
-      <td>35.0</td>
-      <td>-0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>19-01-2025</td>
-      <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=BANARBEADS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BANARBEADS/">🎯</a></td>
     </tr>
     <tr>
       <td>CAMS</td>
-      <td>330.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>3537.3</td>
-      <td>6.61</td>
-      <td>17.0</td>
-      <td>26.0</td>
-      <td>2.3</td>
-      <td>-0.86</td>
-      <td>-0.82</td>
+      <td>Computer Age Management Services Ltd</td>
+      <td>2025-02-07</td>
+      <td>3398.00</td>
+      <td>17.50</td>
       <td>0.0</td>
-      <td>19-01-2025</td>
-      <td>4418.1</td>
-      <td>236.76</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/finance-investment/computeragemanagementservices/CAM">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CAMS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CAMS/">🎯</a></td>
+      <td>0</td>
+      <td>646917</td>
+      <td>222.35</td>
+      <td>360</td>
+      <td>0.225</td>
+      <td>65</td>
+      <td>3398</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CAMS&interval=D">⬆️ 04-06-2024</a></td>
+      <td>12</td>
+      <td></td>
+      <td></td>
+      <td>18.259394</td>
+      <td>0.45694</td>
+      <td>buy</td>
+      <td>5170</td>
+      <td>4300</td>
+      <td>3100</td>
+      <td>33</td>
+      <td>37</td>
+      <td>40.8</td>
+      <td>40.8</td>
+      <td>22.2</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CAMS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CAMS/">🎯</a></td>
+      <td>0.52</td>
+      <td></td>
     </tr>
     <tr>
       <td>CHOLAFIN</td>
-      <td>75.0</td>
-      <td>1.63</td>
-      <td>0.10</td>
+      <td>Cholamandalam Investment and Finance Company Ltd</td>
+      <td>2025-02-07</td>
+      <td>1337.65</td>
       <td>1.30</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>3201674</td>
+      <td>420.4</td>
+      <td>82</td>
+      <td>1.079</td>
+      <td>65</td>
+      <td>1337.65</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CHOLAFIN&interval=D">⬆️ 29-10-2024</a></td>
+      <td>34</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>1265.5</td>
-      <td>3.69</td>
-      <td>6.0</td>
-      <td>3.0</td>
-      <td>0.69</td>
-      <td>-0.67</td>
-      <td>-1.35</td>
-      <td>-0.02</td>
-      <td>31-01-2025</td>
-      <td>1285.85</td>
-      <td>154.13</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/cholainvest/cholamandalaminvestmentfinancecompany/CDB">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CHOLAFIN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CHOLAFIN/">🎯</a></td>
+      <td>2</td>
+      <td>5.7345634</td>
+      <td>0.20701</td>
+      <td>buy</td>
+      <td>1700</td>
+      <td>1500</td>
+      <td>1085</td>
+      <td>21</td>
+      <td>28</td>
+      <td>55.5</td>
+      <td>50.8</td>
+      <td>24.4</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CHOLAFIN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CHOLAFIN/">🎯</a></td>
+      <td>0.10</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CHOLAFIN</td>
+      <td>Cholamandalam Investment and Finance Company Ltd</td>
+      <td>2025-02-07</td>
+      <td>1337.65</td>
+      <td>1.30</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>3201674</td>
+      <td>420.4</td>
+      <td>82</td>
+      <td>1.079</td>
+      <td>65</td>
+      <td>1337.65</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CHOLAFIN&interval=D">⬆️ 29-10-2024</a></td>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td>5.7345634</td>
+      <td>0.20701</td>
+      <td>buy</td>
+      <td>1700</td>
+      <td>1500</td>
+      <td>1085</td>
+      <td>21</td>
+      <td>28</td>
+      <td>55.5</td>
+      <td>50.8</td>
+      <td>24.4</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CHOLAFIN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CHOLAFIN/">🎯</a></td>
+      <td>0.10</td>
+      <td></td>
     </tr>
     <tr>
       <td>CLEAN</td>
-      <td>271.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>1441.35</td>
-      <td>7.51</td>
-      <td>9.0</td>
-      <td>39.0</td>
-      <td>-0.44</td>
-      <td>-0.05</td>
-      <td>0.25</td>
+      <td>Clean Science and Technology Ltd</td>
+      <td>2025-02-07</td>
+      <td>1485.50</td>
+      <td>2.00</td>
       <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>1349.45</td>
-      <td>16.03</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/specialitychemicals/cleansciencetechnology/CST">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CLEAN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CLEAN/">🎯</a></td>
-    </tr>
-    <tr>
-      <td>GAIL</td>
-      <td>73.0</td>
-      <td>1.18</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>0</td>
+      <td>157317</td>
+      <td>23.13</td>
+      <td>363</td>
+      <td>-0.079</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>175.6</td>
-      <td>4.25</td>
-      <td>8.0</td>
-      <td>7.0</td>
-      <td>-1.88</td>
-      <td>1.92</td>
-      <td>0.82</td>
-      <td>-0.38</td>
-      <td>24-01-2025</td>
-      <td>179.66</td>
-      <td>256.2</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/oildrillingandexploration/gailindia/GAI">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GAIL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GAIL/">🎯</a></td>
+      <td>1485.5</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CLEAN&interval=D">📛 26-12-2023</a></td>
+      <td>8</td>
+      <td>1</td>
+      <td></td>
+      <td>13.118504</td>
+      <td>0.21574</td>
+      <td>buy</td>
+      <td>2149</td>
+      <td>1495</td>
+      <td>1075</td>
+      <td>45</td>
+      <td>60</td>
+      <td>17.4</td>
+      <td>17.4</td>
+      <td>16.3</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CLEAN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CLEAN/">🎯</a></td>
+      <td>0.13</td>
+      <td></td>
     </tr>
     <tr>
       <td>GATEWAY</td>
-      <td>652.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>75.94</td>
-      <td></td>
-      <td>35.0</td>
-      <td>30.0</td>
-      <td>-1.38</td>
-      <td>1.04</td>
-      <td>1.04</td>
+      <td>Gateway Distriparks Ltd</td>
+      <td>2025-02-07</td>
+      <td>74.33</td>
+      <td>0.75</td>
       <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>77.0</td>
-      <td>2.46</td>
+      <td>0</td>
+      <td>516167</td>
+      <td>3.87</td>
+      <td>644</td>
+      <td>-0.079</td>
+      <td></td>
+      <td>74.33</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.8754574</td>
+      <td>0.11941</td>
+      <td></td>
+      <td>147</td>
+      <td>107.5</td>
+      <td>84</td>
+      <td>12</td>
+      <td>16</td>
+      <td>21.2</td>
+      <td>21.2</td>
+      <td></td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GATEWAY">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GATEWAY/">🎯</a></td>
+      <td>1.01</td>
+      <td></td>
     </tr>
     <tr>
       <td>GRSE</td>
-      <td>493.0</td>
-      <td>0.78</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>1596.65</td>
-      <td>5.35</td>
-      <td>24.0</td>
-      <td>19.0</td>
-      <td>0.15</td>
-      <td>0.36</td>
-      <td>-0.01</td>
+      <td>Garden Reach Shipbuilders & Engineers Ltd</td>
+      <td>2025-02-07</td>
+      <td>1507.95</td>
+      <td>8.95</td>
       <td>0.0</td>
-      <td>20-01-2025</td>
-      <td>1591.55</td>
-      <td>395.33</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/engineering-heavy/gardenreachshipbuildersengineers/GRS01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GRSE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GRSE/">🎯</a></td>
+      <td>0</td>
+      <td>983607</td>
+      <td>148.4</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.59</td>
+      <td></td>
     </tr>
     <tr>
       <td>JSL</td>
-      <td>199.0</td>
-      <td>1.34</td>
-      <td>0.16</td>
+      <td>JINDAL STAINLESS LTD.</td>
+      <td>2025-02-07</td>
+      <td>595.00</td>
       <td>1.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>2710741</td>
+      <td>161.08</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.17</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>624.15</td>
-      <td>5.45</td>
-      <td>13.0</td>
-      <td>24.0</td>
-      <td>8.78</td>
-      <td>-0.38</td>
-      <td>-2.39</td>
-      <td>-12.16</td>
-      <td>30-01-2025</td>
-      <td>637.7</td>
-      <td>83.36</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/steelmediumsmall/jindalstainless/JSL01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=JSL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/JSL/">🎯</a></td>
     </tr>
     <tr>
       <td>KIRLPNU</td>
-      <td>596.0</td>
-      <td>1.13</td>
-      <td>0.31</td>
+      <td>KIRLOSKAR PNEUMATIC CO.LTD.</td>
+      <td>2025-02-07</td>
+      <td>1074.30</td>
       <td>3.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>406817</td>
+      <td>43.43</td>
+      <td>669</td>
+      <td>0.723</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>1135.25</td>
+      <td>1074.3</td>
       <td></td>
-      <td>14.0</td>
-      <td>9.0</td>
-      <td>0.1</td>
-      <td>0.33</td>
-      <td>0.2</td>
-      <td>-0.04</td>
-      <td>29-01-2025</td>
-      <td>1013.15</td>
-      <td>7.24</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>7.5257444</td>
+      <td>0.20608999</td>
+      <td>strong_buy</td>
+      <td>1896</td>
+      <td>1564</td>
+      <td>1456</td>
+      <td>26</td>
+      <td>36</td>
+      <td>49.6</td>
+      <td>49.6</td>
+      <td>44.9</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=KIRLPNU">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KIRLPNU/">🎯</a></td>
+      <td>0.33</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>KPRMILL</td>
+      <td>K.P.R. Mill Limited</td>
+      <td>2025-02-07</td>
+      <td>928.75</td>
+      <td>2.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>999109</td>
+      <td>94.0</td>
+      <td>235</td>
+      <td>0.771</td>
+      <td>60</td>
+      <td>928.75</td>
+      <td></td>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td>6.7788014</td>
+      <td>0.18546</td>
+      <td></td>
+      <td>1080</td>
+      <td>996</td>
+      <td>810</td>
+      <td>29</td>
+      <td>39</td>
+      <td>48.4</td>
+      <td>45.5</td>
+      <td>23.6</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=KPRMILL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KPRMILL/">🎯</a></td>
+      <td>0.27</td>
+      <td></td>
     </tr>
     <tr>
       <td>MARICO</td>
-      <td>80.0</td>
-      <td>0.38</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>MARICO LTD.</td>
+      <td>2025-02-07</td>
+      <td>673.35</td>
+      <td>3.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>2367737</td>
+      <td>159.94</td>
+      <td>126</td>
+      <td>0.251</td>
+      <td>70</td>
+      <td>673.35</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MARICO&interval=D">⬆️ 28-10-2024</a></td>
+      <td>10</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>694.2</td>
-      <td>6.29</td>
-      <td>19.0</td>
-      <td>16.0</td>
-      <td>0.07</td>
-      <td>-0.07</td>
-      <td>-0.03</td>
-      <td>-0.0</td>
-      <td>19-01-2025</td>
-      <td>664.4</td>
-      <td>309.98</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/personalcare/marico/M13">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MARICO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MARICO/">🎯</a></td>
+      <td>1</td>
+      <td>22.739859</td>
+      <td>0.33741</td>
+      <td>buy</td>
+      <td>800</td>
+      <td>732.5</td>
+      <td>473</td>
+      <td>48</td>
+      <td>55</td>
+      <td>31.3</td>
+      <td>31.3</td>
+      <td>27.8</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MARICO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MARICO/">🎯</a></td>
+      <td>0.52</td>
+      <td></td>
     </tr>
     <tr>
       <td>MFL</td>
-      <td>576.0</td>
-      <td></td>
+      <td>Epigral Ltd</td>
+      <td>2025-02-07</td>
       <td>0.00</td>
       <td>2.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td></td>
-      <td>5.78</td>
-      <td></td>
-      <td>72.0</td>
-      <td>-0.25</td>
-      <td>-0.02</td>
-      <td>-0.0</td>
-      <td>0.09</td>
-      <td>27-01-2025</td>
-      <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MFL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MFL/">🎯</a></td>
     </tr>
     <tr>
       <td>NESTLEIND</td>
-      <td>27.0</td>
-      <td>0.36</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>2327.2</td>
-      <td>6.59</td>
-      <td>8.0</td>
-      <td>8.0</td>
-      <td>0.07</td>
-      <td>0.19</td>
-      <td>0.38</td>
+      <td>NESTLE INDIA LTD.</td>
+      <td>2025-02-07</td>
+      <td>2317.10</td>
+      <td>14.25</td>
       <td>0.0</td>
-      <td>27-01-2025</td>
-      <td>2207.9</td>
-      <td>289.57</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/foodprocessing/nestleindia/NI">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NESTLEIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NESTLEIND/">🎯</a></td>
+      <td>0</td>
+      <td>1140871</td>
+      <td>267.17</td>
+      <td>32</td>
+      <td>0.141</td>
+      <td>70</td>
+      <td>2317.1</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NESTLEIND&interval=D">⬆️ 26-07-2024</a></td>
+      <td>9</td>
+      <td></td>
+      <td>2</td>
+      <td>66.869644</td>
+      <td></td>
+      <td>hold</td>
+      <td>2870</td>
+      <td>2455</td>
+      <td>1995</td>
+      <td>62</td>
+      <td>75</td>
+      <td>30.9</td>
+      <td>22.8</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NESTLEIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NESTLEIND/">🎯</a></td>
+      <td>0.61</td>
+      <td></td>
     </tr>
     <tr>
-      <td>ONGC</td>
-      <td>26.0</td>
-      <td>1.07</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>257.55</td>
-      <td>10.0</td>
-      <td>13.0</td>
-      <td>13.0</td>
-      <td>-0.53</td>
-      <td>0.74</td>
-      <td>0.58</td>
+      <td>NLCINDIA</td>
+      <td>NLC India Ltd</td>
+      <td>2025-02-07</td>
+      <td>211.34</td>
+      <td>1.50</td>
       <td>0.0</td>
-      <td>27-01-2025</td>
-      <td>250.78</td>
-      <td>282.39</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/oildrillingandexploration/oilnaturalgascorporation/ONG">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ONGC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ONGC/">🎯</a></td>
+      <td>0</td>
+      <td>1131038</td>
+      <td>23.74</td>
+      <td>216</td>
+      <td>0.637</td>
+      <td>55</td>
+      <td>211.34</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NLCINDIA&interval=D">⬆️ 28-01-2025</a></td>
+      <td>7</td>
+      <td></td>
+      <td></td>
+      <td>1.5316491</td>
+      <td>0.09616</td>
+      <td></td>
+      <td>322</td>
+      <td>322</td>
+      <td>322</td>
+      <td>12</td>
+      <td>15</td>
+      <td>73.5</td>
+      <td>67</td>
+      <td>8.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NLCINDIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NLCINDIA/">🎯</a></td>
+      <td>0.71</td>
+      <td></td>
     </tr>
     <tr>
       <td>POWERGRID</td>
-      <td>31.0</td>
-      <td>0.52</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>289.85</td>
-      <td>5.76</td>
-      <td>8.0</td>
-      <td>7.0</td>
-      <td>-0.48</td>
-      <td>0.65</td>
-      <td>0.64</td>
+      <td>POWER GRID CORPORATION OF INDIA LTD.</td>
+      <td>2025-02-07</td>
+      <td>283.80</td>
+      <td>3.25</td>
       <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>283.95</td>
-      <td>205.1</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/powergenerationdistribution/powergridcorporationindia/PGC">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=POWERGRID">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/POWERGRID/">🎯</a></td>
+      <td>0</td>
+      <td>14978897</td>
+      <td>423.0</td>
+      <td>31</td>
+      <td>0.389</td>
+      <td>70</td>
+      <td>283.8</td>
+      <td></td>
+      <td>24</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2.8659139</td>
+      <td>0.17559999</td>
+      <td>buy</td>
+      <td>428</td>
+      <td>360</td>
+      <td>234</td>
+      <td>15</td>
+      <td>17</td>
+      <td>50.8</td>
+      <td>46</td>
+      <td>20.3</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=POWERGRID">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/POWERGRID/">🎯</a></td>
+      <td>1.15</td>
+      <td></td>
     </tr>
     <tr>
       <td>QUESS</td>
-      <td>492.0</td>
-      <td>1.44</td>
-      <td>0.65</td>
+      <td>Quess Corp Ltd</td>
+      <td>2025-02-07</td>
+      <td>622.60</td>
       <td>4.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>194269</td>
+      <td>11.94</td>
+      <td>521</td>
+      <td>0.746</td>
+      <td>55</td>
+      <td>622.6</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>614.95</td>
-      <td>7.0</td>
-      <td>45.0</td>
-      <td>97.0</td>
-      <td>-0.15</td>
-      <td>-1.31</td>
-      <td>-0.59</td>
-      <td>0.08</td>
-      <td>30-01-2025</td>
-      <td>591.75</td>
-      <td>61.51</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/engineering/quesscorp/QC">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=QUESS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/QUESS/">🎯</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3.3034084</td>
+      <td>0.12323</td>
+      <td>strong_buy</td>
+      <td>1000</td>
+      <td>806</td>
+      <td>670</td>
+      <td>19</td>
+      <td>25</td>
+      <td>45.8</td>
+      <td>45.8</td>
+      <td>26.2</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=QUESS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/QUESS/">🎯</a></td>
+      <td>0.64</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>RAMAPHO</td>
+      <td>RAMA PHOSPHATES LTD.</td>
+      <td>2025-02-07</td>
+      <td>215.97</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>16418</td>
+      <td>0.36</td>
+      <td>1600</td>
+      <td>0.817</td>
+      <td></td>
+      <td>215.97</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=RAMAPHO&interval=D">📛 09-01-2025</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>1.0830505</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>33.1</td>
+      <td>33.1</td>
+      <td>33.1</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=RAMAPHO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/RAMAPHO/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>SANGAMFIN</td>
+      <td>Sangam Finserv Ltd</td>
+      <td>2025-02-07</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>4.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>SHANTIGEAR</td>
-      <td>671.0</td>
-      <td>0.98</td>
-      <td>0.61</td>
+      <td>SHANTHI GEARS LTD.</td>
+      <td>2025-02-07</td>
+      <td>478.65</td>
       <td>3.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>494.8</td>
-      <td>5.42</td>
-      <td></td>
-      <td>7.0</td>
-      <td>0.67</td>
-      <td>-0.11</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>499.25</td>
-      <td>1.34</td>
+      <td>0</td>
+      <td>22136</td>
+      <td>1.07</td>
+      <td>689</td>
+      <td>0.403</td>
+      <td>55</td>
+      <td>478.65</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHANTIGEAR&interval=D">⬆️ 28-10-2024</a></td>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td>10.633831</td>
+      <td>0.25695</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>124</td>
+      <td>41</td>
+      <td>68.1</td>
+      <td>33.8</td>
+      <td></td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHANTIGEAR">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHANTIGEAR/">🎯</a></td>
+      <td>0.63</td>
+      <td></td>
     </tr>
     <tr>
       <td>SHYAMMETL</td>
-      <td>419.0</td>
-      <td></td>
-      <td>0.29</td>
+      <td>Shyam Metalics and Energy Ltd</td>
+      <td>2025-02-07</td>
+      <td>764.50</td>
       <td>2.25</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>779.45</td>
-      <td>7.5</td>
-      <td>40.0</td>
-      <td>26.0</td>
-      <td>-0.12</td>
-      <td>-0.08</td>
-      <td>-0.08</td>
       <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>717.55</td>
-      <td>27.19</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/ironsteel/shyammetalicsenergy/SME05">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHYAMMETL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHYAMMETL/">🎯</a></td>
+      <td>0</td>
+      <td>387459</td>
+      <td>29.43</td>
+      <td>323</td>
+      <td>0.316</td>
+      <td></td>
+      <td>764.5</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHYAMMETL&interval=D">⬆️ 10-01-2025</a></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2.212127</td>
+      <td>0.08607</td>
+      <td>strong_buy</td>
+      <td>1150</td>
+      <td>900</td>
+      <td>698</td>
+      <td>13</td>
+      <td>24</td>
+      <td>66.7</td>
+      <td>66.7</td>
+      <td>33.1</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=SHYAMMETL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SHYAMMETL/">🎯</a></td>
+      <td>0.29</td>
+      <td></td>
     </tr>
     <tr>
       <td>STEELCAS</td>
-      <td>1076.0</td>
-      <td></td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>07-02-2025</td>
-      <td>908.55</td>
-      <td>4.41</td>
-      <td></td>
-      <td>17.0</td>
-      <td>-0.15</td>
+      <td>STEELCAST LTD.</td>
+      <td>2025-02-07</td>
+      <td>854.30</td>
+      <td>1.80</td>
       <td>0.0</td>
+      <td>0</td>
+      <td>11713</td>
+      <td>1.02</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.21</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>TIINDIA</td>
+      <td>Tube Investments of India Ltd</td>
+      <td>2025-02-07</td>
+      <td>3044.80</td>
+      <td>2.00</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>23-01-2025</td>
-      <td>861.8</td>
-      <td>1.27</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=STEELCAS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/STEELCAS/">🎯</a></td>
+      <td>0</td>
+      <td>683442</td>
+      <td>209.93</td>
+      <td>117</td>
+      <td>0.648</td>
+      <td>60</td>
+      <td>3044.8</td>
+      <td></td>
+      <td>15</td>
+      <td></td>
+      <td></td>
+      <td>11.039563</td>
+      <td>0.17683001</td>
+      <td></td>
+      <td>4762</td>
+      <td>4152.5</td>
+      <td>3600</td>
+      <td>47</td>
+      <td>71</td>
+      <td>52.6</td>
+      <td>22</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TIINDIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TIINDIA/">🎯</a></td>
+      <td>0.07</td>
+      <td></td>
     </tr>
     <tr>
       <td>VAIBHAVGBL</td>
-      <td>513.0</td>
-      <td>0.86</td>
-      <td>0.56</td>
+      <td>Vaibhav Global Ltd</td>
+      <td>2025-02-07</td>
+      <td>269.55</td>
       <td>1.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>377883</td>
+      <td>10.22</td>
+      <td>590</td>
+      <td>0.283</td>
+      <td>55</td>
+      <td>269.55</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VAIBHAVGBL&interval=D">📛 17-12-2024</a></td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>269.0</td>
-      <td>6.61</td>
-      <td>115.0</td>
-      <td>66.0</td>
-      <td>0.38</td>
-      <td>-0.2</td>
-      <td>-0.2</td>
-      <td>0.02</td>
-      <td>30-01-2025</td>
-      <td>278.75</td>
-      <td>10.81</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/retail/vaibhavglobal/VG02">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VAIBHAVGBL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/VAIBHAVGBL/">🎯</a></td>
+      <td></td>
+      <td></td>
+      <td>3.5478308</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>6</td>
+      <td>32</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VAIBHAVGBL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/VAIBHAVGBL/">🎯</a></td>
+      <td>0.56</td>
+      <td></td>
     </tr>
     <tr>
       <td>WEL</td>
-      <td>1570.0</td>
-      <td>0.17</td>
-      <td>0.00</td>
-      <td>0.00</td>
+      <td>Wonder Electricals Ltd</td>
+      <td>2025-02-07</td>
+      <td>181.74</td>
+      <td>0.10</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>233454</td>
+      <td>4.17</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.06</td>
       <td></td>
-      <td>07-02-2025</td>
-      <td>178.95</td>
-      <td></td>
-      <td></td>
-      <td>25.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>27-01-2025</td>
-      <td>168.62</td>
-      <td>6.26</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=WEL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/WEL/">🎯</a></td>
     </tr>
     <tr>
       <td>ASTERDM</td>
-      <td>301.0</td>
-      <td>1.31</td>
-      <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>10-02-2025</td>
-      <td>475.5</td>
-      <td>4.66</td>
-      <td>6.0</td>
-      <td>11.0</td>
-      <td>30.71</td>
-      <td>-0.06</td>
-      <td>-0.06</td>
+      <td>Aster DM Healthcare Ltd</td>
+      <td>2025-02-10</td>
+      <td>468.60</td>
+      <td>4.00</td>
       <td>0.0</td>
-      <td>27-01-2025</td>
-      <td>488.65</td>
-      <td>92.47</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/diversified/asterdmhealthcareltd/ADH">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ASTERDM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ASTERDM/">🎯</a></td>
+      <td>0</td>
+      <td>1046248</td>
+      <td>50.3</td>
+      <td>281</td>
+      <td>0.618</td>
+      <td>60</td>
+      <td>468.6</td>
+      <td></td>
+      <td>10</td>
+      <td>2</td>
+      <td></td>
+      <td>5.1154976</td>
+      <td>0.06988</td>
+      <td></td>
+      <td>735</td>
+      <td>575</td>
+      <td>410</td>
+      <td>48</td>
+      <td>115</td>
+      <td>66.3</td>
+      <td>57</td>
+      <td>33.6</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ASTERDM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ASTERDM/">🎯</a></td>
+      <td>0.85</td>
+      <td></td>
     </tr>
     <tr>
       <td>INDTONER</td>
-      <td>1658.0</td>
-      <td>1.39</td>
+      <td>INDIAN TONERS & DEVELOPERS LTD.-$</td>
+      <td>2025-02-10</td>
       <td>0.00</td>
       <td>4.50</td>
-      <td></td>
-      <td>10-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>9.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
+    </tr>
+    <tr>
+      <td>SURAJLTD</td>
+      <td>SURAJ LTD.-$</td>
+      <td>2025-02-10</td>
+      <td>0.00</td>
+      <td>1.50</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=INDTONER">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/INDTONER/">🎯</a></td>
     </tr>
     <tr>
       <td>CMSINFO</td>
-      <td>550.0</td>
-      <td></td>
+      <td>CMS Info Systems Ltd</td>
+      <td>2025-02-11</td>
+      <td>438.45</td>
       <td>0.00</td>
-      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>311011</td>
+      <td>13.68</td>
+      <td>576</td>
+      <td>0.332</td>
+      <td>65</td>
+      <td>438.45</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CMSINFO&interval=D">⬆️ 19-11-2024</a></td>
+      <td>1</td>
       <td></td>
-      <td>11-02-2025</td>
-      <td>450.2</td>
-      <td>7.62</td>
-      <td>44.0</td>
-      <td>23.0</td>
-      <td>1.85</td>
-      <td>0.05</td>
-      <td>-0.33</td>
-      <td>-2.03</td>
-      <td>01-02-2025</td>
-      <td>433.35</td>
-      <td>12.41</td>
+      <td></td>
+      <td>3.3984156</td>
+      <td>0.18931</td>
+      <td></td>
+      <td>620</td>
+      <td>593</td>
+      <td>580</td>
+      <td>16</td>
+      <td>20</td>
+      <td>52</td>
+      <td>40.5</td>
+      <td>19</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=CMSINFO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CMSINFO/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>DISAQ</td>
-      <td>1013.0</td>
-      <td>0.73</td>
+      <td>DISA INDIA LTD.</td>
+      <td>2025-02-11</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>11-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>7.0</td>
       <td>0.0</td>
-      <td>-0.79</td>
-      <td>-0.79</td>
-      <td>0.0</td>
-      <td>30-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=DISAQ">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DISAQ/">🎯</a></td>
     </tr>
     <tr>
-      <td>ESCORTS</td>
-      <td>193.0</td>
-      <td>0.84</td>
+      <td>EFCIL</td>
+      <td>EFC (I) Ltd</td>
+      <td>2025-02-11</td>
       <td>0.00</td>
+      <td>0.00</td>
+      <td>1.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.00</td>
       <td></td>
-      <td>11-02-2025</td>
-      <td>3450.15</td>
-      <td>6.85</td>
-      <td>-5.0</td>
-      <td>20.0</td>
-      <td>-0.77</td>
-      <td>0.84</td>
-      <td>0.99</td>
+    </tr>
+    <tr>
+      <td>MANINFRA</td>
+      <td>MAN INFRACONSTRUCTION LTD.</td>
+      <td>2025-02-12</td>
+      <td>194.29</td>
+      <td>0.45</td>
       <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>3623.45</td>
-      <td>165.46</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/escortskubota/escortskubota/E">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ESCORTS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ESCORTS/">🎯</a></td>
+      <td>0</td>
+      <td>1535434</td>
+      <td>30.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.23</td>
+      <td></td>
     </tr>
     <tr>
       <td>TCIEXP</td>
-      <td>474.0</td>
-      <td>1.33</td>
+      <td>TCI Express Ltd</td>
+      <td>2025-02-12</td>
+      <td>774.70</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>9695</td>
+      <td>0.75</td>
+      <td>713</td>
+      <td>0.555</td>
+      <td>55</td>
+      <td>774.7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3.9800663</td>
+      <td>0.15771</td>
+      <td></td>
+      <td>1425</td>
+      <td>1060</td>
+      <td>886</td>
+      <td>21</td>
+      <td>27</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TCIEXP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TCIEXP/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>12-02-2025</td>
-      <td>780.35</td>
-      <td>7.35</td>
-      <td>23.0</td>
-      <td>32.0</td>
-      <td>0.31</td>
-      <td>-0.19</td>
-      <td>-0.07</td>
-      <td>2.79</td>
-      <td>27-01-2025</td>
-      <td>748.55</td>
-      <td>0.94</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/transportlogistics/tciexpress/TCI08">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TCIEXP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TCIEXP/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>TTL</td>
+      <td>T T LTD.-$</td>
+      <td>2025-02-12</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>VRLLOG</td>
-      <td>480.0</td>
-      <td>1.1</td>
+      <td>VRL Logistics Ltd</td>
+      <td>2025-02-12</td>
+      <td>461.00</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>47341</td>
+      <td>2.18</td>
+      <td>649</td>
+      <td>0.362</td>
+      <td>60</td>
+      <td>461</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VRLLOG&interval=D">⬆️ 05-08-2024</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>4.2634263</td>
+      <td></td>
+      <td></td>
+      <td>748</td>
+      <td>625</td>
+      <td>551</td>
+      <td>21</td>
+      <td>48</td>
+      <td>13.6</td>
+      <td></td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VRLLOG">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/VRLLOG/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>12-02-2025</td>
-      <td>467.55</td>
-      <td>10.0</td>
-      <td>12.0</td>
-      <td>13.0</td>
-      <td>-1.59</td>
-      <td>6.33</td>
-      <td>5.35</td>
-      <td>-5.42</td>
-      <td>23-01-2025</td>
-      <td>459.85</td>
-      <td>1.99</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=VRLLOG">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/VRLLOG/">🎯</a></td>
     </tr>
     <tr>
       <td>GDLLEAS</td>
-      <td>4681.0</td>
-      <td></td>
+      <td>GDL LEASING & FINANCE LTD.</td>
+      <td>2025-02-13</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>13-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>27-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GDLLEAS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GDLLEAS/">🎯</a></td>
     </tr>
     <tr>
       <td>PAGEIND</td>
-      <td>121.0</td>
-      <td>0.92</td>
+      <td>PAGE INDUSTRIES LTD.</td>
+      <td>2025-02-13</td>
+      <td>47278.75</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>23382</td>
+      <td>109.46</td>
+      <td>184</td>
+      <td>0.388</td>
+      <td>70</td>
+      <td>47278.75</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PAGEIND&interval=D">📛 17-12-2024</a></td>
+      <td>15</td>
+      <td></td>
+      <td></td>
+      <td>35.390457</td>
+      <td>0.41127998</td>
+      <td></td>
+      <td>57500</td>
+      <td>44730</td>
+      <td>33129</td>
+      <td>61</td>
+      <td>85</td>
+      <td>30.1</td>
+      <td>30.1</td>
+      <td>30.1</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PAGEIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PAGEIND/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>13-02-2025</td>
-      <td>46572.75</td>
-      <td>5.5</td>
-      <td>13.0</td>
-      <td>44.0</td>
-      <td>-0.63</td>
-      <td>0.12</td>
-      <td>-0.23</td>
-      <td>0.0</td>
-      <td>19-01-2025</td>
-      <td>46097.55</td>
-      <td>220.6</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/textilesreadymadeapparels/pageindustries/PI35">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PAGEIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PAGEIND/">🎯</a></td>
     </tr>
     <tr>
       <td>TIDEWATER</td>
-      <td>920.0</td>
-      <td>0.92</td>
+      <td>Veedol Corporation Ltd</td>
+      <td>2025-02-13</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>13-02-2025</td>
-      <td></td>
-      <td>4.77</td>
-      <td></td>
-      <td>52.0</td>
-      <td>0.05</td>
-      <td>-0.63</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>29-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TIDEWATER">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TIDEWATER/">🎯</a></td>
     </tr>
     <tr>
       <td>WANBURY</td>
-      <td>2118.0</td>
-      <td>1.18</td>
+      <td>WANBURY LTD.</td>
+      <td>2025-02-13</td>
+      <td>207.78</td>
       <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>13-02-2025</td>
-      <td>211.64</td>
-      <td></td>
-      <td></td>
-      <td>140.0</td>
       <td>0.0</td>
-      <td>-0.0</td>
-      <td>-0.0</td>
-      <td>-0.01</td>
-      <td>27-01-2025</td>
-      <td>222.1</td>
-      <td>1.34</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=WANBURY">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/WANBURY/">🎯</a></td>
+      <td>0</td>
+      <td>90752</td>
+      <td>1.93</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>ALKEM</td>
-      <td>123.0</td>
-      <td>0.54</td>
+      <td>Alkem Laboratories Ltd</td>
+      <td>2025-02-14</td>
+      <td>5048.45</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>97298</td>
+      <td>49.19</td>
+      <td>134</td>
+      <td>0.411</td>
+      <td>70</td>
+      <td>5048.45</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ALKEM&interval=D">⬆️ 13-11-2024</a></td>
+      <td>13</td>
+      <td></td>
+      <td></td>
+      <td>5.853513</td>
+      <td></td>
+      <td>hold</td>
+      <td>7225</td>
+      <td>6097</td>
+      <td>4330</td>
+      <td>24</td>
+      <td>28</td>
+      <td>44</td>
+      <td>41.1</td>
+      <td>12.7</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ALKEM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ALKEM/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>14-02-2025</td>
-      <td>5029.6</td>
-      <td>5.76</td>
-      <td>5.0</td>
-      <td>5.0</td>
-      <td>-0.05</td>
-      <td>0.7</td>
-      <td>0.64</td>
-      <td>0.0</td>
-      <td>29-01-2025</td>
-      <td>4916.05</td>
-      <td>22.76</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/alkemlaboratories/AL05">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ALKEM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ALKEM/">🎯</a></td>
     </tr>
     <tr>
       <td>DHRUV</td>
-      <td>2414.0</td>
-      <td></td>
+      <td>Dhruv Consultancy Services Ltd</td>
+      <td>2025-02-14</td>
+      <td>139.60</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>32623</td>
+      <td>0.46</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
       <td>0.00</td>
       <td></td>
-      <td>14-02-2025</td>
-      <td>146.56</td>
-      <td>6.45</td>
+    </tr>
+    <tr>
+      <td>ENGINERSIN</td>
+      <td>ENGINEERS INDIA LTD.</td>
+      <td>2025-02-14</td>
+      <td>162.86</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>3437509</td>
+      <td>55.78</td>
+      <td>412</td>
+      <td>0.823</td>
+      <td>55</td>
+      <td>162.86</td>
       <td></td>
-      <td>46.0</td>
-      <td>-0.02</td>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td>3.8484805</td>
+      <td>0.16288</td>
+      <td></td>
+      <td>247</td>
+      <td>239</td>
+      <td>215</td>
+      <td>16</td>
+      <td>25</td>
+      <td>65.6</td>
+      <td>57</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ENGINERSIN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ENGINERSIN/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ESCORTS</td>
+      <td>Escorts Kubota Ltd</td>
+      <td>2025-02-14</td>
+      <td>3328.65</td>
+      <td>0.00</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>-3.59</td>
-      <td>29-01-2025</td>
-      <td>143.08</td>
-      <td>1.01</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=DHRUV">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DHRUV/">🎯</a></td>
+      <td>0</td>
+      <td>269358</td>
+      <td>89.9</td>
+      <td>222</td>
+      <td>0.286</td>
+      <td>65</td>
+      <td>3328.65</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ESCORTS&interval=D">⬆️ 24-10-2024</a></td>
+      <td>12</td>
+      <td></td>
+      <td>2</td>
+      <td>3.7216568</td>
+      <td>0.12642</td>
+      <td>hold</td>
+      <td>4300</td>
+      <td>3300</td>
+      <td>2426</td>
+      <td>28</td>
+      <td>31</td>
+      <td>60.7</td>
+      <td>45.7</td>
+      <td>20.4</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ESCORTS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ESCORTS/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>MAJESAUT</td>
-      <td>1989.0</td>
-      <td>1.22</td>
+      <td>MAJESTIC AUTO LTD.-$</td>
+      <td>2025-02-14</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>14-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>20.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>29-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MAJESAUT">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MAJESAUT/">🎯</a></td>
     </tr>
     <tr>
       <td>MOIL</td>
-      <td>661.0</td>
-      <td>0.89</td>
+      <td>MOIL LTD.</td>
+      <td>2025-02-14</td>
+      <td>305.15</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>2165349</td>
+      <td>67.45</td>
+      <td>612</td>
+      <td>0.656</td>
+      <td>55</td>
+      <td>305.15</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MOIL&interval=D">⬆️ 13-02-2024</a></td>
+      <td>6</td>
+      <td></td>
+      <td></td>
+      <td>2.3803394</td>
+      <td>0.1399</td>
+      <td></td>
+      <td>451</td>
+      <td>392.5</td>
+      <td>334</td>
+      <td>12</td>
+      <td>18</td>
+      <td>55</td>
+      <td>53.9</td>
+      <td>15</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MOIL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MOIL/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>14-02-2025</td>
-      <td>310.25</td>
-      <td>5.22</td>
-      <td>39.0</td>
-      <td>26.0</td>
-      <td>0.13</td>
-      <td>-0.03</td>
-      <td>0.01</td>
+    </tr>
+    <tr>
+      <td>MOIL</td>
+      <td>MOIL LTD.</td>
+      <td>2025-02-14</td>
+      <td>305.15</td>
+      <td>0.00</td>
       <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>296.25</td>
-      <td>34.26</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/miningminerals/moil/M18">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MOIL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MOIL/">🎯</a></td>
+      <td>0</td>
+      <td>2165349</td>
+      <td>67.45</td>
+      <td>612</td>
+      <td>0.656</td>
+      <td>55</td>
+      <td>305.15</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MOIL&interval=D">⬆️ 13-02-2024</a></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2.3803394</td>
+      <td>0.1399</td>
+      <td></td>
+      <td>451</td>
+      <td>392.5</td>
+      <td>334</td>
+      <td>12</td>
+      <td>18</td>
+      <td>55</td>
+      <td>53.9</td>
+      <td>15</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MOIL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MOIL/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>MRF</td>
-      <td>139.0</td>
-      <td>0.62</td>
+      <td>MRF LTD.</td>
+      <td>2025-02-14</td>
+      <td>113793.30</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4291</td>
+      <td>48.96</td>
+      <td>140</td>
+      <td>0.4</td>
+      <td>70</td>
+      <td>113793.3</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MRF&interval=D">⬆️ 04-06-2024</a></td>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td>2.7315514</td>
+      <td>0.11627</td>
+      <td></td>
+      <td>160000</td>
+      <td>110810</td>
+      <td>92500</td>
+      <td>20</td>
+      <td>25</td>
+      <td>44.6</td>
+      <td>28.5</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MRF">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MRF/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>14-02-2025</td>
-      <td>114183.45</td>
-      <td>5.7</td>
-      <td>-11.0</td>
-      <td>12.0</td>
-      <td>1.76</td>
-      <td>-1.12</td>
-      <td>-0.58</td>
+    </tr>
+    <tr>
+      <td>NICCOPAR</td>
+      <td>NICCO PARKS & RESORTS LTD.-$</td>
+      <td>2025-02-14</td>
+      <td>0.00</td>
+      <td>0.00</td>
       <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>112622.5</td>
-      <td>47.99</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/tyres/mrf/MRF">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=MRF">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MRF/">🎯</a></td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>TANAA</td>
-      <td>1535.0</td>
-      <td>0.98</td>
+      <td>TANEJA AEROSPACE & AVIATION LTD.-$</td>
+      <td>2025-02-14</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>14-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>21.0</td>
-      <td>-0.04</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>30-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TANAA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TANAA/">🎯</a></td>
     </tr>
     <tr>
       <td>BECTORFOOD</td>
-      <td>639.0</td>
-      <td></td>
+      <td>Mrs. Bectors Food Specialities Ltd</td>
+      <td>2025-02-17</td>
+      <td>1491.45</td>
       <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>17-02-2025</td>
-      <td>1529.25</td>
-      <td>6.23</td>
-      <td>2.0</td>
-      <td>2.0</td>
-      <td>2.77</td>
-      <td>0.31</td>
-      <td>-0.01</td>
       <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>1469.95</td>
-      <td>39.53</td>
+      <td>0</td>
+      <td>263239</td>
+      <td>39.31</td>
+      <td>567</td>
+      <td>0.302</td>
+      <td>60</td>
+      <td>1491.45</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=BECTORFOOD&interval=D">⬆️ 13-11-2024</a></td>
+      <td>16</td>
+      <td></td>
+      <td>3</td>
+      <td>7.936284</td>
+      <td>0.16565001</td>
+      <td>buy</td>
+      <td>2176</td>
+      <td>1771</td>
+      <td>1370</td>
+      <td>46</td>
+      <td>62</td>
+      <td>83.6</td>
+      <td>72.1</td>
+      <td>35.3</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=BECTORFOOD">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BECTORFOOD/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>EUROASIA</td>
-      <td>4406.0</td>
-      <td></td>
+      <td>EURO ASIA EXPORTS LTD.</td>
+      <td>2025-02-17</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>17-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>22.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>29-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=EUROASIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/EUROASIA/">🎯</a></td>
     </tr>
     <tr>
       <td>PREMCO</td>
-      <td>2153.0</td>
-      <td>1.72</td>
+      <td>PREMCO GLOBAL LTD.-$</td>
+      <td>2025-02-17</td>
       <td>0.00</td>
       <td>0.00</td>
-      <td></td>
-      <td>17-02-2025</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>41.0</td>
       <td>0.0</td>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>0.02</td>
-      <td>30-01-2025</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
+    </tr>
+    <tr>
+      <td>CONART</td>
+      <td>CONART ENGINEERS LTD.-$</td>
+      <td>2025-02-18</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>None</td>
+      <td>None</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
       <td></td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PREMCO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PREMCO/">🎯</a></td>
     </tr>
     <tr>
       <td>GILLETTE</td>
-      <td>278.0</td>
-      <td>0.3</td>
+      <td>GILLETTE INDIA LTD.</td>
+      <td>2025-02-18</td>
+      <td>8722.50</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>27704</td>
+      <td>24.27</td>
+      <td>271</td>
+      <td>0.123</td>
+      <td>70</td>
+      <td>8722.5</td>
+      <td></td>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td>29.262966</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>63</td>
+      <td>52.6</td>
+      <td>52.6</td>
+      <td>29</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GILLETTE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GILLETTE/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>18-02-2025</td>
-      <td>8768.5</td>
-      <td>4.89</td>
-      <td>33.0</td>
-      <td>28.0</td>
-      <td>0.16</td>
-      <td>-0.21</td>
-      <td>-0.15</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>8607.25</td>
-      <td>16.08</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/personalcare/gilletteindia/GI22">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GILLETTE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GILLETTE/">🎯</a></td>
     </tr>
     <tr>
       <td>GREENPANEL</td>
-      <td>630.0</td>
-      <td>1.47</td>
+      <td>Greenpanel Industries Ltd</td>
+      <td>2025-02-18</td>
+      <td>376.15</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>520669</td>
+      <td>19.38</td>
+      <td>717</td>
+      <td>1.091</td>
+      <td>60</td>
+      <td>376.15</td>
+      <td></td>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td>3.411018</td>
+      <td>0.07556</td>
+      <td>buy</td>
+      <td>550</td>
+      <td>420</td>
+      <td>285</td>
+      <td>26</td>
+      <td>46</td>
+      <td>32.2</td>
+      <td>32.2</td>
+      <td>28.8</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GREENPANEL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GREENPANEL/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>18-02-2025</td>
-      <td>353.7</td>
-      <td>8.07</td>
-      <td>67.0</td>
-      <td>128.0</td>
-      <td>-1.83</td>
-      <td>0.12</td>
-      <td>0.52</td>
-      <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>339.2</td>
-      <td>1.25</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=GREENPANEL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GREENPANEL/">🎯</a></td>
     </tr>
     <tr>
       <td>HONDAPOWER</td>
-      <td>762.0</td>
-      <td>0.91</td>
+      <td>Honda India Power Products Ltd</td>
+      <td>2025-02-18</td>
+      <td>2426.25</td>
       <td>0.00</td>
-      <td>0.00</td>
-      <td></td>
-      <td>18-02-2025</td>
-      <td>2472.8</td>
-      <td>5.7</td>
-      <td></td>
-      <td>36.0</td>
-      <td>0.94</td>
-      <td>-0.13</td>
-      <td>-0.14</td>
       <td>0.0</td>
-      <td>30-01-2025</td>
-      <td>2421.95</td>
-      <td>0.71</td>
+      <td>0</td>
+      <td>1879</td>
+      <td>0.46</td>
+      <td>899</td>
+      <td>0.76</td>
+      <td></td>
+      <td>2426.25</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=HONDAPOWER&interval=D">⬆️ 26-10-2023</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>3.0303314</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>36</td>
+      <td>53.7</td>
+      <td>26.2</td>
+      <td>11.1</td>
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=HONDAPOWER">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HONDAPOWER/">🎯</a></td>
+      <td>0.00</td>
+      <td></td>
     </tr>
     <tr>
       <td>ESABINDIA</td>
-      <td>509.0</td>
-      <td>0.8</td>
+      <td>ESAB INDIA LTD.</td>
+      <td>2025-02-20</td>
+      <td>4920.50</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>2130</td>
+      <td>1.05</td>
+      <td>505</td>
+      <td>0.524</td>
+      <td>55</td>
+      <td>4920.5</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ESABINDIA&interval=D">⬆️ 28-01-2025</a></td>
+      <td>3</td>
+      <td></td>
+      <td></td>
+      <td>21.795656</td>
+      <td>0.51631</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>45</td>
+      <td>46.3</td>
+      <td>34.1</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ESABINDIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ESABINDIA/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>20-02-2025</td>
-      <td>4999.3</td>
-      <td>5.61</td>
-      <td>-12.0</td>
-      <td>28.0</td>
-      <td>0.09</td>
-      <td>-0.04</td>
-      <td>-0.03</td>
-      <td>0.0</td>
-      <td>24-01-2025</td>
-      <td>4990.85</td>
-      <td>0.8</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ESABINDIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ESABINDIA/">🎯</a></td>
     </tr>
     <tr>
       <td>IRCTC</td>
-      <td>102.0</td>
-      <td>1.2</td>
+      <td>Indian Railway Catering and Tourism Corporation Ltd</td>
+      <td>2025-02-20</td>
+      <td>772.65</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>1830063</td>
+      <td>140.77</td>
+      <td>113</td>
+      <td>0.41</td>
+      <td>65</td>
+      <td>772.65</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IRCTC&interval=D">⬆️ 23-10-2024</a></td>
+      <td>7</td>
+      <td></td>
+      <td>2</td>
+      <td>17.536314</td>
+      <td>0.37674</td>
+      <td></td>
+      <td>1200</td>
+      <td>867.5</td>
+      <td>550</td>
+      <td>39</td>
+      <td>52</td>
+      <td>27.9</td>
+      <td>27.9</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IRCTC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IRCTC/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>20-02-2025</td>
-      <td>794.7</td>
-      <td>6.3</td>
-      <td>4.0</td>
-      <td>34.0</td>
-      <td>1.04</td>
-      <td>3.16</td>
-      <td>0.43</td>
-      <td>-5.0</td>
-      <td>30-01-2025</td>
-      <td>762.4</td>
-      <td>323.27</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/miscellaneous/irctcindianrailwaycateringtourismcorp/IRC">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=IRCTC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IRCTC/">🎯</a></td>
     </tr>
     <tr>
       <td>PGHH</td>
-      <td>107.0</td>
-      <td>0.37</td>
+      <td>PROCTER & GAMBLE HYGIENE & HEALTH CARE LTD.</td>
+      <td>2025-02-20</td>
+      <td>14610.90</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>5545</td>
+      <td>8.1</td>
+      <td>142</td>
+      <td>0.215</td>
+      <td></td>
+      <td>14610.9</td>
+      <td></td>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td>61.212616</td>
+      <td></td>
+      <td></td>
+      <td>17299</td>
+      <td>16399.5</td>
+      <td>15500</td>
+      <td>51</td>
+      <td>70</td>
+      <td>12.4</td>
+      <td>10.1</td>
+      <td></td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PGHH">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PGHH/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>20-02-2025</td>
-      <td>14661.3</td>
-      <td>5.89</td>
-      <td>7.0</td>
-      <td>10.0</td>
-      <td>-0.56</td>
-      <td>0.71</td>
-      <td>0.33</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>14500.6</td>
-      <td>2.64</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/personalcare/proctergamblehygienehealthcare/PGH">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PGHH">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PGHH/">🎯</a></td>
     </tr>
     <tr>
       <td>PGHL</td>
-      <td>395.0</td>
-      <td>0.67</td>
+      <td>Procter & Gamble Health Ltd</td>
+      <td>2025-02-21</td>
+      <td>5217.80</td>
       <td>0.00</td>
+      <td>0.0</td>
+      <td>0</td>
+      <td>4445</td>
+      <td>2.34</td>
+      <td>516</td>
+      <td>0.508</td>
+      <td>55</td>
+      <td>5217.8</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PGHL&interval=D">⬆️ 29-10-2024</a></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>16.08987</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>36</td>
+      <td>40</td>
+      <td>25.8</td>
+      <td>24.2</td>
+      <td>11.1</td>
+      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PGHL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PGHL/">🎯</a></td>
       <td>0.00</td>
       <td></td>
-      <td>21-02-2025</td>
-      <td>5393.95</td>
-      <td>5.04</td>
-      <td>8.0</td>
-      <td>8.0</td>
-      <td>0.28</td>
-      <td>-0.18</td>
-      <td>0.38</td>
-      <td>0.0</td>
-      <td>31-01-2025</td>
-      <td>5382.6</td>
-      <td>3.38</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/proctergamblehealth/M12">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=PGHL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PGHL/">🎯</a></td>
     </tr>
   </tbody>
 </table>
-                          <p>Page last refreshed on 2025-02-01 18:09</p></body>
+                          <p>Page last refreshed on 2025-02-04 08:50</p></body>
                           </html>
                           
