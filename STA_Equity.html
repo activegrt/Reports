@@ -24,7 +24,7 @@
     .desc::after {
         content: " ▼";
     }
-    </style></head><body><H2>Projection Trading Analysis</H2><div class="table-container"><table id="sortableTable" border="1" class="dataframe">
+    </style></head><body><H2>Projection Trading Analysis</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th class='sortable' onclick='sortTable(0)'>#</th>
@@ -429,32 +429,61 @@
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=AARTIIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AARTIIND/">🎯</a></td>
     </tr>
   </tbody>
-</table></div><H2>Swing Trading Analysis</H2><div class="table-container"><table id="sortableTable" border="1" class="dataframe">
+</table></div>
+            <script>
+                function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+
+                    rows.forEach(row => tbody.appendChild(row));
+
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            <p>Page last refreshed on 2025-02-07 22:27</p></body></html>
+            <H2>Swing Trading Analysis</H2><div class="table-container"><table id="sortableTable1"border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th class='sortable' onclick='sortTable(0)'>#</th>
-      <th class='sortable' onclick='sortTable(1)'>Symbol</th>
-      <th class='sortable' onclick='sortTable(2)'>Rank</th>
-      <th class='sortable' onclick='sortTable(3)'>Beta</th>
-      <th class='sortable' onclick='sortTable(4)'>MTF</th>
-      <th class='sortable' onclick='sortTable(5)'>LTP</th>
-      <th class='sortable' onclick='sortTable(6)'>Day</th>
-      <th class='sortable' onclick='sortTable(7)'>Holdings</th>
-      <th class='sortable' onclick='sortTable(8)'>Added</th>
-      <th class='sortable' onclick='sortTable(9)'>Exited</th>
-      <th class='sortable' onclick='sortTable(10)'>IV</th>
-      <th class='sortable' onclick='sortTable(11)'>ROE</th>
-      <th class='sortable' onclick='sortTable(12)'>Ratings</th>
-      <th class='sortable' onclick='sortTable(13)'>High</th>
-      <th class='sortable' onclick='sortTable(14)'>Median</th>
-      <th class='sortable' onclick='sortTable(15)'>Low</th>
-      <th class='sortable' onclick='sortTable(16)'>Revenue</th>
-      <th class='sortable' onclick='sortTable(17)'>GrossPL</th>
-      <th class='sortable' onclick='sortTable(18)'>Projection</th>
-      <th class='sortable' onclick='sortTable(19)'>3Y Gap%</th>
-      <th class='sortable' onclick='sortTable(20)'>2Y Gap%</th>
-      <th class='sortable' onclick='sortTable(21)'>1Y Gap%</th>
-      <th class='sortable' onclick='sortTable(22)'>Reference</th>
+      <th class='sortable' onclick='sortTable1(0)'>#</th>
+      <th class='sortable' onclick='sortTable1(1)'>Symbol</th>
+      <th class='sortable' onclick='sortTable1(2)'>Rank</th>
+      <th class='sortable' onclick='sortTable1(3)'>Beta</th>
+      <th class='sortable' onclick='sortTable1(4)'>MTF</th>
+      <th class='sortable' onclick='sortTable1(5)'>LTP</th>
+      <th class='sortable' onclick='sortTable1(6)'>Day</th>
+      <th class='sortable' onclick='sortTable1(7)'>Holdings</th>
+      <th class='sortable' onclick='sortTable1(8)'>Added</th>
+      <th class='sortable' onclick='sortTable1(9)'>Exited</th>
+      <th class='sortable' onclick='sortTable1(10)'>IV</th>
+      <th class='sortable' onclick='sortTable1(11)'>ROE</th>
+      <th class='sortable' onclick='sortTable1(12)'>Ratings</th>
+      <th class='sortable' onclick='sortTable1(13)'>High</th>
+      <th class='sortable' onclick='sortTable1(14)'>Median</th>
+      <th class='sortable' onclick='sortTable1(15)'>Low</th>
+      <th class='sortable' onclick='sortTable1(16)'>Revenue</th>
+      <th class='sortable' onclick='sortTable1(17)'>GrossPL</th>
+      <th class='sortable' onclick='sortTable1(18)'>Projection</th>
+      <th class='sortable' onclick='sortTable1(19)'>3Y Gap%</th>
+      <th class='sortable' onclick='sortTable1(20)'>2Y Gap%</th>
+      <th class='sortable' onclick='sortTable1(21)'>1Y Gap%</th>
+      <th class='sortable' onclick='sortTable1(22)'>Reference</th>
     </tr>
   </thead>
   <tbody>
@@ -23410,32 +23439,32 @@
     </tr>
   </tbody>
 </table></div>
-    <script>
-        function sortTable(columnIndex) {
-            let table = document.getElementById("sortableTable");
-            let tbody = table.getElementsByTagName("tbody")[0];
-            let rows = Array.from(tbody.getElementsByTagName("tr"));
-            let isAscending = table.dataset.sortOrder !== "asc";
+            <script>
+                function sortTable1(columnIndex) {
+                    let table = document.getElementById('sortableTable1');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
 
-            rows.sort((rowA, rowB) => {
-                let cellA = rowA.getElementsByTagName("td")[columnIndex].innerText.trim();
-                let cellB = rowB.getElementsByTagName("td")[columnIndex].innerText.trim();
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
 
-                let isNumeric = !isNaN(cellA) && !isNaN(cellB);
-                return isAscending ? 
-                    (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
-                    (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
-            });
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
 
-            rows.forEach(row => tbody.appendChild(row));
+                    rows.forEach(row => tbody.appendChild(row));
 
-            // Update sort order data attribute
-            table.dataset.sortOrder = isAscending ? "asc" : "desc";
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
 
-            // Reset column classes
-            document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
-            document.querySelectorAll("th")[columnIndex].classList.add(isAscending ? "asc" : "desc");
-        }
-    </script>
-    <p>Page last refreshed on 2025-02-07 22:06</p></body></html>
-    
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            <p>Page last refreshed on 2025-02-07 22:27</p></body></html>
+            
