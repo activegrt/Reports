@@ -24,7 +24,7 @@
     .desc::after {
         content: " ▼";
     }
-    </style></head><body><H2>Swing Trading Analysis</H2><div class="table-container"><table id="sortableTable" border="1" class="dataframe">
+    </style></head><body><H2>Swing Trading Analysis</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th class='sortable' onclick='sortTable(0)'>#</th>
@@ -21167,32 +21167,32 @@
     </tr>
   </tbody>
 </table></div>
-    <script>
-        function sortTable(columnIndex) {
-            let table = document.getElementById("sortableTable");
-            let tbody = table.getElementsByTagName("tbody")[0];
-            let rows = Array.from(tbody.getElementsByTagName("tr"));
-            let isAscending = table.dataset.sortOrder !== "asc";
+            <script>
+                function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
 
-            rows.sort((rowA, rowB) => {
-                let cellA = rowA.getElementsByTagName("td")[columnIndex].innerText.trim();
-                let cellB = rowB.getElementsByTagName("td")[columnIndex].innerText.trim();
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
 
-                let isNumeric = !isNaN(cellA) && !isNaN(cellB);
-                return isAscending ? 
-                    (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
-                    (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
-            });
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
 
-            rows.forEach(row => tbody.appendChild(row));
+                    rows.forEach(row => tbody.appendChild(row));
 
-            // Update sort order data attribute
-            table.dataset.sortOrder = isAscending ? "asc" : "desc";
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
 
-            // Reset column classes
-            document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
-            document.querySelectorAll("th")[columnIndex].classList.add(isAscending ? "asc" : "desc");
-        }
-    </script>
-    <p>Page last refreshed on 2025-02-07 22:06</p></body></html>
-    
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            <p>Page last refreshed on 2025-02-07 22:28</p></body></html>
+            
