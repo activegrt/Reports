@@ -33,34 +33,6 @@
         }
     </style>
 
-<script>
-    function sortTable(columnIndex) {
-        let table = document.getElementById("sortableTable");
-        let tbody = table.getElementsByTagName("tbody")[0];
-        let rows = Array.from(tbody.getElementsByTagName("tr"));
-        let isAscending = table.dataset.sortOrder !== "asc";
-        
-        rows.sort((rowA, rowB) => {
-            let cellA = rowA.getElementsByTagName("td")[columnIndex].innerText.trim();
-            let cellB = rowB.getElementsByTagName("td")[columnIndex].innerText.trim();
-
-            let isNumeric = !isNaN(cellA) && !isNaN(cellB);
-            return isAscending ? 
-                (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
-                (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
-        });
-
-        rows.forEach(row => tbody.appendChild(row));
-
-        // Update sort order data attribute
-        table.dataset.sortOrder = isAscending ? "asc" : "desc";
-
-        // Reset column classes
-        document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
-        document.querySelectorAll("th")[columnIndex].classList.add(isAscending ? "asc" : "desc");
-    }
-</script>
-
 </head><body><H2>Stock Analysis Report</H2><div class="table-container"><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -17926,4 +17898,36 @@
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=ALKYLAMINE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ALKYLAMINE/">🎯</a></td>
     </tr>
   </tbody>
-</table></div><p>Page last refreshed on 2025-01-21 08:02</p></body></html>
+</table></div><p>Page last refreshed on 2025-02-21 08:02</p>
+
+
+<script>
+    function sortTable(columnIndex) {
+        let table = document.getElementById("sortableTable");
+        let tbody = table.getElementsByTagName("tbody")[0];
+        let rows = Array.from(tbody.getElementsByTagName("tr"));
+        let isAscending = table.dataset.sortOrder !== "asc";
+        
+        rows.sort((rowA, rowB) => {
+            let cellA = rowA.getElementsByTagName("td")[columnIndex].innerText.trim();
+            let cellB = rowB.getElementsByTagName("td")[columnIndex].innerText.trim();
+
+            let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+            return isAscending ? 
+                (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+        });
+
+        rows.forEach(row => tbody.appendChild(row));
+
+        // Update sort order data attribute
+        table.dataset.sortOrder = isAscending ? "asc" : "desc";
+
+        // Reset column classes
+        document.querySelectorAll("th").forEach(th => th.classList.remove("asc", "desc"));
+        document.querySelectorAll("th")[columnIndex].classList.add(isAscending ? "asc" : "desc");
+    }
+</script>
+
+
+</body></html>
