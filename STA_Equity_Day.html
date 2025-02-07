@@ -1,44 +1,53 @@
 <html><head><style>
-                .table-container {
-                    width: 100%;
-                    max-height: 600px;
-                    overflow-y: auto;
-                    border: 1px solid #ddd;
-                }
-                table {
-                    width: 100%;
-                    border-collapse: collapse;
-                }
-                thead th {
-                    position: sticky;
-                    top: 0;
-                    background: #f8f9fa;
-                    z-index: 2;
-                }
-                </style></head><body><H2>Swing Trading Analysis - Day</H2><table border="1" class="dataframe">
+                    .table-container {
+                        width: 100%;
+                        max-height: 600px;
+                        overflow-y: auto;
+                        border: 1px solid #ddd;
+                    }
+                    table {
+                        width: 100%;
+                        border-collapse: collapse;
+                    }
+                    thead th {
+                        position: sticky;
+                        top: 0;
+                        background: #f8f9fa;
+                        z-index: 2;
+                    }
+                    th.sortable:hover {
+                        background-color: #e2e6ea;
+                    }
+                    .asc::after {
+                        content: " ▲";
+                    }
+                    .desc::after {
+                        content: " ▼";
+                    }
+                    </style></head><body><H2>Swing Trading Analysis</H2><div class="table-container"><table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>#</th>
-      <th>Symbol</th>
-      <th>Rank</th>
-      <th>MTF</th>
-      <th>LTP</th>
-      <th>Day</th>
-      <th>Holdings</th>
-      <th>Added</th>
-      <th>Exited</th>
-      <th>IV</th>
-      <th>ROE</th>
-      <th>Ratings</th>
-      <th>High</th>
-      <th>Median</th>
-      <th>Low</th>
-      <th>Revenue</th>
-      <th>GrossPL</th>
-      <th>3Y Gap%</th>
-      <th>2Y Gap%</th>
-      <th>1Y Gap%</th>
-      <th>Reference</th>
+      <th class='sortable' onclick='sortTable(0)'>#</th>
+      <th class='sortable' onclick='sortTable(1)'>Symbol</th>
+      <th class='sortable' onclick='sortTable(2)'>Rank</th>
+      <th class='sortable' onclick='sortTable(3)'>MTF</th>
+      <th class='sortable' onclick='sortTable(4)'>LTP</th>
+      <th class='sortable' onclick='sortTable(5)'>Day</th>
+      <th class='sortable' onclick='sortTable(6)'>Holdings</th>
+      <th class='sortable' onclick='sortTable(7)'>Added</th>
+      <th class='sortable' onclick='sortTable(8)'>Exited</th>
+      <th class='sortable' onclick='sortTable(9)'>IV</th>
+      <th class='sortable' onclick='sortTable(10)'>ROE</th>
+      <th class='sortable' onclick='sortTable(11)'>Ratings</th>
+      <th class='sortable' onclick='sortTable(12)'>High</th>
+      <th class='sortable' onclick='sortTable(13)'>Median</th>
+      <th class='sortable' onclick='sortTable(14)'>Low</th>
+      <th class='sortable' onclick='sortTable(15)'>Revenue</th>
+      <th class='sortable' onclick='sortTable(16)'>GrossPL</th>
+      <th class='sortable' onclick='sortTable(17)'>3Y Gap%</th>
+      <th class='sortable' onclick='sortTable(18)'>2Y Gap%</th>
+      <th class='sortable' onclick='sortTable(19)'>1Y Gap%</th>
+      <th class='sortable' onclick='sortTable(20)'>Reference</th>
     </tr>
   </thead>
   <tbody>
@@ -21157,4 +21166,4 @@
       <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=TATVA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TATVA/">🎯</a></td>
     </tr>
   </tbody>
-</table><p>Page last refreshed on 2025-02-07 20:14</p></body></html>
+</table></div><p>Page last refreshed on 2025-02-07 21:52</p></body></html>
