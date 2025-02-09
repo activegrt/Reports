@@ -282,8 +282,58 @@
             link.download = pdfFilePath; // Suggest file name for download
             link.click();
         }
-
-    </script>
+function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+	    
+                function sortTable1(columnIndex) {
+                    let table = document.getElementById('sortableTable1');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
 
 </body>
 </html>
