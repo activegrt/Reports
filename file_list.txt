@@ -1,8 +1,8 @@
 [Banks]
-HDFCBANK, Defensive, 19.5, -12%, Undervalued, 1, -5%
-ICICIBANK, Aggressive, 21.2, -8%, Fair, 2, -2%
+HDFCBANK, 1200.33, QfoQydxt, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5%
+ICICIBANK, 2231.01, QfoQydxt, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, -2%
 
 [Software & IT Services]
-INFY, Defensive, 28.1, -10%, Fair, 1, -3%
-TCS, Defensive, 30.5, -6%, Overvalued, 2, -1%
+INFY, 1200.33, QfoQydxt, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5%
+TCS, 2231.01, QfoQydxt, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, -2%
 
