@@ -1,8 +1,8 @@
 [Banks]
-HDFCBANK, HDFCBANK, 1200.33, QfoQydxt, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5%
-ICICIBANK, ICICIBANK, 2231.01, QfoQydxt, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, -2%
+HDFCBANK, HDFCBANK, 1200.33, QfoQydxt, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5
+ICICIBANK, ICICIBANK, 2231.01, QfoQydxt, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, -2
 
 [Software & IT Services]
-INFY, INFY, 1200.33, QfoQydxt, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5%
-TCS, TCS, 2231.01, QfoQydxt, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, -2%
+INFY, INFY, 1200.33, QfoQydxt, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5
+TCS, TCS, 2231.01, QfoQydxt, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, -2
 
