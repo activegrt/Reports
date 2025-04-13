@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stocks by Sector</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f9f9f9;
+      padding: 20px;
+    }
+    .sector {
+      margin-bottom: 30px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+    h2 {
+      margin: 0;
+      padding: 12px;
+      background: #444;
+      color: #fff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 10px 12px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    th {
+      background: #f2f2f2;
+    }
+    .tag {
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      color: #fff;
+    }
+    .defensive {
+      background-color: #2c7be5;
+    }
+    .aggressive {
+      background-color: #e53935;
+    }
+    #valuation-select {
+      margin-bottom: 20px;
+      padding: 8px 12px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <label for="valuation-select"><strong>Chart:</strong></label>
+  <select id="valuation-select">
+    <option value="QfoQydxt">Daily Stocks</option>
+    <option value="tvXNIn4o">Anita</option>
+  </select>
+
+  <h1>Stock List by Sector</h1>
+  <div id="content">Loading...</div>
+
+  <script>
+    let fileLines = []; // to store fetched data
+
+    function renderTable(chartValue) {
+      let html = '', currentSector = '';
+
+      fileLines.forEach(line => {
+        line = line.trim();
+        if (!line) return;
+
+        if (line.startsWith('[') && line.endsWith(']')) {
+          if (currentSector) html += '</tbody></table></div>';
+          currentSector = line.slice(1, -1);
+          html += `<div class="sector"><h2>${currentSector}</h2><table>
+                    <thead><tr>
+                    <th>Stock</th>
+                    <th>LTP</th>
+                    <th>Chart</th>
+                    <th>Rank</th>
+                    <th>MTF</th>
+                    <th>% from 200 EMA</th>
+                    <th>% from ATH</th>
+                    <th>Valuation</th>
+                    <th>Low</th>
+                    <th>Medium</th>
+                    <th>High</th>
+                    <th>PE</th>
+                    <th>Beta</th>
+                    <th>Change</th>
+                    </tr></thead><tbody>`;
+        } else {
+          const [symbol, name, ltp, rank, mtf, ema, fromHigh, valuation, projlow, projmedium, projhigh, pe, beta, change] = line.split(',').map(x => x.trim());
+          const tagEma = ema > 0 ? 'defensive' : 'aggressive';
+          const tagChange = change > 0 ? 'defensive' : 'aggressive';
+
+          html += `<tr>
+                    <td>${name}</td>
+                    <td>${ltp}</td>
+                    <td>
+                      <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=M">📅</a>
+                      <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=W">🆆</a>
+                      <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=D">🗓</a>
+                      <a target="_blank" href="https://in.tradingview.com/symbols/${symbol}/">📊</a>
+                    </td>
+                    <td>${rank}</td>
+                    <td>${mtf}</td>
+                    <td><span class="tag ${tagEma}">${ema}%</span></td>
+                    <td>-${fromHigh}%</td>
+                    <td>${valuation}</td>
+                    <td>${projlow}</td>
+                    <td>${projmedium}</td>
+                    <td>${projhigh}</td>
+                    <td>${pe}</td>
+                    <td>${beta}</td>
+                    <td><span class="tag ${tagChange}">${change}%</span></td>
+                  </tr>`;
+        }
+      });
+
+      if (currentSector) html += '</tbody></table></div>';
+      document.getElementById('content').innerHTML = html;
+    }
+
+    // Initial fetch
+    fetch('https://activegrt.github.io/Reports/file_list.txt')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load file list');
+        return response.text();
+      })
+      .then(text => {
+        fileLines = text.split('\n');
+        const initialChart = document.getElementById('valuation-select').value;
+        renderTable(initialChart); // Render for the default selected chart
+      })
+      .catch(err => {
+        document.getElementById('content').innerText = 'Error loading stock data.';
+        console.error(err);
+      });
+
+    // Listen to dropdown change
+    document.getElementById('valuation-select').addEventListener('change', function () {
+      renderTable(this.value);
+    });
+  </script>
+</body>
+</html>
