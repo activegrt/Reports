@@ -1,8 +1,1 @@
-[Banks - PE 7.5]
-HDFCBANK, HDFC Ltd, 1200.33, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, -5
-ICICIBANK, ICICI Bank Ltd, 2231.01, 4, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, 2
-
-[Software & IT Services - PE 8.3]
-INFY, Infosys, 1200.33, 3, 70, 11.4, 2.5, Undervalued, 1300.13, 1450.11, 1801.10, 19.5, 0.84, 1.4
-TCS, Tata Consultancy Services, 2231.01, 2, 60, -5.4, 13.5, Hold, 2300.43, 2550.74, 2840.63, 21.2, 0.94, 4.42
-
+file_list.txt
