@@ -85,6 +85,7 @@
                     <th>MTF</th>
                     <th>% from 200 EMA</th>
                     <th>% from ATH</th>
+                    <th>Book Value</th>
                     <th>Valuation</th>
                     <th>Low</th>
                     <th>Medium</th>
@@ -94,7 +95,7 @@
                     <th>Change</th>
                     </tr></thead><tbody>`;
         } else {
-          const [symbol, name, ltp, rank, mtf, ema, fromHigh, valuation, projlow, projmedium, projhigh, pe, beta, change] = line.split(',').map(x => x.trim());
+          const [symbol, name, ltp, rank, mtf, ema, fromHigh, book, valuation, projlow, projmedium, projhigh, pe, beta, change] = line.split(',').map(x => x.trim());
           const tagEma = ema > 0 ? 'defensive' : 'aggressive';
           const tagChange = change > 0 ? 'defensive' : 'aggressive';
 
@@ -111,6 +112,7 @@
                     <td>${mtf}</td>
                     <td><span class="tag ${tagEma}">${ema}%</span></td>
                     <td>-${fromHigh}%</td>
+                    <td>${book}</td>
                     <td>${valuation}</td>
                     <td>${projlow}</td>
                     <td>${projmedium}</td>
