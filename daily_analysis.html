@@ -149,5 +149,14 @@
       renderTable(this.value);
     });
   </script>
+
+  <button onclick="viewPDF('file_list.pdf')">Read Report</button>
+            <button onclick="downloadPDF('file_list.pdf')">Download Report</button>
+    
+            <!-- PDF iframe container -->
+            <div id="pdf-container" style="margin-top: 20px;">
+                <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
+            </div>
+  
 </body>
 </html>
