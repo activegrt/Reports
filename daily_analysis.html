@@ -72,91 +72,10 @@
   <div id="content">Loading...</div>
 
   <script>
-    let fileLines = []; // to store fetched data
-
-    function renderTable(chartValue) {
-      let html = '', currentSector = '';
-
-      fileLines.forEach(line => {
-        line = line.trim();
-        if (!line) return;
-
-        if (line.startsWith('[') && line.endsWith(']')) {
-          if (currentSector) html += '</tbody></table></div>';
-          currentSector = line.slice(1, -1);
-          html += `<div class="sector"><h2>${currentSector}</h2><table>
-                    <thead><tr>
-                    <th>Stock</th>
-                    <th>LTP</th>
-                    <th>Chart</th>
-                    <th>Rank</th>
-                    <th>MTF</th>
-                    <th>% from 200 EMA</th>
-                    <th>% from 3Y High</th>
-                    <th>Book Value</th>
-                    <th>Recommendation</th>
-                    <th>Low</th>
-                    <th>Median</th>
-                    <th>High</th>
-                    <th>PE</th>
-                    <th>Beta</th>
-                    <th>Change</th>
-                    </tr></thead><tbody>`;
-        } else {
-          const [symbol, name, ltp, rank, mtf, ema, fromHigh, book, valuation, projlow, projmedium, projhigh, pe, beta, change] = line.split(',').map(x => x.trim());
-          const tagEma = ema > 0 ? 'defensive' : 'aggressive';
-          const tagChange = change > 0 ? 'defensive' : 'aggressive';
-
-          html += `<tr>
-                    <td>${name}</td>
-                    <td>${ltp}</td>
-                    <td>
-                      <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=M">📅</a>
-                      <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=W">🆆</a>
-                      <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=D">🗓</a>
-                      <a target="_blank" href="https://in.tradingview.com/symbols/${symbol}/">📊</a>
-                    </td>
-                    <td>${rank}</td>
-                    <td>${mtf}</td>
-                    <td><span class="tag ${tagEma}">${ema}%</span></td>
-                    <td>${fromHigh}%</td>
-                    <td>${book}</td>
-                    <td>${valuation}</td>
-                    <td>${projlow}</td>
-                    <td>${projmedium}</td>
-                    <td>${projhigh}</td>
-                    <td>${pe}</td>
-                    <td>${beta}</td>
-                    <td><span class="tag ${tagChange}">${change}%</span></td>
-                  </tr>`;
-        }
-      });
-
-      if (currentSector) html += '</tbody></table></div>';
-      document.getElementById('content').innerHTML = html;
-    }
-
-    // Initial fetch
-    fetch('https://activegrt.github.io/Reports/file_list.txt')
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to load file list');
-        return response.text();
-      })
-      .then(text => {
-        fileLines = text.split('\n');
-        const initialChart = document.getElementById('valuation-select').value;
-        renderTable(initialChart); // Render for the default selected chart
-      })
-      .catch(err => {
-        document.getElementById('content').innerText = 'Error loading stock data.';
-        console.error(err);
-      });
-
-    // Listen to dropdown change
-    document.getElementById('valuation-select').addEventListener('change', function () {
-      renderTable(this.value);
-    });
-
+    let fileLines = [];
+    let sectorData = {}; // to hold sector-wise parsed data
+    let currentChart = 'NSE';
+    let currentSort = { sector: '', key: '', direction: 1 };
 
     function viewPDF(pdfFilePath) {
         const pdfFrame = document.getElementById('pdf-frame');
@@ -170,7 +89,110 @@
         link.download = pdfFilePath; // Suggest file name for download
         link.click();
     }
+	
+    function renderTable(chartValue) {
+      currentChart = chartValue;
+      let html = '';
+      let currentSector = '';
+      sectorData = {};
 
+      fileLines.forEach(line => {
+        line = line.trim();
+        if (!line) return;
+
+        if (line.startsWith('[') && line.endsWith(']')) {
+          currentSector = line.slice(1, -1);
+          sectorData[currentSector] = [];
+        } else {
+          const [symbol, name, ltp, rank, mtf, ema, fromHigh, book, valuation, projlow, projmedium, projhigh, pe, beta, change] = line.split(',').map(x => x.trim());
+          sectorData[currentSector].push({
+            symbol, name, ltp: parseFloat(ltp), rank: parseInt(rank), mtf, ema: parseFloat(ema), fromHigh: parseFloat(fromHigh),
+            book: parseFloat(book), valuation, projlow: parseFloat(projlow), projmedium: parseFloat(projmedium),
+            projhigh: parseFloat(projhigh), pe: parseFloat(pe), beta: parseFloat(beta), change: parseFloat(change)
+          });
+        }
+      });
+
+      for (const sector in sectorData) {
+        html += `<div class="sector"><h2>${sector}</h2><table>
+                  <thead><tr>
+                    ${['Stock', 'LTP', 'Chart', 'Rank', 'MTF', '% from 200 EMA', '% from 3Y High', 'Book Value', 'Recommendation', 'Low', 'Median', 'High', 'PE', 'Beta', 'Change']
+                      .map((col, i) => `<th onclick="sortSector('${sector}', '${getKeyByIndex(i)}')">${col}</th>`).join('')}
+                  </tr></thead>
+                  <tbody id="tbody-${sector}">`;
+        html += renderRows(sectorData[sector], chartValue);
+        html += '</tbody></table></div>';
+      }
+
+      document.getElementById('content').innerHTML = html;
+    }
+
+    function renderRows(rows, chartValue) {
+      return rows.map(row => {
+        const tagEma = row.ema > 0 ? 'defensive' : 'aggressive';
+        const tagChange = row.change > 0 ? 'defensive' : 'aggressive';
+        return `<tr>
+          <td>${row.name}</td>
+          <td>${row.ltp}</td>
+          <td>
+            <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row.symbol}&interval=M">📅</a>
+            <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row.symbol}&interval=W">🆆</a>
+            <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row.symbol}&interval=D">🗓</a>
+            <a target="_blank" href="https://in.tradingview.com/symbols/${row.symbol}/">📊</a>
+          </td>
+          <td>${row.rank}</td>
+          <td>${row.mtf}</td>
+          <td><span class="tag ${tagEma}">${row.ema}%</span></td>
+          <td>${row.fromHigh}%</td>
+          <td>${row.book}</td>
+          <td>${row.valuation}</td>
+          <td>${row.projlow}</td>
+          <td>${row.projmedium}</td>
+          <td>${row.projhigh}</td>
+          <td>${row.pe}</td>
+          <td>${row.beta}</td>
+          <td><span class="tag ${tagChange}">${row.change}%</span></td>
+        </tr>`;
+      }).join('');
+    }
+
+    function sortSector(sector, key) {
+      const direction = (currentSort.sector === sector && currentSort.key === key) ? -currentSort.direction : 1;
+      currentSort = { sector, key, direction };
+
+      sectorData[sector].sort((a, b) => {
+        const valA = a[key], valB = b[key];
+        if (typeof valA === 'number') return (valA - valB) * direction;
+        return valA.toString().localeCompare(valB.toString()) * direction;
+      });
+
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(sectorData[sector], currentChart);
+    }
+
+    function getKeyByIndex(index) {
+      const keys = ['name', 'ltp', 'chart', 'rank', 'mtf', 'ema', 'fromHigh', 'book', 'valuation', 'projlow', 'projmedium', 'projhigh', 'pe', 'beta', 'change'];
+      return keys[index];
+    }
+
+    // Fetch file on load
+    fetch('https://activegrt.github.io/Reports/file_list.txt')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load file list');
+        return response.text();
+      })
+      .then(text => {
+        fileLines = text.split('\n');
+        const initialChart = document.getElementById('valuation-select').value;
+        renderTable(initialChart);
+      })
+      .catch(err => {
+        document.getElementById('content').innerText = 'Error loading stock data.';
+        console.error(err);
+      });
+
+    document.getElementById('valuation-select').addEventListener('change', function () {
+      renderTable(this.value);
+    });
   </script>
   
 </body>
