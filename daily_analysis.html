@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Stocks by Sector</title>
+  <title>Daily Analysis - Stocks</title>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -62,15 +62,16 @@
 
   <button onclick="viewPDF('https://activegrt.github.io/Reports/file_list.pdf')">Read Report</button>
   <button onclick="downloadPDF('https://activegrt.github.io/Reports/file_list.pdf')">Download Report</button>
+  <div id="file-modified-time" style="margin-bottom: 10px; font-size: 14px; color: gray;"></div>
     
   <!-- PDF iframe container -->
   <div id="pdf-container" style="margin-top: 20px;">
     <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
   </div>
   
-  <h1>Stock List by Sector</h1>
   <div id="content">Loading...</div>
 
+  
   <script>
     let fileLines = [];
     let sectorData = {}; // to hold sector-wise parsed data
@@ -174,6 +175,17 @@
       return keys[index];
     }
 
+fetch('https://activegrt.github.io/Reports/file_list.txt', { method: 'HEAD' })
+  .then(response => {
+    const lastModified = response.headers.get('Last-Modified');
+    if (lastModified) {
+      document.getElementById('file-modified-time').innerText = `Last updated: ${new Date(lastModified).toLocaleString()}`;
+    }
+  })
+  .catch(err => {
+    console.error('Failed to fetch modified time', err);
+  });
+  
     // Fetch file on load
     fetch('https://activegrt.github.io/Reports/file_list.txt')
       .then(response => {
