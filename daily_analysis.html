@@ -46,20 +46,52 @@
     .aggressive {
       background-color: #e53935;
     }
-    #valuation-select {
-      margin-bottom: 20px;
-      padding: 8px 12px;
-      font-size: 16px;
-    }
+
+        /* Header styling */
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header span {
+            font-size: 24px;
+        }
+
+        /* Dropdown menu styling in header */
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: white;
+            color: black;
+        }
+	 
   </style>
 </head>
 <body>
-  <label for="valuation-select"><strong>Chart:</strong></label>
-  <select id="valuation-select">
-    <option value="QfoQydxt">Daily Stocks</option>
-    <option value="tvXNIn4o">Anita</option>
-  </select>
 
+	
+    <header>
+        <!-- Title -->
+        <a href="index.html" class="hd"><span>The Grand Master Node</span></a>
+
+        <!-- Dropdown Menu in Header -->
+        <nav id="nav-menu">
+	  <select id="valuation-select">
+	    <option value="QfoQydxt">Daily Stocks</option>
+	    <option value="tvXNIn4o">Anita</option>
+	  </select>
+        </nav>
+    </header>
+	
   <button onclick="viewPDF('https://activegrt.github.io/Reports/file_list.pdf')">Read Report</button>
   <button onclick="downloadPDF('https://activegrt.github.io/Reports/file_list.pdf')">Download Report</button>
   <div id="file-modified-time" style="margin-bottom: 10px; font-size: 14px; color: gray;"></div>
