@@ -37,7 +37,21 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             transition: background-color 0.3s ease, box-shadow 0.3s ease;
         }
+        .external-link {
+            text-decoration: none;
+            background-color: #007BFF;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
         .link:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .external-link:hover {
             background-color: #0056b3;
             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
         }
@@ -121,7 +135,7 @@
 			<a href="equity_portfolio_summary.html" class="link">EQ-Portfolio</a>
 			<a href="nse.html" class="link">NSE</a>
 			<a href="Intraday.html" class="link">Crypto</a>
-			<a href="daily_analysis.html" class="link" target="_blank">Daily Analysis</a>
+			<a href="daily_analysis.html" class="external-link" target="_blank">Daily Analysis</a>
 			<!---
 			<a href="STA_Crypto_Day.html" class="link">Day Stock Technical Analytics - CR</a>
 			<a href="STA_Crypto_Hour.html" class="link">Hour Stock Technical Analytics - CR</a>
@@ -264,7 +278,7 @@
 		}
 
 		// Add event listeners to all links
-		document.querySelectorAll('.link').forEach(link => {
+		document.querySelectorAll('.link:not(.external-link)').forEach(link => {
 			link.addEventListener('click', function(e) {
 				e.preventDefault(); // Prevent the default anchor behavior
 				const url = this.getAttribute('href'); // Get the href attribute of the clicked link
