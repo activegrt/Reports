@@ -1,4 +1,5 @@
 [Selected Gainers List]
+UBL, Alcohol - UNITED BREWERIES LTD, 2230.8, 166, 70, 12.75, -3.0, 159.852, hold, 2610.0, 2016.5, 1185.0, 66.0, 0.293, 0.58
 [Selected Looser List]
 [Agri - 68.14]
 UPL, UPL LIMITED, 672.7, 203, 65, 14.71, -19.47, 318.92, buy, 1000.0, 676.5, 452.0, 14.026273, 0.833, 0.23
