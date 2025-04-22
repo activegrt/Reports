@@ -155,11 +155,11 @@
           currentSector = line.slice(1, -1);
           sectorData[currentSector] = [];
         } else {
-          const [symbol, name, ltp, rank, mtf, ema, fromHigh, book, valuation, projlow, projmedium, projhigh, pe, beta, change] = line.split(',').map(x => x.trim());
+          const [symbol, name, ltp, change, rank, mtf, ema, fromHigh, book, valuation, projlow, projmedium, projhigh, pe, beta] = line.split(',').map(x => x.trim());
           sectorData[currentSector].push({
-            symbol, name, ltp: parseFloat(ltp), rank: parseInt(rank), mtf, ema: parseFloat(ema), fromHigh: parseFloat(fromHigh),
+            symbol, name, ltp: parseFloat(ltp), change: parseFloat(change), rank: parseInt(rank), mtf, ema: parseFloat(ema), fromHigh: parseFloat(fromHigh),
             book: parseFloat(book), valuation, projlow: parseFloat(projlow), projmedium: parseFloat(projmedium),
-            projhigh: parseFloat(projhigh), pe: parseFloat(pe), beta: parseFloat(beta), change: parseFloat(change)
+            projhigh: parseFloat(projhigh), pe: parseFloat(pe), beta: parseFloat(beta)
           });
         }
       });
@@ -167,7 +167,7 @@
       for (const sector in sectorData) {
         html += `<div class="sector"><h2>${sector}</h2><table>
                   <thead><tr>
-                    ${['Stock', 'LTP', 'Chart', 'Rank', 'MTF', '% from 200 EMA', '% from 3Y High', 'Book Value', 'Recommendation', 'Low', 'Median', 'High', 'PE', 'Beta', 'Change']
+                    ${['Stock', 'LTP', 'Change', 'Chart', 'Rank', 'MTF', '% from 200 EMA', '% from 3Y High', 'Book Value', 'Recommendation', 'Low', 'Median', 'High', 'PE', 'Beta']
                       .map((col, i) => `<th onclick="sortSector('${sector}', '${getKeyByIndex(i)}')">${col}</th>`).join('')}
                   </tr></thead>
                   <tbody id="tbody-${sector}">`;
@@ -185,6 +185,7 @@
         return `<tr>
           <td>${row.name}</td>
           <td>${row.ltp}</td>
+          <td><span class="tag ${tagChange}">${row.change}%</span></td>
           <td>
             <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row.symbol}&interval=M">📅</a>
             <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row.symbol}&interval=W">🆆</a>
@@ -202,7 +203,6 @@
           <td>${row.projhigh}</td>
           <td>${row.pe}</td>
           <td>${row.beta}</td>
-          <td><span class="tag ${tagChange}">${row.change}%</span></td>
         </tr>`;
       }).join('');
     }
@@ -221,7 +221,7 @@
     }
 
     function getKeyByIndex(index) {
-      const keys = ['name', 'ltp', 'chart', 'rank', 'mtf', 'ema', 'fromHigh', 'book', 'valuation', 'projlow', 'projmedium', 'projhigh', 'pe', 'beta', 'change'];
+      const keys = ['name', 'ltp', 'change', 'chart', 'rank', 'mtf', 'ema', 'fromHigh', 'book', 'valuation', 'projlow', 'projmedium', 'projhigh', 'pe', 'beta'];
       return keys[index];
     }
 
