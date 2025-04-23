@@ -1,0 +1,485 @@
+<html><head><style>
+    .table-container {
+        width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    thead th {
+        position: sticky;
+        top: 0;
+        background: #a6cff7;
+        z-index: 2;
+    }
+    th.sortable:hover {
+        background-color: #e2e6ea;
+    }
+    .asc::after {
+        content: " ▲";
+    }
+    .desc::after {
+        content: " ▼";
+    }
+    </style></head><body><H2>GTT Sell Triggers</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th class='sortable' onclick='sortTable(0)'>#</th>
+      <th class='sortable' onclick='sortTable(1)'>Name</th>
+      <th class='sortable' onclick='sortTable(2)'>LTP</th>
+      <th class='sortable' onclick='sortTable(3)'>Target</th>
+      <th class='sortable' onclick='sortTable(4)'>% From Target</th>
+      <th class='sortable' onclick='sortTable(5)'>Quantity</th>
+      <th class='sortable' onclick='sortTable(6)'>Trade Value</th>
+      <th class='sortable' onclick='sortTable(7)'>Product</th>
+      <th class='sortable' onclick='sortTable(8)'>Book Value</th>
+      <th class='sortable' onclick='sortTable(9)'>Recommendation</th>
+      <th class='sortable' onclick='sortTable(10)'>High</th>
+      <th class='sortable' onclick='sortTable(11)'>Median</th>
+      <th class='sortable' onclick='sortTable(12)'>Low</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>KARNATAKA BANK LIMITED</td>
+      <td>197.08</td>
+      <td>201.00</td>
+      <td>2</td>
+      <td>60</td>
+      <td>12060</td>
+      <td>DELIVERY</td>
+      <td>305.557</td>
+      <td>strong_buy</td>
+      <td>325</td>
+      <td>275</td>
+      <td>265</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>INDIAN OVERSEAS BANK</td>
+      <td>39.03</td>
+      <td>40.15</td>
+      <td>2.9</td>
+      <td>300</td>
+      <td>12045</td>
+      <td>DELIVERY</td>
+      <td>14.581</td>
+      <td>none</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>GLENMARK PHARMACEUTICALS</td>
+      <td>1390.80</td>
+      <td>1431.40</td>
+      <td>2.9</td>
+      <td>5</td>
+      <td>7157</td>
+      <td>DELIVERY</td>
+      <td>598.469</td>
+      <td>buy</td>
+      <td>2032</td>
+      <td>1707.5</td>
+      <td>1265</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>TAMILNAD MERCA BANK LTD</td>
+      <td>448.35</td>
+      <td>468.00</td>
+      <td>4.4</td>
+      <td>20</td>
+      <td>9360</td>
+      <td>DELIVERY</td>
+      <td>532.486</td>
+      <td>none</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>TAMILNAD MERCA BANK LTD</td>
+      <td>448.35</td>
+      <td>470.40</td>
+      <td>4.9</td>
+      <td>20</td>
+      <td>9408</td>
+      <td>DELIVERY</td>
+      <td>532.486</td>
+      <td>none</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>MMTC LIMITED</td>
+      <td>55.74</td>
+      <td>59.46</td>
+      <td>6.7</td>
+      <td>150</td>
+      <td>8919</td>
+      <td>DELIVERY</td>
+      <td>11.457</td>
+      <td>none</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>KARNATAKA BANK LIMITED</td>
+      <td>197.08</td>
+      <td>214.37</td>
+      <td>8.8</td>
+      <td>60</td>
+      <td>12862.2</td>
+      <td>DELIVERY</td>
+      <td>305.557</td>
+      <td>strong_buy</td>
+      <td>325</td>
+      <td>275</td>
+      <td>265</td>
+    </tr>
+  </tbody>
+</table></div>
+            <script>
+                function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            <p>Page last refreshed on 2025-04-23 08:52</p></body></html>
+            <H2>GTT Buy Triggers</H2><div class="table-container"><table id="sortableTable1"border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th class='sortable' onclick='sortTable1(0)'>#</th>
+      <th class='sortable' onclick='sortTable1(1)'>Name</th>
+      <th class='sortable' onclick='sortTable1(2)'>LTP</th>
+      <th class='sortable' onclick='sortTable1(3)'>Target</th>
+      <th class='sortable' onclick='sortTable1(4)'>% From Target</th>
+      <th class='sortable' onclick='sortTable1(5)'>Quantity</th>
+      <th class='sortable' onclick='sortTable1(6)'>Trade Value</th>
+      <th class='sortable' onclick='sortTable1(7)'>Product</th>
+      <th class='sortable' onclick='sortTable1(8)'>Book Value</th>
+      <th class='sortable' onclick='sortTable1(9)'>Recommendation</th>
+      <th class='sortable' onclick='sortTable1(10)'>High</th>
+      <th class='sortable' onclick='sortTable1(11)'>Median</th>
+      <th class='sortable' onclick='sortTable1(12)'>Low</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>HYUNDAI MOTOR INDIA LTD</td>
+      <td>1703.70</td>
+      <td>1646.00</td>
+      <td>3.4</td>
+      <td>10</td>
+      <td>16460.00</td>
+      <td>MARGIN</td>
+      <td>166.473</td>
+      <td>buy</td>
+      <td>2280</td>
+      <td>2000.5</td>
+      <td>1665</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>VARUN BEVERAGES LIMITED</td>
+      <td>549.45</td>
+      <td>530.00</td>
+      <td>3.5</td>
+      <td>20</td>
+      <td>10600.00</td>
+      <td>MARGIN</td>
+      <td>49.120</td>
+      <td>strong_buy</td>
+      <td>809</td>
+      <td>650</td>
+      <td>549</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>NOCIL LIMITED</td>
+      <td>191.03</td>
+      <td>183.39</td>
+      <td>4</td>
+      <td>65</td>
+      <td>11920.35</td>
+      <td>MARGIN</td>
+      <td>106.328</td>
+      <td>underperform</td>
+      <td>331</td>
+      <td>231</td>
+      <td>156</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>RAYMOND LTD</td>
+      <td>1576.90</td>
+      <td>1490.00</td>
+      <td>5.5</td>
+      <td>6</td>
+      <td>8940.00</td>
+      <td>MARGIN</td>
+      <td>539.460</td>
+      <td>none</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>PETRONET LNG LIMITED</td>
+      <td>313.55</td>
+      <td>282.40</td>
+      <td>9.9</td>
+      <td>35</td>
+      <td>9884.00</td>
+      <td>MARGIN</td>
+      <td>126.104</td>
+      <td>hold</td>
+      <td>400</td>
+      <td>324</td>
+      <td>235</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>ELIN ELECTRONICS LIMITED</td>
+      <td>146.86</td>
+      <td>132.05</td>
+      <td>10.1</td>
+      <td>75</td>
+      <td>9903.75</td>
+      <td>MARGIN</td>
+      <td>107.572</td>
+      <td>none</td>
+      <td>241</td>
+      <td>241</td>
+      <td>241</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>UNION BANK OF INDIA</td>
+      <td>127.93</td>
+      <td>114.41</td>
+      <td>10.6</td>
+      <td>125</td>
+      <td>14301.25</td>
+      <td>MARGIN</td>
+      <td>147.009</td>
+      <td>strong_buy</td>
+      <td>160</td>
+      <td>144</td>
+      <td>120</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>THE SOUTH INDIAN BANK LTD</td>
+      <td>26.41</td>
+      <td>23.36</td>
+      <td>11.5</td>
+      <td>400</td>
+      <td>9344.00</td>
+      <td>MARGIN</td>
+      <td>35.887</td>
+      <td>buy</td>
+      <td>42</td>
+      <td>31</td>
+      <td>25</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>COCHIN SHIPYARD LIMITED</td>
+      <td>1488.90</td>
+      <td>1300.00</td>
+      <td>12.7</td>
+      <td>10</td>
+      <td>13000.00</td>
+      <td>MARGIN</td>
+      <td>200.500</td>
+      <td>none</td>
+      <td>1627</td>
+      <td>1557</td>
+      <td>830</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>CANARA BANK</td>
+      <td>100.66</td>
+      <td>87.50</td>
+      <td>13.1</td>
+      <td>125</td>
+      <td>10937.50</td>
+      <td>MARGIN</td>
+      <td>114.473</td>
+      <td>buy</td>
+      <td>125</td>
+      <td>115</td>
+      <td>80</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>SUNDARAM FINANCE LTD</td>
+      <td>5340.40</td>
+      <td>4623.00</td>
+      <td>13.4</td>
+      <td>2</td>
+      <td>9246.00</td>
+      <td>MARGIN</td>
+      <td>1134.985</td>
+      <td>hold</td>
+      <td>5570</td>
+      <td>4428</td>
+      <td>3950</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>STEEL AUTHORITY OF INDIA</td>
+      <td>115.98</td>
+      <td>99.00</td>
+      <td>14.6</td>
+      <td>75</td>
+      <td>7425.00</td>
+      <td>DELIVERY</td>
+      <td>139.421</td>
+      <td>hold</td>
+      <td>151</td>
+      <td>110</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>JIO FIN SERVICES LTD</td>
+      <td>250.56</td>
+      <td>209.87</td>
+      <td>16.2</td>
+      <td>30</td>
+      <td>6296.10</td>
+      <td>MARGIN</td>
+      <td>194.387</td>
+      <td>none</td>
+      <td>347</td>
+      <td>316.5</td>
+      <td>286</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>NATIONAL ALUMINIUM CO LTD</td>
+      <td>158.79</td>
+      <td>131.75</td>
+      <td>17</td>
+      <td>30</td>
+      <td>3952.50</td>
+      <td>MARGIN</td>
+      <td>85.248</td>
+      <td>buy</td>
+      <td>264</td>
+      <td>210</td>
+      <td>181</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>DIXON TECHNO (INDIA) LTD</td>
+      <td>16675.00</td>
+      <td>13149.65</td>
+      <td>21.1</td>
+      <td>1</td>
+      <td>13149.65</td>
+      <td>MARGIN</td>
+      <td>393.424</td>
+      <td>buy</td>
+      <td>22005</td>
+      <td>16957.5</td>
+      <td>8696</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>KAYNES TECHNOLOGY IND LTD</td>
+      <td>5979.30</td>
+      <td>4688.55</td>
+      <td>21.6</td>
+      <td>2</td>
+      <td>9377.10</td>
+      <td>MARGIN</td>
+      <td>404.947</td>
+      <td>buy</td>
+      <td>6633</td>
+      <td>5400</td>
+      <td>4365</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>AMBUJA CEMENTS LTD</td>
+      <td>577.90</td>
+      <td>422.50</td>
+      <td>26.9</td>
+      <td>20</td>
+      <td>8450.00</td>
+      <td>DELIVERY</td>
+      <td>204.393</td>
+      <td>buy</td>
+      <td>836</td>
+      <td>590</td>
+      <td>345</td>
+    </tr>
+  </tbody>
+</table></div>
+            <script>
+                function sortTable1(columnIndex) {
+                    let table = document.getElementById('sortableTable1');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            <p>Page last refreshed on 2025-04-23 08:52</p></body></html>
+            
