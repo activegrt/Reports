@@ -1,13 +1,173 @@
-<html>
-                                  <head></head>
-                                  <body>
-            <button onclick="viewPDF('chart_patterns.pdf')">Read Report</button>
-            <button onclick="downloadPDF('chart_patterns.pdf')">Download Report</button>
+<html><head><style>
+    .table-container {
+        width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    thead th {
+        position: sticky;
+        top: 0;
+        background: #a6cff7;
+        z-index: 2;
+    }
+    th.sortable:hover {
+        background-color: #e2e6ea;
+    }
+    .asc::after {
+        content: " ▲";
+    }
+    .desc::after {
+        content: " ▼";
+    }
+    </style></head><body>
+            <button onclick="viewPDF('equity_chart_patterns.pdf')">Read Report</button>
+            <button onclick="downloadPDF('equity_chart_patterns.pdf')">Download Report</button>
     
             <!-- PDF iframe container -->
             <div id="pdf-container" style="margin-top: 20px;">
                 <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
-            </div>
-                                  <H2>equity_chart_patterns</H2><br>
-                                  <p>Page last refreshed on 2025-02-07 19:59</p></body>
-                                  </html>
+            </div><H2>Equity Chart Patterns</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th class='sortable' onclick='sortTable(0)'>#</th>
+      <th class='sortable' onclick='sortTable(1)'>Symbol</th>
+      <th class='sortable' onclick='sortTable(2)'>Trend</th>
+      <th class='sortable' onclick='sortTable(3)'>Window Size</th>
+      <th class='sortable' onclick='sortTable(4)'>Pattern</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table></div>
+            <script>
+                function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            <p>Page last refreshed on 2025-04-24 19:12</p></body></html>
+            
