@@ -24,7 +24,33 @@
     .desc::after {
         content: " ▼";
     }
-    </style></head><p>Page last refreshed on 2025-07-15 21:48</p><body><H2>Equity NW Analysis</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
+    </style></head><p>Page last refreshed on 2025-07-15 21:48</p>
+    <body>
+<p>Page last refreshed on 2025-07-15 21:48</p>
+<H2>Equity NW Analysis</H2>
+
+
+
+<table border="0" class="dataframe">
+<tr>
+      <td>Rank Filter</td>
+      <td><input type="number" id="rankMin" placeholder="Min"></td>
+      <td><input type="number" id="rankMax" placeholder="Max"></td>
+</tr>
+<tr>
+      <td>MTF Filter</td>
+      <td><select id="mtfFilter">
+          <option value="">All</option>
+          <option value="1">1</option>
+          <option value="5">5</option>
+        </select>
+		</td>
+      <td><button id="applyBtn" onclick="applyFilters()">Apply Filter</button></td>
+</tr>
+</table>
+		
+<div class="table-container">
+<table id="sortableTable" border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th class='sortable' onclick='sortTable(0)'>#</th>
@@ -42,6 +68,7 @@
       <th class='sortable' onclick='sortTable(12)'>Reference</th>
     </tr>
   </thead>
+
   <tbody>
     <tr>
       <td>1</td>
@@ -15044,33 +15071,53 @@
       <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=PENIND&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PENIND/">🎯</a></td>
     </tr>
   </tbody>
-</table></div>
-            <script>
-                function sortTable(columnIndex) {
-                    let table = document.getElementById('sortableTable');
-                    let tbody = table.getElementsByTagName('tbody')[0];
-                    let rows = Array.from(tbody.getElementsByTagName('tr'));
-                    let isAscending = table.dataset.sortOrder !== 'asc';
-                    
-                    rows.sort((rowA, rowB) => {
-                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
-                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
-            
-                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
-                        return isAscending ? 
-                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
-                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
-                    });
-            
-                    rows.forEach(row => tbody.appendChild(row));
-            
-                    // Update sort order data attribute
-                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
-            
-                    // Reset column classes
-                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
-                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
-                }
-            </script>
-            </body></html>
-            
+</table>
+</div>
+
+<script>
+function sortTable(columnIndex) {
+    let table = document.getElementById('sortableTable');
+    let tbody = table.getElementsByTagName('tbody')[0];
+    let rows = Array.from(tbody.getElementsByTagName('tr'));
+    let isAscending = table.dataset.sortOrder !== 'asc';
+
+    rows.sort((rowA, rowB) => {
+        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+
+        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+        return isAscending ? 
+            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+    });
+
+    rows.forEach(row => tbody.appendChild(row));
+    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+}
+
+function applyFilters() {
+    const rankMin = parseFloat(document.getElementById('rankMin').value);
+    const rankMax = parseFloat(document.getElementById('rankMax').value);
+    const mtfValue = document.getElementById('mtfFilter').value;
+
+    const table = document.getElementById('sortableTable');
+    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+    for (let row of rows) {
+        const cells = row.getElementsByTagName('td');
+        const rank = parseFloat(cells[3].innerText.trim());
+        const mtf = cells[4].innerText.trim();
+
+        const matchRank = (isNaN(rankMin) || rank >= rankMin) && (isNaN(rankMax) || rank <= rankMax);
+        const matchMTF = !mtfValue || mtf === mtfValue;
+
+        row.style.display = (matchRank && matchMTF) ? '' : 'none';
+    }
+}
+
+</script>
+
+</body>
+</html>
