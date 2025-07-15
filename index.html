@@ -369,6 +369,29 @@ function sortTable(columnIndex) {
                     document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
                     document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
                 }
+
+			    
+		function applyFilters() {
+		    const rankMin = parseFloat(document.getElementById('rankMin').value);
+		    const rankMax = parseFloat(document.getElementById('rankMax').value);
+		    const mtfValue = document.getElementById('mtfFilter').value;
+		
+		    const table = document.getElementById('sortableTable');
+		    const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+		
+		    for (let row of rows) {
+		        const cells = row.getElementsByTagName('td');
+		        const rank = parseFloat(cells[3].innerText.trim());
+		        const mtf = cells[4].innerText.trim();
+		
+		        const matchRank = (isNaN(rankMin) || rank >= rankMin) && (isNaN(rankMax) || rank <= rankMax);
+		        const matchMTF = !mtfValue || mtf === mtfValue;
+		
+		        row.style.display = (matchRank && matchMTF) ? '' : 'none';
+		    }
+		}
+		
+			    
             </script>
 
 </body>
