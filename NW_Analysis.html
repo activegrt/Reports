@@ -24,21 +24,21 @@
     .desc::after {
         content: " ▼";
     }
-    </style></head><p>Page last refreshed on 2025-07-16 23:16</p><body><table border="0" class="dataframe">
-            <tr>
-                  <td>Rank Filter</td>
-                  <td><input type="number" id="rankMin" placeholder="Min"></td>
-                  <td><input type="number" id="rankMax" placeholder="Max"></td>
-                  <td>MTF Filter</td>
-                  <td><select id="mtfFilter">
-                      <option value="">All</option>
-                      <option value="1">1</option>
-                      <option value="5">5</option>
-                    </select>
-            	  </td>
-                  <td><button id="applyBtn" onclick="applyFilters()">Apply Filter</button></td>
-            </tr>
-            </table><H2>Equity NW Analysis</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
+    </style></head><p>Page last refreshed on 2025-07-16 23:22</p><body><table border="0" class="dataframe">
+    <tr>
+          <td>Rank Filter</td>
+          <td><input type="number" id="rankMin" placeholder="Min"></td>
+          <td><input type="number" id="rankMax" placeholder="Max"></td>
+          <td>MTF Filter</td>
+          <td><select id="mtfFilter">
+              <option value="">All</option>
+              <option value="1">1</option>
+              <option value="5">5</option>
+            </select>
+    	  </td>
+          <td><button id="applyBtn" onclick="applyFilters()">Apply Filter</button></td>
+    </tr>
+    </table><H2>Equity NW Analysis</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
       <th class='sortable' onclick='sortTable(0)'>#</th>
@@ -46,14 +46,16 @@
       <th class='sortable' onclick='sortTable(2)'>ltp</th>
       <th class='sortable' onclick='sortTable(3)'>Rank</th>
       <th class='sortable' onclick='sortTable(4)'>MTF</th>
-      <th class='sortable' onclick='sortTable(5)'>Day</th>
-      <th class='sortable' onclick='sortTable(6)'>Week</th>
-      <th class='sortable' onclick='sortTable(7)'>Month</th>
-      <th class='sortable' onclick='sortTable(8)'>day_gap</th>
-      <th class='sortable' onclick='sortTable(9)'>week_gap</th>
-      <th class='sortable' onclick='sortTable(10)'>month_gap</th>
-      <th class='sortable' onclick='sortTable(11)'>total_gap</th>
-      <th class='sortable' onclick='sortTable(12)'>Reference</th>
+      <th class='sortable' onclick='sortTable(5)'>Intrinsic</th>
+      <th class='sortable' onclick='sortTable(6)'>Recommended</th>
+      <th class='sortable' onclick='sortTable(7)'>Day</th>
+      <th class='sortable' onclick='sortTable(8)'>Week</th>
+      <th class='sortable' onclick='sortTable(9)'>Month</th>
+      <th class='sortable' onclick='sortTable(10)'>day_gap</th>
+      <th class='sortable' onclick='sortTable(11)'>week_gap</th>
+      <th class='sortable' onclick='sortTable(12)'>month_gap</th>
+      <th class='sortable' onclick='sortTable(13)'>total_gap</th>
+      <th class='sortable' onclick='sortTable(14)'>Reference</th>
     </tr>
   </thead>
   <tbody>
@@ -63,6 +65,8 @@
       <td>5124.50</td>
       <td>496</td>
       <td>1</td>
+      <td>118.538</td>
+      <td>none</td>
       <td>5005.61</td>
       <td></td>
       <td></td>
@@ -78,6 +82,8 @@
       <td>697.70</td>
       <td>1324</td>
       <td>1</td>
+      <td>989.101</td>
+      <td>none</td>
       <td>672.48</td>
       <td></td>
       <td></td>
@@ -93,6 +99,8 @@
       <td>176.67</td>
       <td>867</td>
       <td>1</td>
+      <td>17.188</td>
+      <td>none</td>
       <td>168.99</td>
       <td></td>
       <td></td>
@@ -108,6 +116,8 @@
       <td>1774.70</td>
       <td>124</td>
       <td>5</td>
+      <td>118.642</td>
+      <td>none</td>
       <td>1679.54</td>
       <td></td>
       <td></td>
@@ -123,6 +133,8 @@
       <td>29.81</td>
       <td>1284</td>
       <td>5</td>
+      <td>14.598</td>
+      <td>none</td>
       <td>28.21</td>
       <td></td>
       <td></td>
@@ -138,6 +150,8 @@
       <td>216.52</td>
       <td>1539</td>
       <td>1</td>
+      <td>58.156</td>
+      <td>none</td>
       <td>203.68</td>
       <td></td>
       <td></td>
@@ -153,6 +167,8 @@
       <td>194.18</td>
       <td>1452</td>
       <td>1</td>
+      <td>71.924</td>
+      <td>none</td>
       <td>182.60</td>
       <td></td>
       <td></td>
@@ -168,6 +184,8 @@
       <td>440.80</td>
       <td>975</td>
       <td>5</td>
+      <td>80.554</td>
+      <td>none</td>
       <td>414.45</td>
       <td></td>
       <td></td>
@@ -183,6 +201,8 @@
       <td>121.22</td>
       <td>101</td>
       <td>5</td>
+      <td>23.951</td>
+      <td>underperform</td>
       <td>113.96</td>
       <td></td>
       <td></td>
@@ -198,6 +218,8 @@
       <td>318.10</td>
       <td>1115</td>
       <td>5</td>
+      <td>40.597</td>
+      <td>none</td>
       <td>299.03</td>
       <td></td>
       <td></td>
@@ -213,6 +235,8 @@
       <td>141.88</td>
       <td>1336</td>
       <td>1</td>
+      <td>73.554</td>
+      <td>none</td>
       <td>133.13</td>
       <td></td>
       <td></td>
@@ -228,6 +252,8 @@
       <td>423.15</td>
       <td>423</td>
       <td>5</td>
+      <td>143.033</td>
+      <td>none</td>
       <td>396.32</td>
       <td></td>
       <td></td>
@@ -243,6 +269,8 @@
       <td>572.20</td>
       <td>509</td>
       <td>1</td>
+      <td>228.025</td>
+      <td>none</td>
       <td>534.03</td>
       <td></td>
       <td></td>
@@ -258,6 +286,8 @@
       <td>1994.30</td>
       <td>319</td>
       <td>1</td>
+      <td>514.018</td>
+      <td>strong_buy</td>
       <td>1860.77</td>
       <td></td>
       <td></td>
@@ -273,6 +303,8 @@
       <td>1480.50</td>
       <td>549</td>
       <td>5</td>
+      <td>206.851</td>
+      <td>none</td>
       <td>1380.52</td>
       <td></td>
       <td></td>
@@ -288,6 +320,8 @@
       <td>1631.20</td>
       <td>990</td>
       <td>1</td>
+      <td>185.464</td>
+      <td>none</td>
       <td>1520.82</td>
       <td></td>
       <td></td>
@@ -303,6 +337,8 @@
       <td>1370.20</td>
       <td>105</td>
       <td>5</td>
+      <td>114.149</td>
+      <td>buy</td>
       <td>1276.78</td>
       <td></td>
       <td></td>
@@ -318,6 +354,8 @@
       <td>51.58</td>
       <td>984</td>
       <td>1</td>
+      <td>64.48</td>
+      <td>none</td>
       <td>48.06</td>
       <td></td>
       <td></td>
@@ -333,6 +371,8 @@
       <td>128.92</td>
       <td>1144</td>
       <td>1</td>
+      <td>57.196</td>
+      <td>none</td>
       <td>119.94</td>
       <td></td>
       <td></td>
@@ -348,6 +388,8 @@
       <td>962.35</td>
       <td>1140</td>
       <td>5</td>
+      <td>170.303</td>
+      <td>none</td>
       <td>895.30</td>
       <td></td>
       <td></td>
@@ -363,6 +405,8 @@
       <td>92.68</td>
       <td>1408</td>
       <td>1</td>
+      <td>22.645</td>
+      <td>none</td>
       <td>86.22</td>
       <td></td>
       <td></td>
@@ -378,6 +422,8 @@
       <td>280.15</td>
       <td>1188</td>
       <td>5</td>
+      <td>296.183</td>
+      <td>none</td>
       <td>260.52</td>
       <td></td>
       <td></td>
@@ -393,6 +439,8 @@
       <td>579.40</td>
       <td>1208</td>
       <td>5</td>
+      <td>250.357</td>
+      <td>none</td>
       <td>538.24</td>
       <td></td>
       <td></td>
@@ -408,6 +456,8 @@
       <td>140.57</td>
       <td>1349</td>
       <td>5</td>
+      <td>88.631</td>
+      <td>none</td>
       <td>130.40</td>
       <td></td>
       <td></td>
@@ -423,6 +473,8 @@
       <td>494.85</td>
       <td>733</td>
       <td>5</td>
+      <td>392.254</td>
+      <td>none</td>
       <td>458.33</td>
       <td></td>
       <td></td>
@@ -438,6 +490,8 @@
       <td>600.00</td>
       <td>604</td>
       <td>5</td>
+      <td>114.557</td>
+      <td>none</td>
       <td>555.67</td>
       <td></td>
       <td></td>
@@ -453,6 +507,8 @@
       <td>399.75</td>
       <td>1446</td>
       <td>1</td>
+      <td>164.499</td>
+      <td>none</td>
       <td>370.09</td>
       <td></td>
       <td></td>
@@ -468,6 +524,8 @@
       <td>1053.60</td>
       <td>467</td>
       <td>5</td>
+      <td>229.77</td>
+      <td>none</td>
       <td>972.91</td>
       <td></td>
       <td></td>
@@ -483,6 +541,8 @@
       <td>34.50</td>
       <td>1415</td>
       <td>1</td>
+      <td>2.689</td>
+      <td>none</td>
       <td>31.84</td>
       <td></td>
       <td></td>
@@ -498,6 +558,8 @@
       <td>1255.00</td>
       <td>378</td>
       <td>1</td>
+      <td>51.625</td>
+      <td>strong_buy</td>
       <td>1157.69</td>
       <td></td>
       <td></td>
@@ -513,6 +575,8 @@
       <td>751.05</td>
       <td>288</td>
       <td>5</td>
+      <td>131.854</td>
+      <td>none</td>
       <td>691.86</td>
       <td></td>
       <td></td>
@@ -528,6 +592,8 @@
       <td>1544.80</td>
       <td>539</td>
       <td>5</td>
+      <td>228.933</td>
+      <td>none</td>
       <td>1421.61</td>
       <td></td>
       <td></td>
@@ -543,6 +609,8 @@
       <td>156.09</td>
       <td>1156</td>
       <td>1</td>
+      <td>45.71</td>
+      <td>none</td>
       <td>143.66</td>
       <td></td>
       <td></td>
@@ -558,6 +626,8 @@
       <td>168.72</td>
       <td>1379</td>
       <td>5</td>
+      <td>128.426</td>
+      <td>none</td>
       <td>155.27</td>
       <td></td>
       <td></td>
@@ -573,6 +643,8 @@
       <td>370.75</td>
       <td>1345</td>
       <td>1</td>
+      <td>72.435</td>
+      <td>none</td>
       <td>341.19</td>
       <td></td>
       <td></td>
@@ -588,6 +660,8 @@
       <td>88.28</td>
       <td>1262</td>
       <td>5</td>
+      <td>85.21</td>
+      <td>none</td>
       <td>81.23</td>
       <td></td>
       <td></td>
@@ -603,6 +677,8 @@
       <td>986.05</td>
       <td>375</td>
       <td>5</td>
+      <td>403.825</td>
+      <td>hold</td>
       <td>906.86</td>
       <td></td>
       <td></td>
@@ -618,6 +694,8 @@
       <td>94.07</td>
       <td>1107</td>
       <td>5</td>
+      <td>38.827</td>
+      <td>none</td>
       <td>86.45</td>
       <td></td>
       <td></td>
@@ -633,6 +711,8 @@
       <td>310.00</td>
       <td>153</td>
       <td>5</td>
+      <td>46.766</td>
+      <td>buy</td>
       <td>284.72</td>
       <td></td>
       <td></td>
@@ -648,6 +728,8 @@
       <td>811.10</td>
       <td>391</td>
       <td>5</td>
+      <td>102.235</td>
+      <td>none</td>
       <td>744.66</td>
       <td></td>
       <td></td>
@@ -663,6 +745,8 @@
       <td>1767.90</td>
       <td>631</td>
       <td>5</td>
+      <td>441.463</td>
+      <td>none</td>
       <td>1622.38</td>
       <td></td>
       <td></td>
@@ -678,6 +762,8 @@
       <td>228.29</td>
       <td>201</td>
       <td>5</td>
+      <td>51.193</td>
+      <td>strong_buy</td>
       <td>209.19</td>
       <td></td>
       <td></td>
@@ -693,6 +779,8 @@
       <td>635.75</td>
       <td>778</td>
       <td>5</td>
+      <td>64.598</td>
+      <td>none</td>
       <td>582.32</td>
       <td></td>
       <td></td>
@@ -708,6 +796,8 @@
       <td>159.64</td>
       <td>210</td>
       <td>5</td>
+      <td>45.715</td>
+      <td>none</td>
       <td>146.22</td>
       <td></td>
       <td></td>
@@ -723,6 +813,8 @@
       <td>35.51</td>
       <td>1677</td>
       <td>1</td>
+      <td>26.321</td>
+      <td>none</td>
       <td>32.52</td>
       <td></td>
       <td></td>
@@ -738,6 +830,8 @@
       <td>110.09</td>
       <td>114</td>
       <td>5</td>
+      <td>22.139</td>
+      <td>none</td>
       <td>100.62</td>
       <td></td>
       <td></td>
@@ -753,6 +847,8 @@
       <td>18.48</td>
       <td>1467</td>
       <td>1</td>
+      <td>18.124</td>
+      <td>none</td>
       <td>16.89</td>
       <td></td>
       <td></td>
@@ -768,6 +864,8 @@
       <td>53.05</td>
       <td>1632</td>
       <td>1</td>
+      <td>43.817</td>
+      <td>none</td>
       <td>52.43</td>
       <td>49.08</td>
       <td></td>
@@ -783,6 +881,8 @@
       <td>1072.00</td>
       <td>199</td>
       <td>5</td>
+      <td>62.577</td>
+      <td>none</td>
       <td>978.47</td>
       <td></td>
       <td></td>
@@ -798,6 +898,8 @@
       <td>792.65</td>
       <td>892</td>
       <td>5</td>
+      <td>246.757</td>
+      <td>none</td>
       <td>722.90</td>
       <td></td>
       <td></td>
@@ -813,6 +915,8 @@
       <td>299.60</td>
       <td>545</td>
       <td>5</td>
+      <td>36.369</td>
+      <td>hold</td>
       <td>273.16</td>
       <td></td>
       <td></td>
@@ -828,6 +932,8 @@
       <td>388.45</td>
       <td>123</td>
       <td>5</td>
+      <td>43.48</td>
+      <td>buy</td>
       <td>353.89</td>
       <td></td>
       <td></td>
@@ -843,6 +949,8 @@
       <td>444.95</td>
       <td>613</td>
       <td>5</td>
+      <td>115.726</td>
+      <td>none</td>
       <td>405.27</td>
       <td></td>
       <td></td>
@@ -858,6 +966,8 @@
       <td>349.40</td>
       <td>1460</td>
       <td>1</td>
+      <td>41.258</td>
+      <td>none</td>
       <td>337.71</td>
       <td>329.9</td>
       <td></td>
@@ -873,6 +983,8 @@
       <td>950.70</td>
       <td>571</td>
       <td>5</td>
+      <td>196.255</td>
+      <td>buy</td>
       <td>865.72</td>
       <td></td>
       <td></td>
@@ -888,6 +1000,8 @@
       <td>556.85</td>
       <td>594</td>
       <td>5</td>
+      <td>199.018</td>
+      <td>none</td>
       <td>506.43</td>
       <td></td>
       <td></td>
@@ -903,6 +1017,8 @@
       <td>137.10</td>
       <td>156</td>
       <td>5</td>
+      <td>13.902</td>
+      <td>buy</td>
       <td>124.69</td>
       <td></td>
       <td></td>
@@ -918,6 +1034,8 @@
       <td>577.05</td>
       <td>454</td>
       <td>5</td>
+      <td>108.98</td>
+      <td>hold</td>
       <td>524.79</td>
       <td></td>
       <td></td>
@@ -933,6 +1051,8 @@
       <td>2152.30</td>
       <td>51</td>
       <td>5</td>
+      <td>200.583</td>
+      <td>buy</td>
       <td>1955.72</td>
       <td></td>
       <td></td>
@@ -948,6 +1068,8 @@
       <td>170.03</td>
       <td>1114</td>
       <td>5</td>
+      <td>119.727</td>
+      <td>none</td>
       <td>154.50</td>
       <td></td>
       <td></td>
@@ -963,6 +1085,8 @@
       <td>84.43</td>
       <td>1418</td>
       <td>1</td>
+      <td>57.324</td>
+      <td>none</td>
       <td>76.72</td>
       <td></td>
       <td></td>
@@ -978,6 +1102,8 @@
       <td>860.35</td>
       <td>726</td>
       <td>5</td>
+      <td>80.16</td>
+      <td>none</td>
       <td>781.60</td>
       <td></td>
       <td></td>
@@ -993,6 +1119,8 @@
       <td>1607.70</td>
       <td>284</td>
       <td>5</td>
+      <td>107.525</td>
+      <td>hold</td>
       <td>1460.49</td>
       <td></td>
       <td></td>
@@ -1008,6 +1136,8 @@
       <td>305.35</td>
       <td>1197</td>
       <td>5</td>
+      <td>231.672</td>
+      <td>none</td>
       <td>277.08</td>
       <td></td>
       <td></td>
@@ -1023,6 +1153,8 @@
       <td>161.92</td>
       <td>1355</td>
       <td>5</td>
+      <td>89.506</td>
+      <td>none</td>
       <td>146.83</td>
       <td></td>
       <td></td>
@@ -1038,6 +1170,8 @@
       <td>489.05</td>
       <td>1056</td>
       <td>5</td>
+      <td>75.42</td>
+      <td>none</td>
       <td>443.35</td>
       <td></td>
       <td></td>
@@ -1053,6 +1187,8 @@
       <td>353.55</td>
       <td>253</td>
       <td>5</td>
+      <td>49.87</td>
+      <td>buy</td>
       <td>320.45</td>
       <td></td>
       <td></td>
@@ -1068,6 +1204,8 @@
       <td>281.70</td>
       <td>1072</td>
       <td>5</td>
+      <td>143.279</td>
+      <td>none</td>
       <td>255.18</td>
       <td></td>
       <td></td>
@@ -1083,6 +1221,8 @@
       <td>1264.20</td>
       <td>500</td>
       <td>5</td>
+      <td>96.26</td>
+      <td>none</td>
       <td>1144.93</td>
       <td></td>
       <td></td>
@@ -1098,6 +1238,8 @@
       <td>605.80</td>
       <td>393</td>
       <td>5</td>
+      <td>54.751</td>
+      <td>none</td>
       <td>548.22</td>
       <td></td>
       <td></td>
@@ -1113,6 +1255,8 @@
       <td>176.40</td>
       <td>1351</td>
       <td>5</td>
+      <td>64.393</td>
+      <td>none</td>
       <td>159.65</td>
       <td></td>
       <td></td>
@@ -1128,6 +1272,8 @@
       <td>308.90</td>
       <td>1305</td>
       <td>5</td>
+      <td>199.616</td>
+      <td>none</td>
       <td>279.49</td>
       <td></td>
       <td></td>
@@ -1143,6 +1289,8 @@
       <td>174.46</td>
       <td>1289</td>
       <td>5</td>
+      <td>49.37</td>
+      <td>none</td>
       <td>157.82</td>
       <td></td>
       <td></td>
@@ -1158,6 +1306,8 @@
       <td>96.89</td>
       <td>1449</td>
       <td>1</td>
+      <td>44.812</td>
+      <td>none</td>
       <td>87.59</td>
       <td></td>
       <td></td>
@@ -1173,6 +1323,8 @@
       <td>167.12</td>
       <td>1235</td>
       <td>5</td>
+      <td>63.153</td>
+      <td>none</td>
       <td>150.89</td>
       <td></td>
       <td></td>
@@ -1188,6 +1340,8 @@
       <td>921.35</td>
       <td>1237</td>
       <td>1</td>
+      <td>210.214</td>
+      <td>none</td>
       <td>831.91</td>
       <td></td>
       <td></td>
@@ -1203,6 +1357,8 @@
       <td>44.34</td>
       <td>1593</td>
       <td>1</td>
+      <td></td>
+      <td>none</td>
       <td>40.02</td>
       <td></td>
       <td></td>
@@ -1218,6 +1374,8 @@
       <td>2012.40</td>
       <td>781</td>
       <td>5</td>
+      <td>440.462</td>
+      <td>none</td>
       <td>1812.43</td>
       <td></td>
       <td></td>
@@ -1233,6 +1391,8 @@
       <td>893.75</td>
       <td>129</td>
       <td>5</td>
+      <td>144.995</td>
+      <td>hold</td>
       <td>869.22</td>
       <td>829.27</td>
       <td></td>
@@ -1248,6 +1408,8 @@
       <td>274.85</td>
       <td>1366</td>
       <td>5</td>
+      <td>363.476</td>
+      <td>none</td>
       <td>247.19</td>
       <td></td>
       <td></td>
@@ -1263,6 +1425,8 @@
       <td>202.77</td>
       <td>829</td>
       <td>5</td>
+      <td>52.072</td>
+      <td>none</td>
       <td>182.14</td>
       <td></td>
       <td></td>
@@ -1278,6 +1442,8 @@
       <td>365.65</td>
       <td>767</td>
       <td>1</td>
+      <td>45.363</td>
+      <td>strong_buy</td>
       <td>328.42</td>
       <td></td>
       <td></td>
@@ -1293,6 +1459,8 @@
       <td>176.41</td>
       <td>655</td>
       <td>5</td>
+      <td>16.298</td>
+      <td>none</td>
       <td>158.36</td>
       <td></td>
       <td></td>
@@ -1308,6 +1476,8 @@
       <td>1768.50</td>
       <td>957</td>
       <td>1</td>
+      <td>216.329</td>
+      <td>none</td>
       <td>1587.15</td>
       <td></td>
       <td></td>
@@ -1323,6 +1493,8 @@
       <td>356.80</td>
       <td>780</td>
       <td>5</td>
+      <td>32.476</td>
+      <td>strong_buy</td>
       <td>319.86</td>
       <td></td>
       <td></td>
@@ -1338,6 +1510,8 @@
       <td>7531.50</td>
       <td>282</td>
       <td>5</td>
+      <td>971.981</td>
+      <td>none</td>
       <td>6747.70</td>
       <td></td>
       <td></td>
@@ -1353,6 +1527,8 @@
       <td>336.05</td>
       <td>1066</td>
       <td>1</td>
+      <td>81.363</td>
+      <td>none</td>
       <td>301.00</td>
       <td></td>
       <td></td>
@@ -1368,6 +1544,8 @@
       <td>114.80</td>
       <td>1401</td>
       <td>1</td>
+      <td>53.283</td>
+      <td>none</td>
       <td>102.72</td>
       <td></td>
       <td></td>
@@ -1383,6 +1561,8 @@
       <td>161.46</td>
       <td>859</td>
       <td>5</td>
+      <td>59.95</td>
+      <td>none</td>
       <td>144.40</td>
       <td></td>
       <td></td>
@@ -1398,6 +1578,8 @@
       <td>2421.60</td>
       <td>436</td>
       <td>5</td>
+      <td>165.242</td>
+      <td>buy</td>
       <td>2165.14</td>
       <td></td>
       <td></td>
@@ -1413,6 +1595,8 @@
       <td>60.53</td>
       <td>1512</td>
       <td>1</td>
+      <td>27.986</td>
+      <td>none</td>
       <td>54.12</td>
       <td></td>
       <td></td>
@@ -1428,6 +1612,8 @@
       <td>34.14</td>
       <td>1098</td>
       <td>5</td>
+      <td>37.877</td>
+      <td>none</td>
       <td>30.52</td>
       <td></td>
       <td></td>
@@ -1443,6 +1629,8 @@
       <td>194.92</td>
       <td>1194</td>
       <td>5</td>
+      <td>67.4</td>
+      <td>none</td>
       <td>174.16</td>
       <td></td>
       <td></td>
@@ -1458,6 +1646,8 @@
       <td>323.30</td>
       <td>1133</td>
       <td>5</td>
+      <td>178.152</td>
+      <td>none</td>
       <td>288.56</td>
       <td></td>
       <td></td>
@@ -1473,6 +1663,8 @@
       <td>482.75</td>
       <td>1233</td>
       <td>5</td>
+      <td>120.044</td>
+      <td>none</td>
       <td>430.81</td>
       <td></td>
       <td></td>
@@ -1488,6 +1680,8 @@
       <td>638.40</td>
       <td>448</td>
       <td>5</td>
+      <td>99.045</td>
+      <td>none</td>
       <td>569.19</td>
       <td></td>
       <td></td>
@@ -1503,6 +1697,8 @@
       <td>957.10</td>
       <td>528</td>
       <td>5</td>
+      <td>251.052</td>
+      <td>strong_buy</td>
       <td>853.26</td>
       <td></td>
       <td></td>
@@ -1518,6 +1714,8 @@
       <td>303.70</td>
       <td>1049</td>
       <td>5</td>
+      <td>264.303</td>
+      <td>none</td>
       <td>270.68</td>
       <td></td>
       <td></td>
@@ -1533,6 +1731,8 @@
       <td>34.83</td>
       <td>1059</td>
       <td>5</td>
+      <td>14.354</td>
+      <td>none</td>
       <td>31.02</td>
       <td></td>
       <td></td>
@@ -1548,6 +1748,8 @@
       <td>155.51</td>
       <td>800</td>
       <td>1</td>
+      <td>9.694</td>
+      <td>none</td>
       <td>138.45</td>
       <td></td>
       <td></td>
@@ -1563,6 +1765,8 @@
       <td>272.70</td>
       <td></td>
       <td>1</td>
+      <td>69.939</td>
+      <td>none</td>
       <td>242.75</td>
       <td></td>
       <td></td>
@@ -1578,6 +1782,8 @@
       <td>477.90</td>
       <td>345</td>
       <td>5</td>
+      <td>147.717</td>
+      <td>strong_buy</td>
       <td>425.29</td>
       <td></td>
       <td></td>
@@ -1593,6 +1799,8 @@
       <td>193.32</td>
       <td>1333</td>
       <td>5</td>
+      <td>24.541</td>
+      <td>none</td>
       <td>171.75</td>
       <td></td>
       <td></td>
@@ -1608,6 +1816,8 @@
       <td>1260.20</td>
       <td>628</td>
       <td>1</td>
+      <td>1573.719</td>
+      <td>none</td>
       <td>1119.25</td>
       <td></td>
       <td></td>
@@ -1623,6 +1833,8 @@
       <td>120.58</td>
       <td>779</td>
       <td>5</td>
+      <td>68.261</td>
+      <td>strong_buy</td>
       <td>107.08</td>
       <td></td>
       <td></td>
@@ -1638,6 +1850,8 @@
       <td>117.15</td>
       <td>412</td>
       <td>5</td>
+      <td>76.277</td>
+      <td>none</td>
       <td>103.86</td>
       <td></td>
       <td></td>
@@ -1653,6 +1867,8 @@
       <td>704.05</td>
       <td>886</td>
       <td>1</td>
+      <td>42.179</td>
+      <td>none</td>
       <td>623.71</td>
       <td></td>
       <td></td>
@@ -1668,6 +1884,8 @@
       <td>329.95</td>
       <td>534</td>
       <td>1</td>
+      <td>81.123</td>
+      <td>none</td>
       <td>292.26</td>
       <td></td>
       <td></td>
@@ -1683,6 +1901,8 @@
       <td>283.00</td>
       <td>748</td>
       <td>5</td>
+      <td>101.209</td>
+      <td>none</td>
       <td>250.52</td>
       <td></td>
       <td></td>
@@ -1698,6 +1918,8 @@
       <td>613.60</td>
       <td>865</td>
       <td>5</td>
+      <td>175.701</td>
+      <td>none</td>
       <td>542.98</td>
       <td></td>
       <td></td>
@@ -1713,6 +1935,8 @@
       <td>150.98</td>
       <td>1313</td>
       <td>5</td>
+      <td>73.74</td>
+      <td>none</td>
       <td>133.53</td>
       <td></td>
       <td></td>
@@ -1728,6 +1952,8 @@
       <td>312.05</td>
       <td>1403</td>
       <td>1</td>
+      <td>188.837</td>
+      <td>none</td>
       <td>288.28</td>
       <td>299.24</td>
       <td></td>
@@ -1743,6 +1969,8 @@
       <td>408.65</td>
       <td>671</td>
       <td>5</td>
+      <td>81.241</td>
+      <td>strong_buy</td>
       <td>360.33</td>
       <td></td>
       <td></td>
@@ -1758,6 +1986,8 @@
       <td>220.88</td>
       <td>1238</td>
       <td>5</td>
+      <td>147.251</td>
+      <td>none</td>
       <td>194.65</td>
       <td></td>
       <td></td>
@@ -1773,6 +2003,8 @@
       <td>153.26</td>
       <td>1010</td>
       <td>5</td>
+      <td>77.071</td>
+      <td>none</td>
       <td>135.02</td>
       <td></td>
       <td></td>
@@ -1788,6 +2020,8 @@
       <td>31.49</td>
       <td>1628</td>
       <td>1</td>
+      <td>71.374</td>
+      <td>none</td>
       <td>27.72</td>
       <td></td>
       <td></td>
@@ -1803,6 +2037,8 @@
       <td>473.35</td>
       <td>629</td>
       <td>5</td>
+      <td>161.234</td>
+      <td>none</td>
       <td>416.39</td>
       <td></td>
       <td></td>
@@ -1818,6 +2054,8 @@
       <td>491.20</td>
       <td>388</td>
       <td>5</td>
+      <td>110.915</td>
+      <td>none</td>
       <td>432.01</td>
       <td></td>
       <td></td>
@@ -1833,6 +2071,8 @@
       <td>116.29</td>
       <td>1210</td>
       <td>5</td>
+      <td>77.643</td>
+      <td>none</td>
       <td>102.19</td>
       <td></td>
       <td></td>
@@ -1848,6 +2088,8 @@
       <td>341.55</td>
       <td>1150</td>
       <td>5</td>
+      <td>83.909</td>
+      <td>none</td>
       <td>299.91</td>
       <td></td>
       <td></td>
@@ -1863,6 +2105,8 @@
       <td>178.12</td>
       <td>1012</td>
       <td>5</td>
+      <td>50.763</td>
+      <td>none</td>
       <td>156.25</td>
       <td></td>
       <td></td>
@@ -1878,6 +2122,8 @@
       <td>378.35</td>
       <td>371</td>
       <td>5</td>
+      <td>98.854</td>
+      <td>none</td>
       <td>331.69</td>
       <td></td>
       <td></td>
@@ -1893,6 +2139,8 @@
       <td>883.85</td>
       <td>1225</td>
       <td>5</td>
+      <td>202.092</td>
+      <td>none</td>
       <td>774.79</td>
       <td></td>
       <td></td>
@@ -1908,6 +2156,8 @@
       <td>416.40</td>
       <td>710</td>
       <td>1</td>
+      <td>92.98</td>
+      <td>none</td>
       <td>364.99</td>
       <td></td>
       <td></td>
@@ -1923,6 +2173,8 @@
       <td>302.35</td>
       <td>1031</td>
       <td>5</td>
+      <td>115.857</td>
+      <td>none</td>
       <td>264.87</td>
       <td></td>
       <td></td>
@@ -1938,6 +2190,8 @@
       <td>563.10</td>
       <td>809</td>
       <td>5</td>
+      <td>76.845</td>
+      <td>strong_buy</td>
       <td>493.07</td>
       <td></td>
       <td></td>
@@ -1953,6 +2207,8 @@
       <td>256.43</td>
       <td>797</td>
       <td>5</td>
+      <td>212.813</td>
+      <td>none</td>
       <td>224.18</td>
       <td></td>
       <td></td>
@@ -1968,6 +2224,8 @@
       <td>139.91</td>
       <td>1376</td>
       <td>1</td>
+      <td>61.195</td>
+      <td>none</td>
       <td>122.26</td>
       <td></td>
       <td></td>
@@ -1983,6 +2241,8 @@
       <td>88.94</td>
       <td>405</td>
       <td>5</td>
+      <td>18.02</td>
+      <td>none</td>
       <td>77.69</td>
       <td></td>
       <td></td>
@@ -1998,6 +2258,8 @@
       <td>23.07</td>
       <td>1578</td>
       <td>1</td>
+      <td>26.33</td>
+      <td>none</td>
       <td>20.14</td>
       <td></td>
       <td></td>
@@ -2013,6 +2275,8 @@
       <td>86.71</td>
       <td>510</td>
       <td>1</td>
+      <td>13.086</td>
+      <td>none</td>
       <td>75.66</td>
       <td></td>
       <td></td>
@@ -2028,6 +2292,8 @@
       <td>1045.95</td>
       <td>970</td>
       <td>1</td>
+      <td>120.651</td>
+      <td>none</td>
       <td>911.14</td>
       <td></td>
       <td></td>
@@ -2043,6 +2309,8 @@
       <td>731.95</td>
       <td>268</td>
       <td>5</td>
+      <td>88.235</td>
+      <td>underperform</td>
       <td>637.33</td>
       <td></td>
       <td></td>
@@ -2058,6 +2326,8 @@
       <td>1380.40</td>
       <td>422</td>
       <td>5</td>
+      <td>190.375</td>
+      <td>none</td>
       <td>1200.29</td>
       <td></td>
       <td></td>
@@ -2073,6 +2343,8 @@
       <td>106.13</td>
       <td>1243</td>
       <td>1</td>
+      <td>32.584</td>
+      <td>none</td>
       <td>92.22</td>
       <td></td>
       <td></td>
@@ -2088,6 +2360,8 @@
       <td>21.78</td>
       <td>1023</td>
       <td>5</td>
+      <td>4.084</td>
+      <td>none</td>
       <td>18.92</td>
       <td></td>
       <td></td>
@@ -2103,6 +2377,8 @@
       <td>131.91</td>
       <td>1391</td>
       <td>1</td>
+      <td>37.558</td>
+      <td>none</td>
       <td>114.49</td>
       <td></td>
       <td></td>
@@ -2118,6 +2394,8 @@
       <td>79.27</td>
       <td>1396</td>
       <td>1</td>
+      <td>16.993</td>
+      <td>none</td>
       <td>68.73</td>
       <td></td>
       <td></td>
@@ -2133,6 +2411,8 @@
       <td>45.02</td>
       <td>1458</td>
       <td>5</td>
+      <td>36.075</td>
+      <td>none</td>
       <td>39.01</td>
       <td></td>
       <td></td>
@@ -2148,6 +2428,8 @@
       <td>211.13</td>
       <td>1290</td>
       <td>5</td>
+      <td>0.265</td>
+      <td>none</td>
       <td>200.72</td>
       <td>193.22</td>
       <td></td>
@@ -2163,6 +2445,8 @@
       <td>549.70</td>
       <td>513</td>
       <td>5</td>
+      <td>52.912</td>
+      <td>none</td>
       <td>475.38</td>
       <td></td>
       <td></td>
@@ -2178,6 +2462,8 @@
       <td>879.75</td>
       <td>95</td>
       <td>1</td>
+      <td>183.705</td>
+      <td>none</td>
       <td>790.92</td>
       <td>849.49</td>
       <td></td>
@@ -2193,6 +2479,8 @@
       <td>432.30</td>
       <td>458</td>
       <td>5</td>
+      <td>59.603</td>
+      <td>none</td>
       <td>373.62</td>
       <td></td>
       <td></td>
@@ -2208,6 +2496,8 @@
       <td>782.30</td>
       <td>370</td>
       <td>5</td>
+      <td>205.98</td>
+      <td>none</td>
       <td>674.94</td>
       <td></td>
       <td></td>
@@ -2223,6 +2513,8 @@
       <td>467.15</td>
       <td>968</td>
       <td>5</td>
+      <td>38.474</td>
+      <td>none</td>
       <td>402.71</td>
       <td></td>
       <td></td>
@@ -2238,6 +2530,8 @@
       <td>134.98</td>
       <td>1266</td>
       <td>5</td>
+      <td>89.876</td>
+      <td>none</td>
       <td>116.30</td>
       <td></td>
       <td></td>
@@ -2253,6 +2547,8 @@
       <td>44.92</td>
       <td>339</td>
       <td>5</td>
+      <td>17.807</td>
+      <td>strong_buy</td>
       <td>38.68</td>
       <td></td>
       <td></td>
@@ -2268,6 +2564,8 @@
       <td>23.66</td>
       <td>964</td>
       <td>5</td>
+      <td>30.073</td>
+      <td>none</td>
       <td>21.02</td>
       <td>23.01</td>
       <td></td>
@@ -2283,6 +2581,8 @@
       <td>1742.20</td>
       <td></td>
       <td>5</td>
+      <td>208.791</td>
+      <td>none</td>
       <td>1499.14</td>
       <td></td>
       <td></td>
@@ -2298,6 +2598,8 @@
       <td>399.05</td>
       <td>385</td>
       <td>5</td>
+      <td>26.715</td>
+      <td>buy</td>
       <td>343.23</td>
       <td></td>
       <td></td>
@@ -2313,6 +2615,8 @@
       <td>318.45</td>
       <td>648</td>
       <td>5</td>
+      <td>122.558</td>
+      <td>none</td>
       <td>273.78</td>
       <td></td>
       <td></td>
@@ -2328,6 +2632,8 @@
       <td>907.95</td>
       <td>734</td>
       <td>5</td>
+      <td>167.657</td>
+      <td>none</td>
       <td>778.86</td>
       <td></td>
       <td></td>
@@ -2343,6 +2649,8 @@
       <td>448.55</td>
       <td>647</td>
       <td>5</td>
+      <td>569.1</td>
+      <td>none</td>
       <td>429.32</td>
       <td>403.56</td>
       <td></td>
@@ -2358,6 +2666,8 @@
       <td>254.00</td>
       <td>1154</td>
       <td>1</td>
+      <td>47.062</td>
+      <td>none</td>
       <td>217.55</td>
       <td></td>
       <td></td>
@@ -2373,6 +2683,8 @@
       <td>282.64</td>
       <td>386</td>
       <td>2.5</td>
+      <td>78.612</td>
+      <td>none</td>
       <td>242.00</td>
       <td></td>
       <td></td>
@@ -2388,6 +2700,8 @@
       <td>7.32</td>
       <td>1484</td>
       <td>5</td>
+      <td>8.949</td>
+      <td>none</td>
       <td>6.25</td>
       <td></td>
       <td></td>
@@ -2403,6 +2717,8 @@
       <td>81.49</td>
       <td>761</td>
       <td>1</td>
+      <td>8.806</td>
+      <td>none</td>
       <td>69.58</td>
       <td></td>
       <td></td>
@@ -2418,6 +2734,8 @@
       <td>627.90</td>
       <td>929</td>
       <td>5</td>
+      <td>167.997</td>
+      <td>none</td>
       <td>535.95</td>
       <td></td>
       <td></td>
@@ -2433,6 +2751,8 @@
       <td>143.61</td>
       <td>1079</td>
       <td>1</td>
+      <td>24.017</td>
+      <td>none</td>
       <td>122.54</td>
       <td></td>
       <td></td>
@@ -2448,6 +2768,8 @@
       <td>2754.80</td>
       <td>204</td>
       <td>1</td>
+      <td>866.731</td>
+      <td>none</td>
       <td>2348.97</td>
       <td></td>
       <td></td>
@@ -2463,6 +2785,8 @@
       <td>691.85</td>
       <td>616</td>
       <td>5</td>
+      <td>101.148</td>
+      <td>none</td>
       <td>589.85</td>
       <td></td>
       <td></td>
@@ -2478,6 +2802,8 @@
       <td>297.20</td>
       <td>1221</td>
       <td>5</td>
+      <td>159.942</td>
+      <td>none</td>
       <td>253.34</td>
       <td></td>
       <td></td>
@@ -2493,6 +2819,8 @@
       <td>42.23</td>
       <td>791</td>
       <td>5</td>
+      <td>7.894</td>
+      <td>none</td>
       <td>37.85</td>
       <td>40.3</td>
       <td>44.2</td>
@@ -2508,6 +2836,8 @@
       <td>756.85</td>
       <td>53</td>
       <td>5</td>
+      <td>78.946</td>
+      <td>buy</td>
       <td>739.83</td>
       <td>660.14</td>
       <td></td>
@@ -2523,6 +2853,8 @@
       <td>1026.40</td>
       <td>316</td>
       <td>5</td>
+      <td>74.118</td>
+      <td>none</td>
       <td>870.94</td>
       <td></td>
       <td></td>
@@ -2538,6 +2870,8 @@
       <td>367.70</td>
       <td>851</td>
       <td>5</td>
+      <td>99.185</td>
+      <td>none</td>
       <td>311.93</td>
       <td></td>
       <td></td>
@@ -2553,6 +2887,8 @@
       <td>540.05</td>
       <td>775</td>
       <td>5</td>
+      <td>214.209</td>
+      <td>none</td>
       <td>457.93</td>
       <td></td>
       <td></td>
@@ -2568,6 +2904,8 @@
       <td>33.67</td>
       <td>1303</td>
       <td>1</td>
+      <td>50.401</td>
+      <td>none</td>
       <td>31.07</td>
       <td>31.14</td>
       <td></td>
@@ -2583,6 +2921,8 @@
       <td>154.56</td>
       <td>1485</td>
       <td>1</td>
+      <td>39.635</td>
+      <td>none</td>
       <td>130.99</td>
       <td></td>
       <td></td>
@@ -2598,6 +2938,8 @@
       <td>3221.30</td>
       <td>115</td>
       <td>5</td>
+      <td>330.672</td>
+      <td>none</td>
       <td>2727.39</td>
       <td></td>
       <td></td>
@@ -2613,6 +2955,8 @@
       <td>1404.20</td>
       <td>432</td>
       <td>5</td>
+      <td>112.389</td>
+      <td>none</td>
       <td>1188.36</td>
       <td></td>
       <td></td>
@@ -2628,6 +2972,8 @@
       <td>211.33</td>
       <td>593</td>
       <td>5</td>
+      <td>71.298</td>
+      <td>none</td>
       <td>201.96</td>
       <td>188.01</td>
       <td></td>
@@ -2643,6 +2989,8 @@
       <td>172.16</td>
       <td>1425</td>
       <td>1</td>
+      <td>71.893</td>
+      <td>none</td>
       <td>145.41</td>
       <td></td>
       <td></td>
@@ -2658,6 +3006,8 @@
       <td>151.79</td>
       <td>1474</td>
       <td>5</td>
+      <td>160.401</td>
+      <td>none</td>
       <td>138.29</td>
       <td>141.7</td>
       <td></td>
@@ -2673,6 +3023,8 @@
       <td>309.55</td>
       <td>1081</td>
       <td>5</td>
+      <td>36.942</td>
+      <td>none</td>
       <td>261.41</td>
       <td></td>
       <td></td>
@@ -2688,6 +3040,8 @@
       <td>521.20</td>
       <td>597</td>
       <td>1</td>
+      <td>118.247</td>
+      <td>strong_buy</td>
       <td>439.88</td>
       <td></td>
       <td></td>
@@ -2703,6 +3057,8 @@
       <td>308.45</td>
       <td>1102</td>
       <td>5</td>
+      <td>90.298</td>
+      <td>none</td>
       <td>260.05</td>
       <td></td>
       <td></td>
@@ -2718,6 +3074,8 @@
       <td>336.80</td>
       <td>1191</td>
       <td>5</td>
+      <td>98.561</td>
+      <td>none</td>
       <td>283.86</td>
       <td></td>
       <td></td>
@@ -2733,6 +3091,8 @@
       <td>55.31</td>
       <td>1402</td>
       <td>1</td>
+      <td>24.579</td>
+      <td>none</td>
       <td>46.61</td>
       <td></td>
       <td></td>
@@ -2748,6 +3108,8 @@
       <td>177.35</td>
       <td>1473</td>
       <td>1</td>
+      <td>99.217</td>
+      <td>none</td>
       <td>149.38</td>
       <td></td>
       <td></td>
@@ -2763,6 +3125,8 @@
       <td>246.32</td>
       <td>721</td>
       <td>5</td>
+      <td>51.628</td>
+      <td>strong_buy</td>
       <td>206.84</td>
       <td></td>
       <td></td>
@@ -2778,6 +3142,8 @@
       <td>294.50</td>
       <td>1019</td>
       <td>1</td>
+      <td>54.302</td>
+      <td>none</td>
       <td>247.25</td>
       <td></td>
       <td></td>
@@ -2793,6 +3159,8 @@
       <td>1361.60</td>
       <td>291</td>
       <td>5</td>
+      <td>234.596</td>
+      <td>none</td>
       <td>1139.61</td>
       <td></td>
       <td></td>
@@ -2808,6 +3176,8 @@
       <td>504.70</td>
       <td>1053</td>
       <td>5</td>
+      <td>118.724</td>
+      <td>none</td>
       <td>422.04</td>
       <td></td>
       <td></td>
@@ -2823,6 +3193,8 @@
       <td>1247.20</td>
       <td>723</td>
       <td>5</td>
+      <td>396.702</td>
+      <td>none</td>
       <td>1042.12</td>
       <td></td>
       <td></td>
@@ -2838,6 +3210,8 @@
       <td>252.20</td>
       <td>1093</td>
       <td>5</td>
+      <td>37.341</td>
+      <td>none</td>
       <td>210.67</td>
       <td></td>
       <td></td>
@@ -2853,6 +3227,8 @@
       <td>85.31</td>
       <td>1166</td>
       <td>1</td>
+      <td>49.957</td>
+      <td>none</td>
       <td>71.10</td>
       <td></td>
       <td></td>
@@ -2868,6 +3244,8 @@
       <td>269.72</td>
       <td>1027</td>
       <td>5</td>
+      <td>93.281</td>
+      <td>none</td>
       <td>224.58</td>
       <td></td>
       <td></td>
@@ -2883,6 +3261,8 @@
       <td>301.70</td>
       <td>902</td>
       <td>1</td>
+      <td>80.681</td>
+      <td>none</td>
       <td>250.80</td>
       <td></td>
       <td></td>
@@ -2898,6 +3278,8 @@
       <td>518.55</td>
       <td>857</td>
       <td>5</td>
+      <td>46.981</td>
+      <td>none</td>
       <td>430.01</td>
       <td></td>
       <td></td>
@@ -2913,6 +3295,8 @@
       <td>129.82</td>
       <td>1165</td>
       <td>1</td>
+      <td>7.636</td>
+      <td>none</td>
       <td>107.61</td>
       <td></td>
       <td></td>
@@ -2928,6 +3312,8 @@
       <td>712.95</td>
       <td>1282</td>
       <td>1</td>
+      <td>105.492</td>
+      <td>none</td>
       <td>674.01</td>
       <td>629.03</td>
       <td></td>
@@ -2943,6 +3329,8 @@
       <td>491.45</td>
       <td>456</td>
       <td>5</td>
+      <td>55.159</td>
+      <td>none</td>
       <td>405.38</td>
       <td></td>
       <td></td>
@@ -2958,6 +3346,8 @@
       <td>214.83</td>
       <td>942</td>
       <td>5</td>
+      <td>26.478</td>
+      <td>none</td>
       <td>177.20</td>
       <td></td>
       <td></td>
@@ -2973,6 +3363,8 @@
       <td>961.10</td>
       <td>396</td>
       <td>5</td>
+      <td>65.355</td>
+      <td>buy</td>
       <td>788.73</td>
       <td></td>
       <td></td>
@@ -2988,6 +3380,8 @@
       <td>142.64</td>
       <td>1538</td>
       <td>1</td>
+      <td>110.459</td>
+      <td>none</td>
       <td>132.38</td>
       <td>126.35</td>
       <td></td>
@@ -3003,6 +3397,8 @@
       <td>209.95</td>
       <td>1121</td>
       <td>5</td>
+      <td>90.422</td>
+      <td>none</td>
       <td>187.83</td>
       <td>192.7</td>
       <td></td>
@@ -3018,6 +3414,8 @@
       <td>178.08</td>
       <td>1015</td>
       <td>5</td>
+      <td>62.368</td>
+      <td>none</td>
       <td>144.35</td>
       <td></td>
       <td></td>
@@ -3033,6 +3431,8 @@
       <td>1964.20</td>
       <td>989</td>
       <td>5</td>
+      <td>365.464</td>
+      <td>none</td>
       <td>1834.69</td>
       <td>1720.49</td>
       <td></td>
@@ -3048,6 +3448,8 @@
       <td>396.40</td>
       <td>1052</td>
       <td>5</td>
+      <td>59.987</td>
+      <td>none</td>
       <td>387.02</td>
       <td>369.75</td>
       <td>356.12</td>
@@ -3063,6 +3465,8 @@
       <td>78.38</td>
       <td>565</td>
       <td>5</td>
+      <td>5.679</td>
+      <td>none</td>
       <td>63.20</td>
       <td></td>
       <td></td>
@@ -3078,6 +3482,8 @@
       <td>300.40</td>
       <td>1480</td>
       <td>1</td>
+      <td>124.769</td>
+      <td>none</td>
       <td>280.25</td>
       <td>261.88</td>
       <td></td>
@@ -3093,6 +3499,8 @@
       <td>142.90</td>
       <td>1168</td>
       <td>5</td>
+      <td>35.687</td>
+      <td>none</td>
       <td>114.59</td>
       <td></td>
       <td></td>
@@ -3108,6 +3516,8 @@
       <td>316.05</td>
       <td>786</td>
       <td>1</td>
+      <td>267.193</td>
+      <td>none</td>
       <td>295.23</td>
       <td>274.24</td>
       <td></td>
@@ -3123,6 +3533,8 @@
       <td>166.51</td>
       <td>938</td>
       <td>5</td>
+      <td>157.056</td>
+      <td>none</td>
       <td>133.49</td>
       <td></td>
       <td></td>
@@ -3138,6 +3550,8 @@
       <td>3453.70</td>
       <td>229</td>
       <td>5</td>
+      <td>660.365</td>
+      <td>none</td>
       <td>3217.18</td>
       <td>3001.54</td>
       <td></td>
@@ -3153,6 +3567,8 @@
       <td>176.10</td>
       <td>1145</td>
       <td>5</td>
+      <td>30.188</td>
+      <td>none</td>
       <td>140.95</td>
       <td></td>
       <td></td>
@@ -3168,6 +3584,8 @@
       <td>269.65</td>
       <td>763</td>
       <td>5</td>
+      <td>66.399</td>
+      <td>none</td>
       <td>215.47</td>
       <td></td>
       <td></td>
@@ -3183,6 +3601,8 @@
       <td>320.00</td>
       <td>869</td>
       <td>2.5</td>
+      <td>96.751</td>
+      <td>none</td>
       <td>255.46</td>
       <td></td>
       <td></td>
@@ -3198,6 +3618,8 @@
       <td>774.50</td>
       <td>433</td>
       <td>5</td>
+      <td>123.833</td>
+      <td>buy</td>
       <td>723.65</td>
       <td>668.72</td>
       <td></td>
@@ -3213,6 +3635,8 @@
       <td>460.25</td>
       <td>1223</td>
       <td>5</td>
+      <td>69.556</td>
+      <td>none</td>
       <td>365.70</td>
       <td></td>
       <td></td>
@@ -3228,6 +3652,8 @@
       <td>333.35</td>
       <td>517</td>
       <td>5</td>
+      <td>42.23</td>
+      <td>none</td>
       <td>310.46</td>
       <td>287.19</td>
       <td></td>
@@ -3243,6 +3669,8 @@
       <td>44.10</td>
       <td>365</td>
       <td>5</td>
+      <td>11.646</td>
+      <td>none</td>
       <td>34.95</td>
       <td></td>
       <td></td>
@@ -3258,6 +3686,8 @@
       <td>2002.70</td>
       <td>102</td>
       <td>5</td>
+      <td>325.668</td>
+      <td>buy</td>
       <td>1914.72</td>
       <td>1672.94</td>
       <td></td>
@@ -3273,6 +3703,8 @@
       <td>3252.30</td>
       <td>3</td>
       <td>5</td>
+      <td>270.613</td>
+      <td>buy</td>
       <td>3137.42</td>
       <td>2932.1</td>
       <td>3008.03</td>
@@ -3288,6 +3720,8 @@
       <td>193.10</td>
       <td>1637</td>
       <td>1</td>
+      <td>115.703</td>
+      <td>none</td>
       <td>180.35</td>
       <td>169.36</td>
       <td>189.01</td>
@@ -3303,6 +3737,8 @@
       <td>484.25</td>
       <td>822</td>
       <td>1</td>
+      <td>119.718</td>
+      <td>buy</td>
       <td>437.47</td>
       <td>428.63</td>
       <td></td>
@@ -3318,6 +3754,8 @@
       <td>330.80</td>
       <td>1117</td>
       <td>5</td>
+      <td>147.464</td>
+      <td>none</td>
       <td>312.25</td>
       <td>278.7</td>
       <td></td>
@@ -3333,6 +3771,8 @@
       <td>30.28</td>
       <td>1135</td>
       <td>5</td>
+      <td>15.516</td>
+      <td>none</td>
       <td>27.34</td>
       <td>26.74</td>
       <td></td>
@@ -3348,6 +3788,8 @@
       <td>422.85</td>
       <td>663</td>
       <td>5</td>
+      <td>129.444</td>
+      <td>none</td>
       <td>389.98</td>
       <td>365.11</td>
       <td></td>
@@ -3363,6 +3805,8 @@
       <td>624.80</td>
       <td>558</td>
       <td>5</td>
+      <td>104.939</td>
+      <td>buy</td>
       <td>590.39</td>
       <td>523.85</td>
       <td></td>
@@ -3378,6 +3822,8 @@
       <td>13196.00</td>
       <td>214</td>
       <td>5</td>
+      <td>227.046</td>
+      <td>none</td>
       <td>12769.40</td>
       <td>11972.09</td>
       <td>11970.86</td>
@@ -3393,6 +3839,8 @@
       <td>779.60</td>
       <td>524</td>
       <td>5</td>
+      <td>148.173</td>
+      <td>none</td>
       <td>605.28</td>
       <td></td>
       <td></td>
@@ -3408,6 +3856,8 @@
       <td>1824.80</td>
       <td>47</td>
       <td>5</td>
+      <td>169.538</td>
+      <td>strong_buy</td>
       <td>1719.13</td>
       <td>1519.48</td>
       <td></td>
@@ -3423,6 +3873,8 @@
       <td>346.00</td>
       <td>765</td>
       <td>5</td>
+      <td>88.918</td>
+      <td>none</td>
       <td>304.63</td>
       <td>308.4</td>
       <td></td>
@@ -3438,6 +3890,8 @@
       <td>724.20</td>
       <td>372</td>
       <td>5</td>
+      <td>55.25</td>
+      <td>strong_buy</td>
       <td>678.23</td>
       <td>604.73</td>
       <td></td>
@@ -3453,6 +3907,8 @@
       <td>75.52</td>
       <td>1226</td>
       <td>5</td>
+      <td>24.624</td>
+      <td>none</td>
       <td>72.00</td>
       <td>61.68</td>
       <td></td>
@@ -3468,6 +3924,8 @@
       <td>223.80</td>
       <td>760</td>
       <td>5</td>
+      <td>32.54</td>
+      <td>none</td>
       <td>204.44</td>
       <td>191.66</td>
       <td></td>
@@ -3483,6 +3941,8 @@
       <td>318.15</td>
       <td>953</td>
       <td>5</td>
+      <td>203.142</td>
+      <td>none</td>
       <td>291.01</td>
       <td>271.37</td>
       <td></td>
@@ -3498,6 +3958,8 @@
       <td>193.88</td>
       <td>1337</td>
       <td>5</td>
+      <td>137.062</td>
+      <td>none</td>
       <td>179.13</td>
       <td>163.45</td>
       <td></td>
@@ -3513,6 +3975,8 @@
       <td>234.21</td>
       <td>1434</td>
       <td>1</td>
+      <td>44.625</td>
+      <td>none</td>
       <td>210.59</td>
       <td>203.18</td>
       <td></td>
@@ -3528,6 +3992,8 @@
       <td>365.30</td>
       <td>464</td>
       <td>5</td>
+      <td>252.056</td>
+      <td>buy</td>
       <td>334.51</td>
       <td>310.52</td>
       <td></td>
@@ -3543,6 +4009,8 @@
       <td>307.05</td>
       <td>1492</td>
       <td>1</td>
+      <td>236.2</td>
+      <td>none</td>
       <td>283.31</td>
       <td>258.88</td>
       <td></td>
@@ -3558,6 +4026,8 @@
       <td>263.15</td>
       <td>247</td>
       <td>5</td>
+      <td>72.755</td>
+      <td>buy</td>
       <td>244.26</td>
       <td>220.27</td>
       <td></td>
@@ -3573,6 +4043,8 @@
       <td>455.35</td>
       <td>278</td>
       <td>5</td>
+      <td>88.38</td>
+      <td>none</td>
       <td>414.89</td>
       <td>388.84</td>
       <td></td>
@@ -3588,6 +4060,8 @@
       <td>345.45</td>
       <td>707</td>
       <td>5</td>
+      <td>120.559</td>
+      <td>buy</td>
       <td>278.50</td>
       <td>330.69</td>
       <td></td>
@@ -3603,6 +4077,8 @@
       <td>558.65</td>
       <td>1530</td>
       <td>1</td>
+      <td>105.07</td>
+      <td>none</td>
       <td>543.96</td>
       <td>441.13</td>
       <td></td>
@@ -3618,6 +4094,8 @@
       <td>51.44</td>
       <td>1489</td>
       <td>1</td>
+      <td>38.582</td>
+      <td>none</td>
       <td>47.09</td>
       <td>43.53</td>
       <td></td>
@@ -3633,6 +4111,8 @@
       <td>1952.50</td>
       <td>425</td>
       <td>5</td>
+      <td>551.066</td>
+      <td>hold</td>
       <td>1778.94</td>
       <td>1656.96</td>
       <td></td>
@@ -3648,6 +4128,8 @@
       <td>247.37</td>
       <td>1171</td>
       <td>1</td>
+      <td>41.971</td>
+      <td>none</td>
       <td>187.69</td>
       <td></td>
       <td></td>
@@ -3663,6 +4145,8 @@
       <td>131.14</td>
       <td>1463</td>
       <td>1</td>
+      <td>43.121</td>
+      <td>none</td>
       <td>118.72</td>
       <td>111.91</td>
       <td></td>
@@ -3678,6 +4162,8 @@
       <td>125.58</td>
       <td>1621</td>
       <td>1</td>
+      <td>586.895</td>
+      <td>none</td>
       <td>117.46</td>
       <td>103.32</td>
       <td></td>
@@ -3693,6 +4179,8 @@
       <td>106.84</td>
       <td>1589</td>
       <td>1</td>
+      <td>84.85</td>
+      <td>none</td>
       <td>100.76</td>
       <td>87.05</td>
       <td></td>
@@ -3708,6 +4196,8 @@
       <td>450.10</td>
       <td>1300</td>
       <td>1</td>
+      <td>32.985</td>
+      <td>none</td>
       <td>416.60</td>
       <td>374.17</td>
       <td></td>
@@ -3723,6 +4213,8 @@
       <td>773.95</td>
       <td>164</td>
       <td>5</td>
+      <td>45.814</td>
+      <td>none</td>
       <td>731.50</td>
       <td>627.54</td>
       <td></td>
@@ -3738,6 +4230,8 @@
       <td>2182.30</td>
       <td>216</td>
       <td>5</td>
+      <td>926.291</td>
+      <td>buy</td>
       <td>2036.83</td>
       <td>1793.67</td>
       <td></td>
@@ -3753,6 +4247,8 @@
       <td>573.60</td>
       <td>845</td>
       <td>1</td>
+      <td>68.547</td>
+      <td>none</td>
       <td>521.43</td>
       <td>483.41</td>
       <td></td>
@@ -3768,6 +4264,8 @@
       <td>1261.10</td>
       <td>75</td>
       <td>5</td>
+      <td>96.497</td>
+      <td>buy</td>
       <td>1174.06</td>
       <td>1033.27</td>
       <td></td>
@@ -3783,6 +4281,8 @@
       <td>167.55</td>
       <td>1494</td>
       <td>1</td>
+      <td>81.891</td>
+      <td>none</td>
       <td>152.15</td>
       <td>141.05</td>
       <td></td>
@@ -3798,6 +4298,8 @@
       <td>61.05</td>
       <td>1350</td>
       <td>5</td>
+      <td>21.972</td>
+      <td>none</td>
       <td>55.37</td>
       <td>51.45</td>
       <td></td>
@@ -3813,6 +4315,8 @@
       <td>925.20</td>
       <td>9</td>
       <td>5</td>
+      <td>179.356</td>
+      <td>buy</td>
       <td>877.23</td>
       <td>739.8</td>
       <td></td>
@@ -3828,6 +4332,8 @@
       <td>1440.90</td>
       <td>428</td>
       <td>5</td>
+      <td>133.245</td>
+      <td>none</td>
       <td>1341.15</td>
       <td>1176.18</td>
       <td></td>
@@ -3843,6 +4349,8 @@
       <td>569.20</td>
       <td>660</td>
       <td>5</td>
+      <td>75.918</td>
+      <td>strong_buy</td>
       <td>519.95</td>
       <td>473.28</td>
       <td></td>
@@ -3858,6 +4366,8 @@
       <td>782.90</td>
       <td>1322</td>
       <td>1</td>
+      <td>390.555</td>
+      <td>none</td>
       <td>739.70</td>
       <td>623.53</td>
       <td></td>
@@ -3873,6 +4383,8 @@
       <td>375.20</td>
       <td>730</td>
       <td>5</td>
+      <td>166.789</td>
+      <td>none</td>
       <td>347.29</td>
       <td>305.99</td>
       <td></td>
@@ -3888,6 +4400,8 @@
       <td>107.76</td>
       <td>1596</td>
       <td>1</td>
+      <td>330.612</td>
+      <td>none</td>
       <td>100.78</td>
       <td>86.83</td>
       <td></td>
@@ -3903,6 +4417,8 @@
       <td>1179.30</td>
       <td>254</td>
       <td>5</td>
+      <td>62.773</td>
+      <td>buy</td>
       <td>1081.54</td>
       <td>970.22</td>
       <td></td>
@@ -3918,6 +4434,8 @@
       <td>3115.40</td>
       <td>74</td>
       <td>5</td>
+      <td>196.834</td>
+      <td>hold</td>
       <td>2849.18</td>
       <td>2565.39</td>
       <td></td>
@@ -3933,6 +4451,8 @@
       <td>385.30</td>
       <td>146</td>
       <td>5</td>
+      <td>506.033</td>
+      <td>none</td>
       <td>348.79</td>
       <td>319.55</td>
       <td></td>
@@ -3948,6 +4468,8 @@
       <td>871.95</td>
       <td>306</td>
       <td>5</td>
+      <td>382.091</td>
+      <td>none</td>
       <td>792.16</td>
       <td>720.37</td>
       <td></td>
@@ -3963,6 +4485,8 @@
       <td>162.76</td>
       <td>1585</td>
       <td>1</td>
+      <td>676.008</td>
+      <td>none</td>
       <td>151.71</td>
       <td>130.43</td>
       <td></td>
@@ -3978,6 +4502,8 @@
       <td>135.22</td>
       <td>690</td>
       <td>5</td>
+      <td>41.638</td>
+      <td>none</td>
       <td>121.30</td>
       <td>112.97</td>
       <td></td>
@@ -3993,6 +4519,8 @@
       <td>154.16</td>
       <td>1548</td>
       <td>1</td>
+      <td>62.724</td>
+      <td>none</td>
       <td>140.83</td>
       <td>126.11</td>
       <td></td>
@@ -4008,6 +4536,8 @@
       <td>628.40</td>
       <td>1287</td>
       <td>1</td>
+      <td>143.142</td>
+      <td>none</td>
       <td>564.58</td>
       <td>521.29</td>
       <td></td>
@@ -4023,6 +4553,8 @@
       <td>82.93</td>
       <td>1232</td>
       <td>1</td>
+      <td>70.799</td>
+      <td>none</td>
       <td>71.72</td>
       <td>71.45</td>
       <td></td>
@@ -4038,6 +4570,8 @@
       <td>341.10</td>
       <td>803</td>
       <td>5</td>
+      <td>67.573</td>
+      <td>none</td>
       <td>305.93</td>
       <td>282.77</td>
       <td></td>
@@ -4053,6 +4587,8 @@
       <td>910.90</td>
       <td>512</td>
       <td>1</td>
+      <td>146.474</td>
+      <td>none</td>
       <td>806.44</td>
       <td>763.69</td>
       <td></td>
@@ -4068,6 +4604,8 @@
       <td>432.50</td>
       <td>572</td>
       <td>5</td>
+      <td>72.65</td>
+      <td>none</td>
       <td>397.68</td>
       <td>347.15</td>
       <td></td>
@@ -4083,6 +4621,8 @@
       <td>1526.60</td>
       <td>424</td>
       <td>5</td>
+      <td>144.576</td>
+      <td>strong_buy</td>
       <td>1422.30</td>
       <td>1203.88</td>
       <td></td>
@@ -4098,6 +4638,8 @@
       <td>143.02</td>
       <td>1437</td>
       <td>5</td>
+      <td>61.863</td>
+      <td>none</td>
       <td>130.34</td>
       <td>115.57</td>
       <td></td>
@@ -4113,6 +4655,8 @@
       <td>345.85</td>
       <td>383</td>
       <td>5</td>
+      <td>86.531</td>
+      <td>buy</td>
       <td>313.99</td>
       <td>280.17</td>
       <td></td>
@@ -4128,6 +4672,8 @@
       <td>1173.80</td>
       <td>1343</td>
       <td>5</td>
+      <td>1105.823</td>
+      <td>none</td>
       <td>1110.64</td>
       <td>905.43</td>
       <td></td>
@@ -4143,6 +4689,8 @@
       <td>1566.40</td>
       <td>14</td>
       <td>5</td>
+      <td>3.008</td>
+      <td>hold</td>
       <td>1548.23</td>
       <td>1342.15</td>
       <td>1364.51</td>
@@ -4158,6 +4706,8 @@
       <td>1803.30</td>
       <td>543</td>
       <td>5</td>
+      <td>145.303</td>
+      <td>buy</td>
       <td>1636.57</td>
       <td>1454.64</td>
       <td></td>
@@ -4173,6 +4723,8 @@
       <td>874.55</td>
       <td>701</td>
       <td>5</td>
+      <td>92.439</td>
+      <td>hold</td>
       <td>784.69</td>
       <td>713.82</td>
       <td></td>
@@ -4188,6 +4740,8 @@
       <td>315.55</td>
       <td>737</td>
       <td>5</td>
+      <td>143.944</td>
+      <td>none</td>
       <td>289.34</td>
       <td>251.07</td>
       <td></td>
@@ -4203,6 +4757,8 @@
       <td>898.70</td>
       <td>354</td>
       <td>5</td>
+      <td>139.711</td>
+      <td>strong_buy</td>
       <td>816.92</td>
       <td>721.51</td>
       <td></td>
@@ -4218,6 +4774,8 @@
       <td>1002.20</td>
       <td>673</td>
       <td>5</td>
+      <td>385.991</td>
+      <td>hold</td>
       <td>918.58</td>
       <td>796.4</td>
       <td></td>
@@ -4233,6 +4791,8 @@
       <td>242.35</td>
       <td>1325</td>
       <td>5</td>
+      <td>158.576</td>
+      <td>none</td>
       <td>223.57</td>
       <td>190.92</td>
       <td></td>
@@ -4248,6 +4808,8 @@
       <td>63.42</td>
       <td>643</td>
       <td>5</td>
+      <td>53.359</td>
+      <td>none</td>
       <td>58.94</td>
       <td>49.51</td>
       <td></td>
@@ -4263,6 +4825,8 @@
       <td>1964.90</td>
       <td>280</td>
       <td>5</td>
+      <td>210.124</td>
+      <td>none</td>
       <td>1819.85</td>
       <td>1539.78</td>
       <td></td>
@@ -4278,6 +4842,8 @@
       <td>1147.20</td>
       <td>1469</td>
       <td>1</td>
+      <td>649.956</td>
+      <td>none</td>
       <td>1003.51</td>
       <td>955.46</td>
       <td></td>
@@ -4293,6 +4859,8 @@
       <td>748.65</td>
       <td>329</td>
       <td>5</td>
+      <td>214.352</td>
+      <td>buy</td>
       <td>685.64</td>
       <td>592.51</td>
       <td></td>
@@ -4308,6 +4876,8 @@
       <td>521.05</td>
       <td>589</td>
       <td>5</td>
+      <td>137.997</td>
+      <td>none</td>
       <td>480.83</td>
       <td>407.99</td>
       <td></td>
@@ -4323,6 +4893,8 @@
       <td>305.10</td>
       <td>811</td>
       <td>1</td>
+      <td>52.613</td>
+      <td>none</td>
       <td>283.70</td>
       <td>236.67</td>
       <td></td>
@@ -4338,6 +4910,8 @@
       <td>94.62</td>
       <td>1344</td>
       <td>1</td>
+      <td>74.678</td>
+      <td>none</td>
       <td>83.49</td>
       <td>77.86</td>
       <td></td>
@@ -4353,6 +4927,8 @@
       <td>456.75</td>
       <td>680</td>
       <td>5</td>
+      <td>71.823</td>
+      <td>none</td>
       <td>422.51</td>
       <td>355.94</td>
       <td></td>
@@ -4368,6 +4944,8 @@
       <td>2205.40</td>
       <td>515</td>
       <td>5</td>
+      <td>195.041</td>
+      <td>none</td>
       <td>2014.09</td>
       <td>1744.49</td>
       <td></td>
@@ -4383,6 +4961,8 @@
       <td>409.35</td>
       <td>833</td>
       <td>5</td>
+      <td>136.434</td>
+      <td>none</td>
       <td>378.40</td>
       <td>319.01</td>
       <td></td>
@@ -4398,6 +4978,8 @@
       <td>75.85</td>
       <td>1618</td>
       <td>1</td>
+      <td>46.404</td>
+      <td>none</td>
       <td>71.27</td>
       <td>57.92</td>
       <td></td>
@@ -4413,6 +4995,8 @@
       <td>4026.70</td>
       <td>30</td>
       <td>5</td>
+      <td>329.448</td>
+      <td>hold</td>
       <td>3862.05</td>
       <td>3427.27</td>
       <td>3593.6</td>
@@ -4428,6 +5012,8 @@
       <td>2998.20</td>
       <td>58</td>
       <td>5</td>
+      <td>191.772</td>
+      <td>hold</td>
       <td>2901.38</td>
       <td>2720.96</td>
       <td>2478.63</td>
@@ -4443,6 +5029,8 @@
       <td>174.90</td>
       <td>337</td>
       <td>5</td>
+      <td>9.073</td>
+      <td>buy</td>
       <td>155.10</td>
       <td>142.45</td>
       <td></td>
@@ -4458,6 +5046,8 @@
       <td>705.20</td>
       <td>441</td>
       <td>1</td>
+      <td>51.452</td>
+      <td>none</td>
       <td>650.61</td>
       <td>548.68</td>
       <td></td>
@@ -4473,6 +5063,8 @@
       <td>39.09</td>
       <td>502</td>
       <td>1</td>
+      <td>44.879</td>
+      <td>none</td>
       <td>36.55</td>
       <td>29.87</td>
       <td></td>
@@ -4488,6 +5080,8 @@
       <td>177.94</td>
       <td>1381</td>
       <td>1</td>
+      <td>174.561</td>
+      <td>none</td>
       <td>161.69</td>
       <td>140.55</td>
       <td></td>
@@ -4503,6 +5097,8 @@
       <td>100.64</td>
       <td>1365</td>
       <td>1</td>
+      <td>58.701</td>
+      <td>none</td>
       <td>93.69</td>
       <td>76.94</td>
       <td></td>
@@ -4518,6 +5114,8 @@
       <td>1093.30</td>
       <td>962</td>
       <td>5</td>
+      <td>289.129</td>
+      <td>none</td>
       <td>964.06</td>
       <td>889.25</td>
       <td></td>
@@ -4533,6 +5131,8 @@
       <td>216.06</td>
       <td>165</td>
       <td>5</td>
+      <td>4.492</td>
+      <td>hold</td>
       <td>196.53</td>
       <td>169.48</td>
       <td></td>
@@ -4548,6 +5148,8 @@
       <td>598.55</td>
       <td>261</td>
       <td>5</td>
+      <td>68.978</td>
+      <td>strong_buy</td>
       <td>556.04</td>
       <td>457.52</td>
       <td></td>
@@ -4563,6 +5165,8 @@
       <td>824.20</td>
       <td>511</td>
       <td>5</td>
+      <td>167.36</td>
+      <td>strong_buy</td>
       <td>707.11</td>
       <td>688.44</td>
       <td></td>
@@ -4578,6 +5182,8 @@
       <td>1017.30</td>
       <td>525</td>
       <td>5</td>
+      <td>77.648</td>
+      <td>none</td>
       <td>901.00</td>
       <td>820.79</td>
       <td></td>
@@ -4593,6 +5199,8 @@
       <td>2740.10</td>
       <td>639</td>
       <td>5</td>
+      <td>401.217</td>
+      <td>none</td>
       <td>2478.00</td>
       <td>2156.34</td>
       <td></td>
@@ -4608,6 +5216,8 @@
       <td>374.45</td>
       <td>1280</td>
       <td>1</td>
+      <td>136.373</td>
+      <td>none</td>
       <td>345.01</td>
       <td>288.24</td>
       <td></td>
@@ -4623,6 +5233,8 @@
       <td>743.70</td>
       <td>1241</td>
       <td>1</td>
+      <td>264.548</td>
+      <td>none</td>
       <td>680.59</td>
       <td>575.69</td>
       <td></td>
@@ -4638,6 +5250,8 @@
       <td>1490.90</td>
       <td>77</td>
       <td>5</td>
+      <td>386.241</td>
+      <td>buy</td>
       <td>1431.32</td>
       <td>1346.51</td>
       <td>1230.72</td>
@@ -4653,6 +5267,8 @@
       <td>2930.30</td>
       <td>173</td>
       <td>5</td>
+      <td>286.093</td>
+      <td>strong_buy</td>
       <td>2668.75</td>
       <td>2279.54</td>
       <td></td>
@@ -4668,6 +5284,8 @@
       <td>108.56</td>
       <td>1386</td>
       <td>1</td>
+      <td>42.378</td>
+      <td>none</td>
       <td>99.64</td>
       <td>83.6</td>
       <td></td>
@@ -4683,6 +5301,8 @@
       <td>3751.20</td>
       <td>866</td>
       <td>1</td>
+      <td>707.431</td>
+      <td>none</td>
       <td>3141.25</td>
       <td>3190.28</td>
       <td></td>
@@ -4698,6 +5318,8 @@
       <td>1403.10</td>
       <td>566</td>
       <td>5</td>
+      <td>168.919</td>
+      <td>none</td>
       <td>1286.80</td>
       <td>1080.93</td>
       <td></td>
@@ -4713,6 +5335,8 @@
       <td>2583.20</td>
       <td>562</td>
       <td>5</td>
+      <td>666.381</td>
+      <td>buy</td>
       <td>2373.43</td>
       <td>1985.75</td>
       <td></td>
@@ -4728,6 +5352,8 @@
       <td>5283.50</td>
       <td>81</td>
       <td>5</td>
+      <td>380.274</td>
+      <td>buy</td>
       <td>4770.62</td>
       <td>4138.15</td>
       <td></td>
@@ -4743,6 +5369,8 @@
       <td>187.29</td>
       <td>1605</td>
       <td>1</td>
+      <td>182.03</td>
+      <td>none</td>
       <td>168.49</td>
       <td>147.27</td>
       <td></td>
@@ -4758,6 +5386,8 @@
       <td>18435.00</td>
       <td>131</td>
       <td>5</td>
+      <td>988.846</td>
+      <td>buy</td>
       <td>17094.93</td>
       <td>13982.88</td>
       <td></td>
@@ -4773,6 +5403,8 @@
       <td>1491.60</td>
       <td>185</td>
       <td>5</td>
+      <td>292.276</td>
+      <td>buy</td>
       <td>1427.20</td>
       <td>1276.46</td>
       <td>1302.22</td>
@@ -4788,6 +5420,8 @@
       <td>533.80</td>
       <td>1219</td>
       <td>5</td>
+      <td>111.935</td>
+      <td>none</td>
       <td>499.91</td>
       <td>399.88</td>
       <td></td>
@@ -4803,6 +5437,8 @@
       <td>1835.20</td>
       <td>359</td>
       <td>5</td>
+      <td>173.283</td>
+      <td>buy</td>
       <td>1522.89</td>
       <td>1569.83</td>
       <td></td>
@@ -4818,6 +5454,8 @@
       <td>1871.10</td>
       <td>550</td>
       <td>5</td>
+      <td>259.876</td>
+      <td>none</td>
       <td>1717.26</td>
       <td>1433.67</td>
       <td></td>
@@ -4833,6 +5471,8 @@
       <td>51.29</td>
       <td>1419</td>
       <td>1</td>
+      <td>40.711</td>
+      <td>none</td>
       <td>46.63</td>
       <td>39.73</td>
       <td></td>
@@ -4848,6 +5488,8 @@
       <td>5.62</td>
       <td>1666</td>
       <td>1</td>
+      <td>5.135</td>
+      <td>none</td>
       <td>5.26</td>
       <td>4.21</td>
       <td></td>
@@ -4863,6 +5505,8 @@
       <td>1536.50</td>
       <td>764</td>
       <td>5</td>
+      <td>236.917</td>
+      <td>none</td>
       <td>1409.41</td>
       <td>1176.22</td>
       <td></td>
@@ -4878,6 +5522,8 @@
       <td>715.20</td>
       <td>274</td>
       <td>5</td>
+      <td>53.34</td>
+      <td>strong_buy</td>
       <td>624.42</td>
       <td>579.07</td>
       <td></td>
@@ -4893,6 +5539,8 @@
       <td>788.70</td>
       <td>482</td>
       <td>5</td>
+      <td>39.638</td>
+      <td>hold</td>
       <td>717.19</td>
       <td>609.86</td>
       <td></td>
@@ -4908,6 +5556,8 @@
       <td>2651.00</td>
       <td>86</td>
       <td>5</td>
+      <td>347.435</td>
+      <td>buy</td>
       <td>2258.91</td>
       <td>2199.7</td>
       <td></td>
@@ -4923,6 +5573,8 @@
       <td>534.40</td>
       <td>1299</td>
       <td>1</td>
+      <td>339.908</td>
+      <td>none</td>
       <td>478.64</td>
       <td>420.15</td>
       <td></td>
@@ -4938,6 +5590,8 @@
       <td>1326.20</td>
       <td>241</td>
       <td>5</td>
+      <td>125.905</td>
+      <td>none</td>
       <td>1148.13</td>
       <td>1081.46</td>
       <td></td>
@@ -4953,6 +5607,8 @@
       <td>14558.00</td>
       <td>334</td>
       <td>5</td>
+      <td>925.437</td>
+      <td>none</td>
       <td>12421.94</td>
       <td>12048.09</td>
       <td></td>
@@ -4968,6 +5624,8 @@
       <td>37.01</td>
       <td>1524</td>
       <td>1</td>
+      <td>38.161</td>
+      <td>none</td>
       <td>33.45</td>
       <td>28.74</td>
       <td></td>
@@ -4983,6 +5641,8 @@
       <td>180.15</td>
       <td>272</td>
       <td>5</td>
+      <td>152.473</td>
+      <td>buy</td>
       <td>166.28</td>
       <td>136.4</td>
       <td></td>
@@ -4998,6 +5658,8 @@
       <td>402.85</td>
       <td>1193</td>
       <td>1</td>
+      <td>193.087</td>
+      <td>none</td>
       <td>373.49</td>
       <td>303.32</td>
       <td></td>
@@ -5013,6 +5675,8 @@
       <td>3494.00</td>
       <td>12</td>
       <td>5</td>
+      <td>710.123</td>
+      <td>buy</td>
       <td>3377.17</td>
       <td>3117.54</td>
       <td>2868.95</td>
@@ -5028,6 +5692,8 @@
       <td>1754.30</td>
       <td>311</td>
       <td>5</td>
+      <td>209.629</td>
+      <td>strong_buy</td>
       <td>1566.50</td>
       <td>1379.42</td>
       <td></td>
@@ -5043,6 +5709,8 @@
       <td>384.05</td>
       <td>1394</td>
       <td>1</td>
+      <td>167.352</td>
+      <td>none</td>
       <td>348.99</td>
       <td>295.91</td>
       <td></td>
@@ -5058,6 +5726,8 @@
       <td>1609.00</td>
       <td>790</td>
       <td>5</td>
+      <td>298.068</td>
+      <td>none</td>
       <td>1440.82</td>
       <td>1260.2</td>
       <td></td>
@@ -5073,6 +5743,8 @@
       <td>36.15</td>
       <td>1551</td>
       <td>1</td>
+      <td>30.43</td>
+      <td>none</td>
       <td>32.78</td>
       <td>27.89</td>
       <td></td>
@@ -5088,6 +5760,8 @@
       <td>115.65</td>
       <td>1176</td>
       <td>5</td>
+      <td>103.881</td>
+      <td>none</td>
       <td>110.62</td>
       <td>83.44</td>
       <td></td>
@@ -5103,6 +5777,8 @@
       <td>565.85</td>
       <td>279</td>
       <td>5</td>
+      <td>58.122</td>
+      <td>none</td>
       <td>495.47</td>
       <td>453.75</td>
       <td></td>
@@ -5118,6 +5794,8 @@
       <td>274.50</td>
       <td>1409</td>
       <td>1</td>
+      <td>415.12</td>
+      <td>none</td>
       <td>253.39</td>
       <td>207.02</td>
       <td></td>
@@ -5133,6 +5811,8 @@
       <td>4896.80</td>
       <td>21</td>
       <td>5</td>
+      <td>523.054</td>
+      <td>buy</td>
       <td>4501.35</td>
       <td>3710.25</td>
       <td></td>
@@ -5148,6 +5828,8 @@
       <td>924.50</td>
       <td>1063</td>
       <td>5</td>
+      <td>241.376</td>
+      <td>none</td>
       <td>800.46</td>
       <td>749.35</td>
       <td></td>
@@ -5163,6 +5845,8 @@
       <td>183.83</td>
       <td>1470</td>
       <td>1</td>
+      <td>166.979</td>
+      <td>none</td>
       <td>164.19</td>
       <td>143.97</td>
       <td></td>
@@ -5178,6 +5862,8 @@
       <td>422.10</td>
       <td>11</td>
       <td>5</td>
+      <td>55.961</td>
+      <td>strong_buy</td>
       <td>401.17</td>
       <td>374.82</td>
       <td>353.23</td>
@@ -5193,6 +5879,8 @@
       <td>173.98</td>
       <td>1136</td>
       <td>1</td>
+      <td>103.337</td>
+      <td>none</td>
       <td>154.76</td>
       <td>136.4</td>
       <td></td>
@@ -5208,6 +5896,8 @@
       <td>810.05</td>
       <td>168</td>
       <td>5</td>
+      <td>230.565</td>
+      <td>buy</td>
       <td>747.14</td>
       <td>608.39</td>
       <td></td>
@@ -5223,6 +5913,8 @@
       <td>1971.30</td>
       <td>187</td>
       <td>5</td>
+      <td>165.039</td>
+      <td>hold</td>
       <td>1839.66</td>
       <td>1816.53</td>
       <td>1613.31</td>
@@ -5238,6 +5930,8 @@
       <td>224.14</td>
       <td>1421</td>
       <td>1</td>
+      <td>129.053</td>
+      <td>none</td>
       <td>205.45</td>
       <td>169.38</td>
       <td></td>
@@ -5253,6 +5947,8 @@
       <td>1819.60</td>
       <td>148</td>
       <td>5</td>
+      <td>109.346</td>
+      <td>none</td>
       <td>1675.31</td>
       <td>1365.6</td>
       <td></td>
@@ -5268,6 +5964,8 @@
       <td>1376.00</td>
       <td>592</td>
       <td>5</td>
+      <td>444.045</td>
+      <td>buy</td>
       <td>1268.82</td>
       <td>1030.17</td>
       <td></td>
@@ -5283,6 +5981,8 @@
       <td>2416.30</td>
       <td>36</td>
       <td>5</td>
+      <td>41.593</td>
+      <td>hold</td>
       <td>2316.46</td>
       <td>2174.3</td>
       <td>1961.6</td>
@@ -5298,6 +5998,8 @@
       <td>196.19</td>
       <td>722</td>
       <td>5</td>
+      <td>68.827</td>
+      <td>none</td>
       <td>176.98</td>
       <td>150.41</td>
       <td></td>
@@ -5313,6 +6015,8 @@
       <td>228.94</td>
       <td>1311</td>
       <td>1</td>
+      <td>280.951</td>
+      <td>none</td>
       <td>206.49</td>
       <td>175.42</td>
       <td></td>
@@ -5328,6 +6032,8 @@
       <td>1158.80</td>
       <td>1030</td>
       <td>1</td>
+      <td>287.76</td>
+      <td>none</td>
       <td>990.77</td>
       <td>940.77</td>
       <td></td>
@@ -5343,6 +6049,8 @@
       <td>363.95</td>
       <td>614</td>
       <td>5</td>
+      <td>145.358</td>
+      <td>none</td>
       <td>340.90</td>
       <td>317.74</td>
       <td>311.68</td>
@@ -5358,6 +6066,8 @@
       <td>1632.40</td>
       <td>634</td>
       <td>1</td>
+      <td>119.179</td>
+      <td>none</td>
       <td>1394.69</td>
       <td>1324.55</td>
       <td></td>
@@ -5373,6 +6083,8 @@
       <td>64.73</td>
       <td>275</td>
       <td>5</td>
+      <td>3.81</td>
+      <td>none</td>
       <td>57.93</td>
       <td>49.87</td>
       <td></td>
@@ -5388,6 +6100,8 @@
       <td>1079.60</td>
       <td>431</td>
       <td>5</td>
+      <td>108.152</td>
+      <td>none</td>
       <td>1006.68</td>
       <td>789.92</td>
       <td></td>
@@ -5403,6 +6117,8 @@
       <td>384.85</td>
       <td>1044</td>
       <td>5</td>
+      <td>118.593</td>
+      <td>none</td>
       <td>343.61</td>
       <td>296.55</td>
       <td></td>
@@ -5418,6 +6134,8 @@
       <td>1200.60</td>
       <td>705</td>
       <td>5</td>
+      <td>216.262</td>
+      <td>buy</td>
       <td>1093.77</td>
       <td>902.87</td>
       <td></td>
@@ -5433,6 +6151,8 @@
       <td>4248.40</td>
       <td>340</td>
       <td>5</td>
+      <td>226.291</td>
+      <td>none</td>
       <td>3820.87</td>
       <td>3242.86</td>
       <td></td>
@@ -5448,6 +6168,8 @@
       <td>556.45</td>
       <td>637</td>
       <td>5</td>
+      <td>75.925</td>
+      <td>none</td>
       <td>479.44</td>
       <td>445.24</td>
       <td></td>
@@ -5463,6 +6185,8 @@
       <td>1434.00</td>
       <td>62</td>
       <td>5</td>
+      <td>202.27</td>
+      <td>buy</td>
       <td>1279.61</td>
       <td>1103.29</td>
       <td></td>
@@ -5478,6 +6202,8 @@
       <td>614.80</td>
       <td>1375</td>
       <td>1</td>
+      <td>452.394</td>
+      <td>none</td>
       <td>581.80</td>
       <td>541.88</td>
       <td>512.66</td>
@@ -5493,6 +6219,8 @@
       <td>430.20</td>
       <td>1070</td>
       <td>5</td>
+      <td>179.975</td>
+      <td>none</td>
       <td>383.27</td>
       <td>331.25</td>
       <td></td>
@@ -5508,6 +6236,8 @@
       <td>286.35</td>
       <td>577</td>
       <td>5</td>
+      <td>24.835</td>
+      <td>none</td>
       <td>255.73</td>
       <td>219.61</td>
       <td></td>
@@ -5523,6 +6253,8 @@
       <td>1371.50</td>
       <td>474</td>
       <td>5</td>
+      <td>339.084</td>
+      <td>hold</td>
       <td>1252.22</td>
       <td>1023.63</td>
       <td></td>
@@ -5538,6 +6270,8 @@
       <td>1291.90</td>
       <td>244</td>
       <td>5</td>
+      <td>107.374</td>
+      <td>buy</td>
       <td>1139.45</td>
       <td>1001.35</td>
       <td></td>
@@ -5553,6 +6287,8 @@
       <td>65.91</td>
       <td>878</td>
       <td>5</td>
+      <td>44.162</td>
+      <td>none</td>
       <td>59.97</td>
       <td>49.24</td>
       <td></td>
@@ -5568,6 +6304,8 @@
       <td>428.35</td>
       <td>298</td>
       <td>5</td>
+      <td>139.454</td>
+      <td>none</td>
       <td>376.27</td>
       <td>333.13</td>
       <td></td>
@@ -5583,6 +6321,8 @@
       <td>827.60</td>
       <td>880</td>
       <td>5</td>
+      <td>306.762</td>
+      <td>none</td>
       <td>736.37</td>
       <td>633.69</td>
       <td></td>
@@ -5598,6 +6338,8 @@
       <td>208.98</td>
       <td>364</td>
       <td>5</td>
+      <td>12.807</td>
+      <td>buy</td>
       <td>183.81</td>
       <td>162.11</td>
       <td></td>
@@ -5613,6 +6355,8 @@
       <td>1195.00</td>
       <td>983</td>
       <td>1</td>
+      <td>161.005</td>
+      <td>none</td>
       <td>1044.24</td>
       <td>931.32</td>
       <td></td>
@@ -5628,6 +6372,8 @@
       <td>153.83</td>
       <td>486</td>
       <td>5</td>
+      <td>14.694</td>
+      <td>strong_buy</td>
       <td>135.56</td>
       <td>118.72</td>
       <td></td>
@@ -5643,6 +6389,8 @@
       <td>1202.40</td>
       <td>575</td>
       <td>5</td>
+      <td>372.472</td>
+      <td>none</td>
       <td>1093.23</td>
       <td>893.18</td>
       <td></td>
@@ -5658,6 +6406,8 @@
       <td>237.05</td>
       <td>752</td>
       <td>5</td>
+      <td>88.143</td>
+      <td>none</td>
       <td>207.70</td>
       <td>223.34</td>
       <td>197.48</td>
@@ -5673,6 +6423,8 @@
       <td>233.04</td>
       <td>1472</td>
       <td>1</td>
+      <td>154.9</td>
+      <td>none</td>
       <td>212.51</td>
       <td>172.14</td>
       <td></td>
@@ -5688,6 +6440,8 @@
       <td>650.50</td>
       <td>911</td>
       <td>1</td>
+      <td>104.698</td>
+      <td>none</td>
       <td>601.54</td>
       <td>472.08</td>
       <td></td>
@@ -5703,6 +6457,8 @@
       <td>2673.40</td>
       <td>264</td>
       <td>5</td>
+      <td>181.494</td>
+      <td>none</td>
       <td>2419.35</td>
       <td>1992.93</td>
       <td></td>
@@ -5718,6 +6474,8 @@
       <td>1462.40</td>
       <td>570</td>
       <td>5</td>
+      <td>190.119</td>
+      <td>buy</td>
       <td>1272.84</td>
       <td>1139.86</td>
       <td></td>
@@ -5733,6 +6491,8 @@
       <td>29.72</td>
       <td>1455</td>
       <td>1</td>
+      <td>11.71</td>
+      <td>none</td>
       <td>27.43</td>
       <td>21.56</td>
       <td></td>
@@ -5748,6 +6508,8 @@
       <td>102.74</td>
       <td>1567</td>
       <td>1</td>
+      <td>68.407</td>
+      <td>none</td>
       <td>92.53</td>
       <td>76.76</td>
       <td></td>
@@ -5763,6 +6525,8 @@
       <td>181.43</td>
       <td>685</td>
       <td>5</td>
+      <td>19.802</td>
+      <td>none</td>
       <td>165.37</td>
       <td>133.3</td>
       <td></td>
@@ -5778,6 +6542,8 @@
       <td>80.63</td>
       <td>1617</td>
       <td>1</td>
+      <td>51.828</td>
+      <td>none</td>
       <td>74.31</td>
       <td>58.4</td>
       <td></td>
@@ -5793,6 +6559,8 @@
       <td>560.30</td>
       <td>654</td>
       <td>5</td>
+      <td>92.45</td>
+      <td>none</td>
       <td>501.87</td>
       <td>420.01</td>
       <td></td>
@@ -5808,6 +6576,8 @@
       <td>800.20</td>
       <td>667</td>
       <td>5</td>
+      <td>91.649</td>
+      <td>none</td>
       <td>696.80</td>
       <td>619.49</td>
       <td></td>
@@ -5823,6 +6593,8 @@
       <td>28.36</td>
       <td>1668</td>
       <td>1</td>
+      <td>36.618</td>
+      <td>none</td>
       <td>25.75</td>
       <td>20.89</td>
       <td></td>
@@ -5838,6 +6610,8 @@
       <td>1860.40</td>
       <td>128</td>
       <td>5</td>
+      <td>140.619</td>
+      <td>hold</td>
       <td>1660.79</td>
       <td>1398.59</td>
       <td></td>
@@ -5853,6 +6627,8 @@
       <td>724.05</td>
       <td>700</td>
       <td>5</td>
+      <td>124.442</td>
+      <td>none</td>
       <td>619.74</td>
       <td>570.87</td>
       <td></td>
@@ -5868,6 +6644,8 @@
       <td>545.45</td>
       <td>1298</td>
       <td>1</td>
+      <td>71.031</td>
+      <td>none</td>
       <td>477.06</td>
       <td>419.37</td>
       <td></td>
@@ -5883,6 +6661,8 @@
       <td>907.25</td>
       <td>913</td>
       <td>5</td>
+      <td>804.415</td>
+      <td>none</td>
       <td>818.35</td>
       <td>672.59</td>
       <td></td>
@@ -5898,6 +6678,8 @@
       <td>180.74</td>
       <td>1037</td>
       <td>5</td>
+      <td>219.608</td>
+      <td>strong_buy</td>
       <td>160.86</td>
       <td>136.15</td>
       <td></td>
@@ -5913,6 +6695,8 @@
       <td>3415.00</td>
       <td>25</td>
       <td>5</td>
+      <td>130.932</td>
+      <td>buy</td>
       <td>3284.38</td>
       <td>3037.82</td>
       <td>2703.88</td>
@@ -5928,6 +6712,8 @@
       <td>385.75</td>
       <td>1274</td>
       <td>5</td>
+      <td>185.418</td>
+      <td>none</td>
       <td>351.26</td>
       <td>281.86</td>
       <td></td>
@@ -5943,6 +6729,8 @@
       <td>1703.00</td>
       <td>930</td>
       <td>5</td>
+      <td>389.113</td>
+      <td>buy</td>
       <td>1476.87</td>
       <td>1318.11</td>
       <td></td>
@@ -5958,6 +6746,8 @@
       <td>1197.30</td>
       <td>198</td>
       <td>5</td>
+      <td>180.591</td>
+      <td>none</td>
       <td>1081.18</td>
       <td>883.64</td>
       <td></td>
@@ -5973,6 +6763,8 @@
       <td>390.55</td>
       <td>1099</td>
       <td>5</td>
+      <td>196.658</td>
+      <td>none</td>
       <td>370.35</td>
       <td>270.22</td>
       <td></td>
@@ -5988,6 +6780,8 @@
       <td>2402.90</td>
       <td>152</td>
       <td>5</td>
+      <td>61.197</td>
+      <td>hold</td>
       <td>2266.51</td>
       <td>1900.2</td>
       <td>2176.74</td>
@@ -6003,6 +6797,8 @@
       <td>135.62</td>
       <td>821</td>
       <td>1</td>
+      <td>15.1</td>
+      <td>none</td>
       <td>124.89</td>
       <td>97.51</td>
       <td></td>
@@ -6018,6 +6814,8 @@
       <td>648.05</td>
       <td>1084</td>
       <td>5</td>
+      <td>232.359</td>
+      <td>none</td>
       <td>604.19</td>
       <td>456.99</td>
       <td></td>
@@ -6033,6 +6831,8 @@
       <td>270.75</td>
       <td>140</td>
       <td>5</td>
+      <td>116.565</td>
+      <td>strong_buy</td>
       <td>248.31</td>
       <td>194.94</td>
       <td></td>
@@ -6048,6 +6848,8 @@
       <td>1426.20</td>
       <td>435</td>
       <td>5</td>
+      <td>279.97</td>
+      <td>buy</td>
       <td>1256.84</td>
       <td>1077.46</td>
       <td></td>
@@ -6063,6 +6865,8 @@
       <td>1285.80</td>
       <td>478</td>
       <td>5</td>
+      <td>877.754</td>
+      <td>buy</td>
       <td>1158.57</td>
       <td>945.73</td>
       <td></td>
@@ -6078,6 +6882,8 @@
       <td>1448.20</td>
       <td>578</td>
       <td>5</td>
+      <td>233.052</td>
+      <td>none</td>
       <td>1296.50</td>
       <td>1072.73</td>
       <td></td>
@@ -6093,6 +6899,8 @@
       <td>1650.10</td>
       <td>292</td>
       <td>5</td>
+      <td>220.541</td>
+      <td>strong_buy</td>
       <td>1522.77</td>
       <td>1429.43</td>
       <td>1397.03</td>
@@ -6108,6 +6916,8 @@
       <td>647.75</td>
       <td>139</td>
       <td>1</td>
+      <td>38.253</td>
+      <td>none</td>
       <td>603.12</td>
       <td>456.37</td>
       <td></td>
@@ -6123,6 +6933,8 @@
       <td>83.75</td>
       <td>751</td>
       <td>5</td>
+      <td>18.243</td>
+      <td>none</td>
       <td>74.52</td>
       <td>62.4</td>
       <td></td>
@@ -6138,6 +6950,8 @@
       <td>319.45</td>
       <td>1332</td>
       <td>1</td>
+      <td>237.48</td>
+      <td>none</td>
       <td>294.77</td>
       <td>227.37</td>
       <td></td>
@@ -6153,6 +6967,8 @@
       <td>1538.00</td>
       <td>108</td>
       <td>5</td>
+      <td>132.768</td>
+      <td>buy</td>
       <td>1461.87</td>
       <td>1313.24</td>
       <td>1274.81</td>
@@ -6168,6 +6984,8 @@
       <td>168.62</td>
       <td>1246</td>
       <td>1</td>
+      <td>98.026</td>
+      <td>none</td>
       <td>149.77</td>
       <td>148.04</td>
       <td>146.15</td>
@@ -6183,6 +7001,8 @@
       <td>2713.20</td>
       <td>404</td>
       <td>5</td>
+      <td>364.184</td>
+      <td>hold</td>
       <td>2423.66</td>
       <td>2006.62</td>
       <td></td>
@@ -6198,6 +7018,8 @@
       <td>1254.20</td>
       <td>814</td>
       <td>5</td>
+      <td>216.174</td>
+      <td>strong_buy</td>
       <td>1142.82</td>
       <td>904.17</td>
       <td></td>
@@ -6213,6 +7035,8 @@
       <td>9.00</td>
       <td>1482</td>
       <td>1</td>
+      <td>1.576</td>
+      <td>none</td>
       <td>8.66</td>
       <td>6.02</td>
       <td></td>
@@ -6228,6 +7052,8 @@
       <td>107.00</td>
       <td>1627</td>
       <td>1</td>
+      <td>31.84</td>
+      <td>none</td>
       <td>93.48</td>
       <td>81.03</td>
       <td></td>
@@ -6243,6 +7069,8 @@
       <td>289.80</td>
       <td>1180</td>
       <td>5</td>
+      <td>89.23</td>
+      <td>none</td>
       <td>255.71</td>
       <td>216.78</td>
       <td></td>
@@ -6258,6 +7086,8 @@
       <td>1088.10</td>
       <td>1152</td>
       <td>1</td>
+      <td>231.656</td>
+      <td>none</td>
       <td>1011.76</td>
       <td>762.22</td>
       <td></td>
@@ -6273,6 +7103,8 @@
       <td>41.97</td>
       <td>1664</td>
       <td>1</td>
+      <td>32.97</td>
+      <td>none</td>
       <td>37.58</td>
       <td>30.84</td>
       <td></td>
@@ -6288,6 +7120,8 @@
       <td>796.10</td>
       <td>1195</td>
       <td>1</td>
+      <td>78.608</td>
+      <td>none</td>
       <td>667.85</td>
       <td>628.9</td>
       <td></td>
@@ -6303,6 +7137,8 @@
       <td>61.89</td>
       <td>1565</td>
       <td>5</td>
+      <td>67.221</td>
+      <td>none</td>
       <td>57.30</td>
       <td>49.17</td>
       <td>56.21</td>
@@ -6318,6 +7154,8 @@
       <td>303.60</td>
       <td>1475</td>
       <td>1</td>
+      <td>345.511</td>
+      <td>none</td>
       <td>276.64</td>
       <td>217.11</td>
       <td></td>
@@ -6333,6 +7171,8 @@
       <td>1260.90</td>
       <td>97</td>
       <td>5</td>
+      <td>400.705</td>
+      <td>hold</td>
       <td>1197.11</td>
       <td>1110.79</td>
       <td>1001.77</td>
@@ -6348,6 +7188,8 @@
       <td>928.05</td>
       <td>1021</td>
       <td>5</td>
+      <td>315.614</td>
+      <td>none</td>
       <td>867.15</td>
       <td>640.69</td>
       <td></td>
@@ -6363,6 +7205,8 @@
       <td>282.70</td>
       <td>1230</td>
       <td>1</td>
+      <td>94.56</td>
+      <td>none</td>
       <td>256.45</td>
       <td>202.76</td>
       <td></td>
@@ -6378,6 +7222,8 @@
       <td>744.05</td>
       <td>92</td>
       <td>5</td>
+      <td>78.407</td>
+      <td>buy</td>
       <td>696.90</td>
       <td>658.78</td>
       <td>596.27</td>
@@ -6393,6 +7239,8 @@
       <td>135.29</td>
       <td>49</td>
       <td>5</td>
+      <td>40.396</td>
+      <td>none</td>
       <td>125.86</td>
       <td>93.76</td>
       <td></td>
@@ -6408,6 +7256,8 @@
       <td>1164.20</td>
       <td>472</td>
       <td>5</td>
+      <td>259.66</td>
+      <td>none</td>
       <td>1026.97</td>
       <td>862.93</td>
       <td></td>
@@ -6423,6 +7273,8 @@
       <td>33.95</td>
       <td>1658</td>
       <td>1</td>
+      <td>2.161</td>
+      <td>none</td>
       <td>30.01</td>
       <td>25.07</td>
       <td></td>
@@ -6438,6 +7290,8 @@
       <td>1430.80</td>
       <td>5</td>
       <td>5</td>
+      <td>440.693</td>
+      <td>strong_buy</td>
       <td>1366.47</td>
       <td>1306.43</td>
       <td>1079.13</td>
@@ -6453,6 +7307,8 @@
       <td>742.55</td>
       <td>801</td>
       <td>5</td>
+      <td>214.12</td>
+      <td>strong_buy</td>
       <td>640.80</td>
       <td>563.52</td>
       <td></td>
@@ -6468,6 +7324,8 @@
       <td>138.10</td>
       <td>1139</td>
       <td>5</td>
+      <td>181.413</td>
+      <td>none</td>
       <td>123.38</td>
       <td>100.59</td>
       <td></td>
@@ -6483,6 +7341,8 @@
       <td>15823.00</td>
       <td>112</td>
       <td>5</td>
+      <td>582.709</td>
+      <td>buy</td>
       <td>13736.13</td>
       <td>11922.08</td>
       <td></td>
@@ -6498,6 +7358,8 @@
       <td>430.55</td>
       <td>642</td>
       <td>5</td>
+      <td>259.321</td>
+      <td>none</td>
       <td>380.20</td>
       <td>317.93</td>
       <td></td>
@@ -6513,6 +7375,8 @@
       <td>1165.90</td>
       <td>19</td>
       <td>5</td>
+      <td>604.498</td>
+      <td>buy</td>
       <td>1117.24</td>
       <td>1037.66</td>
       <td>901.29</td>
@@ -6528,6 +7392,8 @@
       <td>371.70</td>
       <td>1321</td>
       <td>1</td>
+      <td>372.903</td>
+      <td>none</td>
       <td>350.55</td>
       <td>325.24</td>
       <td>298.56</td>
@@ -6543,6 +7409,8 @@
       <td>823.35</td>
       <td>465</td>
       <td>5</td>
+      <td>185.388</td>
+      <td>none</td>
       <td>724.66</td>
       <td>610.01</td>
       <td></td>
@@ -6558,6 +7426,8 @@
       <td>298.05</td>
       <td>28</td>
       <td>5</td>
+      <td>99.756</td>
+      <td>buy</td>
       <td>278.77</td>
       <td>250.2</td>
       <td>251.76</td>
@@ -6573,6 +7443,8 @@
       <td>1269.20</td>
       <td>1320</td>
       <td>1</td>
+      <td>478.633</td>
+      <td>none</td>
       <td>1108.60</td>
       <td>946.85</td>
       <td></td>
@@ -6588,6 +7460,8 @@
       <td>2911.90</td>
       <td>698</td>
       <td>5</td>
+      <td>305.637</td>
+      <td>none</td>
       <td>2474.53</td>
       <td>2240.84</td>
       <td></td>
@@ -6603,6 +7477,8 @@
       <td>48.49</td>
       <td>1607</td>
       <td>1</td>
+      <td>61.195</td>
+      <td>none</td>
       <td>44.21</td>
       <td>34.29</td>
       <td></td>
@@ -6618,6 +7494,8 @@
       <td>343.35</td>
       <td>1310</td>
       <td>1</td>
+      <td>8.748</td>
+      <td>none</td>
       <td>282.03</td>
       <td>273.74</td>
       <td></td>
@@ -6633,6 +7511,8 @@
       <td>136.81</td>
       <td>1148</td>
       <td>1</td>
+      <td>10.177</td>
+      <td>none</td>
       <td>126.59</td>
       <td>94.85</td>
       <td></td>
@@ -6648,6 +7528,8 @@
       <td>1082.40</td>
       <td>650</td>
       <td>5</td>
+      <td>452.757</td>
+      <td>strong_buy</td>
       <td>954.13</td>
       <td>797.58</td>
       <td></td>
@@ -6663,6 +7545,8 @@
       <td>2674.80</td>
       <td>307</td>
       <td>5</td>
+      <td>622.566</td>
+      <td>buy</td>
       <td>2414.11</td>
       <td>1912.33</td>
       <td></td>
@@ -6678,6 +7562,8 @@
       <td>273.60</td>
       <td>1442</td>
       <td>1</td>
+      <td>50.911</td>
+      <td>none</td>
       <td>240.64</td>
       <td>201.91</td>
       <td></td>
@@ -6693,6 +7579,8 @@
       <td>10.57</td>
       <td>817</td>
       <td>5</td>
+      <td>1.876</td>
+      <td>none</td>
       <td>9.51</td>
       <td>7.58</td>
       <td></td>
@@ -6708,6 +7596,8 @@
       <td>483.50</td>
       <td>560</td>
       <td>5</td>
+      <td>81.894</td>
+      <td>none</td>
       <td>453.54</td>
       <td>438.82</td>
       <td>372.58</td>
@@ -6723,6 +7613,8 @@
       <td>1701.40</td>
       <td>242</td>
       <td>5</td>
+      <td>73.158</td>
+      <td>none</td>
       <td>1559.55</td>
       <td>1189.44</td>
       <td></td>
@@ -6738,6 +7630,8 @@
       <td>405.80</td>
       <td>1039</td>
       <td>1</td>
+      <td>109.957</td>
+      <td>none</td>
       <td>362.09</td>
       <td>293.31</td>
       <td></td>
@@ -6753,6 +7647,8 @@
       <td>279.90</td>
       <td>459</td>
       <td>5</td>
+      <td>54.908</td>
+      <td>none</td>
       <td>251.73</td>
       <td>198.94</td>
       <td></td>
@@ -6768,6 +7664,8 @@
       <td>1895.80</td>
       <td>258</td>
       <td>5</td>
+      <td>555.301</td>
+      <td>none</td>
       <td>1714.83</td>
       <td>1335.86</td>
       <td></td>
@@ -6783,6 +7681,8 @@
       <td>3745.80</td>
       <td>768</td>
       <td>1</td>
+      <td>1418.6</td>
+      <td>none</td>
       <td>3526.43</td>
       <td>3447.26</td>
       <td>2781.61</td>
@@ -6798,6 +7698,8 @@
       <td>595.85</td>
       <td>1054</td>
       <td>5</td>
+      <td>143.071</td>
+      <td>none</td>
       <td>519.15</td>
       <td>436.53</td>
       <td></td>
@@ -6813,6 +7715,8 @@
       <td>49.66</td>
       <td>552</td>
       <td>5</td>
+      <td>31.439</td>
+      <td>none</td>
       <td>43.76</td>
       <td>35.8</td>
       <td></td>
@@ -6828,6 +7732,8 @@
       <td>153.13</td>
       <td>1242</td>
       <td>1</td>
+      <td>400.215</td>
+      <td>none</td>
       <td>143.40</td>
       <td>135.25</td>
       <td>119.66</td>
@@ -6843,6 +7749,8 @@
       <td>1771.10</td>
       <td>209</td>
       <td>5</td>
+      <td>69.217</td>
+      <td>none</td>
       <td>1771.10</td>
       <td>1489.49</td>
       <td>1342.94</td>
@@ -6858,6 +7766,8 @@
       <td>5608.00</td>
       <td>78</td>
       <td>5</td>
+      <td>333.89</td>
+      <td>buy</td>
       <td>5437.27</td>
       <td>4312.78</td>
       <td>4823.67</td>
@@ -6873,6 +7783,8 @@
       <td>473.85</td>
       <td>912</td>
       <td>5</td>
+      <td>284.282</td>
+      <td>none</td>
       <td>403.73</td>
       <td>353.79</td>
       <td></td>
@@ -6888,6 +7800,8 @@
       <td>389.25</td>
       <td>1387</td>
       <td>1</td>
+      <td>136.468</td>
+      <td>none</td>
       <td>341.98</td>
       <td>280.06</td>
       <td></td>
@@ -6903,6 +7817,8 @@
       <td>227.57</td>
       <td>1529</td>
       <td>1</td>
+      <td>64.674</td>
+      <td>none</td>
       <td>205.65</td>
       <td>157.96</td>
       <td></td>
@@ -6918,6 +7834,8 @@
       <td>347.15</td>
       <td>1029</td>
       <td>5</td>
+      <td>207.515</td>
+      <td>none</td>
       <td>325.26</td>
       <td>317.7</td>
       <td>258.68</td>
@@ -6933,6 +7851,8 @@
       <td>118.23</td>
       <td>1650</td>
       <td>1</td>
+      <td>84.148</td>
+      <td>none</td>
       <td>110.43</td>
       <td>104.54</td>
       <td>91.99</td>
@@ -6948,6 +7868,8 @@
       <td>3398.20</td>
       <td>257</td>
       <td>5</td>
+      <td>741.952</td>
+      <td>none</td>
       <td>3117.75</td>
       <td>2822.11</td>
       <td>2881.41</td>
@@ -6963,6 +7885,8 @@
       <td>91.32</td>
       <td>1614</td>
       <td>1</td>
+      <td>43.508</td>
+      <td>none</td>
       <td>79.34</td>
       <td>66.35</td>
       <td></td>
@@ -6978,6 +7902,8 @@
       <td>299.75</td>
       <td>971</td>
       <td>5</td>
+      <td>69.455</td>
+      <td>buy</td>
       <td>272.79</td>
       <td>205.33</td>
       <td></td>
@@ -6993,6 +7919,8 @@
       <td>899.80</td>
       <td>753</td>
       <td>5</td>
+      <td>129.014</td>
+      <td>none</td>
       <td>811.38</td>
       <td>623.47</td>
       <td></td>
@@ -7008,6 +7936,8 @@
       <td>274.85</td>
       <td>907</td>
       <td>5</td>
+      <td>123.56</td>
+      <td>none</td>
       <td>237.14</td>
       <td>201.11</td>
       <td></td>
@@ -7023,6 +7953,8 @@
       <td>383.15</td>
       <td>132</td>
       <td>5</td>
+      <td>45.858</td>
+      <td>none</td>
       <td>346.16</td>
       <td>264.63</td>
       <td></td>
@@ -7038,6 +7970,8 @@
       <td>971.60</td>
       <td>1190</td>
       <td>5</td>
+      <td>234.014</td>
+      <td>none</td>
       <td>865.80</td>
       <td>682.51</td>
       <td></td>
@@ -7053,6 +7987,8 @@
       <td>129.00</td>
       <td>1224</td>
       <td>1</td>
+      <td>138.84</td>
+      <td>none</td>
       <td>113.28</td>
       <td>92.27</td>
       <td></td>
@@ -7068,6 +8004,8 @@
       <td>40.25</td>
       <td>1407</td>
       <td>1</td>
+      <td>23.66</td>
+      <td>none</td>
       <td>34.81</td>
       <td>29.32</td>
       <td></td>
@@ -7083,6 +8021,8 @@
       <td>12536.00</td>
       <td>16</td>
       <td>5</td>
+      <td>3061.094</td>
+      <td>buy</td>
       <td>11946.57</td>
       <td>11026.5</td>
       <td>9526.3</td>
@@ -7098,6 +8038,8 @@
       <td>10.63</td>
       <td>1574</td>
       <td>1</td>
+      <td>10.15</td>
+      <td>none</td>
       <td>9.78</td>
       <td>7.6</td>
       <td>10.18</td>
@@ -7113,6 +8055,8 @@
       <td>184.36</td>
       <td>1265</td>
       <td>1</td>
+      <td>83.038</td>
+      <td>none</td>
       <td>163.90</td>
       <td>129.66</td>
       <td></td>
@@ -7128,6 +8072,8 @@
       <td>191.96</td>
       <td>1040</td>
       <td>5</td>
+      <td>101.786</td>
+      <td>none</td>
       <td>170.15</td>
       <td>135.39</td>
       <td></td>
@@ -7143,6 +8089,8 @@
       <td>41.82</td>
       <td>1123</td>
       <td>5</td>
+      <td>16.305</td>
+      <td>none</td>
       <td>37.28</td>
       <td>29.26</td>
       <td></td>
@@ -7158,6 +8106,8 @@
       <td>1727.50</td>
       <td>15</td>
       <td>5</td>
+      <td>300.992</td>
+      <td>buy</td>
       <td>1577.32</td>
       <td>1494.5</td>
       <td>1403.73</td>
@@ -7173,6 +8123,8 @@
       <td>287.45</td>
       <td>1331</td>
       <td>1</td>
+      <td>127.432</td>
+      <td>none</td>
       <td>255.22</td>
       <td>201.81</td>
       <td></td>
@@ -7188,6 +8140,8 @@
       <td>1169.00</td>
       <td>452</td>
       <td>5</td>
+      <td>135.787</td>
+      <td>buy</td>
       <td>1095.61</td>
       <td>953.76</td>
       <td>977.93</td>
@@ -7203,6 +8157,8 @@
       <td>1556.80</td>
       <td>849</td>
       <td>1</td>
+      <td>176.096</td>
+      <td>none</td>
       <td>1333.67</td>
       <td>1141.1</td>
       <td></td>
@@ -7218,6 +8174,8 @@
       <td>1298.60</td>
       <td>344</td>
       <td>5</td>
+      <td>435.511</td>
+      <td>buy</td>
       <td>1152.37</td>
       <td>911.87</td>
       <td></td>
@@ -7233,6 +8191,8 @@
       <td>1391.60</td>
       <td>141</td>
       <td>5</td>
+      <td>349.577</td>
+      <td>hold</td>
       <td>1311.83</td>
       <td>1082.54</td>
       <td>1209.06</td>
@@ -7248,6 +8208,8 @@
       <td>554.70</td>
       <td>894</td>
       <td>5</td>
+      <td>70.527</td>
+      <td>none</td>
       <td>483.48</td>
       <td>398.08</td>
       <td></td>
@@ -7263,6 +8225,8 @@
       <td>1035.00</td>
       <td>31</td>
       <td>5</td>
+      <td>325.739</td>
+      <td>buy</td>
       <td>976.33</td>
       <td>930</td>
       <td>773.29</td>
@@ -7278,6 +8242,8 @@
       <td>69.77</td>
       <td>1461</td>
       <td>1</td>
+      <td>27.68</td>
+      <td>none</td>
       <td>63.32</td>
       <td>47.53</td>
       <td></td>
@@ -7293,6 +8259,8 @@
       <td>522.75</td>
       <td>899</td>
       <td>5</td>
+      <td>189.297</td>
+      <td>none</td>
       <td>464.88</td>
       <td>365.36</td>
       <td></td>
@@ -7308,6 +8276,8 @@
       <td>97.20</td>
       <td>1086</td>
       <td>5</td>
+      <td>10.921</td>
+      <td>none</td>
       <td>89.27</td>
       <td>65.07</td>
       <td></td>
@@ -7323,6 +8293,8 @@
       <td>113.39</td>
       <td>1518</td>
       <td>1</td>
+      <td>30.257</td>
+      <td>none</td>
       <td>101.87</td>
       <td>78.16</td>
       <td></td>
@@ -7338,6 +8310,8 @@
       <td>489.65</td>
       <td>514</td>
       <td>5</td>
+      <td>252.435</td>
+      <td>none</td>
       <td>442.43</td>
       <td>334.82</td>
       <td></td>
@@ -7353,6 +8327,8 @@
       <td>1403.20</td>
       <td>119</td>
       <td>5</td>
+      <td>539.302</td>
+      <td>none</td>
       <td>1323.75</td>
       <td>1206.96</td>
       <td>1098.99</td>
@@ -7368,6 +8344,8 @@
       <td>326.00</td>
       <td>756</td>
       <td>1</td>
+      <td>46.572</td>
+      <td>none</td>
       <td>273.79</td>
       <td>242.75</td>
       <td></td>
@@ -7383,6 +8361,8 @@
       <td>1904.50</td>
       <td>569</td>
       <td>5</td>
+      <td>468.329</td>
+      <td>hold</td>
       <td>1600.80</td>
       <td>1416.05</td>
       <td></td>
@@ -7398,6 +8378,8 @@
       <td>1548.50</td>
       <td>1026</td>
       <td>5</td>
+      <td>437.498</td>
+      <td>none</td>
       <td>1349.02</td>
       <td>1104.03</td>
       <td></td>
@@ -7413,6 +8395,8 @@
       <td>989.55</td>
       <td>548</td>
       <td>5</td>
+      <td>718.125</td>
+      <td>buy</td>
       <td>899.07</td>
       <td>668.23</td>
       <td></td>
@@ -7428,6 +8412,8 @@
       <td>816.45</td>
       <td>6</td>
       <td>5</td>
+      <td>545.675</td>
+      <td>buy</td>
       <td>772.15</td>
       <td>701.65</td>
       <td>635.42</td>
@@ -7443,6 +8429,8 @@
       <td>114.41</td>
       <td>1377</td>
       <td>1</td>
+      <td>51.767</td>
+      <td>none</td>
       <td>102.30</td>
       <td>78.86</td>
       <td></td>
@@ -7458,6 +8446,8 @@
       <td>14.01</td>
       <td>1659</td>
       <td>1</td>
+      <td>13.325</td>
+      <td>none</td>
       <td>12.33</td>
       <td>10.58</td>
       <td>13.28</td>
@@ -7473,6 +8463,8 @@
       <td>1924.10</td>
       <td>193</td>
       <td>5</td>
+      <td>212.145</td>
+      <td>underperform</td>
       <td>1788.75</td>
       <td>1257.44</td>
       <td></td>
@@ -7488,6 +8480,8 @@
       <td>944.70</td>
       <td>590</td>
       <td>5</td>
+      <td>219.622</td>
+      <td>none</td>
       <td>817.11</td>
       <td>678.38</td>
       <td></td>
@@ -7503,6 +8497,8 @@
       <td>342.00</td>
       <td>20</td>
       <td>5</td>
+      <td>189.846</td>
+      <td>buy</td>
       <td>321.32</td>
       <td>277.74</td>
       <td>284.28</td>
@@ -7518,6 +8514,8 @@
       <td>208.09</td>
       <td>1271</td>
       <td>1</td>
+      <td>77.93</td>
+      <td>none</td>
       <td>184.42</td>
       <td>144.93</td>
       <td></td>
@@ -7533,6 +8531,8 @@
       <td>653.20</td>
       <td>501</td>
       <td>5</td>
+      <td>218.141</td>
+      <td>none</td>
       <td>596.77</td>
       <td>436.78</td>
       <td></td>
@@ -7548,6 +8548,8 @@
       <td>1081.80</td>
       <td>89</td>
       <td>5</td>
+      <td>202.133</td>
+      <td>buy</td>
       <td>1022.13</td>
       <td>934.59</td>
       <td>836.64</td>
@@ -7563,6 +8565,8 @@
       <td>216.22</td>
       <td>273</td>
       <td>5</td>
+      <td>61.404</td>
+      <td>none</td>
       <td>189.16</td>
       <td>152.87</td>
       <td></td>
@@ -7578,6 +8582,8 @@
       <td>534.60</td>
       <td>1110</td>
       <td>5</td>
+      <td>147.634</td>
+      <td>none</td>
       <td>425.61</td>
       <td>419.31</td>
       <td></td>
@@ -7593,6 +8599,8 @@
       <td>864.65</td>
       <td>299</td>
       <td>5</td>
+      <td>129.186</td>
+      <td>buy</td>
       <td>755.37</td>
       <td>611.14</td>
       <td></td>
@@ -7608,6 +8616,8 @@
       <td>1995.50</td>
       <td>2</td>
       <td>5</td>
+      <td>681.88</td>
+      <td>strong_buy</td>
       <td>1918.57</td>
       <td>1752.51</td>
       <td>1477.57</td>
@@ -7623,6 +8633,8 @@
       <td>1519.80</td>
       <td>799</td>
       <td>5</td>
+      <td>393.61</td>
+      <td>none</td>
       <td>1380.63</td>
       <td>1020.18</td>
       <td></td>
@@ -7638,6 +8650,8 @@
       <td>1478.50</td>
       <td>133</td>
       <td>1</td>
+      <td>122.355</td>
+      <td>strong_buy</td>
       <td>1354.25</td>
       <td>980.74</td>
       <td></td>
@@ -7653,6 +8667,8 @@
       <td>5456.50</td>
       <td>395</td>
       <td>5</td>
+      <td>748.719</td>
+      <td>none</td>
       <td>4690.74</td>
       <td>3923.02</td>
       <td></td>
@@ -7668,6 +8684,8 @@
       <td>185.09</td>
       <td>265</td>
       <td>5</td>
+      <td>268.958</td>
+      <td>none</td>
       <td>170.92</td>
       <td>121.23</td>
       <td></td>
@@ -7683,6 +8701,8 @@
       <td>35.42</td>
       <td>1568</td>
       <td>1</td>
+      <td>14.554</td>
+      <td>none</td>
       <td>32.09</td>
       <td>23.79</td>
       <td></td>
@@ -7698,6 +8718,8 @@
       <td>89.46</td>
       <td>1283</td>
       <td>1</td>
+      <td>104.785</td>
+      <td>none</td>
       <td>82.09</td>
       <td>59.02</td>
       <td></td>
@@ -7713,6 +8735,8 @@
       <td>28.98</td>
       <td>1673</td>
       <td>1</td>
+      <td>19.178</td>
+      <td>none</td>
       <td>26.44</td>
       <td>19.25</td>
       <td></td>
@@ -7728,6 +8752,8 @@
       <td>571.30</td>
       <td>579</td>
       <td>5</td>
+      <td>102.694</td>
+      <td>none</td>
       <td>508.21</td>
       <td>392.24</td>
       <td></td>
@@ -7743,6 +8769,8 @@
       <td>171.55</td>
       <td>1496</td>
       <td>1</td>
+      <td>83.062</td>
+      <td>none</td>
       <td>142.87</td>
       <td>127.46</td>
       <td></td>
@@ -7758,6 +8786,8 @@
       <td>1585.60</td>
       <td>7</td>
       <td>5</td>
+      <td>2.704</td>
+      <td>buy</td>
       <td>1488.31</td>
       <td>1313.64</td>
       <td>1282.13</td>
@@ -7773,6 +8803,8 @@
       <td>661.55</td>
       <td>600</td>
       <td>1</td>
+      <td>219.877</td>
+      <td>none</td>
       <td>594.88</td>
       <td>447.32</td>
       <td></td>
@@ -7788,6 +8820,8 @@
       <td>2188.10</td>
       <td>13</td>
       <td>5</td>
+      <td>792.111</td>
+      <td>buy</td>
       <td>2066.12</td>
       <td>1966.32</td>
       <td>1600.75</td>
@@ -7803,6 +8837,8 @@
       <td>6944.50</td>
       <td>98</td>
       <td>5</td>
+      <td>653.147</td>
+      <td>buy</td>
       <td>6156.49</td>
       <td>4772.66</td>
       <td></td>
@@ -7818,6 +8854,8 @@
       <td>1215.90</td>
       <td>343</td>
       <td>5</td>
+      <td>381.404</td>
+      <td>strong_buy</td>
       <td>1094.49</td>
       <td>818.51</td>
       <td></td>
@@ -7833,6 +8871,8 @@
       <td>272.15</td>
       <td>1488</td>
       <td>1</td>
+      <td>82.725</td>
+      <td>none</td>
       <td>246.49</td>
       <td>181.57</td>
       <td></td>
@@ -7848,6 +8888,8 @@
       <td>660.40</td>
       <td>1272</td>
       <td>1</td>
+      <td>591.805</td>
+      <td>none</td>
       <td>574.03</td>
       <td>464.61</td>
       <td></td>
@@ -7863,6 +8905,8 @@
       <td>1193.35</td>
       <td>904</td>
       <td>1</td>
+      <td>60.039</td>
+      <td>none</td>
       <td>1038.39</td>
       <td>838.14</td>
       <td></td>
@@ -7878,6 +8922,8 @@
       <td>55.70</td>
       <td>1082</td>
       <td>5</td>
+      <td>40.199</td>
+      <td>none</td>
       <td>48.02</td>
       <td>39.53</td>
       <td></td>
@@ -7893,6 +8939,8 @@
       <td>58.25</td>
       <td>1663</td>
       <td>1</td>
+      <td>48.578</td>
+      <td>none</td>
       <td>52.77</td>
       <td>38.77</td>
       <td></td>
@@ -7908,6 +8956,8 @@
       <td>5591.00</td>
       <td>57</td>
       <td>5</td>
+      <td>776.877</td>
+      <td>hold</td>
       <td>5331.07</td>
       <td>4969.75</td>
       <td>4074.61</td>
@@ -7923,6 +8973,8 @@
       <td>236.00</td>
       <td>1326</td>
       <td>1</td>
+      <td>104.485</td>
+      <td>none</td>
       <td>205.12</td>
       <td>165.37</td>
       <td></td>
@@ -7938,6 +8990,8 @@
       <td>1962.60</td>
       <td>506</td>
       <td>5</td>
+      <td>93.376</td>
+      <td>none</td>
       <td>1649.16</td>
       <td>1431.8</td>
       <td></td>
@@ -7953,6 +9007,8 @@
       <td>75.84</td>
       <td>1566</td>
       <td>1</td>
+      <td>78.482</td>
+      <td>none</td>
       <td>67.59</td>
       <td>51.44</td>
       <td></td>
@@ -7968,6 +9024,8 @@
       <td>7840.00</td>
       <td>287</td>
       <td>5</td>
+      <td>675.865</td>
+      <td>buy</td>
       <td>6632.77</td>
       <td>5668.47</td>
       <td></td>
@@ -7983,6 +9041,8 @@
       <td>233.35</td>
       <td>205</td>
       <td>5</td>
+      <td>89.872</td>
+      <td>none</td>
       <td>208.82</td>
       <td>157.2</td>
       <td></td>
@@ -7998,6 +9058,8 @@
       <td>378.00</td>
       <td>1185</td>
       <td>1</td>
+      <td>195.756</td>
+      <td>none</td>
       <td>333.92</td>
       <td>258.9</td>
       <td></td>
@@ -8013,6 +9075,8 @@
       <td>321.20</td>
       <td>42</td>
       <td>5</td>
+      <td>194.387</td>
+      <td>none</td>
       <td>296.75</td>
       <td>206.62</td>
       <td></td>
@@ -8028,6 +9092,8 @@
       <td>1335.60</td>
       <td>686</td>
       <td>5</td>
+      <td>227.503</td>
+      <td>strong_buy</td>
       <td>1175.51</td>
       <td>917.38</td>
       <td></td>
@@ -8043,6 +9109,8 @@
       <td>152.92</td>
       <td>1122</td>
       <td>5</td>
+      <td>116.253</td>
+      <td>none</td>
       <td>139.00</td>
       <td>100.43</td>
       <td></td>
@@ -8058,6 +9126,8 @@
       <td>3694.00</td>
       <td>588</td>
       <td>2.5</td>
+      <td>1020.967</td>
+      <td>none</td>
       <td>3116.50</td>
       <td>2664.85</td>
       <td></td>
@@ -8073,6 +9143,8 @@
       <td>7360.50</td>
       <td>93</td>
       <td>5</td>
+      <td>571.235</td>
+      <td>buy</td>
       <td>6983.37</td>
       <td>6309.35</td>
       <td>5582.98</td>
@@ -8088,6 +9160,8 @@
       <td>153.32</td>
       <td>1312</td>
       <td>1</td>
+      <td>134.866</td>
+      <td>none</td>
       <td>131.95</td>
       <td>107.83</td>
       <td></td>
@@ -8103,6 +9177,8 @@
       <td>31080.00</td>
       <td>82</td>
       <td>5</td>
+      <td>5969.083</td>
+      <td>hold</td>
       <td>29176.06</td>
       <td>27334.99</td>
       <td>23128.07</td>
@@ -8118,6 +9194,8 @@
       <td>51.60</td>
       <td>1410</td>
       <td>5</td>
+      <td>19.924</td>
+      <td>none</td>
       <td>45.36</td>
       <td>35.23</td>
       <td></td>
@@ -8133,6 +9211,8 @@
       <td>869.65</td>
       <td>977</td>
       <td>5</td>
+      <td>185.61</td>
+      <td>none</td>
       <td>741.94</td>
       <td>615.99</td>
       <td></td>
@@ -8148,6 +9228,8 @@
       <td>312.40</td>
       <td>203</td>
       <td>5</td>
+      <td>132.529</td>
+      <td>hold</td>
       <td>285.35</td>
       <td>255.93</td>
       <td>258.63</td>
@@ -8163,6 +9245,8 @@
       <td>845.60</td>
       <td>183</td>
       <td>5</td>
+      <td>66.376</td>
+      <td>none</td>
       <td>730.50</td>
       <td>588.56</td>
       <td></td>
@@ -8178,6 +9262,8 @@
       <td>6129.00</td>
       <td>437</td>
       <td>5</td>
+      <td>1197.514</td>
+      <td>strong_buy</td>
       <td>5259.44</td>
       <td>4294.11</td>
       <td></td>
@@ -8193,6 +9279,8 @@
       <td>1938.30</td>
       <td>830</td>
       <td>1</td>
+      <td>53.505</td>
+      <td>none</td>
       <td>1693.92</td>
       <td>1326.57</td>
       <td></td>
@@ -8208,6 +9296,8 @@
       <td>44.87</td>
       <td>1570</td>
       <td>1</td>
+      <td>54.581</td>
+      <td>none</td>
       <td>40.89</td>
       <td>30.25</td>
       <td>43.64</td>
@@ -8223,6 +9313,8 @@
       <td>1934.20</td>
       <td>4</td>
       <td>5</td>
+      <td>186.614</td>
+      <td>buy</td>
       <td>1876.72</td>
       <td>1680.58</td>
       <td>1388.2</td>
@@ -8238,6 +9330,8 @@
       <td>944.15</td>
       <td>338</td>
       <td>5</td>
+      <td>77.073</td>
+      <td>none</td>
       <td>888.85</td>
       <td>788.39</td>
       <td>736.2</td>
@@ -8253,6 +9347,8 @@
       <td>29760.00</td>
       <td>250</td>
       <td>5</td>
+      <td>1638.977</td>
+      <td>none</td>
       <td>27746.69</td>
       <td>24428.8</td>
       <td>23874</td>
@@ -8268,6 +9364,8 @@
       <td>111.32</td>
       <td>1411</td>
       <td>5</td>
+      <td>71.403</td>
+      <td>none</td>
       <td>97.84</td>
       <td>75.22</td>
       <td></td>
@@ -8283,6 +9381,8 @@
       <td>698.60</td>
       <td>586</td>
       <td>5</td>
+      <td>151.021</td>
+      <td>none</td>
       <td>586.86</td>
       <td>497.58</td>
       <td></td>
@@ -8298,6 +9398,8 @@
       <td>432.80</td>
       <td>399</td>
       <td>5</td>
+      <td>173.364</td>
+      <td>none</td>
       <td>410.42</td>
       <td>363.41</td>
       <td>330.82</td>
@@ -8313,6 +9415,8 @@
       <td>931.40</td>
       <td>313</td>
       <td>5</td>
+      <td>847.634</td>
+      <td>underperform</td>
       <td>867.99</td>
       <td>759.86</td>
       <td>749.03</td>
@@ -8328,6 +9432,8 @@
       <td>2393.50</td>
       <td>38</td>
       <td>5</td>
+      <td>202.25</td>
+      <td>underperform</td>
       <td>2283.00</td>
       <td>1949.65</td>
       <td>1873.34</td>
@@ -8343,6 +9449,8 @@
       <td>71.98</td>
       <td>1462</td>
       <td>1</td>
+      <td>30.125</td>
+      <td>none</td>
       <td>62.20</td>
       <td>49.44</td>
       <td></td>
@@ -8358,6 +9466,8 @@
       <td>140.65</td>
       <td>725</td>
       <td>5</td>
+      <td>39.898</td>
+      <td>none</td>
       <td>127.90</td>
       <td>90.13</td>
       <td></td>
@@ -8373,6 +9483,8 @@
       <td>2778.60</td>
       <td>45</td>
       <td>5</td>
+      <td>1448.396</td>
+      <td>none</td>
       <td>2628.88</td>
       <td>2407.06</td>
       <td>2050.12</td>
@@ -8388,6 +9500,8 @@
       <td>41.47</td>
       <td>1384</td>
       <td>1</td>
+      <td>64.273</td>
+      <td>none</td>
       <td>41.71</td>
       <td>36.24</td>
       <td>28.04</td>
@@ -8403,6 +9517,8 @@
       <td>604.35</td>
       <td>736</td>
       <td>5</td>
+      <td>42.414</td>
+      <td>none</td>
       <td>549.60</td>
       <td>453.63</td>
       <td>537.39</td>
@@ -8418,6 +9534,8 @@
       <td>8311.00</td>
       <td>37</td>
       <td>5</td>
+      <td>1260.082</td>
+      <td>hold</td>
       <td>7671.92</td>
       <td>6404.68</td>
       <td>7105.12</td>
@@ -8433,6 +9551,8 @@
       <td>1436.80</td>
       <td>367</td>
       <td>5</td>
+      <td>359.371</td>
+      <td>buy</td>
       <td>1216.56</td>
       <td>1006.4</td>
       <td></td>
@@ -8448,6 +9568,8 @@
       <td>413.85</td>
       <td>1007</td>
       <td>5</td>
+      <td>63.668</td>
+      <td>none</td>
       <td>354.25</td>
       <td>285.96</td>
       <td></td>
@@ -8463,6 +9585,8 @@
       <td>607.00</td>
       <td>729</td>
       <td>1</td>
+      <td>76.249</td>
+      <td>none</td>
       <td>532.21</td>
       <td>406.04</td>
       <td></td>
@@ -8478,6 +9602,8 @@
       <td>13.87</td>
       <td>1670</td>
       <td>1</td>
+      <td>16.043</td>
+      <td>none</td>
       <td>12.22</td>
       <td>9.21</td>
       <td></td>
@@ -8493,6 +9619,8 @@
       <td>5975.00</td>
       <td>222</td>
       <td>5</td>
+      <td>443.207</td>
+      <td>hold</td>
       <td>5459.94</td>
       <td>3773.92</td>
       <td></td>
@@ -8508,6 +9636,8 @@
       <td>1950.70</td>
       <td>121</td>
       <td>5</td>
+      <td>377.02</td>
+      <td>buy</td>
       <td>1813.54</td>
       <td>1677.31</td>
       <td>1474.47</td>
@@ -8523,6 +9653,8 @@
       <td>509.90</td>
       <td>1252</td>
       <td>5</td>
+      <td>550.055</td>
+      <td>none</td>
       <td>443.08</td>
       <td>344.76</td>
       <td></td>
@@ -8538,6 +9670,8 @@
       <td>42.08</td>
       <td>1198</td>
       <td>1</td>
+      <td>27.046</td>
+      <td>none</td>
       <td>38.03</td>
       <td>26.97</td>
       <td></td>
@@ -8553,6 +9687,8 @@
       <td>67.61</td>
       <td>1644</td>
       <td>1</td>
+      <td>106.841</td>
+      <td>none</td>
       <td>59.25</td>
       <td>45.16</td>
       <td></td>
@@ -8568,6 +9704,8 @@
       <td>731.20</td>
       <td>406</td>
       <td>5</td>
+      <td>106.372</td>
+      <td>buy</td>
       <td>684.37</td>
       <td>619.67</td>
       <td>556.37</td>
@@ -8583,6 +9721,8 @@
       <td>60.98</td>
       <td>1385</td>
       <td>1</td>
+      <td>-73.404</td>
+      <td>none</td>
       <td>54.72</td>
       <td>39.45</td>
       <td></td>
@@ -8598,6 +9738,8 @@
       <td>20.30</td>
       <td>1390</td>
       <td>1</td>
+      <td>7.979</td>
+      <td>none</td>
       <td>18.24</td>
       <td>14.52</td>
       <td>18.87</td>
@@ -8613,6 +9755,8 @@
       <td>5785.50</td>
       <td>65</td>
       <td>5</td>
+      <td>180.856</td>
+      <td>buy</td>
       <td>5526.42</td>
       <td>4802.19</td>
       <td>4387.51</td>
@@ -8628,6 +9772,8 @@
       <td>1485.40</td>
       <td>1</td>
       <td>5</td>
+      <td>623.048</td>
+      <td>buy</td>
       <td>1416.96</td>
       <td>1259.68</td>
       <td>1101.05</td>
@@ -8643,6 +9789,8 @@
       <td>5390.00</td>
       <td>44</td>
       <td>5</td>
+      <td>153.641</td>
+      <td>buy</td>
       <td>5091.68</td>
       <td>3993.03</td>
       <td>4623.17</td>
@@ -8658,6 +9806,8 @@
       <td>85.61</td>
       <td>1255</td>
       <td>5</td>
+      <td>27.343</td>
+      <td>none</td>
       <td>76.67</td>
       <td>55.44</td>
       <td></td>
@@ -8673,6 +9823,8 @@
       <td>6580.50</td>
       <td>251</td>
       <td>5</td>
+      <td>6144.992</td>
+      <td>none</td>
       <td>6202.25</td>
       <td>5248.56</td>
       <td>5275.95</td>
@@ -8688,6 +9840,8 @@
       <td>101.79</td>
       <td>965</td>
       <td>5</td>
+      <td>59.582</td>
+      <td>none</td>
       <td>88.76</td>
       <td>68.18</td>
       <td></td>
@@ -8703,6 +9857,8 @@
       <td>208.02</td>
       <td>1554</td>
       <td>1</td>
+      <td>164.056</td>
+      <td>none</td>
       <td>198.17</td>
       <td>165.48</td>
       <td>165.1</td>
@@ -8718,6 +9874,8 @@
       <td>7.83</td>
       <td>1630</td>
       <td>1</td>
+      <td>8.212</td>
+      <td>none</td>
       <td>7.41</td>
       <td>4.66</td>
       <td></td>
@@ -8733,6 +9891,8 @@
       <td>171.27</td>
       <td>1382</td>
       <td>1</td>
+      <td>66.802</td>
+      <td>none</td>
       <td>148.88</td>
       <td>115.12</td>
       <td></td>
@@ -8748,6 +9908,8 @@
       <td>9.80</td>
       <td>1544</td>
       <td>1</td>
+      <td>14.08</td>
+      <td>none</td>
       <td>8.52</td>
       <td>6.58</td>
       <td></td>
@@ -8763,6 +9925,8 @@
       <td>1579.00</td>
       <td>64</td>
       <td>5</td>
+      <td>309.254</td>
+      <td>hold</td>
       <td>1482.01</td>
       <td>1362.65</td>
       <td>1165.95</td>
@@ -8778,6 +9942,8 @@
       <td>588.25</td>
       <td>166</td>
       <td>5</td>
+      <td>46.601</td>
+      <td>none</td>
       <td>518.09</td>
       <td>387.76</td>
       <td></td>
@@ -8793,6 +9959,8 @@
       <td>431.80</td>
       <td>609</td>
       <td>5</td>
+      <td>75.533</td>
+      <td>strong_buy</td>
       <td>376.60</td>
       <td>288.15</td>
       <td></td>
@@ -8808,6 +9976,8 @@
       <td>2872.20</td>
       <td>410</td>
       <td>5</td>
+      <td>269.438</td>
+      <td>none</td>
       <td>2545.11</td>
       <td>1876.36</td>
       <td></td>
@@ -8823,6 +9993,8 @@
       <td>878.50</td>
       <td>1048</td>
       <td>5</td>
+      <td>56.051</td>
+      <td>none</td>
       <td>834.00</td>
       <td>704.94</td>
       <td>691.46</td>
@@ -8838,6 +10010,8 @@
       <td>120.87</td>
       <td>1580</td>
       <td>1</td>
+      <td>87.812</td>
+      <td>none</td>
       <td>111.21</td>
       <td>74.78</td>
       <td></td>
@@ -8853,6 +10027,8 @@
       <td>3439.60</td>
       <td>79</td>
       <td>5</td>
+      <td>224.281</td>
+      <td>buy</td>
       <td>3185.16</td>
       <td>2861.6</td>
       <td>2685.16</td>
@@ -8868,6 +10044,8 @@
       <td>426.05</td>
       <td>926</td>
       <td>5</td>
+      <td>104.782</td>
+      <td>none</td>
       <td>373.42</td>
       <td>282.04</td>
       <td></td>
@@ -8883,6 +10061,8 @@
       <td>740.20</td>
       <td>109</td>
       <td>5</td>
+      <td>30.72</td>
+      <td>buy</td>
       <td>682.16</td>
       <td>634.35</td>
       <td>562.44</td>
@@ -8898,6 +10078,8 @@
       <td>958.10</td>
       <td>844</td>
       <td>1</td>
+      <td>238.981</td>
+      <td>none</td>
       <td>878.03</td>
       <td>724.63</td>
       <td>829.2</td>
@@ -8913,6 +10095,8 @@
       <td>146.15</td>
       <td>884</td>
       <td>1</td>
+      <td>10.63</td>
+      <td>none</td>
       <td>128.39</td>
       <td>96.31</td>
       <td></td>
@@ -8928,6 +10112,8 @@
       <td>332.55</td>
       <td>1502</td>
       <td>5</td>
+      <td>618.87</td>
+      <td>none</td>
       <td>306.83</td>
       <td>261.7</td>
       <td>275.07</td>
@@ -8943,6 +10129,8 @@
       <td>798.40</td>
       <td>356</td>
       <td>5</td>
+      <td>73.498</td>
+      <td>none</td>
       <td>745.99</td>
       <td>480.65</td>
       <td></td>
@@ -8958,6 +10146,8 @@
       <td>12.54</td>
       <td>1583</td>
       <td>1</td>
+      <td>47.939</td>
+      <td>none</td>
       <td>10.51</td>
       <td>8.75</td>
       <td></td>
@@ -8973,6 +10163,8 @@
       <td>265.85</td>
       <td>234</td>
       <td>5</td>
+      <td>174.347</td>
+      <td>hold</td>
       <td>249.63</td>
       <td>232.73</td>
       <td>191.59</td>
@@ -8988,6 +10180,8 @@
       <td>60.50</td>
       <td>1352</td>
       <td>1</td>
+      <td>6.163</td>
+      <td>none</td>
       <td>52.38</td>
       <td>40.49</td>
       <td></td>
@@ -9003,6 +10197,8 @@
       <td>184.71</td>
       <td>76</td>
       <td>5</td>
+      <td>129.282</td>
+      <td>buy</td>
       <td>174.07</td>
       <td>149.31</td>
       <td>144.84</td>
@@ -9018,6 +10214,8 @@
       <td>26.48</td>
       <td>1556</td>
       <td>1</td>
+      <td>23.148</td>
+      <td>none</td>
       <td>23.07</td>
       <td>17.55</td>
       <td></td>
@@ -9033,6 +10231,8 @@
       <td>527.00</td>
       <td>113</td>
       <td>5</td>
+      <td>60.941</td>
+      <td>hold</td>
       <td>479.35</td>
       <td>421.95</td>
       <td>434.09</td>
@@ -9048,6 +10248,8 @@
       <td>290.20</td>
       <td>1388</td>
       <td>1</td>
+      <td>136.306</td>
+      <td>none</td>
       <td>233.72</td>
       <td>211.24</td>
       <td></td>
@@ -9063,6 +10265,8 @@
       <td>287.45</td>
       <td>987</td>
       <td>5</td>
+      <td>89.937</td>
+      <td>none</td>
       <td>255.26</td>
       <td>185.36</td>
       <td></td>
@@ -9078,6 +10282,8 @@
       <td>417.10</td>
       <td>460</td>
       <td>5</td>
+      <td>62.218</td>
+      <td>none</td>
       <td>369.68</td>
       <td>269.03</td>
       <td></td>
@@ -9093,6 +10299,8 @@
       <td>561.20</td>
       <td>151</td>
       <td>5</td>
+      <td>52.84</td>
+      <td>hold</td>
       <td>545.22</td>
       <td>481.96</td>
       <td>393.08</td>
@@ -9108,6 +10316,8 @@
       <td>2884.30</td>
       <td>352</td>
       <td>5</td>
+      <td>509.029</td>
+      <td>none</td>
       <td>2713.26</td>
       <td>2232.34</td>
       <td>2353.45</td>
@@ -9123,6 +10333,8 @@
       <td>99.95</td>
       <td>1359</td>
       <td>1</td>
+      <td>57.199</td>
+      <td>none</td>
       <td>84.83</td>
       <td>68.08</td>
       <td></td>
@@ -9138,6 +10350,8 @@
       <td>16.87</td>
       <td>1380</td>
       <td>1</td>
+      <td>6.115</td>
+      <td>none</td>
       <td>13.71</td>
       <td>12.1</td>
       <td></td>
@@ -9153,6 +10367,8 @@
       <td>34275.00</td>
       <td>137</td>
       <td>5</td>
+      <td>1992.016</td>
+      <td>none</td>
       <td>32492.35</td>
       <td>29321.55</td>
       <td>24861.4</td>
@@ -9168,6 +10384,8 @@
       <td>173.85</td>
       <td>446</td>
       <td>5</td>
+      <td>49.913</td>
+      <td>none</td>
       <td>142.90</td>
       <td>122.85</td>
       <td></td>
@@ -9183,6 +10401,8 @@
       <td>12502.00</td>
       <td>18</td>
       <td>5</td>
+      <td>2403.764</td>
+      <td>buy</td>
       <td>11553.23</td>
       <td>10628.93</td>
       <td>9424.96</td>
@@ -9198,6 +10418,8 @@
       <td>652.10</td>
       <td>601</td>
       <td>5</td>
+      <td>16.392</td>
+      <td>none</td>
       <td>617.15</td>
       <td>503.64</td>
       <td>527.71</td>
@@ -9213,6 +10435,8 @@
       <td>96.60</td>
       <td>1116</td>
       <td>5</td>
+      <td>79.444</td>
+      <td>none</td>
       <td>86.86</td>
       <td>60.73</td>
       <td></td>
@@ -9228,6 +10452,8 @@
       <td>1398.20</td>
       <td>1032</td>
       <td>5</td>
+      <td>193.182</td>
+      <td>none</td>
       <td>1342.98</td>
       <td>1097.72</td>
       <td>1092.01</td>
@@ -9243,6 +10469,8 @@
       <td>15.74</td>
       <td>1329</td>
       <td>1</td>
+      <td>1.109</td>
+      <td>none</td>
       <td>14.17</td>
       <td>9.85</td>
       <td></td>
@@ -9258,6 +10486,8 @@
       <td>243.67</td>
       <td>24</td>
       <td>5</td>
+      <td>272.958</td>
+      <td>buy</td>
       <td>228.14</td>
       <td>198.59</td>
       <td>188.81</td>
@@ -9273,6 +10503,8 @@
       <td>229.64</td>
       <td>256</td>
       <td>5</td>
+      <td>131.305</td>
+      <td>none</td>
       <td>207.86</td>
       <td>183.91</td>
       <td>187.61</td>
@@ -9288,6 +10520,8 @@
       <td>18.76</td>
       <td>1519</td>
       <td>1</td>
+      <td>11.521</td>
+      <td>none</td>
       <td>17.61</td>
       <td>14.27</td>
       <td>15.44</td>
@@ -9303,6 +10537,8 @@
       <td>1557.00</td>
       <td>68</td>
       <td>5</td>
+      <td>281.455</td>
+      <td>buy</td>
       <td>1442.95</td>
       <td>1333.26</td>
       <td>1150.66</td>
@@ -9318,6 +10554,8 @@
       <td>323.95</td>
       <td>369</td>
       <td>5</td>
+      <td>206.163</td>
+      <td>none</td>
       <td>301.87</td>
       <td>256.1</td>
       <td>259.01</td>
@@ -9333,6 +10571,8 @@
       <td>609.15</td>
       <td>1096</td>
       <td>5</td>
+      <td>548.03</td>
+      <td>none</td>
       <td>518.06</td>
       <td>466.24</td>
       <td>551.9</td>
@@ -9348,6 +10588,8 @@
       <td>598.00</td>
       <td>794</td>
       <td>5</td>
+      <td>348.067</td>
+      <td>none</td>
       <td>536.98</td>
       <td>483.44</td>
       <td>487.59</td>
@@ -9363,6 +10605,8 @@
       <td>304.30</td>
       <td>1296</td>
       <td>1</td>
+      <td>114.339</td>
+      <td>none</td>
       <td>255.94</td>
       <td>206.56</td>
       <td></td>
@@ -9378,6 +10622,8 @@
       <td>224.65</td>
       <td>445</td>
       <td>5</td>
+      <td>179.245</td>
+      <td>none</td>
       <td>204.10</td>
       <td>167</td>
       <td>194.9</td>
@@ -9393,6 +10639,8 @@
       <td>386.45</td>
       <td>34</td>
       <td>5</td>
+      <td>160.772</td>
+      <td>none</td>
       <td>368.37</td>
       <td>310.55</td>
       <td>294.61</td>
@@ -9408,6 +10656,8 @@
       <td>1150.00</td>
       <td>1292</td>
       <td>1</td>
+      <td>1788.198</td>
+      <td>none</td>
       <td>1062.54</td>
       <td>883.46</td>
       <td>950.92</td>
@@ -9423,6 +10673,8 @@
       <td>16622.00</td>
       <td>377</td>
       <td>5</td>
+      <td>2599.85</td>
+      <td>none</td>
       <td>15245.70</td>
       <td>14401.31</td>
       <td>12222.32</td>
@@ -9438,6 +10690,8 @@
       <td>31.43</td>
       <td>1319</td>
       <td>1</td>
+      <td>10.423</td>
+      <td>none</td>
       <td>25.81</td>
       <td>21.9</td>
       <td></td>
@@ -9453,6 +10707,8 @@
       <td>943.85</td>
       <td>111</td>
       <td>5</td>
+      <td>465.732</td>
+      <td>buy</td>
       <td>875.99</td>
       <td>787.01</td>
       <td>713.08</td>
@@ -9468,6 +10724,8 @@
       <td>5075.00</td>
       <td>176</td>
       <td>5</td>
+      <td>1187.792</td>
+      <td>none</td>
       <td>4713.53</td>
       <td>4263.77</td>
       <td>3796.88</td>
@@ -9483,6 +10741,8 @@
       <td>670.85</td>
       <td>60</td>
       <td>5</td>
+      <td>557.311</td>
+      <td>buy</td>
       <td>627.62</td>
       <td>557.5</td>
       <td>503.22</td>
@@ -9498,6 +10758,8 @@
       <td>84.44</td>
       <td>1104</td>
       <td>5</td>
+      <td>59.111</td>
+      <td>none</td>
       <td>80.19</td>
       <td>71.5</td>
       <td>60.82</td>
@@ -9513,6 +10775,8 @@
       <td>4350.50</td>
       <td>207</td>
       <td>5</td>
+      <td>574.237</td>
+      <td>hold</td>
       <td>4005.27</td>
       <td>3554.3</td>
       <td>3387.77</td>
@@ -9528,6 +10792,8 @@
       <td>211.67</td>
       <td>189</td>
       <td>5</td>
+      <td>140.567</td>
+      <td>buy</td>
       <td>201.39</td>
       <td>179.8</td>
       <td>151.17</td>
@@ -9543,6 +10809,8 @@
       <td>403.90</td>
       <td>70</td>
       <td>5</td>
+      <td>112.6</td>
+      <td>buy</td>
       <td>379.41</td>
       <td>323.96</td>
       <td>312.45</td>
@@ -9558,6 +10826,8 @@
       <td>170.03</td>
       <td>1560</td>
       <td>1</td>
+      <td>573.368</td>
+      <td>none</td>
       <td>155.87</td>
       <td>137.9</td>
       <td>133.81</td>
@@ -9573,6 +10843,8 @@
       <td>67.98</td>
       <td>169</td>
       <td>5</td>
+      <td>33.762</td>
+      <td>hold</td>
       <td>63.80</td>
       <td>52.94</td>
       <td>54.18</td>
@@ -9588,6 +10860,8 @@
       <td>192.17</td>
       <td>374</td>
       <td>5</td>
+      <td>67.209</td>
+      <td>none</td>
       <td>170.85</td>
       <td>120.09</td>
       <td></td>
@@ -9603,6 +10877,8 @@
       <td>257.40</td>
       <td>29</td>
       <td>5</td>
+      <td>79.186</td>
+      <td>hold</td>
       <td>244.33</td>
       <td>215.23</td>
       <td>187.52</td>
@@ -9618,6 +10894,8 @@
       <td>5256.50</td>
       <td>608</td>
       <td>5</td>
+      <td>234.684</td>
+      <td>none</td>
       <td>4938.88</td>
       <td>4090.55</td>
       <td>4183.31</td>
@@ -9633,6 +10911,8 @@
       <td>13154.00</td>
       <td>300</td>
       <td>5</td>
+      <td>1694.837</td>
+      <td>none</td>
       <td>12272.04</td>
       <td>10386.12</td>
       <td>10405.11</td>
@@ -9648,6 +10928,8 @@
       <td>811.80</td>
       <td>959</td>
       <td>5</td>
+      <td>273.224</td>
+      <td>none</td>
       <td>670.93</td>
       <td>557.61</td>
       <td></td>
@@ -9663,6 +10945,8 @@
       <td>2036.50</td>
       <td>22</td>
       <td>5</td>
+      <td>453.603</td>
+      <td>buy</td>
       <td>1922.18</td>
       <td>1808.89</td>
       <td>1386.41</td>
@@ -9678,6 +10962,8 @@
       <td>2740.60</td>
       <td>505</td>
       <td>5</td>
+      <td>161.251</td>
+      <td>none</td>
       <td>2314.63</td>
       <td>1831.52</td>
       <td></td>
@@ -9693,6 +10979,8 @@
       <td>267.40</td>
       <td>1013</td>
       <td>1</td>
+      <td>92.897</td>
+      <td>none</td>
       <td>249.84</td>
       <td>154.69</td>
       <td></td>
@@ -9708,6 +10996,8 @@
       <td>193.17</td>
       <td>641</td>
       <td>5</td>
+      <td>319.558</td>
+      <td>strong_buy</td>
       <td>181.34</td>
       <td>163.22</td>
       <td>140.84</td>
@@ -9723,6 +11013,8 @@
       <td>296.80</td>
       <td>1076</td>
       <td>5</td>
+      <td>330.15</td>
+      <td>none</td>
       <td>282.83</td>
       <td>239.1</td>
       <td>223.85</td>
@@ -9738,6 +11030,8 @@
       <td>518.70</td>
       <td>522</td>
       <td>5</td>
+      <td>70.506</td>
+      <td>none</td>
       <td>474.99</td>
       <td>432.37</td>
       <td>395.81</td>
@@ -9753,6 +11047,8 @@
       <td>630.85</td>
       <td>584</td>
       <td>5</td>
+      <td>137.189</td>
+      <td>none</td>
       <td>579.84</td>
       <td>512.77</td>
       <td>491.84</td>
@@ -9768,6 +11064,8 @@
       <td>669.60</td>
       <td>107</td>
       <td>5</td>
+      <td>82.568</td>
+      <td>buy</td>
       <td>618.75</td>
       <td>529.55</td>
       <td>533.39</td>
@@ -9783,6 +11081,8 @@
       <td>61.66</td>
       <td>1373</td>
       <td>1</td>
+      <td>8.801</td>
+      <td>none</td>
       <td>56.99</td>
       <td>48.58</td>
       <td>48.97</td>
@@ -9798,6 +11098,8 @@
       <td>120.89</td>
       <td>583</td>
       <td>1</td>
+      <td>8.189</td>
+      <td>none</td>
       <td>100.83</td>
       <td>81.21</td>
       <td></td>
@@ -9813,6 +11115,8 @@
       <td>118.33</td>
       <td>1564</td>
       <td>1</td>
+      <td>39.262</td>
+      <td>none</td>
       <td>110.75</td>
       <td>95.88</td>
       <td>89.88</td>
@@ -9828,6 +11132,8 @@
       <td>459.45</td>
       <td>271</td>
       <td>5</td>
+      <td>232.494</td>
+      <td>buy</td>
       <td>423.41</td>
       <td>379.94</td>
       <td>347.87</td>
@@ -9843,6 +11149,8 @@
       <td>925.05</td>
       <td>561</td>
       <td>5</td>
+      <td>113.161</td>
+      <td>buy</td>
       <td>849.86</td>
       <td>784.75</td>
       <td>682.51</td>
@@ -9858,6 +11166,8 @@
       <td>2697.70</td>
       <td>249</td>
       <td>5</td>
+      <td>301.586</td>
+      <td>none</td>
       <td>2454.53</td>
       <td>2170.34</td>
       <td>2132.23</td>
@@ -9873,6 +11183,8 @@
       <td>42.57</td>
       <td>1428</td>
       <td>1</td>
+      <td>34.814</td>
+      <td>none</td>
       <td>39.99</td>
       <td>31.95</td>
       <td>34.63</td>
@@ -9888,6 +11200,8 @@
       <td>1154.60</td>
       <td>695</td>
       <td>5</td>
+      <td>295.992</td>
+      <td>none</td>
       <td>989.00</td>
       <td>1047.2</td>
       <td>854.08</td>
@@ -9903,6 +11217,8 @@
       <td>185.35</td>
       <td>1451</td>
       <td>1</td>
+      <td>54.402</td>
+      <td>none</td>
       <td>147.69</td>
       <td>130.88</td>
       <td></td>
@@ -9918,6 +11234,8 @@
       <td>377.45</td>
       <td>916</td>
       <td>1</td>
+      <td>101.553</td>
+      <td>none</td>
       <td>325.48</td>
       <td>241.71</td>
       <td></td>
@@ -9933,6 +11251,8 @@
       <td>537.20</td>
       <td>828</td>
       <td>5</td>
+      <td>104.922</td>
+      <td>none</td>
       <td>470.06</td>
       <td>336.81</td>
       <td></td>
@@ -9948,6 +11268,8 @@
       <td>347.15</td>
       <td>789</td>
       <td>5</td>
+      <td>102.342</td>
+      <td>none</td>
       <td>313.74</td>
       <td>320.34</td>
       <td>234.46</td>
@@ -9963,6 +11285,8 @@
       <td>3603.00</td>
       <td>400</td>
       <td>5</td>
+      <td>292.093</td>
+      <td>none</td>
       <td>3237.30</td>
       <td>2879.64</td>
       <td>2897</td>
@@ -9978,6 +11302,8 @@
       <td>96.84</td>
       <td>1497</td>
       <td>1</td>
+      <td>35.461</td>
+      <td>none</td>
       <td>79.34</td>
       <td>65.99</td>
       <td></td>
@@ -9993,6 +11319,8 @@
       <td>553.40</td>
       <td>327</td>
       <td>5</td>
+      <td>217.598</td>
+      <td>none</td>
       <td>492.49</td>
       <td>487.1</td>
       <td>404.16</td>
@@ -10008,6 +11336,8 @@
       <td>117.84</td>
       <td>471</td>
       <td>5</td>
+      <td>29.397</td>
+      <td>strong_buy</td>
       <td>103.02</td>
       <td>73.72</td>
       <td></td>
@@ -10023,6 +11353,8 @@
       <td>655.35</td>
       <td>289</td>
       <td>5</td>
+      <td>117.43</td>
+      <td>hold</td>
       <td>589.77</td>
       <td>533.32</td>
       <td>514.17</td>
@@ -10038,6 +11370,8 @@
       <td>291.30</td>
       <td>1537</td>
       <td>1</td>
+      <td>246.384</td>
+      <td>none</td>
       <td>265.35</td>
       <td>237.99</td>
       <td>224.36</td>
@@ -10053,6 +11387,8 @@
       <td>498.60</td>
       <td>606</td>
       <td>5</td>
+      <td>560.873</td>
+      <td>none</td>
       <td>459.66</td>
       <td>399.17</td>
       <td>386.72</td>
@@ -10068,6 +11404,8 @@
       <td>212.88</td>
       <td>758</td>
       <td>5</td>
+      <td>61.67</td>
+      <td>none</td>
       <td>198.86</td>
       <td>175.84</td>
       <td>157.1</td>
@@ -10083,6 +11421,8 @@
       <td>3357.40</td>
       <td>235</td>
       <td>5</td>
+      <td>926.619</td>
+      <td>hold</td>
       <td>3055.62</td>
       <td>2650.24</td>
       <td>2677.23</td>
@@ -10098,6 +11438,8 @@
       <td>5581.50</td>
       <td>126</td>
       <td>5</td>
+      <td>409.392</td>
+      <td>hold</td>
       <td>5221.64</td>
       <td>4493.48</td>
       <td>4218.93</td>
@@ -10113,6 +11455,8 @@
       <td>341.25</td>
       <td>573</td>
       <td>5</td>
+      <td>144.636</td>
+      <td>none</td>
       <td>315.99</td>
       <td>277.85</td>
       <td>258.06</td>
@@ -10128,6 +11472,8 @@
       <td>988.20</td>
       <td>447</td>
       <td>5</td>
+      <td>998.77</td>
+      <td>none</td>
       <td>937.05</td>
       <td>758.02</td>
       <td>771.72</td>
@@ -10143,6 +11489,8 @@
       <td>1322.40</td>
       <td>793</td>
       <td>5</td>
+      <td>597.156</td>
+      <td>none</td>
       <td>1205.80</td>
       <td>1116.36</td>
       <td>978.14</td>
@@ -10158,6 +11506,8 @@
       <td>458.80</td>
       <td>709</td>
       <td>5</td>
+      <td>83.362</td>
+      <td>strong_buy</td>
       <td>418.38</td>
       <td>362.41</td>
       <td>364.04</td>
@@ -10173,6 +11523,8 @@
       <td>620.85</td>
       <td>1069</td>
       <td>5</td>
+      <td>195.119</td>
+      <td>hold</td>
       <td>565.98</td>
       <td>361.84</td>
       <td></td>
@@ -10188,6 +11540,8 @@
       <td>37.22</td>
       <td>1652</td>
       <td>1</td>
+      <td>32.123</td>
+      <td>none</td>
       <td>32.06</td>
       <td>26.58</td>
       <td>34.19</td>
@@ -10203,6 +11557,8 @@
       <td>677.45</td>
       <td>90</td>
       <td>5</td>
+      <td>25.142</td>
+      <td>buy</td>
       <td>626.89</td>
       <td>542.87</td>
       <td>519.77</td>
@@ -10218,6 +11574,8 @@
       <td>408.80</td>
       <td>997</td>
       <td>5</td>
+      <td>150.916</td>
+      <td>none</td>
       <td>358.74</td>
       <td>315.91</td>
       <td>344.91</td>
@@ -10233,6 +11591,8 @@
       <td>928.40</td>
       <td>10</td>
       <td>5</td>
+      <td>155.752</td>
+      <td>buy</td>
       <td>886.12</td>
       <td>818.5</td>
       <td>610.55</td>
@@ -10248,6 +11608,8 @@
       <td>1121.80</td>
       <td>230</td>
       <td>5</td>
+      <td>301.641</td>
+      <td>none</td>
       <td>1011.82</td>
       <td>971.19</td>
       <td>814.43</td>
@@ -10263,6 +11625,8 @@
       <td>1299.30</td>
       <td>324</td>
       <td>5</td>
+      <td>81.934</td>
+      <td>buy</td>
       <td>1128.58</td>
       <td>812.02</td>
       <td></td>
@@ -10278,6 +11642,8 @@
       <td>83.12</td>
       <td>883</td>
       <td>1</td>
+      <td>31.148</td>
+      <td>none</td>
       <td>69.95</td>
       <td>54.16</td>
       <td></td>
@@ -10293,6 +11659,8 @@
       <td>19.15</td>
       <td>1655</td>
       <td>1</td>
+      <td>21.542</td>
+      <td>none</td>
       <td>16.25</td>
       <td>12.34</td>
       <td></td>
@@ -10308,6 +11676,8 @@
       <td>2526.90</td>
       <td>8</td>
       <td>5</td>
+      <td>210.258</td>
+      <td>buy</td>
       <td>2286.55</td>
       <td>2057.19</td>
       <td>1954.29</td>
@@ -10323,6 +11693,8 @@
       <td>1979.90</td>
       <td>233</td>
       <td>5</td>
+      <td>988.078</td>
+      <td>buy</td>
       <td>1822.44</td>
       <td>1585.09</td>
       <td>1527.07</td>
@@ -10338,6 +11710,8 @@
       <td>162.20</td>
       <td>1213</td>
       <td>5</td>
+      <td>44.936</td>
+      <td>none</td>
       <td>145.10</td>
       <td>96.78</td>
       <td></td>
@@ -10353,6 +11727,8 @@
       <td>720.65</td>
       <td>1033</td>
       <td>5</td>
+      <td>112.976</td>
+      <td>none</td>
       <td>675.51</td>
       <td>617.85</td>
       <td>501.85</td>
@@ -10368,6 +11744,8 @@
       <td>417.55</td>
       <td>259</td>
       <td>5</td>
+      <td>126.097</td>
+      <td>buy</td>
       <td>359.20</td>
       <td>263.36</td>
       <td></td>
@@ -10383,6 +11761,8 @@
       <td>569.15</td>
       <td>323</td>
       <td>5</td>
+      <td>295.578</td>
+      <td>none</td>
       <td>534.25</td>
       <td>473.28</td>
       <td>410.09</td>
@@ -10398,6 +11778,8 @@
       <td>1607.30</td>
       <td>553</td>
       <td>1</td>
+      <td>77.153</td>
+      <td>none</td>
       <td>1323.69</td>
       <td>1071.98</td>
       <td></td>
@@ -10413,6 +11795,8 @@
       <td>491.75</td>
       <td>491</td>
       <td>5</td>
+      <td>153.236</td>
+      <td>none</td>
       <td>437.43</td>
       <td>388.36</td>
       <td>398.73</td>
@@ -10428,6 +11812,8 @@
       <td>390.05</td>
       <td>986</td>
       <td>1</td>
+      <td>70.939</td>
+      <td>none</td>
       <td>334.46</td>
       <td>246.58</td>
       <td></td>
@@ -10443,6 +11829,8 @@
       <td>1728.70</td>
       <td>196</td>
       <td>5</td>
+      <td>106.006</td>
+      <td>buy</td>
       <td>1607.85</td>
       <td>1406.78</td>
       <td>1289.39</td>
@@ -10458,6 +11846,8 @@
       <td>3128.60</td>
       <td>17</td>
       <td>5</td>
+      <td>690.119</td>
+      <td>strong_buy</td>
       <td>2907.17</td>
       <td>2584.79</td>
       <td>2296.81</td>
@@ -10473,6 +11863,8 @@
       <td>985.50</td>
       <td>363</td>
       <td>5</td>
+      <td>209.489</td>
+      <td>none</td>
       <td>888.54</td>
       <td>718.76</td>
       <td>845.86</td>
@@ -10488,6 +11880,8 @@
       <td>473.35</td>
       <td>711</td>
       <td>5</td>
+      <td>142.762</td>
+      <td>buy</td>
       <td>391.95</td>
       <td>312.66</td>
       <td></td>
@@ -10503,6 +11897,8 @@
       <td>199.07</td>
       <td>969</td>
       <td>5</td>
+      <td>119.038</td>
+      <td>none</td>
       <td>183.18</td>
       <td>161.36</td>
       <td>150.87</td>
@@ -10518,6 +11914,8 @@
       <td>4933.20</td>
       <td>171</td>
       <td>5</td>
+      <td>1002.918</td>
+      <td>hold</td>
       <td>4550.29</td>
       <td>4115.3</td>
       <td>3609.57</td>
@@ -10533,6 +11931,8 @@
       <td>1074.20</td>
       <td>1160</td>
       <td>1</td>
+      <td>181.435</td>
+      <td>none</td>
       <td>957.44</td>
       <td>809.59</td>
       <td>904.94</td>
@@ -10548,6 +11948,8 @@
       <td>2173.00</td>
       <td>330</td>
       <td>5</td>
+      <td>268.633</td>
+      <td>none</td>
       <td>1950.09</td>
       <td>1829.77</td>
       <td>1624.84</td>
@@ -10563,6 +11965,8 @@
       <td>734.05</td>
       <td>1285</td>
       <td>5</td>
+      <td>218.622</td>
+      <td>none</td>
       <td>673.56</td>
       <td>593.14</td>
       <td>558.95</td>
@@ -10578,6 +11982,8 @@
       <td>988.45</td>
       <td>162</td>
       <td>1</td>
+      <td>235.784</td>
+      <td>hold</td>
       <td>849.83</td>
       <td>619.87</td>
       <td></td>
@@ -10593,6 +11999,8 @@
       <td>108.64</td>
       <td>1374</td>
       <td>1</td>
+      <td>45.204</td>
+      <td>none</td>
       <td>99.43</td>
       <td>85.38</td>
       <td>85.22</td>
@@ -10608,6 +12016,8 @@
       <td>381.60</td>
       <td>946</td>
       <td>5</td>
+      <td>60.706</td>
+      <td>none</td>
       <td>319.91</td>
       <td>246.83</td>
       <td></td>
@@ -10623,6 +12033,8 @@
       <td>967.65</td>
       <td>104</td>
       <td>5</td>
+      <td>238.119</td>
+      <td>hold</td>
       <td>928.21</td>
       <td>761.43</td>
       <td>714.53</td>
@@ -10638,6 +12050,8 @@
       <td>310.25</td>
       <td>1203</td>
       <td>5</td>
+      <td>92.867</td>
+      <td>none</td>
       <td>278.91</td>
       <td>181.53</td>
       <td></td>
@@ -10653,6 +12067,8 @@
       <td>519.35</td>
       <td>483</td>
       <td>5</td>
+      <td>93.539</td>
+      <td>none</td>
       <td>475.45</td>
       <td>440.09</td>
       <td>374.15</td>
@@ -10668,6 +12084,8 @@
       <td>517.00</td>
       <td>810</td>
       <td>5</td>
+      <td>52.53</td>
+      <td>none</td>
       <td>466.82</td>
       <td>418.22</td>
       <td>398.81</td>
@@ -10683,6 +12101,8 @@
       <td>70.45</td>
       <td>1540</td>
       <td>1</td>
+      <td>9.622</td>
+      <td>none</td>
       <td>62.35</td>
       <td>42.11</td>
       <td></td>
@@ -10698,6 +12118,8 @@
       <td>1912.80</td>
       <td>693</td>
       <td>1</td>
+      <td>354.658</td>
+      <td>none</td>
       <td>1739.19</td>
       <td>1512.18</td>
       <td>1497.68</td>
@@ -10713,6 +12135,8 @@
       <td>87.47</td>
       <td>1278</td>
       <td>1</td>
+      <td>36.941</td>
+      <td>none</td>
       <td>76.20</td>
       <td>53.37</td>
       <td></td>
@@ -10728,6 +12152,8 @@
       <td>27.88</td>
       <td>1669</td>
       <td>1</td>
+      <td>50.59</td>
+      <td>none</td>
       <td>26.00</td>
       <td>21.63</td>
       <td>21.54</td>
@@ -10743,6 +12169,8 @@
       <td>1739.00</td>
       <td>357</td>
       <td>5</td>
+      <td>203.712</td>
+      <td>none</td>
       <td>1549.27</td>
       <td>1342.83</td>
       <td>1421.67</td>
@@ -10758,6 +12186,8 @@
       <td>1141.30</td>
       <td>949</td>
       <td>1</td>
+      <td>127.099</td>
+      <td>none</td>
       <td>939.83</td>
       <td>749.2</td>
       <td></td>
@@ -10773,6 +12203,8 @@
       <td>76.75</td>
       <td>1008</td>
       <td>5</td>
+      <td>35.394</td>
+      <td>none</td>
       <td>70.81</td>
       <td>60.54</td>
       <td>58.98</td>
@@ -10788,6 +12220,8 @@
       <td>290.95</td>
       <td>848</td>
       <td>5</td>
+      <td>113.129</td>
+      <td>buy</td>
       <td>245.94</td>
       <td>184.57</td>
       <td></td>
@@ -10803,6 +12237,8 @@
       <td>396.45</td>
       <td>384</td>
       <td>5</td>
+      <td>48.14</td>
+      <td>none</td>
       <td>367.66</td>
       <td>316.07</td>
       <td>298.66</td>
@@ -10818,6 +12254,8 @@
       <td>1723.50</td>
       <td>200</td>
       <td>5</td>
+      <td>151.629</td>
+      <td>none</td>
       <td>1593.11</td>
       <td>1512.36</td>
       <td>1164.37</td>
@@ -10833,6 +12271,8 @@
       <td>454.80</td>
       <td>1471</td>
       <td>1</td>
+      <td>675.306</td>
+      <td>none</td>
       <td>423.89</td>
       <td>364.43</td>
       <td>338.37</td>
@@ -10848,6 +12288,8 @@
       <td>104.20</td>
       <td>1541</td>
       <td>1</td>
+      <td>76.663</td>
+      <td>none</td>
       <td>93.90</td>
       <td>83.85</td>
       <td>80.32</td>
@@ -10863,6 +12305,8 @@
       <td>88.10</td>
       <td>125</td>
       <td>5</td>
+      <td>39.499</td>
+      <td>hold</td>
       <td>80.92</td>
       <td>68.65</td>
       <td>68.6</td>
@@ -10878,6 +12322,8 @@
       <td>299.05</td>
       <td>741</td>
       <td>5</td>
+      <td>77.869</td>
+      <td>none</td>
       <td>265.00</td>
       <td>232.95</td>
       <td>242.44</td>
@@ -10893,6 +12339,8 @@
       <td>97.67</td>
       <td>1105</td>
       <td>1</td>
+      <td>56.898</td>
+      <td>none</td>
       <td>85.03</td>
       <td>59.07</td>
       <td></td>
@@ -10908,6 +12356,8 @@
       <td>425.10</td>
       <td>63</td>
       <td>5</td>
+      <td>356.769</td>
+      <td>strong_buy</td>
       <td>394.83</td>
       <td>317.4</td>
       <td>339.43</td>
@@ -10923,6 +12373,8 @@
       <td>297.70</td>
       <td>1330</td>
       <td>5</td>
+      <td>91.081</td>
+      <td>none</td>
       <td>230.42</td>
       <td>208.34</td>
       <td></td>
@@ -10938,6 +12390,8 @@
       <td>535.65</td>
       <td>1016</td>
       <td>5</td>
+      <td>132.482</td>
+      <td>none</td>
       <td>471.93</td>
       <td>317.34</td>
       <td></td>
@@ -10953,6 +12407,8 @@
       <td>5968.00</td>
       <td>457</td>
       <td>5</td>
+      <td>373.676</td>
+      <td>none</td>
       <td>5580.77</td>
       <td>4848.75</td>
       <td>4332.47</td>
@@ -10968,6 +12424,8 @@
       <td>401.35</td>
       <td>94</td>
       <td>5</td>
+      <td>297.643</td>
+      <td>strong_buy</td>
       <td>365.43</td>
       <td>288.36</td>
       <td>338.83</td>
@@ -10983,6 +12441,8 @@
       <td>2672.00</td>
       <td>190</td>
       <td>5</td>
+      <td>537.335</td>
+      <td>none</td>
       <td>2380.07</td>
       <td>2178.6</td>
       <td>2048.07</td>
@@ -10998,6 +12458,8 @@
       <td>2363.20</td>
       <td>862</td>
       <td>1</td>
+      <td>948.95</td>
+      <td>none</td>
       <td>2115.15</td>
       <td>1364.68</td>
       <td></td>
@@ -11013,6 +12475,8 @@
       <td>1091.00</td>
       <td>286</td>
       <td>5</td>
+      <td>236.439</td>
+      <td>strong_buy</td>
       <td>983.08</td>
       <td>839.14</td>
       <td>873.21</td>
@@ -11028,6 +12492,8 @@
       <td>1732.30</td>
       <td>967</td>
       <td>5</td>
+      <td>996.611</td>
+      <td>none</td>
       <td>1653.63</td>
       <td>1494.62</td>
       <td>1131.09</td>
@@ -11043,6 +12509,8 @@
       <td>437.45</td>
       <td>46</td>
       <td>5</td>
+      <td>31.535</td>
+      <td>hold</td>
       <td>388.23</td>
       <td>331.65</td>
       <td>360.52</td>
@@ -11058,6 +12526,8 @@
       <td>386.50</td>
       <td>252</td>
       <td>5</td>
+      <td>163.688</td>
+      <td>hold</td>
       <td>363.56</td>
       <td>288.51</td>
       <td>302.32</td>
@@ -11073,6 +12543,8 @@
       <td>5859.00</td>
       <td>547</td>
       <td>5</td>
+      <td>323.51</td>
+      <td>strong_buy</td>
       <td>5507.84</td>
       <td>5154.26</td>
       <td>3804.82</td>
@@ -11088,6 +12560,8 @@
       <td>205.49</td>
       <td>1295</td>
       <td>1</td>
+      <td>441.515</td>
+      <td>none</td>
       <td>188.14</td>
       <td>169.36</td>
       <td>149.91</td>
@@ -11103,6 +12577,8 @@
       <td>1270.10</td>
       <td>69</td>
       <td>5</td>
+      <td>117.445</td>
+      <td>buy</td>
       <td>1146.98</td>
       <td>1030.35</td>
       <td>958.17</td>
@@ -11118,6 +12594,8 @@
       <td>1724.10</td>
       <td>477</td>
       <td>5</td>
+      <td>283.734</td>
+      <td>strong_buy</td>
       <td>1556.41</td>
       <td>1324.61</td>
       <td>1373.5</td>
@@ -11133,6 +12611,8 @@
       <td>431.85</td>
       <td>1367</td>
       <td>1</td>
+      <td>143.41</td>
+      <td>none</td>
       <td>360.86</td>
       <td>272.96</td>
       <td></td>
@@ -11148,6 +12628,8 @@
       <td>244.32</td>
       <td>73</td>
       <td>5</td>
+      <td>283.296</td>
+      <td>buy</td>
       <td>222.17</td>
       <td>203.49</td>
       <td>177.2</td>
@@ -11163,6 +12645,8 @@
       <td>336.15</td>
       <td>1433</td>
       <td>5</td>
+      <td>186.212</td>
+      <td>none</td>
       <td>284.32</td>
       <td>208.91</td>
       <td></td>
@@ -11178,6 +12662,8 @@
       <td>1975.60</td>
       <td>283</td>
       <td>5</td>
+      <td>395.079</td>
+      <td>none</td>
       <td>1803.19</td>
       <td>1575.09</td>
       <td>1495.94</td>
@@ -11193,6 +12679,8 @@
       <td>1833.30</td>
       <td>484</td>
       <td>5</td>
+      <td>209.965</td>
+      <td>none</td>
       <td>1488.05</td>
       <td>1201.63</td>
       <td></td>
@@ -11208,6 +12696,8 @@
       <td>249.80</td>
       <td>353</td>
       <td>5</td>
+      <td>79.451</td>
+      <td>hold</td>
       <td>232.69</td>
       <td>213.77</td>
       <td>169.59</td>
@@ -11223,6 +12713,8 @@
       <td>35.04</td>
       <td>1438</td>
       <td>1</td>
+      <td>39.723</td>
+      <td>none</td>
       <td>32.21</td>
       <td>26.08</td>
       <td>28.09</td>
@@ -11238,6 +12730,8 @@
       <td>131.47</td>
       <td>1623</td>
       <td>1</td>
+      <td>64.847</td>
+      <td>none</td>
       <td>121.95</td>
       <td>115.54</td>
       <td>86.61</td>
@@ -11253,6 +12747,8 @@
       <td>1237.40</td>
       <td>170</td>
       <td>5</td>
+      <td>193.549</td>
+      <td>none</td>
       <td>1154.15</td>
       <td>942.66</td>
       <td>953.46</td>
@@ -11268,6 +12764,8 @@
       <td>496.05</td>
       <td>1078</td>
       <td>1</td>
+      <td>1831.782</td>
+      <td>none</td>
       <td>443.21</td>
       <td>380.89</td>
       <td>398.67</td>
@@ -11283,6 +12781,8 @@
       <td>1876.40</td>
       <td>1050</td>
       <td>1</td>
+      <td>264.29</td>
+      <td>none</td>
       <td>1582.16</td>
       <td>1385.19</td>
       <td>1657.97</td>
@@ -11298,6 +12798,8 @@
       <td>3223.60</td>
       <td>110</td>
       <td>5</td>
+      <td>425.949</td>
+      <td>hold</td>
       <td>3024.43</td>
       <td>2738.28</td>
       <td>2180.69</td>
@@ -11313,6 +12815,8 @@
       <td>1820.10</td>
       <td>150</td>
       <td>5</td>
+      <td>431.924</td>
+      <td>buy</td>
       <td>1698.42</td>
       <td>1423.4</td>
       <td>1362</td>
@@ -11328,6 +12832,8 @@
       <td>12.28</td>
       <td>1598</td>
       <td>1</td>
+      <td>14.761</td>
+      <td>none</td>
       <td>10.45</td>
       <td>7.52</td>
       <td></td>
@@ -11343,6 +12849,8 @@
       <td>17.10</td>
       <td>1602</td>
       <td>1</td>
+      <td>4.541</td>
+      <td>none</td>
       <td>15.68</td>
       <td>12.28</td>
       <td>14.16</td>
@@ -11358,6 +12866,8 @@
       <td>147.76</td>
       <td>1398</td>
       <td>1</td>
+      <td>163.406</td>
+      <td>none</td>
       <td>138.56</td>
       <td>124.38</td>
       <td>100.84</td>
@@ -11373,6 +12883,8 @@
       <td>177.90</td>
       <td>816</td>
       <td>5</td>
+      <td>88.312</td>
+      <td>none</td>
       <td>154.98</td>
       <td>105.06</td>
       <td></td>
@@ -11388,6 +12900,8 @@
       <td>755.45</td>
       <td>1034</td>
       <td>5</td>
+      <td>309.845</td>
+      <td>none</td>
       <td>675.44</td>
       <td>583.92</td>
       <td>599.43</td>
@@ -11403,6 +12917,8 @@
       <td>149.67</td>
       <td>877</td>
       <td>5</td>
+      <td>83.152</td>
+      <td>none</td>
       <td>138.18</td>
       <td>126.6</td>
       <td>103.37</td>
@@ -11418,6 +12934,8 @@
       <td>2456.40</td>
       <td>349</td>
       <td>5</td>
+      <td>81.182</td>
+      <td>none</td>
       <td>1988.39</td>
       <td>1595.51</td>
       <td></td>
@@ -11433,6 +12951,8 @@
       <td>1259.20</td>
       <td>407</td>
       <td>5</td>
+      <td>122.449</td>
+      <td>none</td>
       <td>1177.55</td>
       <td>1065.68</td>
       <td>852.42</td>
@@ -11448,6 +12968,8 @@
       <td>3479.40</td>
       <td>224</td>
       <td>5</td>
+      <td>438.289</td>
+      <td>hold</td>
       <td>3200.78</td>
       <td>2414.59</td>
       <td>2935.54</td>
@@ -11463,6 +12985,8 @@
       <td>623.80</td>
       <td>689</td>
       <td>5</td>
+      <td>372.307</td>
+      <td>none</td>
       <td>566.38</td>
       <td>502.45</td>
       <td>464.18</td>
@@ -11478,6 +13002,8 @@
       <td>159.00</td>
       <td>43</td>
       <td>5</td>
+      <td>73.032</td>
+      <td>buy</td>
       <td>146.65</td>
       <td>131.05</td>
       <td>112.61</td>
@@ -11493,6 +13019,8 @@
       <td>1150.50</td>
       <td>1147</td>
       <td>1</td>
+      <td>1799.663</td>
+      <td>none</td>
       <td>1066.75</td>
       <td>864.91</td>
       <td>892.26</td>
@@ -11508,6 +13036,8 @@
       <td>96.17</td>
       <td>1239</td>
       <td>5</td>
+      <td>32.317</td>
+      <td>none</td>
       <td>89.88</td>
       <td>76.15</td>
       <td>70.03</td>
@@ -11523,6 +13053,8 @@
       <td>540.05</td>
       <td>519</td>
       <td>5</td>
+      <td>132.654</td>
+      <td>none</td>
       <td>460.15</td>
       <td>324.6</td>
       <td></td>
@@ -11538,6 +13070,8 @@
       <td>808.40</td>
       <td>666</td>
       <td>5</td>
+      <td>79.343</td>
+      <td>none</td>
       <td>738.91</td>
       <td>435.82</td>
       <td></td>
@@ -11553,6 +13087,8 @@
       <td>359.00</td>
       <td>303</td>
       <td>5</td>
+      <td>59.527</td>
+      <td>buy</td>
       <td>329.48</td>
       <td>304.25</td>
       <td>246.79</td>
@@ -11568,6 +13104,8 @@
       <td>495.40</td>
       <td>567</td>
       <td>5</td>
+      <td>75.172</td>
+      <td>none</td>
       <td>448.69</td>
       <td>340.76</td>
       <td>425.58</td>
@@ -11583,6 +13121,8 @@
       <td>37.74</td>
       <td>1483</td>
       <td>1</td>
+      <td>35.266</td>
+      <td>none</td>
       <td>34.35</td>
       <td>28.26</td>
       <td>29.94</td>
@@ -11598,6 +13138,8 @@
       <td>1036.60</td>
       <td>335</td>
       <td>5</td>
+      <td>181.332</td>
+      <td>none</td>
       <td>970.38</td>
       <td>795.4</td>
       <td>775.62</td>
@@ -11613,6 +13155,8 @@
       <td>388.85</td>
       <td>1020</td>
       <td>5</td>
+      <td>233.289</td>
+      <td>none</td>
       <td>356.01</td>
       <td>314.74</td>
       <td>282.55</td>
@@ -11628,6 +13172,8 @@
       <td>593.10</td>
       <td>61</td>
       <td>5</td>
+      <td>216.973</td>
+      <td>buy</td>
       <td>543.09</td>
       <td>471.45</td>
       <td>439.03</td>
@@ -11643,6 +13189,8 @@
       <td>5250.50</td>
       <td>56</td>
       <td>5</td>
+      <td>766.128</td>
+      <td>buy</td>
       <td>4785.42</td>
       <td>4030</td>
       <td>4050.34</td>
@@ -11658,6 +13206,8 @@
       <td>226.35</td>
       <td>1468</td>
       <td>5</td>
+      <td>159.982</td>
+      <td>none</td>
       <td>196.70</td>
       <td>131.41</td>
       <td></td>
@@ -11673,6 +13223,8 @@
       <td>96.68</td>
       <td>1393</td>
       <td>1</td>
+      <td>46.77</td>
+      <td>none</td>
       <td>79.86</td>
       <td>65.79</td>
       <td>91.05</td>
@@ -11688,6 +13240,8 @@
       <td>281.70</td>
       <td>1426</td>
       <td>1</td>
+      <td>173.615</td>
+      <td>none</td>
       <td>252.08</td>
       <td>155.52</td>
       <td></td>
@@ -11703,6 +13257,8 @@
       <td>443.20</td>
       <td>421</td>
       <td>5</td>
+      <td>178.219</td>
+      <td>none</td>
       <td>389.26</td>
       <td>364.73</td>
       <td>330.11</td>
@@ -11718,6 +13274,8 @@
       <td>1152.00</td>
       <td>147</td>
       <td>5</td>
+      <td>562.371</td>
+      <td>buy</td>
       <td>1061.91</td>
       <td>931.22</td>
       <td>824.58</td>
@@ -11733,6 +13291,8 @@
       <td>7004.50</td>
       <td>662</td>
       <td>5</td>
+      <td>1094.77</td>
+      <td>none</td>
       <td>6357.16</td>
       <td>5592.89</td>
       <td>5177.07</td>
@@ -11748,6 +13308,8 @@
       <td>48.59</td>
       <td>270</td>
       <td>5</td>
+      <td>32.318</td>
+      <td>none</td>
       <td>44.63</td>
       <td>35.74</td>
       <td>38.21</td>
@@ -11763,6 +13325,8 @@
       <td>101.71</td>
       <td>1179</td>
       <td>1</td>
+      <td>129.58</td>
+      <td>none</td>
       <td>93.76</td>
       <td>74.17</td>
       <td>80.25</td>
@@ -11778,6 +13342,8 @@
       <td>351.85</td>
       <td>322</td>
       <td>5</td>
+      <td>52.657</td>
+      <td>strong_buy</td>
       <td>324.82</td>
       <td>281.96</td>
       <td>251.75</td>
@@ -11793,6 +13359,8 @@
       <td>2885.00</td>
       <td>67</td>
       <td>5</td>
+      <td>178.947</td>
+      <td>buy</td>
       <td>2670.62</td>
       <td>2326.95</td>
       <td>2041.17</td>
@@ -11808,6 +13376,8 @@
       <td>49020.00</td>
       <td>179</td>
       <td>5</td>
+      <td>1261.621</td>
+      <td>hold</td>
       <td>45601.83</td>
       <td>41867.45</td>
       <td>32112.13</td>
@@ -11823,6 +13393,8 @@
       <td>8775.00</td>
       <td>134</td>
       <td>5</td>
+      <td>962.71</td>
+      <td>none</td>
       <td>8056.44</td>
       <td>6221.53</td>
       <td>7126.22</td>
@@ -11838,6 +13410,8 @@
       <td>182.83</td>
       <td>1250</td>
       <td>1</td>
+      <td>112.286</td>
+      <td>none</td>
       <td>156.98</td>
       <td>134.38</td>
       <td>154.54</td>
@@ -11853,6 +13427,8 @@
       <td>219.17</td>
       <td>679</td>
       <td>5</td>
+      <td>161.444</td>
+      <td>hold</td>
       <td>193.87</td>
       <td>160.97</td>
       <td>179.66</td>
@@ -11868,6 +13444,8 @@
       <td>1470.90</td>
       <td>231</td>
       <td>5</td>
+      <td>273.88</td>
+      <td>buy</td>
       <td>1307.59</td>
       <td>1174.29</td>
       <td>1104.11</td>
@@ -11883,6 +13461,8 @@
       <td>19.34</td>
       <td>1625</td>
       <td>1</td>
+      <td>18.57</td>
+      <td>none</td>
       <td>17.67</td>
       <td>15.37</td>
       <td>14.11</td>
@@ -11898,6 +13478,8 @@
       <td>684.45</td>
       <td>72</td>
       <td>5</td>
+      <td>300.31</td>
+      <td>buy</td>
       <td>619.61</td>
       <td>562.77</td>
       <td>486.03</td>
@@ -11913,6 +13495,8 @@
       <td>1812.70</td>
       <td>948</td>
       <td>5</td>
+      <td>649.74</td>
+      <td>none</td>
       <td>1710.45</td>
       <td>1538.72</td>
       <td>1167.7</td>
@@ -11928,6 +13512,8 @@
       <td>13.64</td>
       <td>1674</td>
       <td>1</td>
+      <td>24.407</td>
+      <td>none</td>
       <td>12.50</td>
       <td>9.58</td>
       <td>11.15</td>
@@ -11943,6 +13529,8 @@
       <td>796.95</td>
       <td>520</td>
       <td>5</td>
+      <td>380.633</td>
+      <td>buy</td>
       <td>747.56</td>
       <td>654.91</td>
       <td>538.32</td>
@@ -11958,6 +13546,8 @@
       <td>1505.00</td>
       <td>217</td>
       <td>5</td>
+      <td>134.553</td>
+      <td>buy</td>
       <td>1389.25</td>
       <td>1152.71</td>
       <td>1122.96</td>
@@ -11973,6 +13563,8 @@
       <td>691.25</td>
       <td>208</td>
       <td>5</td>
+      <td>31.891</td>
+      <td>hold</td>
       <td>642.55</td>
       <td>586.06</td>
       <td>454.63</td>
@@ -11988,6 +13580,8 @@
       <td>6841.50</td>
       <td>172</td>
       <td>5</td>
+      <td>447.766</td>
+      <td>none</td>
       <td>6101.86</td>
       <td>5171.89</td>
       <td>5372.92</td>
@@ -12003,6 +13597,8 @@
       <td>1206.70</td>
       <td>954</td>
       <td>5</td>
+      <td>273.658</td>
+      <td>none</td>
       <td>1077.95</td>
       <td>926.82</td>
       <td>931.35</td>
@@ -12018,6 +13614,8 @@
       <td>5431.00</td>
       <td>302</td>
       <td>5</td>
+      <td>921.884</td>
+      <td>none</td>
       <td>5192.78</td>
       <td>4317.16</td>
       <td>3698.75</td>
@@ -12033,6 +13631,8 @@
       <td>1033.10</td>
       <td>52</td>
       <td>1</td>
+      <td>67.631</td>
+      <td>none</td>
       <td>910.17</td>
       <td>568.41</td>
       <td></td>
@@ -12048,6 +13648,8 @@
       <td>589.60</td>
       <td>1163</td>
       <td>5</td>
+      <td>214.532</td>
+      <td>none</td>
       <td>579.66</td>
       <td>484.51</td>
       <td>369.14</td>
@@ -12063,6 +13665,8 @@
       <td>33.42</td>
       <td>1582</td>
       <td>1</td>
+      <td>11.012</td>
+      <td>none</td>
       <td>30.91</td>
       <td>23.82</td>
       <td>26.5</td>
@@ -12078,6 +13682,8 @@
       <td>72.93</td>
       <td>184</td>
       <td>5</td>
+      <td>52.11</td>
+      <td>buy</td>
       <td>69.83</td>
       <td>58.76</td>
       <td>48.64</td>
@@ -12093,6 +13699,8 @@
       <td>69.41</td>
       <td>1653</td>
       <td>1</td>
+      <td>29.259</td>
+      <td>none</td>
       <td>59.90</td>
       <td>39.27</td>
       <td></td>
@@ -12108,6 +13716,8 @@
       <td>6790.00</td>
       <td>48</td>
       <td>5</td>
+      <td>563.871</td>
+      <td>hold</td>
       <td>6408.28</td>
       <td>5712.8</td>
       <td>4369.67</td>
@@ -12123,6 +13733,8 @@
       <td>14164.00</td>
       <td>55</td>
       <td>5</td>
+      <td>5632.633</td>
+      <td>none</td>
       <td>12927.37</td>
       <td>11967.82</td>
       <td>9504.17</td>
@@ -12138,6 +13750,8 @@
       <td>49.68</td>
       <td>1552</td>
       <td>1</td>
+      <td>15.602</td>
+      <td>none</td>
       <td>43.30</td>
       <td>27.65</td>
       <td></td>
@@ -12153,6 +13767,8 @@
       <td>922.85</td>
       <td>661</td>
       <td>5</td>
+      <td>291.279</td>
+      <td>none</td>
       <td>813.95</td>
       <td>704.1</td>
       <td>722.46</td>
@@ -12168,6 +13784,8 @@
       <td>92.47</td>
       <td>1629</td>
       <td>1</td>
+      <td>24.101</td>
+      <td>none</td>
       <td>75.08</td>
       <td>56.92</td>
       <td></td>
@@ -12183,6 +13801,8 @@
       <td>408.20</td>
       <td>1328</td>
       <td>1</td>
+      <td>950.658</td>
+      <td>none</td>
       <td>374.97</td>
       <td>311.96</td>
       <td>303.68</td>
@@ -12198,6 +13818,8 @@
       <td>104.20</td>
       <td>1500</td>
       <td>1</td>
+      <td>135.237</td>
+      <td>none</td>
       <td>95.89</td>
       <td>88.36</td>
       <td>68.6</td>
@@ -12213,6 +13835,8 @@
       <td>4641.20</td>
       <td>941</td>
       <td>1</td>
+      <td>-85.97</td>
+      <td>none</td>
       <td>4228.86</td>
       <td>3110.51</td>
       <td>3919.78</td>
@@ -12228,6 +13852,8 @@
       <td>805.90</td>
       <td>1046</td>
       <td>5</td>
+      <td>341.275</td>
+      <td>none</td>
       <td>741.39</td>
       <td>653.11</td>
       <td>559.95</td>
@@ -12243,6 +13869,8 @@
       <td>924.70</td>
       <td>1158</td>
       <td>5</td>
+      <td>419.335</td>
+      <td>none</td>
       <td>849.00</td>
       <td>738.17</td>
       <td>655.13</td>
@@ -12258,6 +13886,8 @@
       <td>905.90</td>
       <td>312</td>
       <td>5</td>
+      <td>283.737</td>
+      <td>none</td>
       <td>839.00</td>
       <td>733.56</td>
       <td>622.86</td>
@@ -12273,6 +13903,8 @@
       <td>343.50</td>
       <td>840</td>
       <td>5</td>
+      <td>69.288</td>
+      <td>none</td>
       <td>294.37</td>
       <td>269.8</td>
       <td>268.19</td>
@@ -12288,6 +13920,8 @@
       <td>344.00</td>
       <td>1206</td>
       <td>1</td>
+      <td>910.644</td>
+      <td>none</td>
       <td>315.56</td>
       <td>257.58</td>
       <td>260.42</td>
@@ -12303,6 +13937,8 @@
       <td>28.40</td>
       <td>1516</td>
       <td>1</td>
+      <td>36.737</td>
+      <td>none</td>
       <td>26.49</td>
       <td>22.12</td>
       <td>20.19</td>
@@ -12318,6 +13954,8 @@
       <td>1007.05</td>
       <td>596</td>
       <td>5</td>
+      <td>246.691</td>
+      <td>none</td>
       <td>874.89</td>
       <td>751.11</td>
       <td>813.59</td>
@@ -12333,6 +13971,8 @@
       <td>633.70</td>
       <td>127</td>
       <td>5</td>
+      <td>530.919</td>
+      <td>strong_buy</td>
       <td>600.51</td>
       <td>528.01</td>
       <td>406.16</td>
@@ -12348,6 +13988,8 @@
       <td>717.20</td>
       <td>544</td>
       <td>5</td>
+      <td>205.586</td>
+      <td>none</td>
       <td>622.28</td>
       <td>641.41</td>
       <td>472.09</td>
@@ -12363,6 +14005,8 @@
       <td>48.39</td>
       <td>1448</td>
       <td>1</td>
+      <td>29.222</td>
+      <td>none</td>
       <td>44.26</td>
       <td>36.05</td>
       <td>36.77</td>
@@ -12378,6 +14022,8 @@
       <td>2269.70</td>
       <td>145</td>
       <td>5</td>
+      <td>574.812</td>
+      <td>buy</td>
       <td>2107.92</td>
       <td>1721.2</td>
       <td>1658.43</td>
@@ -12393,6 +14039,8 @@
       <td>596.00</td>
       <td>1200</td>
       <td>5</td>
+      <td>402.501</td>
+      <td>none</td>
       <td>556.20</td>
       <td>459.45</td>
       <td>425.32</td>
@@ -12408,6 +14056,8 @@
       <td>810.50</td>
       <td>366</td>
       <td>5</td>
+      <td>179.196</td>
+      <td>buy</td>
       <td>750.53</td>
       <td>662.71</td>
       <td>545.71</td>
@@ -12423,6 +14073,8 @@
       <td>1474.60</td>
       <td>438</td>
       <td>5</td>
+      <td>595.294</td>
+      <td>none</td>
       <td>1388.71</td>
       <td>1083.15</td>
       <td>1091.84</td>
@@ -12438,6 +14090,8 @@
       <td>124.64</td>
       <td>1220</td>
       <td>1</td>
+      <td>43.741</td>
+      <td>none</td>
       <td>101.86</td>
       <td>74.72</td>
       <td>125.25</td>
@@ -12453,6 +14107,8 @@
       <td>353.15</td>
       <td>646</td>
       <td>5</td>
+      <td>38.705</td>
+      <td>none</td>
       <td>317.02</td>
       <td>277.43</td>
       <td>258.92</td>
@@ -12468,6 +14124,8 @@
       <td>356.10</td>
       <td>812</td>
       <td>5</td>
+      <td>142.791</td>
+      <td>buy</td>
       <td>317.86</td>
       <td>186.4</td>
       <td></td>
@@ -12483,6 +14141,8 @@
       <td>7222.00</td>
       <td>749</td>
       <td>5</td>
+      <td>1056.852</td>
+      <td>none</td>
       <td>6696.77</td>
       <td>5363.96</td>
       <td>5388.13</td>
@@ -12498,6 +14158,8 @@
       <td>467.05</td>
       <td>670</td>
       <td>5</td>
+      <td>93.066</td>
+      <td>none</td>
       <td>432.05</td>
       <td>364.83</td>
       <td>331.17</td>
@@ -12513,6 +14175,8 @@
       <td>664.95</td>
       <td>489</td>
       <td>5</td>
+      <td>167.803</td>
+      <td>none</td>
       <td>583.41</td>
       <td>472.35</td>
       <td>549.83</td>
@@ -12528,6 +14192,8 @@
       <td>737.40</td>
       <td>713</td>
       <td>5</td>
+      <td>397.622</td>
+      <td>none</td>
       <td>668.88</td>
       <td>569.06</td>
       <td>542.01</td>
@@ -12543,6 +14209,8 @@
       <td>1958.00</td>
       <td>350</td>
       <td>5</td>
+      <td>269.475</td>
+      <td>buy</td>
       <td>1828.53</td>
       <td>1566.74</td>
       <td>1330.47</td>
@@ -12558,6 +14226,8 @@
       <td>604.00</td>
       <td>1354</td>
       <td>1</td>
+      <td>2968.476</td>
+      <td>none</td>
       <td>549.50</td>
       <td>500.29</td>
       <td>407.4</td>
@@ -12573,6 +14243,8 @@
       <td>837.50</td>
       <td>1024</td>
       <td>1</td>
+      <td>396.535</td>
+      <td>none</td>
       <td>770.03</td>
       <td>592.89</td>
       <td>656.93</td>
@@ -12588,6 +14260,8 @@
       <td>305.22</td>
       <td>1459</td>
       <td>1</td>
+      <td>65.322</td>
+      <td>none</td>
       <td>227.76</td>
       <td>203.15</td>
       <td></td>
@@ -12603,6 +14277,8 @@
       <td>6507.00</td>
       <td>598</td>
       <td>5</td>
+      <td>1049.488</td>
+      <td>buy</td>
       <td>6056.55</td>
       <td>4723.98</td>
       <td>4905.44</td>
@@ -12618,6 +14294,8 @@
       <td>395.80</td>
       <td>1229</td>
       <td>1</td>
+      <td>423.27</td>
+      <td>none</td>
       <td>354.80</td>
       <td>305.96</td>
       <td>293.02</td>
@@ -12633,6 +14311,8 @@
       <td>619.00</td>
       <td>248</td>
       <td>5</td>
+      <td>660.927</td>
+      <td>hold</td>
       <td>572.97</td>
       <td>489.17</td>
       <td>428.78</td>
@@ -12648,6 +14328,8 @@
       <td>833.50</td>
       <td>41</td>
       <td>5</td>
+      <td>171.898</td>
+      <td>strong_buy</td>
       <td>766.14</td>
       <td>635.55</td>
       <td>604.28</td>
@@ -12663,6 +14345,8 @@
       <td>211.76</td>
       <td>1447</td>
       <td>1</td>
+      <td>83.479</td>
+      <td>none</td>
       <td>193.51</td>
       <td>158.98</td>
       <td>157.09</td>
@@ -12678,6 +14362,8 @@
       <td>371.40</td>
       <td>834</td>
       <td>5</td>
+      <td>59.956</td>
+      <td>none</td>
       <td>315.80</td>
       <td>289.95</td>
       <td>287.94</td>
@@ -12693,6 +14379,8 @@
       <td>1355.60</td>
       <td>1067</td>
       <td>5</td>
+      <td>753.732</td>
+      <td>none</td>
       <td>1239.73</td>
       <td>1055.35</td>
       <td>966.95</td>
@@ -12708,6 +14396,8 @@
       <td>201.72</td>
       <td>692</td>
       <td>5</td>
+      <td>35.325</td>
+      <td>none</td>
       <td>171.69</td>
       <td>111.91</td>
       <td></td>
@@ -12723,6 +14413,8 @@
       <td>2345.90</td>
       <td>143</td>
       <td>5</td>
+      <td>376.701</td>
+      <td>none</td>
       <td>2100.30</td>
       <td>1977.79</td>
       <td>1565.39</td>
@@ -12738,6 +14430,8 @@
       <td>939.65</td>
       <td>1151</td>
       <td>1</td>
+      <td>305.788</td>
+      <td>none</td>
       <td>866.94</td>
       <td>684.99</td>
       <td>708.21</td>
@@ -12753,6 +14447,8 @@
       <td>1455.90</td>
       <td>1018</td>
       <td>5</td>
+      <td>520.778</td>
+      <td>none</td>
       <td>1283.83</td>
       <td>1080.99</td>
       <td>1135.51</td>
@@ -12768,6 +14464,8 @@
       <td>99.03</td>
       <td>225</td>
       <td>5</td>
+      <td>36.08</td>
+      <td>none</td>
       <td>91.04</td>
       <td>70.5</td>
       <td>76.47</td>
@@ -12783,6 +14481,8 @@
       <td>2021.80</td>
       <td>469</td>
       <td>5</td>
+      <td>891.311</td>
+      <td>none</td>
       <td>1880.18</td>
       <td>1614.63</td>
       <td>1363.82</td>
@@ -12798,6 +14498,8 @@
       <td>1220.60</td>
       <td>559</td>
       <td>5</td>
+      <td>281.267</td>
+      <td>none</td>
       <td>1086.25</td>
       <td>1001.82</td>
       <td>844.81</td>
@@ -12813,6 +14515,8 @@
       <td>684.40</td>
       <td>32</td>
       <td>5</td>
+      <td>315.493</td>
+      <td>hold</td>
       <td>628.53</td>
       <td>514.76</td>
       <td>500.91</td>
@@ -12828,6 +14532,8 @@
       <td>16769.00</td>
       <td>328</td>
       <td>5</td>
+      <td>2302.2</td>
+      <td>none</td>
       <td>13779.16</td>
       <td>9734.68</td>
       <td></td>
@@ -12843,6 +14549,8 @@
       <td>392.90</td>
       <td>985</td>
       <td>1</td>
+      <td>87.995</td>
+      <td>none</td>
       <td>353.54</td>
       <td>302.28</td>
       <td>287.97</td>
@@ -12858,6 +14566,8 @@
       <td>1170.30</td>
       <td>610</td>
       <td>5</td>
+      <td>110.751</td>
+      <td>none</td>
       <td>1033.83</td>
       <td>901.63</td>
       <td>875.54</td>
@@ -12873,6 +14583,8 @@
       <td>112.09</td>
       <td>1436</td>
       <td>1</td>
+      <td>29.014</td>
+      <td>none</td>
       <td>101.12</td>
       <td>88.5</td>
       <td>79.47</td>
@@ -12888,6 +14600,8 @@
       <td>310.80</td>
       <td>1562</td>
       <td>1</td>
+      <td>569.345</td>
+      <td>none</td>
       <td>271.69</td>
       <td>260.15</td>
       <td>214.13</td>
@@ -12903,6 +14617,8 @@
       <td>341.30</td>
       <td>1450</td>
       <td>1</td>
+      <td>62.956</td>
+      <td>none</td>
       <td>304.45</td>
       <td>173.36</td>
       <td></td>
@@ -12918,6 +14634,8 @@
       <td>1469.50</td>
       <td>563</td>
       <td>5</td>
+      <td>404.968</td>
+      <td>none</td>
       <td>1321.03</td>
       <td>1154.65</td>
       <td>1050.89</td>
@@ -12933,6 +14651,8 @@
       <td>731.65</td>
       <td>1113</td>
       <td>5</td>
+      <td>410.806</td>
+      <td>none</td>
       <td>689.96</td>
       <td>576.7</td>
       <td>488.91</td>
@@ -12948,6 +14668,8 @@
       <td>3423.10</td>
       <td>795</td>
       <td>1</td>
+      <td>601.636</td>
+      <td>none</td>
       <td>3149.00</td>
       <td>2669.95</td>
       <td>2394.74</td>
@@ -12963,6 +14685,8 @@
       <td>350.30</td>
       <td>470</td>
       <td>5</td>
+      <td>55.813</td>
+      <td>buy</td>
       <td>316.57</td>
       <td>233.57</td>
       <td>290.28</td>
@@ -12978,6 +14702,8 @@
       <td>1635.90</td>
       <td>872</td>
       <td>1</td>
+      <td>261.2</td>
+      <td>none</td>
       <td>1348.88</td>
       <td>938.95</td>
       <td></td>
@@ -12993,6 +14719,8 @@
       <td>3199.30</td>
       <td>181</td>
       <td>5</td>
+      <td>115.185</td>
+      <td>none</td>
       <td>2945.34</td>
       <td>2520.09</td>
       <td>2207.78</td>
@@ -13008,6 +14736,8 @@
       <td>4238.90</td>
       <td>461</td>
       <td>5</td>
+      <td>192.997</td>
+      <td>none</td>
       <td>3759.04</td>
       <td>3237.03</td>
       <td>3169.17</td>
@@ -13023,6 +14753,8 @@
       <td>40730.00</td>
       <td>239</td>
       <td>5</td>
+      <td>4567.313</td>
+      <td>none</td>
       <td>37783.91</td>
       <td>29678.52</td>
       <td>30192.57</td>
@@ -13038,6 +14770,8 @@
       <td>266.65</td>
       <td>1317</td>
       <td>1</td>
+      <td>1695.99</td>
+      <td>none</td>
       <td>247.40</td>
       <td>202.8</td>
       <td>189.11</td>
@@ -13053,6 +14787,8 @@
       <td>673.80</td>
       <td>194</td>
       <td>5</td>
+      <td>372.335</td>
+      <td>none</td>
       <td>625.69</td>
       <td>569.79</td>
       <td>418.63</td>
@@ -13068,6 +14804,8 @@
       <td>472.90</td>
       <td>1001</td>
       <td>1</td>
+      <td>77.156</td>
+      <td>none</td>
       <td>416.85</td>
       <td>243.05</td>
       <td></td>
@@ -13083,6 +14821,8 @@
       <td>501.15</td>
       <td>442</td>
       <td>5</td>
+      <td>348.202</td>
+      <td>none</td>
       <td>450.26</td>
       <td>409.38</td>
       <td>340.8</td>
@@ -13098,6 +14838,8 @@
       <td>176.79</td>
       <td>1587</td>
       <td>1</td>
+      <td>52.477</td>
+      <td>none</td>
       <td>163.15</td>
       <td>141.01</td>
       <td>119.31</td>
@@ -13113,6 +14855,8 @@
       <td>582.10</td>
       <td>294</td>
       <td>5</td>
+      <td>61.815</td>
+      <td>buy</td>
       <td>539.14</td>
       <td>441.07</td>
       <td>413.94</td>
@@ -13128,6 +14872,8 @@
       <td>200.94</td>
       <td>1546</td>
       <td>1</td>
+      <td>494.901</td>
+      <td>none</td>
       <td>180.10</td>
       <td>151.32</td>
       <td>149.69</td>
@@ -13143,6 +14889,8 @@
       <td>811.95</td>
       <td>732</td>
       <td>5</td>
+      <td>324.181</td>
+      <td>none</td>
       <td>734.05</td>
       <td>570.25</td>
       <td>639.39</td>
@@ -13158,6 +14906,8 @@
       <td>72.62</td>
       <td>1526</td>
       <td>1</td>
+      <td>17.157</td>
+      <td>none</td>
       <td>60.58</td>
       <td>40.64</td>
       <td></td>
@@ -13173,6 +14923,8 @@
       <td>378.80</td>
       <td>314</td>
       <td>5</td>
+      <td>73.762</td>
+      <td>none</td>
       <td>340.40</td>
       <td>283.09</td>
       <td>283.19</td>
@@ -13188,6 +14940,8 @@
       <td>799.25</td>
       <td>167</td>
       <td>5</td>
+      <td>118.106</td>
+      <td>strong_buy</td>
       <td>739.41</td>
       <td>637.5</td>
       <td>536.21</td>
@@ -13203,6 +14957,8 @@
       <td>4872.70</td>
       <td>310</td>
       <td>5</td>
+      <td>525.501</td>
+      <td>none</td>
       <td>4593.64</td>
       <td>3525.9</td>
       <td>3540.97</td>
@@ -13218,6 +14974,8 @@
       <td>27.01</td>
       <td>1635</td>
       <td>1</td>
+      <td>22.479</td>
+      <td>none</td>
       <td>24.71</td>
       <td>18.95</td>
       <td>20.97</td>
@@ -13233,6 +14991,8 @@
       <td>99.51</td>
       <td>1091</td>
       <td>5</td>
+      <td>85.891</td>
+      <td>none</td>
       <td>87.02</td>
       <td>74.45</td>
       <td>76.62</td>
@@ -13248,6 +15008,8 @@
       <td>15366.00</td>
       <td>66</td>
       <td>5</td>
+      <td>484.732</td>
+      <td>none</td>
       <td>14577.18</td>
       <td>12472.53</td>
       <td>9714.26</td>
@@ -13263,6 +15025,8 @@
       <td>145.67</td>
       <td>836</td>
       <td>5</td>
+      <td>34.603</td>
+      <td>none</td>
       <td>131.13</td>
       <td>111.12</td>
       <td>106.24</td>
@@ -13278,6 +15042,8 @@
       <td>216.16</td>
       <td>1660</td>
       <td>1</td>
+      <td>196.166</td>
+      <td>none</td>
       <td>197.81</td>
       <td>160.02</td>
       <td>159.27</td>
@@ -13293,6 +15059,8 @@
       <td>1445.10</td>
       <td>23</td>
       <td>5</td>
+      <td>288.263</td>
+      <td>strong_buy</td>
       <td>1327.95</td>
       <td>1117.94</td>
       <td>1010.47</td>
@@ -13308,6 +15076,8 @@
       <td>688.05</td>
       <td>174</td>
       <td>5</td>
+      <td>202.744</td>
+      <td>strong_buy</td>
       <td>626.55</td>
       <td>519.08</td>
       <td>499.42</td>
@@ -13323,6 +15093,8 @@
       <td>591.50</td>
       <td>785</td>
       <td>5</td>
+      <td>819.917</td>
+      <td>none</td>
       <td>524.65</td>
       <td>492.45</td>
       <td>397.09</td>
@@ -13338,6 +15110,8 @@
       <td>109.02</td>
       <td>1581</td>
       <td>1</td>
+      <td>85.77</td>
+      <td>none</td>
       <td>100.45</td>
       <td>90.11</td>
       <td>70.09</td>
@@ -13353,6 +15127,8 @@
       <td>99.59</td>
       <td>1588</td>
       <td>1</td>
+      <td>39.087</td>
+      <td>none</td>
       <td>88.82</td>
       <td>78.51</td>
       <td>70.74</td>
@@ -13368,6 +15144,8 @@
       <td>27.49</td>
       <td>1646</td>
       <td>1</td>
+      <td>51.779</td>
+      <td>none</td>
       <td>25.45</td>
       <td>19.35</td>
       <td>20.89</td>
@@ -13383,6 +15161,8 @@
       <td>510.95</td>
       <td>1228</td>
       <td>5</td>
+      <td>647.963</td>
+      <td>none</td>
       <td>458.01</td>
       <td>379.07</td>
       <td>383.24</td>
@@ -13398,6 +15178,8 @@
       <td>15.21</td>
       <td>1314</td>
       <td>1</td>
+      <td>2.958</td>
+      <td>none</td>
       <td>13.66</td>
       <td>9.64</td>
       <td>13.01</td>
@@ -13413,6 +15195,8 @@
       <td>469.80</td>
       <td>54</td>
       <td>5</td>
+      <td>49.12</td>
+      <td>strong_buy</td>
       <td>416.27</td>
       <td>380.31</td>
       <td>325.05</td>
@@ -13428,6 +15212,8 @@
       <td>265.30</td>
       <td>925</td>
       <td>5</td>
+      <td>44.945</td>
+      <td>none</td>
       <td>242.56</td>
       <td>200.6</td>
       <td>190.15</td>
@@ -13443,6 +15229,8 @@
       <td>90.82</td>
       <td>1142</td>
       <td>1</td>
+      <td>-2.008</td>
+      <td>none</td>
       <td>81.36</td>
       <td>67.88</td>
       <td>67.51</td>
@@ -13458,6 +15246,8 @@
       <td>1305.40</td>
       <td>443</td>
       <td>5</td>
+      <td>482.015</td>
+      <td>hold</td>
       <td>1182.72</td>
       <td>905.66</td>
       <td>1026.87</td>
@@ -13473,6 +15263,8 @@
       <td>158.17</td>
       <td>1508</td>
       <td>1</td>
+      <td>140.976</td>
+      <td>none</td>
       <td>148.68</td>
       <td>118.98</td>
       <td>109.77</td>
@@ -13488,6 +15280,8 @@
       <td>93.83</td>
       <td>1622</td>
       <td>1</td>
+      <td>53.832</td>
+      <td>none</td>
       <td>82.21</td>
       <td>47.81</td>
       <td></td>
@@ -13503,6 +15297,8 @@
       <td>236.38</td>
       <td>633</td>
       <td>5</td>
+      <td>73.755</td>
+      <td>strong_buy</td>
       <td>212.25</td>
       <td>189.43</td>
       <td>162.08</td>
@@ -13518,6 +15314,8 @@
       <td>695.45</td>
       <td>479</td>
       <td>5</td>
+      <td>98.146</td>
+      <td>buy</td>
       <td>553.11</td>
       <td>409.36</td>
       <td></td>
@@ -13533,6 +15331,8 @@
       <td>119.29</td>
       <td>1443</td>
       <td>1</td>
+      <td>19.63</td>
+      <td>none</td>
       <td>97.84</td>
       <td>67.17</td>
       <td></td>
@@ -13548,6 +15348,8 @@
       <td>692.35</td>
       <td>976</td>
       <td>1</td>
+      <td>271.861</td>
+      <td>none</td>
       <td>569.58</td>
       <td>387.9</td>
       <td></td>
@@ -13563,6 +15365,8 @@
       <td>200.25</td>
       <td>1353</td>
       <td>1</td>
+      <td>317.832</td>
+      <td>none</td>
       <td>190.25</td>
       <td>140.71</td>
       <td>146.13</td>
@@ -13578,6 +15382,8 @@
       <td>91.88</td>
       <td>106</td>
       <td>1</td>
+      <td>-2.423</td>
+      <td>none</td>
       <td>82.94</td>
       <td>69.38</td>
       <td>66.55</td>
@@ -13593,6 +15399,8 @@
       <td>1143.20</td>
       <td>876</td>
       <td>1</td>
+      <td>1286.87</td>
+      <td>none</td>
       <td>1083.98</td>
       <td>902.56</td>
       <td>736.72</td>
@@ -13608,6 +15416,8 @@
       <td>4172.00</td>
       <td>159</td>
       <td>5</td>
+      <td>669.655</td>
+      <td>hold</td>
       <td>3836.95</td>
       <td>3251.1</td>
       <td>2849.19</td>
@@ -13623,6 +15433,8 @@
       <td>624.35</td>
       <td>450</td>
       <td>5</td>
+      <td>89.068</td>
+      <td>none</td>
       <td>557.06</td>
       <td>482.11</td>
       <td>447.85</td>
@@ -13638,6 +15450,8 @@
       <td>164.19</td>
       <td>1600</td>
       <td>1</td>
+      <td>231.501</td>
+      <td>none</td>
       <td>148.32</td>
       <td>124.27</td>
       <td>118.45</td>
@@ -13653,6 +15467,8 @@
       <td>1227.40</td>
       <td>538</td>
       <td>5</td>
+      <td>127.897</td>
+      <td>none</td>
       <td>1072.34</td>
       <td>904.37</td>
       <td>946.25</td>
@@ -13668,6 +15484,8 @@
       <td>2746.20</td>
       <td>237</td>
       <td>5</td>
+      <td>205.762</td>
+      <td>strong_buy</td>
       <td>2475.39</td>
       <td>2211.65</td>
       <td>1852.39</td>
@@ -13683,6 +15501,8 @@
       <td>304.50</td>
       <td>825</td>
       <td>5</td>
+      <td>65.259</td>
+      <td>none</td>
       <td>284.19</td>
       <td>240.01</td>
       <td>200.86</td>
@@ -13698,6 +15518,8 @@
       <td>179.04</td>
       <td>1245</td>
       <td>1</td>
+      <td>52.026</td>
+      <td>none</td>
       <td>165.35</td>
       <td>126.34</td>
       <td>134.6</td>
@@ -13713,6 +15535,8 @@
       <td>248.85</td>
       <td>1371</td>
       <td>1</td>
+      <td>199.858</td>
+      <td>none</td>
       <td>235.13</td>
       <td>190.14</td>
       <td>167.22</td>
@@ -13728,6 +15552,8 @@
       <td>477.15</td>
       <td>1340</td>
       <td>1</td>
+      <td>734.329</td>
+      <td>none</td>
       <td>447.95</td>
       <td>375.78</td>
       <td>312.27</td>
@@ -13743,6 +15569,8 @@
       <td>1182.30</td>
       <td>219</td>
       <td>5</td>
+      <td>146.337</td>
+      <td>none</td>
       <td>1061.33</td>
       <td>970.87</td>
       <td>781.8</td>
@@ -13758,6 +15586,8 @@
       <td>6.15</td>
       <td>1634</td>
       <td>1</td>
+      <td>0.345</td>
+      <td>none</td>
       <td>5.75</td>
       <td>4.06</td>
       <td>4.82</td>
@@ -13773,6 +15603,8 @@
       <td>447.50</td>
       <td>1157</td>
       <td>5</td>
+      <td>188.01</td>
+      <td>none</td>
       <td>385.00</td>
       <td>232.36</td>
       <td></td>
@@ -13788,6 +15620,8 @@
       <td>2598.20</td>
       <td>26</td>
       <td>5</td>
+      <td>413.193</td>
+      <td>none</td>
       <td>2414.52</td>
       <td>2032.2</td>
       <td>1732.17</td>
@@ -13803,6 +15637,8 @@
       <td>644.65</td>
       <td>429</td>
       <td>5</td>
+      <td>57.209</td>
+      <td>none</td>
       <td>554.81</td>
       <td>455.46</td>
       <td>522.53</td>
@@ -13818,6 +15654,8 @@
       <td>224.93</td>
       <td>1318</td>
       <td>1</td>
+      <td>121.679</td>
+      <td>none</td>
       <td>206.18</td>
       <td>155.59</td>
       <td>172.93</td>
@@ -13833,6 +15671,8 @@
       <td>4240.50</td>
       <td>182</td>
       <td>5</td>
+      <td>445.61</td>
+      <td>buy</td>
       <td>3847.16</td>
       <td>2973.84</td>
       <td>3258.82</td>
@@ -13848,6 +15688,8 @@
       <td>19.71</td>
       <td>1397</td>
       <td>1</td>
+      <td>18.757</td>
+      <td>none</td>
       <td>18.19</td>
       <td>15.24</td>
       <td>13.42</td>
@@ -13863,6 +15705,8 @@
       <td>5133.00</td>
       <td>839</td>
       <td>5</td>
+      <td>967.429</td>
+      <td>none</td>
       <td>4324.85</td>
       <td>4499.81</td>
       <td>3375.1</td>
@@ -13878,6 +15722,8 @@
       <td>37.47</td>
       <td>1648</td>
       <td>1</td>
+      <td>56.193</td>
+      <td>none</td>
       <td>33.55</td>
       <td>25.7</td>
       <td>29.8</td>
@@ -13893,6 +15739,8 @@
       <td>225.55</td>
       <td>325</td>
       <td>5</td>
+      <td>23.034</td>
+      <td>none</td>
       <td>201.10</td>
       <td>169.73</td>
       <td>165.02</td>
@@ -13908,6 +15756,8 @@
       <td>39.05</td>
       <td>135</td>
       <td>5</td>
+      <td>16.739</td>
+      <td>none</td>
       <td>34.95</td>
       <td>25.85</td>
       <td>31.97</td>
@@ -13923,6 +15773,8 @@
       <td>123.08</td>
       <td>1131</td>
       <td>1</td>
+      <td>78.255</td>
+      <td>none</td>
       <td>101.40</td>
       <td>67.86</td>
       <td></td>
@@ -13938,6 +15790,8 @@
       <td>217.26</td>
       <td>1261</td>
       <td>5</td>
+      <td>183.192</td>
+      <td>none</td>
       <td>206.52</td>
       <td>186.02</td>
       <td>123.47</td>
@@ -13953,6 +15807,8 @@
       <td>450.00</td>
       <td>50</td>
       <td>5</td>
+      <td>105.528</td>
+      <td>buy</td>
       <td>412.75</td>
       <td>365.84</td>
       <td>289.95</td>
@@ -13968,6 +15824,8 @@
       <td>994.50</td>
       <td>556</td>
       <td>5</td>
+      <td>115.699</td>
+      <td>buy</td>
       <td>905.64</td>
       <td>790.73</td>
       <td>663.69</td>
@@ -13983,6 +15841,8 @@
       <td>3058.60</td>
       <td>651</td>
       <td>5</td>
+      <td>781.518</td>
+      <td>none</td>
       <td>2849.43</td>
       <td>2217.87</td>
       <td>2188.14</td>
@@ -13998,6 +15858,8 @@
       <td>527.20</td>
       <td>644</td>
       <td>5</td>
+      <td>186.201</td>
+      <td>none</td>
       <td>469.64</td>
       <td>398.84</td>
       <td>382.06</td>
@@ -14013,6 +15875,8 @@
       <td>509.80</td>
       <td>860</td>
       <td>5</td>
+      <td>138.519</td>
+      <td>none</td>
       <td>464.71</td>
       <td>422.63</td>
       <td>321.78</td>
@@ -14028,6 +15892,8 @@
       <td>463.75</td>
       <td>1038</td>
       <td>5</td>
+      <td>85.194</td>
+      <td>none</td>
       <td>397.27</td>
       <td>394.16</td>
       <td>308.36</td>
@@ -14043,6 +15909,8 @@
       <td>402.30</td>
       <td>1234</td>
       <td>5</td>
+      <td>84.136</td>
+      <td>none</td>
       <td>357.04</td>
       <td>330.15</td>
       <td>266.82</td>
@@ -14058,6 +15926,8 @@
       <td>406.25</td>
       <td>1267</td>
       <td>5</td>
+      <td>320.487</td>
+      <td>none</td>
       <td>302.85</td>
       <td>253.31</td>
       <td></td>
@@ -14073,6 +15943,8 @@
       <td>204.52</td>
       <td>603</td>
       <td>5</td>
+      <td>304.817</td>
+      <td>none</td>
       <td>187.68</td>
       <td>153.59</td>
       <td>143.01</td>
@@ -14088,6 +15960,8 @@
       <td>82.72</td>
       <td>492</td>
       <td>5</td>
+      <td>28.053</td>
+      <td>none</td>
       <td>74.35</td>
       <td>54.47</td>
       <td>67.05</td>
@@ -14103,6 +15977,8 @@
       <td>9.89</td>
       <td>1513</td>
       <td>1</td>
+      <td>3.273</td>
+      <td>none</td>
       <td>8.97</td>
       <td>4.56</td>
       <td></td>
@@ -14118,6 +15994,8 @@
       <td>552.50</td>
       <td>382</td>
       <td>5</td>
+      <td>59.038</td>
+      <td>none</td>
       <td>485.49</td>
       <td>402.46</td>
       <td>420.09</td>
@@ -14133,6 +16011,8 @@
       <td>29.56</td>
       <td>1667</td>
       <td>1</td>
+      <td>19.841</td>
+      <td>none</td>
       <td>27.16</td>
       <td>22.53</td>
       <td>20.29</td>
@@ -14148,6 +16028,8 @@
       <td>16.01</td>
       <td>1654</td>
       <td>1</td>
+      <td>19.75</td>
+      <td>none</td>
       <td>13.06</td>
       <td>8.83</td>
       <td></td>
@@ -14163,6 +16045,8 @@
       <td>208.32</td>
       <td>468</td>
       <td>5</td>
+      <td>98.54</td>
+      <td>none</td>
       <td>191.38</td>
       <td>142.32</td>
       <td>159.24</td>
@@ -14178,6 +16062,8 @@
       <td>1494.50</td>
       <td>1277</td>
       <td>1</td>
+      <td>4399.143</td>
+      <td>none</td>
       <td>1347.05</td>
       <td>1027.09</td>
       <td>1161.32</td>
@@ -14193,6 +16079,8 @@
       <td>421.75</td>
       <td>958</td>
       <td>5</td>
+      <td>102.761</td>
+      <td>none</td>
       <td>349.57</td>
       <td>342.28</td>
       <td>305.76</td>
@@ -14208,6 +16096,8 @@
       <td>216.96</td>
       <td>835</td>
       <td>5</td>
+      <td>114.995</td>
+      <td>none</td>
       <td>197.60</td>
       <td>153.89</td>
       <td>161.68</td>
@@ -14223,6 +16113,8 @@
       <td>878.95</td>
       <td>315</td>
       <td>5</td>
+      <td>200.978</td>
+      <td>buy</td>
       <td>800.17</td>
       <td>623.59</td>
       <td>654.56</td>
@@ -14238,6 +16130,8 @@
       <td>154.57</td>
       <td>1594</td>
       <td>1</td>
+      <td>197.052</td>
+      <td>none</td>
       <td>138.14</td>
       <td>96.4</td>
       <td>130.95</td>
@@ -14253,6 +16147,8 @@
       <td>506.75</td>
       <td>602</td>
       <td>5</td>
+      <td>140.388</td>
+      <td>none</td>
       <td>457.95</td>
       <td>389.36</td>
       <td>350.7</td>
@@ -14268,6 +16164,8 @@
       <td>145.37</td>
       <td>1645</td>
       <td>1</td>
+      <td></td>
+      <td>none</td>
       <td>136.59</td>
       <td>112.17</td>
       <td>94.85</td>
@@ -14283,6 +16181,8 @@
       <td>4454.00</td>
       <td>122</td>
       <td>5</td>
+      <td>963.55</td>
+      <td>buy</td>
       <td>4001.68</td>
       <td>3232.24</td>
       <td>3291.63</td>
@@ -14298,6 +16198,8 @@
       <td>31.97</td>
       <td>221</td>
       <td>5</td>
+      <td>24.63</td>
+      <td>none</td>
       <td>28.23</td>
       <td>21.69</td>
       <td>25.62</td>
@@ -14313,6 +16215,8 @@
       <td>2974.30</td>
       <td>301</td>
       <td>5</td>
+      <td>260.62</td>
+      <td>hold</td>
       <td>2674.89</td>
       <td>2327.27</td>
       <td>2024.3</td>
@@ -14328,6 +16232,8 @@
       <td>900.95</td>
       <td>850</td>
       <td>5</td>
+      <td>306.4</td>
+      <td>none</td>
       <td>807.96</td>
       <td>677.68</td>
       <td>642.71</td>
@@ -14343,6 +16249,8 @@
       <td>556.25</td>
       <td>1231</td>
       <td>5</td>
+      <td>335.399</td>
+      <td>none</td>
       <td>503.02</td>
       <td>413.51</td>
       <td>397.45</td>
@@ -14358,6 +16266,8 @@
       <td>786.60</td>
       <td>1486</td>
       <td>1</td>
+      <td>252.512</td>
+      <td>none</td>
       <td>689.94</td>
       <td>565.12</td>
       <td>602.05</td>
@@ -14373,6 +16283,8 @@
       <td>243.76</td>
       <td>1302</td>
       <td>1</td>
+      <td>719.32</td>
+      <td>none</td>
       <td>216.51</td>
       <td>165</td>
       <td>193.96</td>
@@ -14388,6 +16300,8 @@
       <td>194.15</td>
       <td>1057</td>
       <td>5</td>
+      <td>163.266</td>
+      <td>hold</td>
       <td>169.53</td>
       <td>94.67</td>
       <td></td>
@@ -14403,6 +16317,8 @@
       <td>176.05</td>
       <td>1507</td>
       <td>1</td>
+      <td>436.19</td>
+      <td>none</td>
       <td>165.92</td>
       <td>134.17</td>
       <td>115.39</td>
@@ -14418,6 +16334,8 @@
       <td>387.80</td>
       <td>719</td>
       <td>5</td>
+      <td>116.975</td>
+      <td>none</td>
       <td>359.92</td>
       <td>274.51</td>
       <td>280.41</td>
@@ -14433,6 +16351,8 @@
       <td>10.91</td>
       <td>1175</td>
       <td>1</td>
+      <td>5.928</td>
+      <td>none</td>
       <td>9.05</td>
       <td>5.78</td>
       <td></td>
@@ -14448,6 +16368,8 @@
       <td>528.95</td>
       <td>116</td>
       <td>5</td>
+      <td>156.777</td>
+      <td>buy</td>
       <td>472.24</td>
       <td>379.15</td>
       <td>396.2</td>
@@ -14463,6 +16385,8 @@
       <td>194.93</td>
       <td>1523</td>
       <td>1</td>
+      <td>138.193</td>
+      <td>none</td>
       <td>178.33</td>
       <td>147.34</td>
       <td>134.04</td>
@@ -14478,6 +16402,8 @@
       <td>150785.00</td>
       <td>155</td>
       <td>5</td>
+      <td>43593.105</td>
+      <td>none</td>
       <td>135141.66</td>
       <td>117608.1</td>
       <td>102809.42</td>
@@ -14493,6 +16419,8 @@
       <td>2234.80</td>
       <td>304</td>
       <td>5</td>
+      <td>343.767</td>
+      <td>strong_buy</td>
       <td>2054.66</td>
       <td>1658.75</td>
       <td>1553.99</td>
@@ -14508,6 +16436,8 @@
       <td>182.64</td>
       <td>1256</td>
       <td>1</td>
+      <td>812.374</td>
+      <td>none</td>
       <td>169.42</td>
       <td>136.45</td>
       <td>124.51</td>
@@ -14523,6 +16453,8 @@
       <td>294.45</td>
       <td>1089</td>
       <td>1</td>
+      <td>102.58</td>
+      <td>none</td>
       <td>263.31</td>
       <td>215.91</td>
       <td>214.62</td>
@@ -14538,6 +16470,8 @@
       <td>214.12</td>
       <td>978</td>
       <td>5</td>
+      <td>77.997</td>
+      <td>none</td>
       <td>185.50</td>
       <td>104.91</td>
       <td></td>
@@ -14553,6 +16487,8 @@
       <td>707.10</td>
       <td>1106</td>
       <td>1</td>
+      <td>172.779</td>
+      <td>none</td>
       <td>539.91</td>
       <td>418.44</td>
       <td></td>
@@ -14568,6 +16504,8 @@
       <td>57.17</td>
       <td>212</td>
       <td>5</td>
+      <td>39.012</td>
+      <td>strong_buy</td>
       <td>52.95</td>
       <td>42.53</td>
       <td>39.16</td>
@@ -14583,6 +16521,8 @@
       <td>535.75</td>
       <td>1068</td>
       <td>5</td>
+      <td>133.922</td>
+      <td>none</td>
       <td>503.08</td>
       <td>382.29</td>
       <td>376.34</td>
@@ -14598,6 +16538,8 @@
       <td>245.66</td>
       <td>1615</td>
       <td>1</td>
+      <td>151.645</td>
+      <td>none</td>
       <td>207.88</td>
       <td>177.17</td>
       <td>193.22</td>
@@ -14613,6 +16555,8 @@
       <td>360.25</td>
       <td>627</td>
       <td>5</td>
+      <td>122.14</td>
+      <td>strong_buy</td>
       <td>323.32</td>
       <td>250.85</td>
       <td>273.79</td>
@@ -14628,6 +16572,8 @@
       <td>152.64</td>
       <td>1572</td>
       <td>1</td>
+      <td>64.762</td>
+      <td>none</td>
       <td>128.83</td>
       <td>125.87</td>
       <td>104.49</td>
@@ -14643,6 +16589,8 @@
       <td>562.40</td>
       <td>982</td>
       <td>5</td>
+      <td>141.29</td>
+      <td>none</td>
       <td>501.98</td>
       <td>258.9</td>
       <td></td>
@@ -14658,6 +16606,8 @@
       <td>51.96</td>
       <td>1606</td>
       <td>1</td>
+      <td>16.763</td>
+      <td>none</td>
       <td>48.52</td>
       <td>44.45</td>
       <td>29.27</td>
@@ -14673,6 +16623,8 @@
       <td>369.95</td>
       <td>1092</td>
       <td>1</td>
+      <td>185.003</td>
+      <td>strong_buy</td>
       <td>340.59</td>
       <td>265.35</td>
       <td>264.17</td>
@@ -14688,6 +16640,8 @@
       <td>151.40</td>
       <td>40</td>
       <td>5</td>
+      <td>135.441</td>
+      <td>buy</td>
       <td>141.51</td>
       <td>113.77</td>
       <td>100.7</td>
@@ -14703,6 +16657,8 @@
       <td>188.38</td>
       <td>1167</td>
       <td>1</td>
+      <td>50.679</td>
+      <td>strong_buy</td>
       <td>173.65</td>
       <td>152.75</td>
       <td>116.47</td>
@@ -14718,6 +16674,8 @@
       <td>949.80</td>
       <td>440</td>
       <td>5</td>
+      <td>359.165</td>
+      <td>strong_buy</td>
       <td>884.51</td>
       <td>640.32</td>
       <td>707.63</td>
@@ -14733,6 +16691,8 @@
       <td>172.24</td>
       <td>1003</td>
       <td>5</td>
+      <td>99.948</td>
+      <td>none</td>
       <td>152.98</td>
       <td>131.3</td>
       <td>120.54</td>
@@ -14748,6 +16708,8 @@
       <td>82.08</td>
       <td>1119</td>
       <td>5</td>
+      <td>96.373</td>
+      <td>none</td>
       <td>77.00</td>
       <td>59.28</td>
       <td>56.61</td>
@@ -14763,6 +16725,8 @@
       <td>1105.90</td>
       <td>157</td>
       <td>5</td>
+      <td>99.749</td>
+      <td>buy</td>
       <td>988.14</td>
       <td>835.78</td>
       <td>774.81</td>
@@ -14778,6 +16742,8 @@
       <td>190.48</td>
       <td>245</td>
       <td>5</td>
+      <td>96.984</td>
+      <td>none</td>
       <td>172.80</td>
       <td>135.86</td>
       <td>138.73</td>
@@ -14793,6 +16759,8 @@
       <td>228.79</td>
       <td>444</td>
       <td>5</td>
+      <td>116.57</td>
+      <td>none</td>
       <td>205.62</td>
       <td>163.93</td>
       <td>167.82</td>
@@ -14808,6 +16776,8 @@
       <td>9160.00</td>
       <td>318</td>
       <td>5</td>
+      <td>308.14</td>
+      <td>none</td>
       <td>7964.22</td>
       <td>7521.7</td>
       <td>6024.86</td>
@@ -14823,6 +16793,8 @@
       <td>708.90</td>
       <td>555</td>
       <td>5</td>
+      <td>473.059</td>
+      <td>none</td>
       <td>661.55</td>
       <td>510.84</td>
       <td>492.31</td>
@@ -14838,6 +16810,8 @@
       <td>1396.60</td>
       <td>206</td>
       <td>5</td>
+      <td>196.843</td>
+      <td>buy</td>
       <td>1252.71</td>
       <td>1009.78</td>
       <td>1016.74</td>
@@ -14853,6 +16827,8 @@
       <td>242.25</td>
       <td>824</td>
       <td>5</td>
+      <td>103.717</td>
+      <td>none</td>
       <td>227.44</td>
       <td>194.75</td>
       <td>146.23</td>
@@ -14868,6 +16844,8 @@
       <td>136.93</td>
       <td>1603</td>
       <td>1</td>
+      <td>114.559</td>
+      <td>none</td>
       <td>122.70</td>
       <td>103.71</td>
       <td>94.66</td>
@@ -14883,6 +16861,8 @@
       <td>6380.00</td>
       <td>223</td>
       <td>5</td>
+      <td>459.181</td>
+      <td>underperform</td>
       <td>5594.64</td>
       <td>4931.89</td>
       <td>4431.16</td>
@@ -14898,6 +16878,8 @@
       <td>464.70</td>
       <td>255</td>
       <td>5</td>
+      <td>123.269</td>
+      <td>none</td>
       <td>437.81</td>
       <td>365.9</td>
       <td>285.36</td>
@@ -14913,6 +16895,8 @@
       <td>871.95</td>
       <td>430</td>
       <td>5</td>
+      <td>85.346</td>
+      <td>none</td>
       <td>769.82</td>
       <td>649.92</td>
       <td>623.41</td>
@@ -14928,6 +16912,8 @@
       <td>138.24</td>
       <td>1276</td>
       <td>1</td>
+      <td>17.286</td>
+      <td>none</td>
       <td>125.00</td>
       <td>92.76</td>
       <td>106.15</td>
@@ -14943,6 +16929,8 @@
       <td>5978.50</td>
       <td>213</td>
       <td>5</td>
+      <td>350.722</td>
+      <td>none</td>
       <td>5399.15</td>
       <td>4446.31</td>
       <td>4161.44</td>
@@ -14958,6 +16946,8 @@
       <td>257.50</td>
       <td>120</td>
       <td>5</td>
+      <td>71.062</td>
+      <td>hold</td>
       <td>240.89</td>
       <td>181.39</td>
       <td>180.63</td>
@@ -14973,6 +16963,8 @@
       <td>220.27</td>
       <td>262</td>
       <td>5</td>
+      <td>75.827</td>
+      <td>buy</td>
       <td>202.77</td>
       <td>166.92</td>
       <td>145.88</td>
@@ -14988,6 +16980,8 @@
       <td>619.80</td>
       <td>202</td>
       <td>5</td>
+      <td>162.551</td>
+      <td>hold</td>
       <td>559.24</td>
       <td>411.34</td>
       <td>479.97</td>
@@ -15003,6 +16997,8 @@
       <td>5057.50</td>
       <td>332</td>
       <td>5</td>
+      <td>839.617</td>
+      <td>none</td>
       <td>4753.03</td>
       <td>3301.5</td>
       <td>3778.06</td>
@@ -15018,6 +17014,8 @@
       <td>941.15</td>
       <td>612</td>
       <td>5</td>
+      <td>541.686</td>
+      <td>none</td>
       <td>853.73</td>
       <td>720.89</td>
       <td>626.81</td>
@@ -15033,6 +17031,8 @@
       <td>157.98</td>
       <td>936</td>
       <td>5</td>
+      <td>38.176</td>
+      <td>none</td>
       <td>133.39</td>
       <td>118.62</td>
       <td>117.39</td>
@@ -15048,6 +17048,8 @@
       <td>98.56</td>
       <td>1639</td>
       <td>1</td>
+      <td>43.761</td>
+      <td>none</td>
       <td>88.15</td>
       <td>70.48</td>
       <td>71.83</td>
