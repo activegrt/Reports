@@ -385,8 +385,8 @@ function sortTable(columnIndex) {
 		
 		    for (let row of rows) {
 		        const cells = row.getElementsByTagName('td');
-		        const rank = parseFloat(cells[3].innerText.trim());
-		        const mtf = cells[4].innerText.trim();
+		        const rank = parseFloat(cells[4].innerText.trim());
+		        const mtf = cells[8].innerText.trim();
 		
 		        const matchRank = (isNaN(rankMin) || rank >= rankMin) && (isNaN(rankMax) || rank <= rankMax);
 		        const matchMTF = !mtfValue || mtf === mtfValue;
