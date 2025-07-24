@@ -1,766 +1,1450 @@
-<html>
-                              <head></head>
-                              <p>Page last refreshed on 2025-07-15 22:41</p><body>
-            <button onclick="viewPDF('equity_portfolio_summary.pdf')">Read Report</button>
-            <button onclick="downloadPDF('equity_portfolio_summary.pdf')">Download Report</button>
-    
-            <!-- PDF iframe container -->
-            <div id="pdf-container" style="margin-top: 20px;">
-                <iframe id="pdf-frame" style="width: 100%; height: 600px; display: none;"></iframe>
-            </div>
-                              <H1>Investment Summary</H1>
-                                            <table border="1" class="dataframe">
-  <tbody>
-    <tr>
-      <td>Investment</td>
-      <td>612252.00</td>
-    </tr>
-    <tr>
-      <td>Current</td>
-      <td>583627.00</td>
-    </tr>
-    <tr>
-      <td>MTF Value</td>
-      <td>501011.00</td>
-    </tr>
-    <tr>
-      <td>Profit Loss</td>
-      <td>-28625.00</td>
-    </tr>
-    <tr>
-      <td>Change</td>
-      <td>-4.68</td>
-    </tr>
-    <tr>
-      <td>No of Stocks</td>
-      <td>45.00</td>
-    </tr>
-    <tr>
-      <td>Red Stocks</td>
-      <td>36.00</td>
-    </tr>
-    <tr>
-      <td>Green Stocks</td>
-      <td>9.00</td>
-    </tr>
-  </tbody>
-</table>
-                                            <br><H1>Holdings Summary</H1>
-                                        <table border="1" class="dataframe">
+<html><head><style>
+    .table-container {
+        width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    thead th {
+        position: sticky;
+        top: 0;
+        background: #a6cff7;
+        z-index: 2;
+    }
+    th.sortable:hover {
+        background-color: #e2e6ea;
+    }
+    .asc::after {
+        content: " ▲";
+    }
+    .desc::after {
+        content: " ▼";
+    }
+    </style></head><p>Page last refreshed on 2025-07-24 11:32</p><body><H2>Holdings Summary</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
-      <th>Symbol</th>
-      <th>Quantity</th>
-      <th>MTFQty</th>
-      <th>Entry</th>
-      <th>CMP</th>
-      <th>Target</th>
-      <th>Investment</th>
-      <th>Current</th>
-      <th>MTFValue</th>
-      <th>ProfitLoss</th>
-      <th>Change</th>
-      <th>Progress</th>
-      <th>Reference</th>
+      <th class='sortable' onclick='sortTable(0)'>#</th>
+      <th class='sortable' onclick='sortTable(1)'>Symbol</th>
+      <th class='sortable' onclick='sortTable(2)'>exchange</th>
+      <th class='sortable' onclick='sortTable(3)'>Quantity</th>
+      <th class='sortable' onclick='sortTable(4)'>MTFQty</th>
+      <th class='sortable' onclick='sortTable(5)'>Entry</th>
+      <th class='sortable' onclick='sortTable(6)'>CMP</th>
+      <th class='sortable' onclick='sortTable(7)'>Target</th>
+      <th class='sortable' onclick='sortTable(8)'>Investment</th>
+      <th class='sortable' onclick='sortTable(9)'>Current</th>
+      <th class='sortable' onclick='sortTable(10)'>MTFValue</th>
+      <th class='sortable' onclick='sortTable(11)'>ProfitLoss</th>
+      <th class='sortable' onclick='sortTable(12)'>Change</th>
+      <th class='sortable' onclick='sortTable(13)'>Progress</th>
+      <th class='sortable' onclick='sortTable(14)'>Dividend_Date</th>
+      <th class='sortable' onclick='sortTable(15)'>Dividend%</th>
+      <th class='sortable' onclick='sortTable(16)'>Dividend</th>
+      <th class='sortable' onclick='sortTable(17)'>Intrinsic</th>
+      <th class='sortable' onclick='sortTable(18)'>Rank</th>
+      <th class='sortable' onclick='sortTable(19)'>Revenue</th>
+      <th class='sortable' onclick='sortTable(20)'>Net_Profit</th>
+      <th class='sortable' onclick='sortTable(21)'>Day_Range</th>
+      <th class='sortable' onclick='sortTable(22)'>Week_Range</th>
+      <th class='sortable' onclick='sortTable(23)'>Reference</th>
     </tr>
   </thead>
   <tbody>
     <tr>
+      <td>1</td>
       <td>ALEMBICLTD</td>
+      <td>NSE</td>
       <td>100</td>
       <td>100</td>
       <td>117.23</td>
-      <td>119.89</td>
+      <td>117.91</td>
       <td>123.34</td>
-      <td>11723.0</td>
-      <td>11989.0</td>
-      <td>11989.0</td>
-      <td>266.0</td>
-      <td>🚀 2.0</td>
-      <td>44.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/alembic/A08">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-ALEMBICLTD">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-ALEMBICLTD/">🎯</a></td>
+      <td>11723</td>
+      <td>11791</td>
+      <td>11791</td>
+      <td>68</td>
+      <td>🚀 1</td>
+      <td>11</td>
+      <td>2025-08-05</td>
+      <td>2.03</td>
+      <td>2.4</td>
+      <td>91.073</td>
+      <td>917</td>
+      <td>221 cr</td>
+      <td>310 cr</td>
+      <td>2.27</td>
+      <td>6.11</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ALEMBICLTD&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ALEMBICLTD/">🎯</a></td>
     </tr>
     <tr>
+      <td>2</td>
       <td>AVADHSUGAR</td>
+      <td>NSE</td>
       <td>20</td>
       <td>20</td>
       <td>512.14</td>
-      <td>509.90</td>
+      <td>469.95</td>
       <td>0.00</td>
-      <td>10243.0</td>
-      <td>10198.0</td>
-      <td>10198.0</td>
-      <td>-45.0</td>
-      <td>🔥 0.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-AVADHSUGAR">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-AVADHSUGAR/">🎯</a></td>
+      <td>10243</td>
+      <td>9399</td>
+      <td>9399</td>
+      <td>-844</td>
+      <td>🔥 -8</td>
+      <td>0</td>
+      <td>2025-07-16</td>
+      <td>2.08</td>
+      <td>10</td>
+      <td>550.055</td>
+      <td>1273</td>
+      <td>2,635 cr</td>
+      <td>88 cr</td>
+      <td>2.1</td>
+      <td>6.51</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=AVADHSUGAR&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AVADHSUGAR/">🎯</a></td>
     </tr>
     <tr>
+      <td>3</td>
+      <td>AXISBANK</td>
+      <td>NSE</td>
+      <td>8</td>
+      <td>8</td>
+      <td>1104.39</td>
+      <td>1098.60</td>
+      <td>0.00</td>
+      <td>8835</td>
+      <td>8789</td>
+      <td>8789</td>
+      <td>-46</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-07-04</td>
+      <td>0.09</td>
+      <td>1</td>
+      <td>604.498</td>
+      <td>19</td>
+      <td>68,487 cr</td>
+      <td>28,055 cr</td>
+      <td>1.87</td>
+      <td>4.52</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=AXISBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AXISBANK/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>4</td>
       <td>BAJAJ-AUTO</td>
+      <td>NSE</td>
       <td>2</td>
       <td>2</td>
       <td>8544.68</td>
-      <td>8311.00</td>
+      <td>8356.00</td>
       <td>0.00</td>
-      <td>17089.0</td>
-      <td>16622.0</td>
-      <td>16622.0</td>
-      <td>-467.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/auto23wheelers/bajajauto/BA10">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-BAJAJ-AUTO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-BAJAJ-AUTO/">🎯</a></td>
+      <td>17089</td>
+      <td>16712</td>
+      <td>16712</td>
+      <td>-377</td>
+      <td>🔥 -2</td>
+      <td>0</td>
+      <td>2025-06-20</td>
+      <td>2.53</td>
+      <td>210</td>
+      <td>1260.082</td>
+      <td>36</td>
+      <td>51,860 cr</td>
+      <td>7,324 cr</td>
+      <td>1.67</td>
+      <td>3.85</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJ-AUTO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJAJ-AUTO/">🎯</a></td>
     </tr>
     <tr>
+      <td>5</td>
       <td>BAJAJHFL</td>
+      <td>NSE</td>
       <td>75</td>
       <td>75</td>
       <td>134.82</td>
-      <td>121.22</td>
+      <td>120.90</td>
       <td>136.50</td>
-      <td>10112.0</td>
-      <td>9092.0</td>
-      <td>9092.0</td>
-      <td>-1020.0</td>
-      <td>🔥 -10.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-BAJAJHFL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-BAJAJHFL/">🎯</a></td>
+      <td>10112</td>
+      <td>9068</td>
+      <td>9068</td>
+      <td>-1044</td>
+      <td>🔥 -10</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>23.951</td>
+      <td>100</td>
+      <td>9,528 cr</td>
+      <td>2,162 cr</td>
+      <td>1.36</td>
+      <td>3.6</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJHFL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJAJHFL/">🎯</a></td>
     </tr>
     <tr>
+      <td>6</td>
       <td>BANKINDIA</td>
+      <td>NSE</td>
       <td>80</td>
       <td>80</td>
       <td>125.30</td>
-      <td>115.79</td>
+      <td>112.70</td>
       <td>0.00</td>
-      <td>10024.0</td>
-      <td>9263.0</td>
-      <td>9263.0</td>
-      <td>-761.0</td>
-      <td>🔥 -8.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/bankspublicsector/bankofindia/BOI">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-BANKINDIA">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-BANKINDIA/">🎯</a></td>
+      <td>10024</td>
+      <td>9016</td>
+      <td>9016</td>
+      <td>-1008</td>
+      <td>🔥 -10</td>
+      <td>0</td>
+      <td>2025-06-20</td>
+      <td>3.58</td>
+      <td>4.05</td>
+      <td>177.269</td>
+      <td>195</td>
+      <td>29,768 cr</td>
+      <td>9,548 cr</td>
+      <td>1.88</td>
+      <td>6.2</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BANKINDIA&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BANKINDIA/">🎯</a></td>
     </tr>
     <tr>
-      <td>BCG-BE</td>
+      <td>7</td>
+      <td>BCG</td>
+      <td>NSE</td>
       <td>700</td>
       <td>0</td>
       <td>19.57</td>
-      <td>19.67</td>
-      <td>30.00</td>
-      <td>13699.0</td>
-      <td>13769.0</td>
-      <td>0.0</td>
-      <td>70.0</td>
-      <td>🚀 1.0</td>
-      <td>1.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-BCG-BE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-BCG-BE/">🎯</a></td>
+      <td>13.71</td>
+      <td>0.00</td>
+      <td>13699</td>
+      <td>9597</td>
+      <td>0</td>
+      <td>-4102</td>
+      <td>🔥 -30</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
+      <td>8</td>
+      <td>BPCL</td>
+      <td>NSE</td>
+      <td>40</td>
+      <td>40</td>
+      <td>344.81</td>
+      <td>340.90</td>
+      <td>0.00</td>
+      <td>13792</td>
+      <td>13636</td>
+      <td>13636</td>
+      <td>-156</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-07-31</td>
+      <td>1.47</td>
+      <td>5</td>
+      <td>190.497</td>
+      <td>61</td>
+      <td>440,271 cr</td>
+      <td>13,336 cr</td>
+      <td>1.62</td>
+      <td>5.13</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BPCL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BPCL/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>9</td>
       <td>CANBK</td>
+      <td>NSE</td>
       <td>100</td>
       <td>100</td>
       <td>116.12</td>
-      <td>114.87</td>
+      <td>107.45</td>
       <td>0.00</td>
-      <td>11612.0</td>
-      <td>11487.0</td>
-      <td>11487.0</td>
-      <td>-125.0</td>
-      <td>🔥 -1.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/bankspublicsector/canarabank/CB06">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-CANBK">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-CANBK/">🎯</a></td>
+      <td>11612</td>
+      <td>10745</td>
+      <td>10745</td>
+      <td>-867</td>
+      <td>🔥 -7</td>
+      <td>0</td>
+      <td>2025-06-13</td>
+      <td>3.7</td>
+      <td>4</td>
+      <td>116.217</td>
+      <td>103</td>
+      <td>55,524 cr</td>
+      <td>17,539 cr</td>
+      <td>2.78</td>
+      <td>6.35</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=CANBK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CANBK/">🎯</a></td>
     </tr>
     <tr>
+      <td>10</td>
       <td>DELTACORP</td>
+      <td>NSE</td>
       <td>150</td>
       <td>100</td>
       <td>112.25</td>
-      <td>91.17</td>
+      <td>89.15</td>
       <td>0.00</td>
-      <td>16838.0</td>
-      <td>13676.0</td>
-      <td>9117.0</td>
-      <td>-3162.0</td>
-      <td>🔥 -19.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-DELTACORP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-DELTACORP/">🎯</a></td>
+      <td>16838</td>
+      <td>13373</td>
+      <td>8915</td>
+      <td>-3465</td>
+      <td>🔥 -21</td>
+      <td>0</td>
+      <td>2024-07-19</td>
+      <td>1.4</td>
+      <td>1.25</td>
+      <td>99.581</td>
+      <td>990</td>
+      <td>729 cr</td>
+      <td>317 cr</td>
+      <td>2.03</td>
+      <td>4.55</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=DELTACORP&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DELTACORP/">🎯</a></td>
     </tr>
     <tr>
+      <td>11</td>
       <td>GEOJITFSL</td>
+      <td>NSE</td>
       <td>150</td>
       <td>150</td>
       <td>85.46</td>
-      <td>82.29</td>
+      <td>75.00</td>
       <td>0.00</td>
-      <td>12819.0</td>
-      <td>12344.0</td>
-      <td>12344.0</td>
-      <td>-475.0</td>
-      <td>🔥 -4.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-GEOJITFSL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-GEOJITFSL/">🎯</a></td>
+      <td>12819</td>
+      <td>11250</td>
+      <td>11250</td>
+      <td>-1569</td>
+      <td>🔥 -12</td>
+      <td>0</td>
+      <td>2025-07-11</td>
+      <td>2</td>
+      <td>1.5</td>
+      <td>41.521</td>
+      <td>1034</td>
+      <td>691 cr</td>
+      <td>150 cr</td>
+      <td>2.76</td>
+      <td>9.23</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=GEOJITFSL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GEOJITFSL/">🎯</a></td>
     </tr>
     <tr>
-      <td>GICHSGFIN</td>
-      <td>70</td>
-      <td>70</td>
-      <td>197.02</td>
-      <td>201.82</td>
-      <td>206.88</td>
-      <td>13791.0</td>
-      <td>14127.0</td>
-      <td>14127.0</td>
-      <td>336.0</td>
-      <td>🚀 2.0</td>
-      <td>49.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-GICHSGFIN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-GICHSGFIN/">🎯</a></td>
-    </tr>
-    <tr>
+      <td>12</td>
       <td>GICRE</td>
+      <td>NSE</td>
       <td>30</td>
       <td>30</td>
       <td>408.72</td>
-      <td>385.30</td>
+      <td>380.80</td>
       <td>0.00</td>
-      <td>12262.0</td>
-      <td>11559.0</td>
-      <td>11559.0</td>
-      <td>-703.0</td>
-      <td>🔥 -6.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/diversified/generalinsurancecorporationindia/GIC12">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-GICRE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-GICRE/">🎯</a></td>
+      <td>12262</td>
+      <td>11424</td>
+      <td>11424</td>
+      <td>-838</td>
+      <td>🔥 -7</td>
+      <td>0</td>
+      <td>2025-09-04</td>
+      <td>2.61</td>
+      <td>10</td>
+      <td>506.033</td>
+      <td>146</td>
+      <td>49,574 cr</td>
+      <td>7,431 cr</td>
+      <td>2.28</td>
+      <td>5.78</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=GICRE&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GICRE/">🎯</a></td>
     </tr>
     <tr>
+      <td>13</td>
       <td>GMMPFAUDLR</td>
+      <td>NSE</td>
       <td>8</td>
       <td>5</td>
       <td>1292.60</td>
-      <td>1335.60</td>
+      <td>1307.90</td>
       <td>1357.30</td>
-      <td>10341.0</td>
-      <td>10685.0</td>
-      <td>6678.0</td>
-      <td>344.0</td>
-      <td>🚀 3.0</td>
-      <td>66.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/engineeringheavy/gmmpfaudler/GMM01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-GMMPFAUDLR">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-GMMPFAUDLR/">🎯</a></td>
+      <td>10341</td>
+      <td>10463</td>
+      <td>6540</td>
+      <td>122</td>
+      <td>🚀 1</td>
+      <td>24</td>
+      <td>2025-07-25</td>
+      <td>0.08</td>
+      <td>1</td>
+      <td>227.503</td>
+      <td>690</td>
+      <td>3,198 cr</td>
+      <td>53 cr</td>
+      <td>2.49</td>
+      <td>5.15</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=GMMPFAUDLR&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GMMPFAUDLR/">🎯</a></td>
     </tr>
     <tr>
-      <td>GODREJIND</td>
-      <td>10</td>
-      <td>10</td>
-      <td>1103.61</td>
-      <td>1121.80</td>
+      <td>14</td>
+      <td>GOCLCORP</td>
+      <td>NSE</td>
+      <td>20</td>
+      <td>0</td>
+      <td>397.69</td>
+      <td>392.25</td>
       <td>0.00</td>
-      <td>11036.0</td>
-      <td>11218.0</td>
-      <td>11218.0</td>
-      <td>182.0</td>
-      <td>🚀 2.0</td>
-      <td>-2.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/personalcare/godrejindustries/GI23">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-GODREJIND">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-GODREJIND/">🎯</a></td>
+      <td>7954</td>
+      <td>7845</td>
+      <td>0</td>
+      <td>-109</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-07-25</td>
+      <td>2.52</td>
+      <td>10</td>
+      <td>317.999</td>
+      <td>1061</td>
+      <td>554 cr</td>
+      <td>92 cr</td>
+      <td>2.72</td>
+      <td>9.14</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=GOCLCORP&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GOCLCORP/">🎯</a></td>
     </tr>
     <tr>
-      <td>GPPL</td>
-      <td>75</td>
-      <td>75</td>
-      <td>160.50</td>
-      <td>159.27</td>
-      <td>0.00</td>
-      <td>12038.0</td>
-      <td>11945.0</td>
-      <td>11945.0</td>
-      <td>-93.0</td>
-      <td>🔥 -1.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/shipping/gujaratpipavavport/GPP03">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-GPPL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-GPPL/">🎯</a></td>
-    </tr>
-    <tr>
+      <td>15</td>
       <td>HAPPSTMNDS</td>
+      <td>NSE</td>
       <td>50</td>
       <td>35</td>
       <td>707.93</td>
-      <td>624.80</td>
+      <td>612.85</td>
       <td>0.00</td>
-      <td>35397.0</td>
-      <td>31240.0</td>
-      <td>21868.0</td>
-      <td>-4157.0</td>
-      <td>🔥 -12.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/it-servicesconsulting/happiestmindstechnologies/HMT01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-HAPPSTMNDS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-HAPPSTMNDS/">🎯</a></td>
+      <td>35397</td>
+      <td>30643</td>
+      <td>21450</td>
+      <td>-4754</td>
+      <td>🔥 -13</td>
+      <td>0</td>
+      <td>2025-07-18</td>
+      <td>0.56</td>
+      <td>3.5</td>
+      <td>104.939</td>
+      <td>565</td>
+      <td>2,060 cr</td>
+      <td>184 cr</td>
+      <td>1.52</td>
+      <td>6.01</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HAPPSTMNDS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HAPPSTMNDS/">🎯</a></td>
     </tr>
     <tr>
+      <td>16</td>
+      <td>HCLTECH</td>
+      <td>NSE</td>
+      <td>10</td>
+      <td>10</td>
+      <td>1570.81</td>
+      <td>1515.70</td>
+      <td>0.00</td>
+      <td>15708</td>
+      <td>15157</td>
+      <td>15157</td>
+      <td>-551</td>
+      <td>🔥 -4</td>
+      <td>0</td>
+      <td>2025-07-18</td>
+      <td>0.79</td>
+      <td>12</td>
+      <td>3.01</td>
+      <td>14</td>
+      <td>1,402 cr</td>
+      <td>199 cr</td>
+      <td>1.99</td>
+      <td>4.61</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HCLTECH&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HCLTECH/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>HDFCBANK</td>
+      <td>NSE</td>
+      <td>7</td>
+      <td>7</td>
+      <td>2001.72</td>
+      <td>2018.40</td>
+      <td>0.00</td>
+      <td>14012</td>
+      <td>14129</td>
+      <td>14129</td>
+      <td>117</td>
+      <td>🚀 1</td>
+      <td>-1</td>
+      <td>2025-06-27</td>
+      <td>1.1</td>
+      <td>22</td>
+      <td>708.586</td>
+      <td>2</td>
+      <td>273,606 cr</td>
+      <td>70,575 cr</td>
+      <td>1.32</td>
+      <td>2.94</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HDFCBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HDFCBANK/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>18</td>
       <td>HEROMOTOCO</td>
+      <td>NSE</td>
       <td>3</td>
       <td>3</td>
       <td>4360.30</td>
-      <td>4454.00</td>
+      <td>4285.40</td>
       <td>4591.00</td>
-      <td>13081.0</td>
-      <td>13362.0</td>
-      <td>13362.0</td>
-      <td>281.0</td>
-      <td>🚀 2.0</td>
-      <td>41.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/auto23wheelers/heromotocorp/HHM">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-HEROMOTOCO">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-HEROMOTOCO/">🎯</a></td>
+      <td>13081</td>
+      <td>12856</td>
+      <td>12856</td>
+      <td>-225</td>
+      <td>🔥 -2</td>
+      <td>0</td>
+      <td>2025-07-24</td>
+      <td>1.5</td>
+      <td>65</td>
+      <td>963.55</td>
+      <td>126</td>
+      <td>40,923 cr</td>
+      <td>4,378 cr</td>
+      <td>2.31</td>
+      <td>4.37</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HEROMOTOCO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HEROMOTOCO/">🎯</a></td>
     </tr>
     <tr>
+      <td>19</td>
+      <td>HEROMOTOCO</td>
+      <td>NSE</td>
+      <td>3</td>
+      <td>3</td>
+      <td>4360.30</td>
+      <td>4285.40</td>
+      <td>4665.50</td>
+      <td>13081</td>
+      <td>12856</td>
+      <td>12856</td>
+      <td>-225</td>
+      <td>🔥 -2</td>
+      <td>0</td>
+      <td>2025-07-24</td>
+      <td>1.5</td>
+      <td>65</td>
+      <td>963.55</td>
+      <td>126</td>
+      <td>40,923 cr</td>
+      <td>4,378 cr</td>
+      <td>2.31</td>
+      <td>4.37</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HEROMOTOCO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HEROMOTOCO/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>HINDPETRO</td>
+      <td>NSE</td>
+      <td>30</td>
+      <td>30</td>
+      <td>441.44</td>
+      <td>434.95</td>
+      <td>0.00</td>
+      <td>13243</td>
+      <td>13049</td>
+      <td>13049</td>
+      <td>-194</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-08-14</td>
+      <td>2.45</td>
+      <td>10.5</td>
+      <td>240.489</td>
+      <td>117</td>
+      <td>432,008 cr</td>
+      <td>6,735 cr</td>
+      <td>2.41</td>
+      <td>6.43</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HINDPETRO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HINDPETRO/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>21</td>
       <td>HINDZINC</td>
+      <td>NSE</td>
       <td>40</td>
       <td>40</td>
       <td>484.44</td>
-      <td>437.45</td>
+      <td>444.55</td>
       <td>0.00</td>
-      <td>19378.0</td>
-      <td>17498.0</td>
-      <td>17498.0</td>
-      <td>-1880.0</td>
-      <td>🔥 -10.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/metalsnonferrous/hindustanzinc/HZ">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-HINDZINC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-HINDZINC/">🎯</a></td>
+      <td>19378</td>
+      <td>17782</td>
+      <td>17782</td>
+      <td>-1596</td>
+      <td>🔥 -8</td>
+      <td>0</td>
+      <td>2025-06-17</td>
+      <td>2.26</td>
+      <td>10</td>
+      <td>31.535</td>
+      <td>45</td>
+      <td>33,041 cr</td>
+      <td>10,353 cr</td>
+      <td>1.74</td>
+      <td>7.06</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HINDZINC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HINDZINC/">🎯</a></td>
     </tr>
     <tr>
+      <td>22</td>
       <td>IDBI</td>
+      <td>NSE</td>
       <td>150</td>
       <td>150</td>
       <td>103.29</td>
-      <td>98.14</td>
+      <td>96.73</td>
       <td>0.00</td>
-      <td>15494.0</td>
-      <td>14721.0</td>
-      <td>14721.0</td>
-      <td>-773.0</td>
-      <td>🔥 -5.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/idbibank/idbibank/IDB05">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-IDBI">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-IDBI/">🎯</a></td>
+      <td>15494</td>
+      <td>14510</td>
+      <td>14510</td>
+      <td>-984</td>
+      <td>🔥 -6</td>
+      <td>0</td>
+      <td>2025-07-15</td>
+      <td>2.2</td>
+      <td>2.1</td>
+      <td>57.266</td>
+      <td>99</td>
+      <td>19,289 cr</td>
+      <td>7,630 cr</td>
+      <td>2.68</td>
+      <td>6.88</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=IDBI&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IDBI/">🎯</a></td>
     </tr>
     <tr>
+      <td>23</td>
       <td>INFIBEAM</td>
+      <td>NSE</td>
       <td>500</td>
       <td>500</td>
       <td>17.54</td>
-      <td>16.35</td>
+      <td>16.59</td>
       <td>0.00</td>
-      <td>8770.0</td>
-      <td>8175.0</td>
-      <td>8175.0</td>
-      <td>-595.0</td>
-      <td>🔥 -7.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/miscellaneous/infibeamavenues/IIL03">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-INFIBEAM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-INFIBEAM/">🎯</a></td>
+      <td>8770</td>
+      <td>8295</td>
+      <td>8295</td>
+      <td>-475</td>
+      <td>🔥 -5</td>
+      <td>0</td>
+      <td>2024-08-07</td>
+      <td>0.31</td>
+      <td>0.05</td>
+      <td>15.216</td>
+      <td>781</td>
+      <td>3,992 cr</td>
+      <td>225 cr</td>
+      <td>2.68</td>
+      <td>13.68</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=INFIBEAM&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/INFIBEAM/">🎯</a></td>
     </tr>
     <tr>
+      <td>24</td>
       <td>IOB</td>
+      <td>NSE</td>
       <td>300</td>
       <td>300</td>
       <td>41.05</td>
-      <td>39.05</td>
+      <td>38.92</td>
       <td>0.00</td>
-      <td>12315.0</td>
-      <td>11715.0</td>
-      <td>11715.0</td>
-      <td>-600.0</td>
-      <td>🔥 -5.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/bankspublicsector/indianoverseasbank/IOB">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-IOB">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-IOB/">🎯</a></td>
+      <td>12315</td>
+      <td>11676</td>
+      <td>11676</td>
+      <td>-639</td>
+      <td>🔥 -5</td>
+      <td>0</td>
+      <td>2014-06-19</td>
+      <td>1.27</td>
+      <td>0.5</td>
+      <td>17.153</td>
+      <td>136</td>
+      <td>12,328 cr</td>
+      <td>3,395 cr</td>
+      <td>2.37</td>
+      <td>6.29</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=IOB&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/IOB/">🎯</a></td>
     </tr>
     <tr>
+      <td>25</td>
       <td>JBCHEPHARM</td>
+      <td>NSE</td>
       <td>7</td>
       <td>7</td>
       <td>1685.98</td>
-      <td>1652.50</td>
+      <td>1686.10</td>
       <td>0.00</td>
-      <td>11802.0</td>
-      <td>11568.0</td>
-      <td>11568.0</td>
-      <td>-234.0</td>
-      <td>🔥 -2.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/jbchemicalspharmaceuticals/JBC01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-JBCHEPHARM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-JBCHEPHARM/">🎯</a></td>
+      <td>11802</td>
+      <td>11803</td>
+      <td>11803</td>
+      <td>1</td>
+      <td>🚀 0</td>
+      <td>0</td>
+      <td>2025-07-30</td>
+      <td>0.41</td>
+      <td>7</td>
+      <td>220.541</td>
+      <td>289</td>
+      <td>3,918 cr</td>
+      <td>659 cr</td>
+      <td>1.85</td>
+      <td>4.87</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=JBCHEPHARM&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/JBCHEPHARM/">🎯</a></td>
     </tr>
     <tr>
+      <td>26</td>
       <td>JCHAC</td>
+      <td>NSE</td>
       <td>5</td>
       <td>5</td>
       <td>1819.30</td>
-      <td>1770.00</td>
+      <td>1747.50</td>
       <td>0.00</td>
-      <td>9097.0</td>
-      <td>8850.0</td>
-      <td>8850.0</td>
-      <td>-247.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/consumergoodswhitegoods/johnsoncontrolshitachiairconditioningindia/HHL">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-JCHAC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-JCHAC/">🎯</a></td>
+      <td>9097</td>
+      <td>8738</td>
+      <td>8738</td>
+      <td>-359</td>
+      <td>🔥 -4</td>
+      <td>0</td>
+      <td>2025-07-09</td>
+      <td>2.06</td>
+      <td>36</td>
+      <td>235.733</td>
+      <td>765</td>
+      <td>2,756 cr</td>
+      <td>58 cr</td>
+      <td>1.93</td>
+      <td>4.83</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=JCHAC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/JCHAC/">🎯</a></td>
     </tr>
     <tr>
+      <td>27</td>
       <td>KANSAINER</td>
+      <td>NSE</td>
       <td>50</td>
       <td>50</td>
       <td>250.44</td>
-      <td>249.80</td>
+      <td>249.90</td>
       <td>0.00</td>
-      <td>12522.0</td>
-      <td>12490.0</td>
-      <td>12490.0</td>
-      <td>-32.0</td>
-      <td>🔥 0.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/paintsvarnishes/kansainerolacpaints/KNP">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-KANSAINER">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-KANSAINER/">🎯</a></td>
+      <td>12522</td>
+      <td>12495</td>
+      <td>12495</td>
+      <td>-27</td>
+      <td>🔥 0</td>
+      <td>0</td>
+      <td>2025-06-23</td>
+      <td>1.01</td>
+      <td>2.5</td>
+      <td>79.451</td>
+      <td>352</td>
+      <td>7,823 cr</td>
+      <td>1,143 cr</td>
+      <td>1.34</td>
+      <td>3.66</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=KANSAINER&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KANSAINER/">🎯</a></td>
     </tr>
     <tr>
+      <td>28</td>
       <td>KPITTECH</td>
+      <td>NSE</td>
       <td>10</td>
       <td>10</td>
       <td>1331.44</td>
-      <td>1291.90</td>
+      <td>1257.60</td>
       <td>0.00</td>
-      <td>13314.0</td>
-      <td>12919.0</td>
-      <td>12919.0</td>
-      <td>-395.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/kpittech/kpittechnologies/KPITT54265">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-KPITTECH">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-KPITTECH/">🎯</a></td>
+      <td>13314</td>
+      <td>12576</td>
+      <td>12576</td>
+      <td>-738</td>
+      <td>🔥 -6</td>
+      <td>0</td>
+      <td>2025-07-28</td>
+      <td>0.48</td>
+      <td>6</td>
+      <td>107.374</td>
+      <td>249</td>
+      <td>5,842 cr</td>
+      <td>839 cr</td>
+      <td>1.71</td>
+      <td>5.47</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=KPITTECH&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KPITTECH/">🎯</a></td>
     </tr>
     <tr>
+      <td>29</td>
       <td>MMTC</td>
+      <td>NSE</td>
       <td>225</td>
       <td>225</td>
       <td>76.55</td>
-      <td>68.50</td>
+      <td>68.61</td>
       <td>0.00</td>
-      <td>17224.0</td>
-      <td>15413.0</td>
-      <td>15413.0</td>
-      <td>-1811.0</td>
-      <td>🔥 -11.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/trading/mmtc/MMT">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-MMTC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-MMTC/">🎯</a></td>
+      <td>17224</td>
+      <td>15437</td>
+      <td>15437</td>
+      <td>-1787</td>
+      <td>🔥 -10</td>
+      <td>0</td>
+      <td>2019-09-19</td>
+      <td>0.43</td>
+      <td>0.3</td>
+      <td>7.633</td>
+      <td>527</td>
+      <td>2 cr</td>
+      <td>86 cr</td>
+      <td>2.8</td>
+      <td>7.4</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=MMTC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MMTC/">🎯</a></td>
     </tr>
     <tr>
+      <td>30</td>
       <td>NTPC</td>
+      <td>NSE</td>
       <td>40</td>
       <td>40</td>
       <td>341.89</td>
-      <td>342.00</td>
+      <td>340.85</td>
       <td>0.00</td>
-      <td>13676.0</td>
-      <td>13680.0</td>
-      <td>13680.0</td>
-      <td>4.0</td>
-      <td>🚀 0.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/powergenerationdistribution/ntpc/NTP">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-NTPC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-NTPC/">🎯</a></td>
+      <td>13676</td>
+      <td>13634</td>
+      <td>13634</td>
+      <td>-42</td>
+      <td>🔥 0</td>
+      <td>0</td>
+      <td>2025-01-31</td>
+      <td>0.73</td>
+      <td>2.5</td>
+      <td>189.846</td>
+      <td>20</td>
+      <td>188,138 cr</td>
+      <td>23,422 cr</td>
+      <td>0.96</td>
+      <td>2.97</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=NTPC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NTPC/">🎯</a></td>
     </tr>
     <tr>
+      <td>31</td>
       <td>OLAELEC</td>
+      <td>NSE</td>
       <td>150</td>
       <td>150</td>
       <td>53.01</td>
-      <td>44.10</td>
+      <td>42.85</td>
       <td>0.00</td>
-      <td>7952.0</td>
-      <td>6615.0</td>
-      <td>6615.0</td>
-      <td>-1337.0</td>
-      <td>🔥 -17.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-OLAELEC">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-OLAELEC/">🎯</a></td>
+      <td>7952</td>
+      <td>6428</td>
+      <td>6428</td>
+      <td>-1524</td>
+      <td>🔥 -19</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td>ORIENTCEM</td>
-      <td>75</td>
-      <td>75</td>
-      <td>249.59</td>
-      <td>237.05</td>
-      <td>0.00</td>
-      <td>18719.0</td>
-      <td>17779.0</td>
-      <td>17779.0</td>
-      <td>-940.0</td>
-      <td>🔥 -5.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-ORIENTCEM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-ORIENTCEM/">🎯</a></td>
-    </tr>
-    <tr>
+      <td>32</td>
       <td>PFIZER</td>
+      <td>NSE</td>
       <td>2</td>
       <td>2</td>
       <td>5803.71</td>
-      <td>5431.00</td>
+      <td>5280.00</td>
       <td>0.00</td>
-      <td>11607.0</td>
-      <td>10862.0</td>
-      <td>10862.0</td>
-      <td>-745.0</td>
-      <td>🔥 -6.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/pharmaceuticals/pfizer/P">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-PFIZER">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-PFIZER/">🎯</a></td>
+      <td>11607</td>
+      <td>10560</td>
+      <td>10560</td>
+      <td>-1047</td>
+      <td>🔥 -9</td>
+      <td>0</td>
+      <td>2025-07-09</td>
+      <td>0.66</td>
+      <td>35</td>
+      <td>921.884</td>
+      <td>309</td>
+      <td>2,281 cr</td>
+      <td>767 cr</td>
+      <td>2.01</td>
+      <td>5.87</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=PFIZER&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PFIZER/">🎯</a></td>
     </tr>
     <tr>
+      <td>33</td>
       <td>PNB</td>
+      <td>NSE</td>
       <td>100</td>
       <td>100</td>
       <td>111.10</td>
-      <td>112.24</td>
-      <td>0.00</td>
-      <td>11110.0</td>
-      <td>11224.0</td>
-      <td>11224.0</td>
-      <td>114.0</td>
-      <td>🚀 1.0</td>
-      <td>-1.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/bankspublicsector/punjabnationalbank/PNB05">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-PNB">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-PNB/">🎯</a></td>
+      <td>108.95</td>
+      <td>122.24</td>
+      <td>11110</td>
+      <td>10895</td>
+      <td>10895</td>
+      <td>-215</td>
+      <td>🔥 -2</td>
+      <td>0</td>
+      <td>2025-06-20</td>
+      <td>2.65</td>
+      <td>2.9</td>
+      <td>115.843</td>
+      <td>71</td>
+      <td>49,990 cr</td>
+      <td>18,480 cr</td>
+      <td>2.46</td>
+      <td>5.74</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=PNB&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PNB/">🎯</a></td>
     </tr>
     <tr>
+      <td>34</td>
       <td>PTL</td>
+      <td>NSE</td>
       <td>150</td>
       <td>0</td>
       <td>46.71</td>
-      <td>41.40</td>
+      <td>40.10</td>
       <td>0.00</td>
-      <td>7007.0</td>
-      <td>6210.0</td>
-      <td>0.0</td>
-      <td>-797.0</td>
-      <td>🔥 -11.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-PTL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-PTL/">🎯</a></td>
+      <td>7007</td>
+      <td>6015</td>
+      <td>0</td>
+      <td>-992</td>
+      <td>🔥 -14</td>
+      <td>0</td>
+      <td>2025-07-11</td>
+      <td>4.35</td>
+      <td>1.75</td>
+      <td>64.273</td>
+      <td>1406</td>
+      <td>64 cr</td>
+      <td>36 cr</td>
+      <td>1.86</td>
+      <td>6</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=PTL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/PTL/">🎯</a></td>
     </tr>
     <tr>
+      <td>35</td>
       <td>QUESS</td>
+      <td>NSE</td>
       <td>50</td>
       <td>50</td>
       <td>313.29</td>
-      <td>308.00</td>
+      <td>309.70</td>
       <td>0.00</td>
-      <td>15665.0</td>
-      <td>15400.0</td>
-      <td>15400.0</td>
-      <td>-265.0</td>
-      <td>🔥 -2.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/engineering/quesscorp/QC">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-QUESS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-QUESS/">🎯</a></td>
+      <td>15665</td>
+      <td>15485</td>
+      <td>15485</td>
+      <td>-180</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-08-08</td>
+      <td>1.92</td>
+      <td>6</td>
+      <td>72.935</td>
+      <td>773</td>
+      <td>14,967 cr</td>
+      <td>45 cr</td>
+      <td>2.76</td>
+      <td>5.63</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=QUESS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/QUESS/">🎯</a></td>
     </tr>
     <tr>
+      <td>36</td>
+      <td>RELIANCE</td>
+      <td>NSE</td>
+      <td>10</td>
+      <td>10</td>
+      <td>1475.51</td>
+      <td>1402.90</td>
+      <td>0.00</td>
+      <td>14755</td>
+      <td>14029</td>
+      <td>14029</td>
+      <td>-726</td>
+      <td>🔥 -5</td>
+      <td>0</td>
+      <td>2024-08-19</td>
+      <td>0.35</td>
+      <td>5</td>
+      <td>623.048</td>
+      <td>1</td>
+      <td>976,541 cr</td>
+      <td>81,504 cr</td>
+      <td>1.62</td>
+      <td>3.78</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=RELIANCE&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/RELIANCE/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>37</td>
       <td>SAMMAANCAP</td>
+      <td>NSE</td>
       <td>100</td>
       <td>50</td>
       <td>165.69</td>
-      <td>124.30</td>
+      <td>132.38</td>
       <td>0.00</td>
-      <td>16569.0</td>
-      <td>12430.0</td>
-      <td>6215.0</td>
-      <td>-4139.0</td>
-      <td>🔥 -25.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-SAMMAANCAP">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-SAMMAANCAP/">🎯</a></td>
+      <td>16569</td>
+      <td>13238</td>
+      <td>6619</td>
+      <td>-3331</td>
+      <td>🔥 -20</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
+      <td>38</td>
+      <td>SBICARD</td>
+      <td>NSE</td>
+      <td>20</td>
+      <td>20</td>
+      <td>896.11</td>
+      <td>890.40</td>
+      <td>0.00</td>
+      <td>17922</td>
+      <td>17808</td>
+      <td>17808</td>
+      <td>-114</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-02-25</td>
+      <td>0.28</td>
+      <td>2.5</td>
+      <td>144.995</td>
+      <td>128</td>
+      <td>10,022 cr</td>
+      <td>1,916 cr</td>
+      <td>3.33</td>
+      <td>7.3</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SBICARD&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SBICARD/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>39</td>
       <td>SKYGOLD</td>
+      <td>NSE</td>
       <td>40</td>
       <td>0</td>
       <td>332.82</td>
-      <td>326.00</td>
-      <td>0.00</td>
-      <td>13313.0</td>
-      <td>13040.0</td>
-      <td>0.0</td>
-      <td>-273.0</td>
-      <td>🔥 -2.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-SKYGOLD">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-SKYGOLD/">🎯</a></td>
+      <td>307.85</td>
+      <td>367.45</td>
+      <td>13313</td>
+      <td>12314</td>
+      <td>0</td>
+      <td>-999</td>
+      <td>🔥 -8</td>
+      <td>0</td>
+      <td>2023-09-20</td>
+      <td>0.03</td>
+      <td>0.1</td>
+      <td>46.572</td>
+      <td>742</td>
+      <td>3,548 cr</td>
+      <td>132 cr</td>
+      <td>3.47</td>
+      <td>9.31</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SKYGOLD&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SKYGOLD/">🎯</a></td>
     </tr>
     <tr>
+      <td>40</td>
       <td>SOUTHBANK</td>
+      <td>NSE</td>
       <td>500</td>
       <td>500</td>
       <td>31.57</td>
-      <td>30.63</td>
+      <td>29.73</td>
       <td>0.00</td>
-      <td>15785.0</td>
-      <td>15315.0</td>
-      <td>15315.0</td>
-      <td>-470.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-SOUTHBANK">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-SOUTHBANK/">🎯</a></td>
+      <td>15785</td>
+      <td>14865</td>
+      <td>14865</td>
+      <td>-920</td>
+      <td>🔥 -6</td>
+      <td>0</td>
+      <td>2025-08-13</td>
+      <td>1.37</td>
+      <td>0.4</td>
+      <td>39.758</td>
+      <td>633</td>
+      <td>4,826 cr</td>
+      <td>1,331 cr</td>
+      <td>2.64</td>
+      <td>5.88</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SOUTHBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SOUTHBANK/">🎯</a></td>
     </tr>
     <tr>
-      <td>SSWL</td>
-      <td>50</td>
-      <td>50</td>
-      <td>246.38</td>
-      <td>242.25</td>
-      <td>0.00</td>
-      <td>12319.0</td>
-      <td>12113.0</td>
-      <td>12113.0</td>
-      <td>-206.0</td>
-      <td>🔥 -2.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-SSWL">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-SSWL/">🎯</a></td>
-    </tr>
-    <tr>
+      <td>41</td>
       <td>SUZLON</td>
+      <td>NSE</td>
       <td>250</td>
       <td>0</td>
       <td>68.91</td>
-      <td>67.17</td>
+      <td>65.29</td>
       <td>0.00</td>
-      <td>17228.0</td>
-      <td>16793.0</td>
-      <td>0.0</td>
-      <td>-435.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-SUZLON">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-SUZLON/">🎯</a></td>
+      <td>17228</td>
+      <td>16323</td>
+      <td>0</td>
+      <td>-905</td>
+      <td>🔥 -5</td>
+      <td>0</td>
+      <td>2008-07-17</td>
+      <td>1.38</td>
+      <td>0.9182</td>
+      <td>4.493</td>
+      <td>118</td>
+      <td>10,851 cr</td>
+      <td>2,071 cr</td>
+      <td>2.16</td>
+      <td>5.74</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SUZLON&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SUZLON/">🎯</a></td>
     </tr>
     <tr>
+      <td>42</td>
       <td>TATAINVEST</td>
+      <td>NSE</td>
       <td>3</td>
       <td>3</td>
       <td>6783.36</td>
-      <td>6580.50</td>
+      <td>6741.50</td>
       <td>0.00</td>
-      <td>20350.0</td>
-      <td>19742.0</td>
-      <td>19742.0</td>
-      <td>-608.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-TATAINVEST">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-TATAINVEST/">🎯</a></td>
+      <td>20350</td>
+      <td>20225</td>
+      <td>20225</td>
+      <td>-125</td>
+      <td>🔥 -1</td>
+      <td>0</td>
+      <td>2025-06-10</td>
+      <td>0.4</td>
+      <td>27</td>
+      <td>6144.992</td>
+      <td>251</td>
+      <td>306 cr</td>
+      <td>312 cr</td>
+      <td>2.26</td>
+      <td>5.5</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TATAINVEST&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TATAINVEST/">🎯</a></td>
     </tr>
     <tr>
+      <td>43</td>
       <td>TATAMOTORS</td>
+      <td>NSE</td>
       <td>20</td>
       <td>20</td>
       <td>687.67</td>
-      <td>684.40</td>
+      <td>702.55</td>
       <td>0.00</td>
-      <td>13753.0</td>
-      <td>13688.0</td>
-      <td>13688.0</td>
-      <td>-65.0</td>
-      <td>🔥 0.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/autolcvshcvs/tatamotors/TM03">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-TATAMOTORS">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-TATAMOTORS/">🎯</a></td>
+      <td>13753</td>
+      <td>14051</td>
+      <td>14051</td>
+      <td>298</td>
+      <td>🚀 2</td>
+      <td>-2</td>
+      <td>2025-06-04</td>
+      <td>0.89</td>
+      <td>6</td>
+      <td>315.493</td>
+      <td>33</td>
+      <td>439,695 cr</td>
+      <td>22,959 cr</td>
+      <td>1.68</td>
+      <td>4.01</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TATAMOTORS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TATAMOTORS/">🎯</a></td>
     </tr>
     <tr>
+      <td>44</td>
       <td>TECHM</td>
+      <td>NSE</td>
       <td>12</td>
       <td>12</td>
       <td>1690.47</td>
-      <td>1579.00</td>
+      <td>1518.20</td>
       <td>0.00</td>
-      <td>20286.0</td>
-      <td>18948.0</td>
-      <td>18948.0</td>
-      <td>-1338.0</td>
-      <td>🔥 -7.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/computerssoftware/techmahindra/TM4">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-TECHM">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-TECHM/">🎯</a></td>
+      <td>20286</td>
+      <td>18218</td>
+      <td>18218</td>
+      <td>-2068</td>
+      <td>🔥 -10</td>
+      <td>0</td>
+      <td>2025-07-04</td>
+      <td>1.94</td>
+      <td>30</td>
+      <td>309.254</td>
+      <td>64</td>
+      <td>53,334 cr</td>
+      <td>4,540 cr</td>
+      <td>2.05</td>
+      <td>4.2</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TECHM&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TECHM/">🎯</a></td>
     </tr>
     <tr>
+      <td>45</td>
       <td>TITAN</td>
+      <td>NSE</td>
       <td>4</td>
       <td>4</td>
       <td>3468.19</td>
-      <td>3415.00</td>
+      <td>3479.20</td>
       <td>0.00</td>
-      <td>13873.0</td>
-      <td>13660.0</td>
-      <td>13660.0</td>
-      <td>-213.0</td>
-      <td>🔥 -2.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/miscellaneous/titancompany/TI01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-TITAN">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-TITAN/">🎯</a></td>
+      <td>13873</td>
+      <td>13917</td>
+      <td>13917</td>
+      <td>44</td>
+      <td>🚀 0</td>
+      <td>0</td>
+      <td>2025-07-08</td>
+      <td>0.32</td>
+      <td>11</td>
+      <td>130.932</td>
+      <td>24</td>
+      <td>60,456 cr</td>
+      <td>3,337 cr</td>
+      <td>1.44</td>
+      <td>5.09</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TITAN&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TITAN/">🎯</a></td>
     </tr>
     <tr>
+      <td>46</td>
       <td>UJJIVANSFB</td>
+      <td>NSE</td>
       <td>174</td>
       <td>0</td>
       <td>48.26</td>
-      <td>49.66</td>
+      <td>46.60</td>
       <td>50.99</td>
-      <td>8397.0</td>
-      <td>8641.0</td>
-      <td>0.0</td>
-      <td>244.0</td>
-      <td>🚀 3.0</td>
-      <td>51.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/bank-private/ujjivansmallfinancebank/USF">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-UJJIVANSFB">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-UJJIVANSFB/">🎯</a></td>
+      <td>8397</td>
+      <td>8108</td>
+      <td>0</td>
+      <td>-289</td>
+      <td>🔥 -3</td>
+      <td>0</td>
+      <td>2024-07-12</td>
+      <td>3.18</td>
+      <td>1.5</td>
+      <td>31.439</td>
+      <td>569</td>
+      <td>3,734 cr</td>
+      <td>726 cr</td>
+      <td>2.66</td>
+      <td>6.48</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=UJJIVANSFB&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/UJJIVANSFB/">🎯</a></td>
     </tr>
     <tr>
+      <td>47</td>
       <td>UNIONBANK</td>
+      <td>NSE</td>
       <td>150</td>
       <td>150</td>
       <td>150.44</td>
-      <td>146.23</td>
+      <td>143.15</td>
       <td>0.00</td>
-      <td>22566.0</td>
-      <td>21935.0</td>
-      <td>21935.0</td>
-      <td>-631.0</td>
-      <td>🔥 -3.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://www.moneycontrol.com/india/stockpricequote/bankspublicsector/unionbankindia/UBI01">🛎️</a><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-UNIONBANK">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-UNIONBANK/">🎯</a></td>
+      <td>22566</td>
+      <td>21473</td>
+      <td>21473</td>
+      <td>-1093</td>
+      <td>🔥 -5</td>
+      <td>0</td>
+      <td>2025-07-25</td>
+      <td>3.32</td>
+      <td>4.75</td>
+      <td>148.986</td>
+      <td>85</td>
+      <td>51,468 cr</td>
+      <td>18,027 cr</td>
+      <td>2.42</td>
+      <td>6.35</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=UNIONBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/UNIONBANK/">🎯</a></td>
     </tr>
     <tr>
+      <td>48</td>
       <td>VAKRANGEE-BE</td>
+      <td>NSE</td>
       <td>1</td>
       <td>0</td>
       <td>30.71</td>
-      <td>9.93</td>
+      <td>10.14</td>
       <td>0.00</td>
-      <td>31.0</td>
-      <td>10.0</td>
-      <td>0.0</td>
-      <td>-21.0</td>
-      <td>🔥 -68.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-VAKRANGEE-BE">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-VAKRANGEE-BE/">🎯</a></td>
+      <td>31</td>
+      <td>10</td>
+      <td>0</td>
+      <td>-21</td>
+      <td>🔥 -67</td>
+      <td>0</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
+      <td>49</td>
+      <td>VRLLOG</td>
+      <td>NSE</td>
+      <td>15</td>
+      <td>15</td>
+      <td>623.47</td>
+      <td>627.05</td>
+      <td>0.00</td>
+      <td>9352</td>
+      <td>9406</td>
+      <td>9406</td>
+      <td>54</td>
+      <td>🚀 1</td>
+      <td>-1</td>
+      <td>2025-07-30</td>
+      <td>1.59</td>
+      <td>10</td>
+      <td>123.994</td>
+      <td>715</td>
+      <td>3,170 cr</td>
+      <td>183 cr</td>
+      <td>2.25</td>
+      <td>4.72</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=VRLLOG&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/VRLLOG/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>50</td>
       <td>XCHANGING</td>
+      <td>NSE</td>
       <td>100</td>
       <td>100</td>
       <td>100.25</td>
-      <td>96.17</td>
+      <td>92.65</td>
       <td>0.00</td>
-      <td>10025.0</td>
-      <td>9617.0</td>
-      <td>9617.0</td>
-      <td>-408.0</td>
-      <td>🔥 -4.0</td>
-      <td>0.0</td>
-      <td><a target="_blank" href="https://in.tradingview.com/chart/Lm41gt6O/?symbol=NSE-XCHANGING">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NSE-XCHANGING/">🎯</a></td>
+      <td>10025</td>
+      <td>9265</td>
+      <td>9265</td>
+      <td>-760</td>
+      <td>🔥 -8</td>
+      <td>0</td>
+      <td>2025-07-11</td>
+      <td>2.14</td>
+      <td>2</td>
+      <td>32.317</td>
+      <td>1258</td>
+      <td>184 cr</td>
+      <td>49 cr</td>
+      <td>2.15</td>
+      <td>5.78</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=XCHANGING&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/XCHANGING/">🎯</a></td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>ZEEL</td>
+      <td>NSE</td>
+      <td>77</td>
+      <td>77</td>
+      <td>129.90</td>
+      <td>129.95</td>
+      <td>0.00</td>
+      <td>10002</td>
+      <td>10006</td>
+      <td>10006</td>
+      <td>4</td>
+      <td>🚀 0</td>
+      <td>0</td>
+      <td>2024-11-08</td>
+      <td>0.75</td>
+      <td>1</td>
+      <td>119.987</td>
+      <td>471</td>
+      <td>8,294 cr</td>
+      <td>687 cr</td>
+      <td>3.89</td>
+      <td>10.3</td>
+      <td><a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ZEEL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ZEEL/">🎯</a></td>
+    </tr>
+  </tbody>
+</table></div>
+            <script>
+                function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            </body></html>
+            <H1>Investment Summary</H1>
+                                <table border="1" class="dataframe">
+  <tbody>
+    <tr>
+      <td>Investment</td>
+      <td>683005.00</td>
+    </tr>
+    <tr>
+      <td>Current</td>
+      <td>641383.00</td>
+    </tr>
+    <tr>
+      <td>MTF Value</td>
+      <td>556978.00</td>
+    </tr>
+    <tr>
+      <td>Profit Loss</td>
+      <td>-41622.00</td>
+    </tr>
+    <tr>
+      <td>Change</td>
+      <td>-6.09</td>
+    </tr>
+    <tr>
+      <td>No of Stocks</td>
+      <td>51.00</td>
+    </tr>
+    <tr>
+      <td>Red Stocks</td>
+      <td>43.00</td>
+    </tr>
+    <tr>
+      <td>Green Stocks</td>
+      <td>8.00</td>
     </tr>
   </tbody>
 </table>
-                                        <br><H1>Market Mood</H1>
-                            <Table>
-                            <tr>
-                            <td style="color: #FFFFFF; background-color: rgb(3, 61, 133); padding: 13px 8px;"><b>Market</b></td>
-                            <td style="color: #FFFFFF; background-color: rgb(3, 61, 133); padding: 13px 8px;"><b>Previous</b></td>
-                            <td style="color: #FFFFFF; background-color: rgb(3, 61, 133); padding: 13px 8px;"><b>Now</b></td>
-                            </tr>
-                            <tr>
-                            <td style="background-color: rgb(165, 165, 165); padding: 13px 8px;"><b>NSE</b></td>
-                            <td style="background-color: rgb(212, 218, 225); padding: 13px 8px;">49</td>
-                            <td style="background-color: rgb(212, 218, 225); padding: 13px 8px;">44</td>
-                            </tr>
-                            <tr>
-                            <td style="background-color: rgb(165, 165, 165); padding: 13px 8px;"><b>Crypto</b></td>
-                            <td style="background-color: rgb(212, 218, 225); padding: 13px 8px;">74</td>
-                            <td style="background-color: rgb(212, 218, 225); padding: 13px 8px;">73</td>
-                            </tr>
-                            </Table>
-                            <hr><br>
-                              </body>
-                              </html>
-                              
+                                <br>
