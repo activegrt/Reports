@@ -1,365 +1,225 @@
-<html><head><style>
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
     .table-container {
-        width: 100%;
-        max-height: 600px;
-        overflow-y: auto;
-        border: 1px solid #ddd;
+      width: 100%;
+      max-height: 600px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
     }
     table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    thead th {
-        position: sticky;
-        top: 0;
-        background: #a6cff7;
-        z-index: 2;
-    }
-    th.sortable:hover {
-        background-color: #e2e6ea;
-    }
-    .asc::after {
-        content: " ▲";
-    }
-    .desc::after {
-        content: " ▼";
-    }
-    
-    .expand-btn {
-      cursor: pointer;
-      color: blue;
-      text-decoration: underline;
-    }
-    .hidden-row {
-      display: none;
-    }
-    .detail-row td {
-      padding: 8px;
-      border: 1px solid #ddd;
-    }
-    .detail-row {
-      background-color: #f5f5f5;
-    }
-    .detail-table {
       width: 100%;
       border-collapse: collapse;
     }
-    .detail-table td {
-      padding: 5px;
-      border: 1px solid #ddd;
+    th, td {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      text-align: left;
     }
-    .detail-table tr:nth-child(even) {
+    thead th {
+      position: sticky;
+      top: 0;
+      background: #f1f1f1;
+      cursor: pointer;
+    }
+    th.sort-asc::after {
+      content: " ▲";
+    }
+    th.sort-desc::after {
+      content: " ▼";
+    }
+    .expand-btn {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .detail-row {
+      display: none;
       background-color: #f9f9f9;
     }
-    .positive {
-      color: green;
+    .detail-content {
+      padding: 10px;
+      font-size: 14px;
     }
-    .negative {
-      color: red;
+	.detail-content {
+	  display: grid;
+	  grid-template-columns: repeat(3, 1fr);
+	  gap: 12px;
+	  padding: 16px;
+	  font-size: 14px;
+	  border-radius: 8px;
+	  background: #ffffff;
+	  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+	}
+
+	.detail-box {
+	  background: #f5faff;
+	  border: 1px solid #ddeeff;
+	  padding: 10px;
+	  border-radius: 6px;
+	}
+
+	.detail-box strong {
+	  display: block;
+	  color: #333;
+	  font-weight: bold;
+	  margin-bottom: 4px;
+	}
+
+	.positive {
+	  color: green;
+	}
+
+	.negative {
+	  color: red;
+	}
+  </style>
+</head>
+<body>
+
+<h2>Holdings Summary</h2>
+<div class="table-container">
+  <table id="holdingsTable">
+    <thead>
+      <tr>
+        <th data-index="0">#</th>
+        <th data-index="1">Symbol</th>
+        <th data-index="2">Exchange</th>
+        <th data-index="3">CMP</th>
+        <th data-index="4">Change</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>ALEMBICLTD</td>
+        <td>NSE</td>
+        <td>117.91</td>
+        <td>🚀 1%</td>
+        <td><span class="expand-btn" onclick="toggleDetails(this)">Show Details</span></td>
+      </tr>
+      <tr class="detail-row">
+        <td colspan="6">
+          <div class="detail-content">
+			  <div class="detail-box">
+				<strong>Quantity</strong>100<br>
+				<strong>Entry</strong>117.23<br>
+				<strong>Target</strong>123.34
+			  </div>
+			  <div class="detail-box">
+				<strong>Investment</strong>₹11,723<br>
+				<strong>Current</strong>₹11,791<br>
+				<strong>Profit/Loss</strong><span class="positive">₹68</span>
+			  </div>
+			  <div class="detail-box">
+				<strong>Dividend</strong>2.03% on 2025-08-05<br>
+				<strong>Rank</strong>917<br>
+				<strong>Revenue</strong>₹221 cr
+			  </div>
+			</div>
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>AVADHSUGAR</td>
+        <td>NSE</td>
+        <td>469.95</td>
+        <td>🔥 -8%</td>
+        <td><span class="expand-btn" onclick="toggleDetails(this)">Show Details</span></td>
+      </tr>
+      <tr class="detail-row">
+        <td colspan="6">
+          <div class="detail-content">
+            Quantity: 20 | Entry: 512.14 | Target: 0 <br>
+            Investment: ₹10,243 | Current: ₹9,399 | Profit/Loss: -₹844<br>
+            Dividend: 2.08% on 2025-07-16 | Rank: 1273 | Revenue: ₹2,635 cr
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>fdfd</td>
+        <td>NSE</td>
+        <td>49.95</td>
+        <td>🔥 -3%</td>
+        <td><span class="expand-btn" onclick="toggleDetails(this)">Show Details</span></td>
+      </tr>
+      <tr class="detail-row"></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+  // Multi-level sorting state
+  let sortState = {};
+
+  document.querySelectorAll('#holdingsTable thead th').forEach(th => {
+    if (th.dataset.index) {
+      th.addEventListener('click', () => sortTable(parseInt(th.dataset.index)));
     }
-    </style></head><p>Page last refreshed on 2025-07-24 11:32</p><body><H2>Holdings Summary</H2><div class="table-container">
-        
-        <table id="sortableTable" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th class='sortable' onclick='sortTable(0)'>#</th>
-      <th class='sortable' onclick='sortTable(1)'>Symbol</th>
-      <th class='sortable' onclick='sortTable(2)'>Exchange</th>
-      <th class='sortable' onclick='sortTable(3)'>CMP</th>
-      <th class='sortable' onclick='sortTable(4)'>Change</th>
-      <th>Details</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>ALEMBICLTD</td>
-      <td>NSE</td>
-      <td>117.91</td>
-      <td class="positive">🚀 1%</td>
-      <td><span class="expand-btn" onclick="toggleDetails(1)">▼ Show Details</span></td>
-    </tr>
-    <tr class="hidden-row" id="detail-row-1">
-      <td colspan="6">
-        <table class="detail-table">
-          <tr>
-            <td>Quantity:</td><td>100</td>
-            <td>MTFQty:</td><td>100</td>
-            <td>Entry:</td><td>117.23</td>
-          </tr>
-          <tr>
-            <td>Target:</td><td>123.34</td>
-            <td>Investment:</td><td>11,723</td>
-            <td>Current:</td><td>11,791</td>
-          </tr>
-          <tr>
-            <td>MTFValue:</td><td>11,791</td>
-            <td>ProfitLoss:</td><td class="positive">68</td>
-            <td>Progress:</td><td>11%</td>
-          </tr>
-          <tr>
-            <td>Dividend Date:</td><td>2025-08-05</td>
-            <td>Dividend%:</td><td>2.03%</td>
-            <td>Dividend:</td><td>2.4</td>
-          </tr>
-          <tr>
-            <td>Intrinsic:</td><td>91.073</td>
-            <td>Rank:</td><td>917</td>
-            <td>Revenue:</td><td>221 cr</td>
-          </tr>
-          <tr>
-            <td>Net Profit:</td><td>310 cr</td>
-            <td>Day Range:</td><td>2.27</td>
-            <td>Week Range:</td><td>6.11</td>
-          </tr>
-          <tr>
-            <td colspan="3">Reference:</td>
-            <td colspan="3">
-              <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ALEMBICLTD&interval=D">📊 Chart</a> | 
-              <a target="_blank" href="https://in.tradingview.com/symbols/ALEMBICLTD/">🎯 Symbol</a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>2</td>
-      <td>AVADHSUGAR</td>
-      <td>NSE</td>
-      <td>469.95</td>
-      <td class="negative">🔥 -8%</td>
-      <td><span class="expand-btn" onclick="toggleDetails(2)">▼ Show Details</span></td>
-    </tr>
-    <tr class="hidden-row" id="detail-row-2">
-      <td colspan="6">
-        <table class="detail-table">
-          <tr>
-            <td>Quantity:</td><td>20</td>
-            <td>MTFQty:</td><td>20</td>
-            <td>Entry:</td><td>512.14</td>
-          </tr>
-          <tr>
-            <td>Target:</td><td>0.00</td>
-            <td>Investment:</td><td>10,243</td>
-            <td>Current:</td><td>9,399</td>
-          </tr>
-          <tr>
-            <td>MTFValue:</td><td>9,399</td>
-            <td>ProfitLoss:</td><td class="negative">-844</td>
-            <td>Progress:</td><td>0%</td>
-          </tr>
-          <tr>
-            <td>Dividend Date:</td><td>2025-07-16</td>
-            <td>Dividend%:</td><td>2.08%</td>
-            <td>Dividend:</td><td>10</td>
-          </tr>
-          <tr>
-            <td>Intrinsic:</td><td>550.055</td>
-            <td>Rank:</td><td>1,273</td>
-            <td>Revenue:</td><td>2,635 cr</td>
-          </tr>
-          <tr>
-            <td>Net Profit:</td><td>88 cr</td>
-            <td>Day Range:</td><td>2.1</td>
-            <td>Week Range:</td><td>6.51</td>
-          </tr>
-          <tr>
-            <td colspan="3">Reference:</td>
-            <td colspan="3">
-              <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=AVADHSUGAR&interval=D">📊 Chart</a> | 
-              <a target="_blank" href="https://in.tradingview.com/symbols/AVADHSUGAR/">🎯 Symbol</a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>3</td>
-      <td>AXISBANK</td>
-      <td>NSE</td>
-      <td>1098.60</td>
-      <td class="negative">🔥 -1%</td>
-      <td><span class="expand-btn" onclick="toggleDetails(3)">▼ Show Details</span></td>
-    </tr>
-    <tr class="hidden-row" id="detail-row-3">
-      <td colspan="6">
-        <table class="detail-table">
-          <tr>
-            <td>Quantity:</td><td>8</td>
-            <td>MTFQty:</td><td>8</td>
-            <td>Entry:</td><td>1,104.39</td>
-          </tr>
-          <tr>
-            <td>Target:</td><td>0.00</td>
-            <td>Investment:</td><td>8,835</td>
-            <td>Current:</td><td>8,789</td>
-          </tr>
-          <tr>
-            <td>MTFValue:</td><td>8,789</td>
-            <td>ProfitLoss:</td><td class="negative">-46</td>
-            <td>Progress:</td><td>0%</td>
-          </tr>
-          <tr>
-            <td>Dividend Date:</td><td>2025-07-04</td>
-            <td>Dividend%:</td><td>0.09%</td>
-            <td>Dividend:</td><td>1</td>
-          </tr>
-          <tr>
-            <td>Intrinsic:</td><td>604.498</td>
-            <td>Rank:</td><td>19</td>
-            <td>Revenue:</td><td>68,487 cr</td>
-          </tr>
-          <tr>
-            <td>Net Profit:</td><td>28,055 cr</td>
-            <td>Day Range:</td><td>1.87</td>
-            <td>Week Range:</td><td>4.52</td>
-          </tr>
-          <tr>
-            <td colspan="3">Reference:</td>
-            <td colspan="3">
-              <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=AXISBANK&interval=D">📊 Chart</a> | 
-              <a target="_blank" href="https://in.tradingview.com/symbols/AXISBANK/">🎯 Symbol</a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-    
-    <tr>
-      <td>4</td>
-      <td>BAJAJ-AUTO</td>
-      <td>NSE</td>
-      <td>8356.00</td>
-      <td class="negative">🔥 -2%</td>
-      <td><span class="expand-btn" onclick="toggleDetails(4)">▼ Show Details</span></td>
-    </tr>
-    <tr class="hidden-row" id="detail-row-4">
-      <td colspan="6">
-        <table class="detail-table">
-          <tr>
-            <td>Quantity:</td><td>2</td>
-            <td>MTFQty:</td><td>2</td>
-            <td>Entry:</td><td>8,544.68</td>
-          </tr>
-          <tr>
-            <td>Target:</td><td>0.00</td>
-            <td>Investment:</td><td>17,089</td>
-            <td>Current:</td><td>16,712</td>
-          </tr>
-          <tr>
-            <td>MTFValue:</td><td>16,712</td>
-            <td>ProfitLoss:</td><td class="negative">-377</td>
-            <td>Progress:</td><td>0%</td>
-          </tr>
-          <tr>
-            <td>Dividend Date:</td><td>2025-06-20</td>
-            <td>Dividend%:</td><td>2.53%</td>
-            <td>Dividend:</td><td>210</td>
-          </tr>
-          <tr>
-            <td>Intrinsic:</td><td>1,260.082</td>
-            <td>Rank:</td><td>36</td>
-            <td>Revenue:</td><td>51,860 cr</td>
-          </tr>
-          <tr>
-            <td>Net Profit:</td><td>7,324 cr</td>
-            <td>Day Range:</td><td>1.67</td>
-            <td>Week Range:</td><td>3.85</td>
-          </tr>
-          <tr>
-            <td colspan="3">Reference:</td>
-            <td colspan="3">
-              <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJ-AUTO&interval=D">📊 Chart</a> | 
-              <a target="_blank" href="https://in.tradingview.com/symbols/BAJAJ-AUTO/">🎯 Symbol</a>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </tbody>
-</table>
-        
-        </div>
-            <script>
-                function sortTable(columnIndex) {
-                    let table = document.getElementById('sortableTable');
-                    let tbody = table.getElementsByTagName('tbody')[0];
-                    let rows = Array.from(tbody.getElementsByTagName('tr'));
-                    let isAscending = table.dataset.sortOrder !== 'asc';
-                    
-                    rows.sort((rowA, rowB) => {
-                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
-                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
-            
-                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
-                        return isAscending ? 
-                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
-                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
-                    });
-            
-                    rows.forEach(row => tbody.appendChild(row));
-            
-                    // Update sort order data attribute
-                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
-            
-                    // Reset column classes
-                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
-                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
-                }
-                
-  function toggleDetails(rowNum) {
-    const detailRow = document.getElementById(`detail-row-${rowNum}`);
-    const btn = document.querySelector(`#sortableTable tr:nth-child(${rowNum*2-1}) .expand-btn`);
-    
-    if (detailRow.style.display === 'none' || !detailRow.style.display) {
-      detailRow.style.display = 'table-row';
-      btn.textContent = '▲ Hide Details';
-    } else {
-      detailRow.style.display = 'none';
-      btn.textContent = '▼ Show Details';
-    }
+  });
+
+  function sortTable(columnIndex) {
+    const table = document.getElementById('holdingsTable');
+    const tbody = table.querySelector('tbody');
+    const allRows = Array.from(tbody.querySelectorAll('tr'));
+	const rows = [];
+
+	for (let i = 0; i < allRows.length; i++) {
+	  const row = allRows[i];
+	  if (!row.classList.contains('detail-row')) {
+		const detailRow = allRows[i + 1] && allRows[i + 1].classList.contains('detail-row') ? allRows[i + 1] : null;
+		rows.push({ row, detail: detailRow });
+	  }
+	}
+
+    const header = table.querySelectorAll('th')[columnIndex];
+    const currentOrder = sortState[columnIndex] || 'none';
+    const newOrder = currentOrder === 'asc' ? 'desc' : 'asc';
+    sortState = { [columnIndex]: newOrder };
+
+    // Reset header classes
+    table.querySelectorAll('th').forEach(th => th.classList.remove('sort-asc', 'sort-desc'));
+    header.classList.add(newOrder === 'asc' ? 'sort-asc' : 'sort-desc');
+
+    // Sorting logic
+    rows.sort((a, b) => {
+      const valA = a.row.children[columnIndex].innerText.trim().replace(/[^0-9a-zA-Z.-]/g, '');
+      const valB = b.row.children[columnIndex].innerText.trim().replace(/[^0-9a-zA-Z.-]/g, '');
+      const numA = parseFloat(valA);
+      const numB = parseFloat(valB);
+      const isNumeric = !isNaN(numA) && !isNaN(numB);
+
+      if (isNumeric) {
+        return newOrder === 'asc' ? numA - numB : numB - numA;
+      } else {
+        return newOrder === 'asc'
+          ? valA.localeCompare(valB)
+          : valB.localeCompare(valA);
+      }
+    });
+
+    // Rebuild tbody
+    tbody.innerHTML = '';
+    rows.forEach(({ row, detail }) => {
+      tbody.appendChild(row);
+      tbody.appendChild(detail);
+    });
   }
-                
-            </script>
-            </body></html>
-            <H1>Investment Summary</H1>
-                                <table border="1" class="dataframe">
-  <tbody>
-    <tr>
-      <td>Investment</td>
-      <td>683005.00</td>
-    </tr>
-    <tr>
-      <td>Current</td>
-      <td>641383.00</td>
-    </tr>
-    <tr>
-      <td>MTF Value</td>
-      <td>556978.00</td>
-    </tr>
-    <tr>
-      <td>Profit Loss</td>
-      <td>-41622.00</td>
-    </tr>
-    <tr>
-      <td>Change</td>
-      <td>-6.09</td>
-    </tr>
-    <tr>
-      <td>No of Stocks</td>
-      <td>51.00</td>
-    </tr>
-    <tr>
-      <td>Red Stocks</td>
-      <td>43.00</td>
-    </tr>
-    <tr>
-      <td>Green Stocks</td>
-      <td>8.00</td>
-    </tr>
-  </tbody>
-</table>
+
+  function toggleDetails(button) {
+    const row = button.closest('tr');
+    const detailRow = row.nextElementSibling;
+    const visible = detailRow.style.display === 'table-row';
+    detailRow.style.display = visible ? 'none' : 'table-row';
+    button.textContent = visible ? 'Show Details' : 'Hide Details';
+  }
+</script>
+
 </body>
 </html>
