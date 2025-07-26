@@ -132,11 +132,7 @@
         <div id="content">
             <!--<iframe id="google-sheet" src="https://docs.google.com/spreadsheets/d/1m_NwkIaWe538XKk2Doz3gEQlHmCP4HW7Q99dyqzlBYE/edit?usp=sharing" width="100%" height="1000"></iframe> -->
 		
-		<div class="container">
-			<a href="SAR.html" class="link">Stock Analytics Report</a>
-			<a href="STA_Equity.html" class="link">Stock Technical Analytics - EQ</a>
-			<a href="STA_Equity_Day.html" class="link">Day Stock Technical Analytics - EQ</a>
-			<a href="STA_Equity_Hour.html" class="link">Hour Stock Technical Analytics - EQ</a>			
+		<div class="container">	
 			<a href="Global_Holdings.html" class="link">Global Holdings Report</a>
 			<a href="Global_Changes.html" class="link">Global Changes Report</a>	
 			<a href="equity_portfolio_summary.html" class="link">Portfolio</a>
@@ -147,11 +143,17 @@
 			<a href="sector_analysis.html" class="external-link">Sector Analysis</a>
 			<a href="EquityWeek-Support_trade_signals.html" class="link">SR-EQ-Week</a>
 			<a href="EquityMonth-Support_trade_signals.html" class="link">SR-EQ-Month</a>
-			<a href="Dividend_Analysis.html" class="link">Dividend Announcement</a>
+			<a href="Dividend_Analysis.html" class="link">Dividend</a>
+			<a href="Support_Hit_Report.html" class="link">Support Hit</a>
+			<a href="Support_Analysis.html" class="link">Support Analysis</a>
 			<a href="NW_Hit_Report.html" class="link">NW Hit</a>
 			<a href="NW_Analysis.html" class="link">NW Analysis</a>
 			<a href="GTT_Monitoring_List.html" class="link">GTT List</a>
 			<!---
+			<a href="SAR.html" class="link">Stock Analytics Report</a>
+			<a href="STA_Equity.html" class="link">Stock Technical Analytics - EQ</a>
+			<a href="STA_Equity_Day.html" class="link">Day Stock Technical Analytics - EQ</a>
+			<a href="STA_Equity_Hour.html" class="link">Hour Stock Technical Analytics - EQ</a>		
 			<a href="EquityDaily-NW_trade_signals.html" class="link">NW-EQ-Day</a>
 			<a href="EquityWeek-NW_trade_signals.html" class="link">NW-EQ-Week</a>
 			<a href="equity_dividend.html" class="link">Dividend</a>
@@ -193,10 +195,6 @@
         const navItems = [
             { name: '#', page: '#' },
             { name: 'Settings', page: 'trade_sheet.html' },
-            { name: 'SAR', page: 'SAR.html' },
-            { name: 'STA-EQ', page: 'STA_Equity.html' },
-            { name: 'Day STA-EQ', page: 'STA_Equity_Day.html' },
-            { name: 'Hour STA-EQ', page: 'STA_Equity_Hour.html' },
             { name: 'Global Holdings Report', page: 'Global_Holdings.html' },
             { name: 'Global Changes Report', page: 'Global_Changes.html' },
             { name: 'Portfolio', page: 'equity_portfolio_summary.html' },
@@ -206,11 +204,17 @@
             { name: 'Crypto', page: 'Intraday.html' },
             { name: 'SR-EQ-Week', page: 'EquityWeek-Support_trade_signals.html' },
             { name: 'SR-EQ-Month', page: 'EquityMonth-Support_trade_signals.html' },
-            { name: 'Dividend Announcement', page: 'Dividend_Analysis.html' },
+            { name: 'Dividend', page: 'Dividend_Analysis.html' },
+            { name: 'Support Hit', page: 'Support_Hit_Report.html' },
+            { name: 'Support Analysis', page: 'Support_Analysis.html' },
             { name: 'NW Hit', page: 'NW_Hit_Report.html' },
             { name: 'NW Analysis', page: 'NW_Analysis.html' },
             { name: 'GTT List', page: 'GTT_Monitoring_List.html' }
             /*{ name: 'Day STA-CR', page: 'STA_Crypto_Day.html' },
+            { name: 'SAR', page: 'SAR.html' },
+            { name: 'STA-EQ', page: 'STA_Equity.html' },
+            { name: 'Day STA-EQ', page: 'STA_Equity_Day.html' },
+            { name: 'Hour STA-EQ', page: 'STA_Equity_Hour.html' },
             { name: 'NW-EQ-Daily', page: 'EquityDay-NW_trade_signals.html' },
             { name: 'NW-EQ-Week', page: 'EquityWeek-NW_trade_signals.html' },
             { name: 'Dividend', page: 'equity_dividend.html' },
