@@ -440,7 +440,7 @@
         });
       });
 
-      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(filtered, headers, chart_ref);
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref, sector);
     }
     
     function isNumericColumn(rows, key) {
@@ -499,7 +499,7 @@
 					: `<th></th>`;
 				}).join('')}</tr>
 			  </thead>
-			  <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref)}</tbody>
+			  <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref, sector)}</tbody>
 			</table>
 		  </div>
 		</div>`;
@@ -508,7 +508,7 @@
       document.getElementById('content').innerHTML = html;
     }
 
-    function renderRows(rows, headers, chartValue) {
+    function renderRows(rows, headers, chartValue, sector) {
       return rows.map((row, rowIndex) => {
         // Filter out the Details column from display
         const displayHeaders = headers.filter(h => h !== 'Details');
@@ -520,7 +520,7 @@
               return `<td><span class="tag ${tag}">${row[h]}%</span></td>`;
             } else if (h === 'Symbol') {
               return `<td>
-                <button class="stock-btn" onclick="toggleDetails(${rowIndex})">
+                <button class="stock-btn" onclick="toggleDetails('${sector}', ${rowIndex})">
                   ${row[h]}
                 </button>
                 <div class="chart-links">
@@ -537,7 +537,7 @@
         </tr>`;
 
         const detailsRow = row['Details']
-          ? `<tr id="details-${rowIndex}" class="details-row" style="display:none;">
+          ? `<tr id="details-${sector}-${rowIndex}" class="details-row" style="display:none;">
                <td colspan="${displayHeaders.length}">
                  <div class="details-content">${formatDetails(row['Details'])}</div>
                </td>
@@ -569,11 +569,11 @@
       });
 
       const headers = sectorInfo.headers;
-      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref);
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref, sector);
     }
 
-    function toggleDetails(rowIndex) {
-      const detailRow = document.getElementById(`details-${rowIndex}`);
+    function toggleDetails(sector, rowIndex) {
+	  const detailRow = document.getElementById(`details-${sector}-${rowIndex}`);
       if (detailRow) {
         detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
       }
