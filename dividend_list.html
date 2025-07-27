@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sector Analysis - Equity</title>
+  <title>Dividend Analysis - Equity</title>
   <style>
     :root {
       --primary-color: #1976d2;
@@ -309,10 +309,10 @@
   </header>
   
   <div class="controls">
-    <button onclick="viewPDF('https://activegrt.github.io/Reports/dividend_list.pdf')">
+    <button onclick="viewPDF('https://activegrt.github.io/Reports/file_list.pdf')">
       📄 Read Report
     </button>
-    <button onclick="downloadPDF('https://activegrt.github.io/Reports/dividend_list.pdf')">
+    <button onclick="downloadPDF('https://activegrt.github.io/Reports/file_list.pdf')">
       ⬇️ Download Report
     </button>
     <div id="file-modified-time" class="file-info"></div>
@@ -324,39 +324,44 @@
   
   <div class="content" id="content">Loading...</div>
 
-  <script'';
-    let fileText = '';
-    let chart_ref = 'Lm41gt6O';
-    let sectorData = {};
-    let currentSort = { sector: '', key: '', direction: 1 };
+  <script>
+  
+	let chart_ref = 'Lm41gt6O';
+	let sectorData = {};
+	let currentSort = { sector: '', key: '', direction: 1 };
+	let fileLines = [];
 
-  	fetch('https://activegrt.github.io/Reports/dividend_list.txt', { method: 'HEAD' })
-  	  .then(response => {
-  		const lastModified = response.headers.get('Last-Modified');
-  		if (lastModified) {
-  		  document.getElementById('file-modified-time').innerText = `Last updated: ${new Date(lastModified).toLocaleString()}`;
-  		}
-  	  })
-  	  .catch(err => {
-  		console.error('Failed to fetch modified time', err);
-  	  });
+	const fileUrl = 'https://activegrt.github.io/Reports/dividend_list.txt';
+	const fileModifiedTimeEl = document.getElementById('file-modified-time');
+	const contentEl = document.getElementById('content');
 
-	  
-    // Fetch file on load
-    fetch('https://activegrt.github.io/Reports/dividend_list.txt')
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to load file list');
-        return response.text();
-      })
-      .then(text => {
-        fileText = text;
-      })
-      .catch(err => {
-        document.getElementById('content').innerText = 'Error loading stock data.';
-        console.error(err);
-      });
-	  
-    let fileLines = fileText.trim().split('\n');
+	// Show last modified time
+	fetch(fileUrl, { method: 'HEAD' })
+	  .then(response => {
+		const lastModified = response.headers.get('Last-Modified');
+		if (lastModified && fileModifiedTimeEl) {
+		  fileModifiedTimeEl.innerText = `Last updated: ${new Date(lastModified).toLocaleString()}`;
+		}
+	  })
+	  .catch(err => console.warn('Could not fetch file modified time:', err));
+
+	// Fetch file content and render
+	fetch(fileUrl)
+	  .then(response => {
+		if (!response.ok) throw new Error('Failed to load file');
+		return response.text();
+	  })
+	  .then(text => {
+		fileLines = text.trim().split('\n');
+		const initialChart = document.getElementById('valuation-select')?.value || '';
+		renderTable(initialChart);
+	  })
+	  .catch(err => {
+		contentEl.innerText = 'Error loading stock data.';
+		console.error('File load failed:', err);
+	  });
+
+
 
     function viewPDF(pdfFilePath) {
       const container = document.getElementById('pdf-container');
@@ -565,8 +570,7 @@
     // Initialize the page
     const initialChart = document.getElementById('valuation-select').value;
     renderTable(initialChart);
-	
-	
+
     document.getElementById('valuation-select').addEventListener('change', function () {
       renderTable(this.value);
     });
