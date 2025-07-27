@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEW Analysis - Equity</title>
+  <style>
+    :root {
+      --primary-color: #464a4de3; --1976d2;
+      --secondary-color: #f5f5f5;
+      --focus-color: #1976d2;
+      --accent-color: #1565c0;
+      --text-color: #333;
+      --light-text: #777;
+      --border-color: #e0e0e0;
+      --defensive-color: #2c7be5;
+      --aggressive-color: #e53935;
+      --header-bg: #1a237e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text-color);
+      background-color: #f9f9f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: var(--header-bg);
+      color: white;
+      padding: 1rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .header-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: white;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .header-title:hover {
+      text-decoration: none;
+      color: var(--focus-color);
+    }
+
+    .controls {
+      padding: 1rem;
+      background-color: white;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    select {
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: white;
+      font-size: 1rem;
+      min-width: 200px;
+    }
+
+    button {
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 4px;
+      /*background-color: var(--primary-color);
+      color: white;*/
+	  color: black;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    button:hover {
+      /*background-color: var(--accent-color);*/
+      transform: translateY(-1px);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .file-info {
+      font-size: 0.9rem;
+      color: var(--light-text);
+      margin-left: auto;
+    }
+
+    .content {
+      flex: 1;
+      padding: 1rem;
+      max-width: 100%;
+      overflow-x: auto;
+    }
+
+    .sector {
+      margin-bottom: 2rem;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .sector-title {
+      /*padding: 1rem;
+      background-color: var(--primary-color);
+      font-size: 1.2rem;
+      color: white;*/
+	  color: black;
+      font-weight: 500;
+    }
+	.sector {
+		margin-bottom: 1.5rem;
+		border: 1px solid #ccc;
+		border-radius: 6px;
+		padding: 0.5rem;
+	}
+	.sector-header {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+	}
+	.sector-header button {
+		margin-right: 10px;
+		font-size: 1rem;
+		padding: 0.2rem 0.5rem;
+		cursor: pointer;
+	}
+	.sector-grid {
+		transition: all 0.3s ease;
+	}
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      word-wrap: break-word;
+    }
+
+    th {
+      background-color: var(--secondary-color);
+      font-weight: 600;
+      position: sticky;
+      top: 0;
+    }
+
+    th.filter-cell input {
+      width: 100%;
+      padding: 0.25rem;
+      border: 1px solid var(--border-color);
+      border-radius: 3px;
+      font-size: 0.9rem;
+    }
+
+    .tag {
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: inline-block;
+    }
+
+    .defensive {
+      background-color: var(--defensive-color);
+      color: white;
+    }
+
+    .aggressive {
+      background-color: var(--aggressive-color);
+      color: white;
+    }
+
+    .stock-btn {
+      padding: 0.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      font-size: 0.9rem;
+      width: 100%;
+    }
+
+    .stock-btn:hover {
+      background-color: var(--accent-color);
+    }
+
+    .chart-links {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .chart-links a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .details-row {
+      background-color: #f8f9fa;
+    }
+
+    .details-content {
+      padding: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .detail-item {
+      background-color: white;
+      padding: 0.75rem;
+      border-radius: 4px;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    .detail-item strong {
+      display: block;
+      color: var(--focus-color);
+      margin-bottom: 0.25rem;
+    }
+
+    #pdf-container {
+      margin-top: 1rem;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+
+    #pdf-frame {
+      width: 100%;
+      height: 80vh;
+      border: none;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .file-info {
+        margin-left: 0;
+      }
+
+      th, td {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .details-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sector-title {
+        font-size: 1rem;
+      }
+
+      th, td {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+      }
+
+      .tag {
+        font-size: 0.7rem;
+      }
+
+      .stock-btn {
+        font-size: 0.8rem;
+      }
+
+      .chart-links a {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="index.html" class="header-title">
+      <span>The Grand Master Node</span>
+    </a>
+    <nav id="nav-menu">
+      <select id="valuation-select">
+        <option value="Lm41gt6O">Active Signals</option>
+        <option value="tvXNIn4o">Analyst</option>
+        <option value="QfoQydxt">Daily Stocks</option>
+      </select>
+    </nav>
+  </header>
+  
+  <div class="controls">
+    <button onclick="viewPDF()">
+      📄 Read Report
+    </button>
+    <button onclick="downloadPDF()">
+      ⬇️ Download Report
+    </button>
+    <div id="file-modified-time" class="file-info"></div>
+  </div>
+  
+  <div id="pdf-container">
+    <iframe id="pdf-frame"></iframe>
+  </div>
+  
+  <div class="content" id="content">Loading...</div>
+
+  <script>
+  
+	let chart_ref = 'Lm41gt6O';
+	let sectorData = {};
+	let currentSort = { sector: '', key: '', direction: 1 };
+	let fileLines = [];
+
+	const pdfFilePath = 'https://activegrt.github.io/Reports/new_list.pdf'
+	const fileUrl = 'https://activegrt.github.io/Reports/new_list.txt';
+	const fileModifiedTimeEl = document.getElementById('file-modified-time');
+	const contentEl = document.getElementById('content');
+
+	// Show last modified time
+	fetch(fileUrl, { method: 'HEAD' })
+	  .then(response => {
+		const lastModified = response.headers.get('Last-Modified');
+		if (lastModified && fileModifiedTimeEl) {
+		  fileModifiedTimeEl.innerText = `Last updated: ${new Date(lastModified).toLocaleString()}`;
+		}
+	  })
+	  .catch(err => console.warn('Could not fetch file modified time:', err));
+
+	// Fetch file content and render
+	fetch(fileUrl)
+	  .then(response => {
+		if (!response.ok) throw new Error('Failed to load file');
+		return response.text();
+	  })
+	  .then(text => {
+		fileLines = text.trim().split('\n');
+		const initialChart = document.getElementById('valuation-select')?.value || '';
+		renderTable(initialChart);
+	  })
+	  .catch(err => {
+		contentEl.innerText = 'Error loading stock data.';
+		console.error('File load failed:', err);
+	  });
+
+    function viewPDF() {
+      const container = document.getElementById('pdf-container');
+      const frame = document.getElementById('pdf-frame');
+      
+      frame.src = pdfFilePath;
+      container.style.display = 'block';
+      
+      // Scroll to PDF viewer
+      container.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function downloadPDF() {
+      const link = document.createElement('a');
+      link.href = pdfFilePath;
+      link.download = pdfFilePath.split('/').pop();
+      link.click();
+    }
+    
+    function applyFilters(sector) {
+      const { headers, rows } = sectorData[sector];
+      const inputs = document.querySelectorAll(`input[data-sector="${sector}"]`);
+      const filters = {};
+
+      inputs.forEach(input => {
+        const raw = input.value.trim();
+        if (!raw) return;
+
+        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(\.\d+)?)$/);
+        if (!match) return;
+
+        const operator = match[1] || '>=';
+        const value = parseFloat(match[2]);
+
+        filters[input.dataset.key] = { operator, value };
+      });
+
+      const filtered = rows.filter(row => {
+        return Object.entries(filters).every(([key, cond]) => {
+          const val = row[key];
+          if (typeof val !== 'number') return false;
+
+          switch (cond.operator) {
+            case '>': return val > cond.value;
+            case '>=': return val >= cond.value;
+            case '<': return val < cond.value;
+            case '<=': return val <= cond.value;
+            case '=': return val === cond.value;
+            default: return true;
+          }
+        });
+      });
+
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(filtered, headers, chart_ref);
+    }
+    
+    function isNumericColumn(rows, key) {
+      return rows.some(row => typeof row[key] === 'number');
+    }
+    
+    function renderTable(chartValue) {
+      chart_ref = chartValue;
+	  let html = '';
+      let currentSector = '';
+      let currentHeaders = [];
+      let expectHeaders = false;
+      sectorData = {};
+
+      fileLines.forEach(line => {
+        line = line.trim();
+        if (!line) return;
+
+        if (line.startsWith('[') && line.endsWith(']')) {
+          currentSector = line.slice(1, -1);
+          sectorData[currentSector] = { headers: [], rows: [] };
+          expectHeaders = true;
+        } else if (expectHeaders) {
+          sectorData[currentSector].headers = line.split(',').map(x => x.trim());
+          expectHeaders = false;
+        } else {
+          const values = line.split(',').map(x => x.trim());
+          const row = {};
+          sectorData[currentSector].headers.forEach((key, idx) => {
+            const val = values[idx];
+            const num = parseFloat(val);
+            row[key] = isNaN(num) || key === 'symbol' || key === 'name' || key === 'valuation' || key === 'mtf' ? val : num;
+          });
+          sectorData[currentSector].rows.push(row);
+        }
+      });
+
+      for (const sector in sectorData) {
+        const { headers, rows } = sectorData[sector];
+        
+        // Filter out the Details column from display
+        const displayHeaders = headers.filter(h => h !== 'Details');
+
+        html += `<div class="sector">
+		  <div class="sector-header">
+			<button onclick="toggleSector('${sector}')">➖</button>
+			<span class="sector-title">${sector}</span>
+		  </div>
+		  <div id="grid-${sector}" class="sector-grid">
+			<table>
+			  <thead>
+				<tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
+				<tr>${displayHeaders.map(h => {
+				  return isNumericColumn(rows, h)
+					? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
+					: `<th></th>`;
+				}).join('')}</tr>
+			  </thead>
+			  <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref)}</tbody>
+			</table>
+		  </div>
+		</div>`;
+      }
+
+      document.getElementById('content').innerHTML = html;
+    }
+
+    function renderRows(rows, headers, chartValue) {
+      return rows.map((row, rowIndex) => {
+        // Filter out the Details column from display
+        const displayHeaders = headers.filter(h => h !== 'Details');
+        
+        const rowHtml = `<tr>
+          ${displayHeaders.map(h => {
+            if (h === 'change' || h === 'ema') {
+              const tag = row[h] > 0 ? 'defensive' : 'aggressive';
+              return `<td><span class="tag ${tag}">${row[h]}%</span></td>`;
+            } else if (h === 'Symbol') {
+              return `<td>
+                <button class="stock-btn" onclick="toggleDetails(${rowIndex})">
+                  ${row[h]}
+                </button>
+                <div class="chart-links">
+                  <a target="_blank" href="https://in.tradingview.com/symbols/${row[h]}/" title="Stock info">ℹ️</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=D" title="Daily chart">📊</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=W" title="Weekly chart">🆆</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=M" title="Monthly chart">📅</a>
+                </div>
+              </td>`;
+            } else {
+              return `<td>${row[h] ?? ''}</td>`;
+            }
+          }).join('')}
+        </tr>`;
+
+        const detailsRow = row['Details']
+          ? `<tr id="details-${rowIndex}" class="details-row" style="display:none;">
+               <td colspan="${displayHeaders.length}">
+                 <div class="details-content">${formatDetails(row['Details'])}</div>
+               </td>
+             </tr>`
+          : '';
+
+        return rowHtml + detailsRow;
+      }).join('');
+    }
+
+    function sortSector(sector, key) {
+      const sectorInfo = sectorData[sector];
+      const rows = sectorInfo.rows;
+
+      const direction = (currentSort.sector === sector && currentSort.key === key)
+        ? -currentSort.direction
+        : 1;
+
+      currentSort = { sector, key, direction };
+
+      rows.sort((a, b) => {
+        const valA = a[key];
+        const valB = b[key];
+
+        if (typeof valA === 'number' && typeof valB === 'number') {
+          return (valA - valB) * direction;
+        }
+        return valA.toString().localeCompare(valB.toString()) * direction;
+      });
+
+      const headers = sectorInfo.headers;
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref);
+    }
+
+    function toggleDetails(rowIndex) {
+      const detailRow = document.getElementById(`details-${rowIndex}`);
+      if (detailRow) {
+        detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
+      }
+    }
+	
+	function toggleSector(sector) {
+	  const el = document.getElementById(`grid-${sector}`);
+	  const btn = el.previousElementSibling.querySelector('button');
+	  const isVisible = el.style.display !== 'none';
+	  el.style.display = isVisible ? 'none' : 'block';
+	  btn.textContent = isVisible ? '➕' : '➖';
+	}
+
+    function formatDetails(detailStr) {
+      if (!detailStr) return '';
+      
+      // Clean up the details string
+      const cleaned = detailStr.replace(/^\(|\)$/g, '').trim();
+      if (!cleaned) return '';
+      
+      // Split into key-value pairs
+      const pairs = cleaned.split(';').filter(pair => pair.trim() !== '');
+      
+      // Create detail items
+      return pairs.map(pair => {
+        const [key, value] = pair.split(':').map(part => part.trim());
+        if (!key || !value) return '';
+        return `<div class="detail-item"><strong>${key}</strong>${value}</div>`;
+      }).join('');
+    }
+
+    // Initialize the page
+    const initialChart = document.getElementById('valuation-select').value;
+    renderTable(initialChart);
+
+    document.getElementById('valuation-select').addEventListener('change', function () {
+      renderTable(this.value);
+    });
+	
+  </script>
+</body>
+</html>
