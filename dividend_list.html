@@ -6,7 +6,7 @@
   <title>Dividend Analysis - Equity</title>
   <style>
     :root {
-      --primary-color: #1976d2;
+      --primary-color: #464a4de3; --1976d2;
       --secondary-color: #f5f5f5;
       --accent-color: #1565c0;
       --text-color: #333;
@@ -84,8 +84,9 @@
       font-size: 1rem;
       border: none;
       border-radius: 4px;
-      background-color: var(--primary-color);
-      color: white;
+      /*background-color: var(--primary-color);
+      color: white;*/
+	  color: black;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
@@ -94,7 +95,7 @@
     }
 
     button:hover {
-      background-color: var(--accent-color);
+      /*background-color: var(--accent-color);*/
       transform: translateY(-1px);
     }
 
@@ -124,10 +125,11 @@
     }
 
     .sector-title {
-      padding: 1rem;
+      /*padding: 1rem;
       background-color: var(--primary-color);
-      color: white;
       font-size: 1.2rem;
+      color: white;*/
+	  color: black;
       font-weight: 500;
     }
 	.sector {
@@ -140,7 +142,6 @@
 		display: flex;
 		align-items: center;
 		justify-content: flex-start;
-		font-size: 1.2rem;
 		font-weight: bold;
 		margin-bottom: 0.5rem;
 	}
@@ -332,10 +333,10 @@
   </header>
   
   <div class="controls">
-    <button onclick="viewPDF('https://activegrt.github.io/Reports/file_list.pdf')">
+    <button onclick="viewPDF()">
       📄 Read Report
     </button>
-    <button onclick="downloadPDF('https://activegrt.github.io/Reports/file_list.pdf')">
+    <button onclick="downloadPDF()">
       ⬇️ Download Report
     </button>
     <div id="file-modified-time" class="file-info"></div>
@@ -354,6 +355,7 @@
 	let currentSort = { sector: '', key: '', direction: 1 };
 	let fileLines = [];
 
+	const pdfFilePath = 'https://activegrt.github.io/Reports/file_list.pdf'
 	const fileUrl = 'https://activegrt.github.io/Reports/dividend_list.txt';
 	const fileModifiedTimeEl = document.getElementById('file-modified-time');
 	const contentEl = document.getElementById('content');
@@ -384,9 +386,7 @@
 		console.error('File load failed:', err);
 	  });
 
-
-
-    function viewPDF(pdfFilePath) {
+    function viewPDF() {
       const container = document.getElementById('pdf-container');
       const frame = document.getElementById('pdf-frame');
       
@@ -397,7 +397,7 @@
       container.scrollIntoView({ behavior: 'smooth' });
     }
 
-    function downloadPDF(pdfFilePath) {
+    function downloadPDF() {
       const link = document.createElement('a');
       link.href = pdfFilePath;
       link.download = pdfFilePath.split('/').pop();
@@ -522,10 +522,10 @@
                   ${row[h]}
                 </button>
                 <div class="chart-links">
+                  <a target="_blank" href="https://in.tradingview.com/symbols/${row[h]}/" title="Stock info">ℹ️</a>
                   <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=D" title="Daily chart">📊</a>
                   <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=W" title="Weekly chart">🆆</a>
                   <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=M" title="Monthly chart">📅</a>
-                  <a target="_blank" href="https://in.tradingview.com/symbols/${row[h]}/" title="Stock info">ℹ️</a>
                 </div>
               </td>`;
             } else {
