@@ -130,6 +130,29 @@
       font-size: 1.2rem;
       font-weight: 500;
     }
+	.sector {
+		margin-bottom: 1.5rem;
+		border: 1px solid #ccc;
+		border-radius: 6px;
+		padding: 0.5rem;
+	}
+	.sector-header {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		font-size: 1.2rem;
+		font-weight: bold;
+		margin-bottom: 0.5rem;
+	}
+	.sector-header button {
+		margin-right: 10px;
+		font-size: 1rem;
+		padding: 0.2rem 0.5rem;
+		cursor: pointer;
+	}
+	.sector-grid {
+		transition: all 0.3s ease;
+	}
 
     table {
       width: 100%;
@@ -460,19 +483,24 @@
         const displayHeaders = headers.filter(h => h !== 'Details');
 
         html += `<div class="sector">
-          <div class="sector-title">${sector}</div>
-          <table>
-            <thead>
-              <tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
-              <tr>${displayHeaders.map(h => {
-                return isNumericColumn(rows, h)
-                  ? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
-                  : `<th></th>`;
-              }).join('')}</tr>
-            </thead>
-            <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref)}</tbody>
-          </table>
-        </div>`;
+		  <div class="sector-header">
+			<button onclick="toggleSector('${sector}')">➖</button>
+			<span class="sector-title">${sector}</span>
+		  </div>
+		  <div id="grid-${sector}" class="sector-grid">
+			<table>
+			  <thead>
+				<tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
+				<tr>${displayHeaders.map(h => {
+				  return isNumericColumn(rows, h)
+					? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
+					: `<th></th>`;
+				}).join('')}</tr>
+			  </thead>
+			  <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref)}</tbody>
+			</table>
+		  </div>
+		</div>`;
       }
 
       document.getElementById('content').innerHTML = html;
@@ -548,6 +576,14 @@
         detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
       }
     }
+	
+	function toggleSector(sector) {
+	  const el = document.getElementById(`grid-${sector}`);
+	  const btn = el.previousElementSibling.querySelector('button');
+	  const isVisible = el.style.display !== 'none';
+	  el.style.display = isVisible ? 'none' : 'block';
+	  btn.textContent = isVisible ? '➕' : '➖';
+	}
 
     function formatDetails(detailStr) {
       if (!detailStr) return '';
