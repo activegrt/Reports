@@ -126,6 +126,12 @@
       white-space: nowrap;
     }
 
+    .record-count {
+      margin-left: 10px;
+      font-size: 0.9rem;
+      color: var(--light-text);
+    }
+
     .sector-title {
       color: black;
       font-weight: 500;
@@ -137,6 +143,9 @@
       width: 100%;
       max-width: 100vw;
       margin: 0 auto;
+      max-height: 70vh;
+      overflow-y: auto;
+      position: relative;
     }
 
     table {
@@ -152,12 +161,24 @@
       word-wrap: break-word;
     }
 
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
     th {
       background-color: var(--secondary-color);
       font-weight: 600;
       position: sticky;
       top: 0;
-      z-index: 10;
+    }
+
+    .filter-row {
+      position: sticky;
+      top: 48px; /* Height of the header row */
+      z-index: 15;
+      background-color: var(--secondary-color);
     }
 
     th.filter-cell input {
@@ -283,6 +304,10 @@
         font-size: 0.85rem;
       }
 
+      .filter-row th {
+        top: 40px; /* Adjusted for mobile header height */
+      }
+
       .stock-btn {
         padding: 0.4rem 0.6rem;
         font-size: 0.8rem;
@@ -306,6 +331,10 @@
       th, td {
         padding: 0.4rem 0.2rem;
         font-size: 0.75rem;
+      }
+
+      .filter-row th {
+        top: 35px; /* Further adjusted for smaller screens */
       }
 
       .tag {
@@ -460,6 +489,14 @@
       });
 
       document.getElementById(`tbody-${sector}`).innerHTML = renderRows(filteredRows, headers, chart_ref, sector);
+      updateRecordCount(sector, filteredRows.length);
+    }
+    
+    function updateRecordCount(sector, count) {
+      const countEl = document.querySelector(`#grid-${sector}`).previousElementSibling.querySelector('.record-count');
+      if (countEl) {
+        countEl.textContent = `${count} records`;
+      }
     }
     
     function isNumericColumn(rows, key) {
@@ -503,20 +540,20 @@
 
       for (const sector in sectorData) {
         const { headers, rows } = sectorData[sector];
-        
         const displayHeaders = headers.filter(h => h !== 'Details');
 
         html += `<div class="sector">
           <div class="sector-header">
             <button onclick="toggleSector('${sector}')">➕</button>
             <span class="sector-title">${sector}</span>
+            <span class="record-count">${rows.length} records</span>
           </div>
           <div id="grid-${sector}" class="sector-grid" style="display:none;">
             <div class="table-responsive-container">
               <table>
                 <thead>
                   <tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
-                  <tr>${displayHeaders.map(h => {
+                  <tr class="filter-row">${displayHeaders.map(h => {
                     return isNumericColumn(rows, h)
                       ? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
                       : `<th></th>`;
