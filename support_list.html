@@ -57,11 +57,6 @@
       align-items: center;
     }
 
-    .header-title:hover {
-      text-decoration: none;
-      color: var(--focus-color);
-    }
-
     .controls {
       padding: 1rem;
       background-color: white;
@@ -92,14 +87,6 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    button:hover {
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
     }
 
     .file-info {
@@ -212,10 +199,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-    }
-
-    .stock-btn:hover {
-      background-color: var(--accent-color);
     }
 
     .chart-links {
@@ -343,44 +326,6 @@
         font-size: 0.9rem;
       }
     }
-
-    /* Orientation-specific styles */
-    @media (max-width: 768px) and (orientation: portrait) {
-      table {
-        font-size: 0.8rem;
-      }
-      
-      th, td {
-        padding: 0.4rem 0.3rem;
-      }
-    }
-
-    @media (max-width: 768px) and (orientation: landscape) {
-      table {
-        font-size: 0.85rem;
-      }
-      
-      th, td {
-        padding: 0.5rem 0.4rem;
-      }
-      
-      .sector-grid {
-        max-width: 100vw;
-      }
-    }
-
-    /* iOS Safari specific fixes */
-    @supports (-webkit-touch-callout: none) {
-      .table-responsive-container {
-        position: relative;
-      }
-      thead {
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background-color: var(--secondary-color);
-      }
-    }
   </style>
 </head>
 <body>
@@ -426,12 +371,13 @@
 
     // Format number in Indian style
     function formatIndianNumber(num) {
-      if (isNaN(num)) return num;
+      if (isNaN(num) || num === null || num === undefined) return '';
       return num.toLocaleString('en-IN');
     }
 
     // Parse Indian formatted numbers back to float
     function parseIndianNumber(str) {
+      if (!str) return NaN;
       return parseFloat(str.replace(/,/g, ''));
     }
 
@@ -467,8 +413,6 @@
       
       frame.src = pdfFilePath;
       container.style.display = 'block';
-      
-      // Scroll to PDF viewer
       container.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -488,19 +432,21 @@
         const raw = input.value.trim();
         if (!raw) return;
 
-        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(,\d+)*(\.\d+)?$/);
+        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(,\d+)*(\.\d+)?)$/);
         if (!match) return;
 
-        const operator = match[1] || '>=';
+        const operator = match[1] || '=';
         const value = parseIndianNumber(match[2]);
 
-        filters[input.dataset.key] = { operator, value };
+        if (!isNaN(value)) {
+          filters[input.dataset.key] = { operator, value };
+        }
       });
 
       const filteredRows = rows.filter(row => {
         return Object.entries(filters).every(([key, cond]) => {
           const val = row[key];
-          if (typeof val !== 'number') return true; // Skip non-numeric columns
+          if (typeof val !== 'number') return true;
 
           switch (cond.operator) {
             case '>': return val > cond.value;
@@ -544,8 +490,12 @@
           const row = {};
           sectorData[currentSector].headers.forEach((key, idx) => {
             const val = values[idx];
-            const num = parseFloat(val);
-            row[key] = isNaN(num) || key === 'symbol' || key === 'name' || key === 'valuation' || key === 'mtf' ? val : num;
+            if (val === '') {
+              row[key] = null;
+            } else {
+              const num = parseFloat(val);
+              row[key] = isNaN(num) || key === 'Symbol' || key === 'MTF' || key === 'Quality Score' ? val : num;
+            }
           });
           sectorData[currentSector].rows.push(row);
         }
@@ -554,7 +504,6 @@
       for (const sector in sectorData) {
         const { headers, rows } = sectorData[sector];
         
-        // Filter out the Details column from display
         const displayHeaders = headers.filter(h => h !== 'Details');
 
         html += `<div class="sector">
@@ -586,24 +535,25 @@
 
     function renderRows(rows, headers, chartValue, sector) {
       return rows.map((row, rowIndex) => {
-        // Filter out the Details column from display
         const displayHeaders = headers.filter(h => h !== 'Details');
         
         const rowHtml = `<tr>
           ${displayHeaders.map(h => {
-            if (h === 'change' || h === 'ema') {
-              const tag = row[h] > 0 ? 'defensive' : 'aggressive';
-              return `<td><span class="tag ${tag}">${row[h]}%</span></td>`;
+            if (h === 'Day Gap%' || h === 'Week Gap%' || h === 'Month Gap%' || h === 'Volatility%') {
+              const val = row[h];
+              if (val === null || val === undefined) return '<td></td>';
+              const tag = val > 0 ? 'defensive' : 'aggressive';
+              return `<td><span class="tag ${tag}">${formatIndianNumber(val)}%</span></td>`;
             } else if (h === 'Symbol') {
               return `<td>
                 <button class="stock-btn" onclick="toggleDetails('${sector}', ${rowIndex})">
                   ${row[h]}
                 </button>
                 <div class="chart-links">
-                  <a target="_blank" href="https://in.tradingview.com/symbols/${row[h]}/" title="Stock info">ℹ️</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=D" title="Daily chart">📊</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=W" title="Weekly chart">🆆</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=M" title="Monthly chart">📅</a>
+                  <a target="_blank" href="https://in.tradingview.com/symbols/NSE:${row[h]}/" title="Stock info">ℹ️</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=D" title="Daily chart">📊</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=W" title="Weekly chart">🆆</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=M" title="Monthly chart">📅</a>
                 </div>
               </td>`;
             } else if (typeof row[h] === 'number') {
@@ -643,7 +593,7 @@
         if (typeof valA === 'number' && typeof valB === 'number') {
           return (valA - valB) * direction;
         }
-        return valA.toString().localeCompare(valB.toString()) * direction;
+        return String(valA).localeCompare(String(valB)) * direction;
       });
 
       const headers = sectorInfo.headers;
@@ -668,18 +618,20 @@
     function formatDetails(detailStr) {
       if (!detailStr) return '';
       
-      // Clean up the details string
       const cleaned = detailStr.replace(/^\(|\)$/g, '').trim();
       if (!cleaned) return '';
       
-      // Split into key-value pairs
       const pairs = cleaned.split(';').filter(pair => pair.trim() !== '');
       
-      // Create detail items
       return pairs.map(pair => {
         const [key, value] = pair.split(':').map(part => part.trim());
         if (!key || !value) return '';
-        return `<div class="detail-item"><strong>${key}</strong>${value}</div>`;
+        
+        // Format numeric values in details
+        const numMatch = value.match(/^(-?\d+(\.\d+)?)$/);
+        const formattedValue = numMatch ? formatIndianNumber(parseFloat(numMatch[1])) : value;
+        
+        return `<div class="detail-item"><strong>${key}</strong>${formattedValue}</div>`;
       }).join('');
     }
 
@@ -689,7 +641,6 @@
       document.querySelectorAll('table').forEach(table => {
         if (isMobile) {
           if (!table.classList.contains('responsive-mobile')) {
-            // Keep headers visible but make content scrollable
             table.classList.add('responsive-mobile');
             const container = table.closest('.table-responsive-container') || table.parentElement;
             container.style.overflowX = 'auto';
@@ -705,22 +656,14 @@
 
     // Handle screen orientation changes
     window.addEventListener('orientationchange', function() {
-      // Refresh the table display
-      makeTablesResponsive();
-      
-      // Small delay to ensure CSS applies correctly
       setTimeout(makeTablesResponsive, 100);
     });
 
     // Initialize the page
-    const initialChart = document.getElementById('valuation-select').value;
-    renderTable(initialChart);
-
     document.getElementById('valuation-select').addEventListener('change', function() {
       renderTable(this.value);
     });
 
-    // Also call this on window resize
     window.addEventListener('resize', makeTablesResponsive);
   </script>
 </body>
