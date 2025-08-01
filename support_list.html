@@ -424,6 +424,17 @@
     const fileModifiedTimeEl = document.getElementById('file-modified-time');
     const contentEl = document.getElementById('content');
 
+    // Format number in Indian style
+    function formatIndianNumber(num) {
+      if (isNaN(num)) return num;
+      return num.toLocaleString('en-IN');
+    }
+
+    // Parse Indian formatted numbers back to float
+    function parseIndianNumber(str) {
+      return parseFloat(str.replace(/,/g, ''));
+    }
+
     // Show last modified time
     fetch(fileUrl, { method: 'HEAD' })
       .then(response => {
@@ -477,19 +488,19 @@
         const raw = input.value.trim();
         if (!raw) return;
 
-        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(\.\d+)?)$/);
+        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(,\d+)*(\.\d+)?$/);
         if (!match) return;
 
         const operator = match[1] || '>=';
-        const value = parseFloat(match[2]);
+        const value = parseIndianNumber(match[2]);
 
         filters[input.dataset.key] = { operator, value };
       });
 
-      const filtered = rows.filter(row => {
+      const filteredRows = rows.filter(row => {
         return Object.entries(filters).every(([key, cond]) => {
           const val = row[key];
-          if (typeof val !== 'number') return false;
+          if (typeof val !== 'number') return true; // Skip non-numeric columns
 
           switch (cond.operator) {
             case '>': return val > cond.value;
@@ -502,7 +513,7 @@
         });
       });
 
-      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref, sector);
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(filteredRows, headers, chart_ref, sector);
     }
     
     function isNumericColumn(rows, key) {
@@ -548,10 +559,10 @@
 
         html += `<div class="sector">
           <div class="sector-header">
-            <button onclick="toggleSector('${sector}')">➖</button>
+            <button onclick="toggleSector('${sector}')">➕</button>
             <span class="sector-title">${sector}</span>
           </div>
-          <div id="grid-${sector}" class="sector-grid">
+          <div id="grid-${sector}" class="sector-grid" style="display:none;">
             <div class="table-responsive-container">
               <table>
                 <thead>
@@ -595,6 +606,8 @@
                   <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=M" title="Monthly chart">📅</a>
                 </div>
               </td>`;
+            } else if (typeof row[h] === 'number') {
+              return `<td>${formatIndianNumber(row[h])}</td>`;
             } else {
               return `<td>${row[h] ?? ''}</td>`;
             }
