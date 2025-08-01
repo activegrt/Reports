@@ -148,26 +148,29 @@
 		margin-bottom: 0.5rem;
 	}
 	.sector-header button {
-		margin-right: 10px;
-		font-size: 1rem;
-		padding: 0.2rem 0.5rem;
-		cursor: pointer;
+	    margin-right: 10px;
+	    font-size: 1rem;
+	    padding: 0.3rem 0.8rem; /* Increased padding */
+	    cursor: pointer;
+	    min-width: 30px; /* Ensure minimum width for the plus/minus symbols */
+	    text-align: center;
+	    white-space: nowrap; /* Prevent text wrapping */
 	}
 	.sector-grid {
 		transition: all 0.3s ease;
 	}
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
+	width: 100%;
+	border-collapse: collapse;
+	table-layout: auto; /* Changed from fixed to auto for better column sizing */
     }
 
     th, td {
-      padding: 0.75rem 1rem;
-      text-align: center;
-      border-bottom: 1px solid var(--border-color);
-      word-wrap: break-word;
+	padding: 0.75rem 0.5rem; /* Adjusted padding */
+	text-align: center;
+	border-bottom: 1px solid var(--border-color);
+	word-wrap: break-word;
     }
 
     th {
@@ -204,15 +207,18 @@
     }
 
     .stock-btn {
-      padding: 0.5rem;
-      background-color: var(--primary-color);
-      color: white;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.2s;
-      font-size: 0.9rem;
-      width: 100%;
+	padding: 0.5rem 0.8rem; /* Increased horizontal padding */
+	background-color: var(--primary-color);
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	font-size: 0.9rem;
+	min-width: 80px; /* Minimum width for stock symbols */
+	white-space: nowrap; /* Prevent text wrapping */
+	overflow: hidden;
+	text-overflow: ellipsis; /* Show ellipsis if text is too long */
     }
 
     .stock-btn:hover {
