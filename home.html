@@ -1202,20 +1202,17 @@
       function defaultSortFn(aCell, bCell, direction) {
         let aValue = aCell.textContent.trim();
         let bValue = bCell.textContent.trim();
-      
-        // Handle numeric values (including currency symbols and commas)
-        const aNum = parseFloat(aValue.replace(/[^0-9.-]/g, ''));
-        const bNum = parseFloat(bValue.replace(/[^0-9.-]/g, ''));
-        
-        if (!isNaN(aNum) aValue = aNum;
-        if (!isNaN(bNum)) bValue = bNum;
-      
+    
+        // Handle numeric values
+        if (!isNaN(aValue)) aValue = parseFloat(aValue);
+        if (!isNaN(bValue)) bValue = parseFloat(bValue);
+    
         // Handle percentage values
         if (typeof aValue === 'string' && aValue.endsWith('%')) {
           aValue = parseFloat(aValue);
           bValue = parseFloat(bValue);
         }
-      
+    
         // Handle trend indicators
         const aTrend = aCell.querySelector('.trend-indicator');
         const bTrend = bCell.querySelector('.trend-indicator');
@@ -1223,17 +1220,14 @@
           aValue = parseFloat(aTrend.textContent.trim());
           bValue = parseFloat(bTrend.textContent.trim());
         }
-      
-        // Handle empty values
-        if (aValue === '' || aValue === null || aValue === undefined) aValue = direction === 'asc' ? Infinity : -Infinity;
-        if (bValue === '' || bValue === null || bValue === undefined) bValue = direction === 'asc' ? Infinity : -Infinity;
-      
+    
         if (direction === 'asc') {
           return aValue > bValue ? 1 : -1;
         } else {
           return aValue < bValue ? 1 : -1;
         }
       }
+    }
     
     // Column configurations for each table
      // Column configurations for each table
