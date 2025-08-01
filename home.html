@@ -631,6 +631,9 @@
       <span>StockMaster Pro</span>
     </a>
     <div class="header-actions">
+      <button class="btn btn-outline" id="refresh-btn">
+        <i class="fas fa-sync-alt"></i>
+      </button>
       <button class="btn btn-outline">
         <i class="fas fa-bell"></i>
       </button>
@@ -1201,7 +1204,7 @@
         let bValue = bCell.textContent.trim();
     
         // Handle numeric values
-        if (!isNaN(aValue) aValue = parseFloat(aValue);
+        if (!isNaN(aValue)) aValue = parseFloat(aValue);
         if (!isNaN(bValue)) bValue = parseFloat(bValue);
     
         // Handle percentage values
@@ -1796,25 +1799,30 @@
         
         // Load each file
         const promises = Object.entries(fileUrls).map(async ([type, url]) => {
-          const response = await fetch(url);
-          if (!response.ok) throw new Error(`Failed to load ${url}`);
-          const text = await response.text();
-          
-          if (type === 'portfolio') {
-            const portfolioData = parsePortfolioSummary(text);
-            stockData.portfolio.summary = portfolioData.summary;
-            stockData.portfolio.holdings = portfolioData.holdings;
-          } else {
-            stockData[type] = parseFileContent(text, type);
-          }
-          
-          // Get last modified time
-          const lastModified = response.headers.get('Last-Modified');
-          if (lastModified) {
-            const modifiedTime = new Date(lastModified);
-            if (!stockData.lastUpdated || modifiedTime > stockData.lastUpdated) {
-              stockData.lastUpdated = modifiedTime;
+          try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Failed to load ${url}`);
+            const text = await response.text();
+            
+            if (type === 'portfolio') {
+              const portfolioData = parsePortfolioSummary(text);
+              stockData.portfolio.summary = portfolioData.summary;
+              stockData.portfolio.holdings = portfolioData.holdings;
+            } else {
+              stockData[type] = parseFileContent(text, type);
             }
+            
+            // Get last modified time
+            const lastModified = response.headers.get('Last-Modified');
+            if (lastModified) {
+              const modifiedTime = new Date(lastModified);
+              if (!stockData.lastUpdated || modifiedTime > stockData.lastUpdated) {
+                stockData.lastUpdated = modifiedTime;
+              }
+            }
+          } catch (error) {
+            console.error(`Error loading ${url}:`, error);
+            // Continue with other files even if one fails
           }
         });
         
@@ -2048,7 +2056,7 @@
           ${columns.map(col => {
             if (col === 'Symbol') {
               return `<td class="stock-symbol" data-symbol="${stock.Symbol}" data-details="${encodeURIComponent(stock.Details || '')}">${stock[col] || ''}</td>`;
-            } else if (col === 'Day Gap%' || col === 'Change%' || col === 'Intrinsic Gap%') {
+            } else if (col === 'Day Gap%' || col === 'Change%' || col === 'Intrinsic Gap%' || col === 'Change') {
               const value = stock[col];
               const isPositive = value > 0;
               return `
@@ -2166,111 +2174,111 @@
 
     // Update portfolio charts
     function updatePortfolioCharts() {
-  // Prepare sector allocation data
-  const sectorData = {};
-  stockData.portfolio.holdings.forEach(stock => {
-    const sector = stock.Sector || 'Unknown';
-    sectorData[sector] = (sectorData[sector] || 0) + 1;
-  });
+      // Prepare sector allocation data
+      const sectorData = {};
+      stockData.portfolio.holdings.forEach(stock => {
+        const sector = stock.Sector || 'Unknown';
+        sectorData[sector] = (sectorData[sector] || 0) + 1;
+      });
 
-  // Prepare quality distribution data
-  const qualityData = { '1-2': 0, '2-3': 0, '3-4': 0, '4-5': 0, '5+': 0 };
-  stockData.portfolio.holdings.forEach(stock => {
-    const quality = stock['Quality Score'] || 0;
-    if (quality >= 1 && quality < 2) qualityData['1-2']++;
-    else if (quality >= 2 && quality < 3) qualityData['2-3']++;
-    else if (quality >= 3 && quality < 4) qualityData['3-4']++;
-    else if (quality >= 4 && quality < 5) qualityData['4-5']++;
-    else if (quality >= 5) qualityData['5+']++;
-  });
+      // Prepare quality distribution data
+      const qualityData = { '1-2': 0, '2-3': 0, '3-4': 0, '4-5': 0, '5+': 0 };
+      stockData.portfolio.holdings.forEach(stock => {
+        const quality = stock['Quality Score'] || 0;
+        if (quality >= 1 && quality < 2) qualityData['1-2']++;
+        else if (quality >= 2 && quality < 3) qualityData['2-3']++;
+        else if (quality >= 3 && quality < 4) qualityData['3-4']++;
+        else if (quality >= 4 && quality < 5) qualityData['4-5']++;
+        else if (quality >= 5) qualityData['5+']++;
+      });
 
-  // Calculate risk level (based on average volatility)
-  let totalVolatility = 0;
-  let count = 0;
-  stockData.portfolio.holdings.forEach(stock => {
-    if (stock['Volatility%']) {
-      totalVolatility += stock['Volatility%'];
-      count++;
-    }
-  });
-  const avgVolatility = count > 0 ? totalVolatility / count : 0;
-  const riskPercentage = Math.min(100, Math.max(0, avgVolatility * 5));
-
-  // Destroy existing charts if they exist
-  const sectorCtx = document.getElementById('sectorAllocationChart');
-  const qualityCtx = document.getElementById('qualityDistributionChart');
-  
-  if (window.sectorChart) window.sectorChart.destroy();
-  if (window.qualityChart) window.qualityChart.destroy();
-
-  // Create sector allocation chart (doughnut)
-  window.sectorChart = new Chart(sectorCtx, {
-    type: 'doughnut',
-    data: {
-      labels: Object.keys(sectorData),
-      datasets: [{
-        data: Object.values(sectorData),
-        backgroundColor: [
-          '#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585',
-          '#b5179e', '#7209b7', '#560bad', '#480ca8', '#3a0ca3'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          position: 'right',
-        },
-        title: {
-          display: true,
-          text: 'Sector Allocation'
+      // Calculate risk level (based on average volatility)
+      let totalVolatility = 0;
+      let count = 0;
+      stockData.portfolio.holdings.forEach(stock => {
+        if (stock['Volatility%']) {
+          totalVolatility += stock['Volatility%'];
+          count++;
         }
-      }
-    }
-  });
+      });
+      const avgVolatility = count > 0 ? totalVolatility / count : 0;
+      const riskPercentage = Math.min(100, Math.max(0, avgVolatility * 5));
 
-  // Create quality distribution chart (bar)
-  window.qualityChart = new Chart(qualityCtx, {
-    type: 'bar',
-    data: {
-      labels: ['1-2', '2-3', '3-4', '4-5', '5+'],
-      datasets: [{
-        label: 'Number of Stocks',
-        data: Object.values(qualityData),
-        backgroundColor: [
-          '#f72585', '#b5179e', '#7209b7', '#4361ee', '#4cc9f0'
-        ],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false
+      // Destroy existing charts if they exist
+      const sectorCtx = document.getElementById('sectorAllocationChart');
+      const qualityCtx = document.getElementById('qualityDistributionChart');
+      
+      if (window.sectorChart) window.sectorChart.destroy();
+      if (window.qualityChart) window.qualityChart.destroy();
+
+      // Create sector allocation chart (doughnut)
+      window.sectorChart = new Chart(sectorCtx, {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(sectorData),
+          datasets: [{
+            data: Object.values(sectorData),
+            backgroundColor: [
+              '#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585',
+              '#b5179e', '#7209b7', '#560bad', '#480ca8', '#3a0ca3'
+            ],
+            borderWidth: 1
+          }]
         },
-        title: {
-          display: true,
-          text: 'Quality Score Distribution'
-        }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          ticks: {
-            stepSize: 1
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'right',
+            },
+            title: {
+              display: true,
+              text: 'Sector Allocation'
+            }
           }
         }
-      }
-    }
-  });
+      });
 
-  // Update risk level indicator
-  document.getElementById('risk-fill').style.width = `${riskPercentage}%`;
-  document.getElementById('risk-value').textContent = `${Math.round(riskPercentage)}%`;
-}
+      // Create quality distribution chart (bar)
+      window.qualityChart = new Chart(qualityCtx, {
+        type: 'bar',
+        data: {
+          labels: ['1-2', '2-3', '3-4', '4-5', '5+'],
+          datasets: [{
+            label: 'Number of Stocks',
+            data: Object.values(qualityData),
+            backgroundColor: [
+              '#f72585', '#b5179e', '#7209b7', '#4361ee', '#4cc9f0'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              display: false
+            },
+            title: {
+              display: true,
+              text: 'Quality Score Distribution'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                stepSize: 1
+              }
+            }
+          }
+        }
+      });
+
+      // Update risk level indicator
+      document.getElementById('risk-fill').style.width = `${riskPercentage}%`;
+      document.getElementById('risk-value').textContent = `${Math.round(riskPercentage)}%`;
+    }
 
     // Update sector filter dropdown
     function updateSectorFilter() {
@@ -2326,11 +2334,6 @@
       
       // Set up refresh button
       document.getElementById('refresh-btn').addEventListener('click', loadAllData);
-      
-      // Set up export button
-      document.getElementById('export-btn').addEventListener('click', function() {
-        alert('Export functionality would be implemented here');
-      });
       
       // Set up filter application
       document.getElementById('apply-filters').addEventListener('click', function() {
