@@ -259,10 +259,16 @@
     }
 
     /* Stock Table */
+    .stock-table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 1rem;
+      position: relative;
+    }
+
     .stock-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 1rem;
     }
 
     .stock-table th {
@@ -293,6 +299,11 @@
     .stock-symbol {
       font-weight: 600;
       color: var(--primary);
+      cursor: pointer;
+    }
+
+    .stock-symbol:hover {
+      text-decoration: underline;
     }
 
     .trend-indicator {
@@ -318,6 +329,7 @@
     .action-buttons {
       display: flex;
       gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
     .btn {
@@ -358,6 +370,11 @@
       border-radius: var(--border-radius);
       padding: 1.5rem;
       margin-top: 1rem;
+      display: none;
+    }
+
+    .stock-details.active {
+      display: block;
     }
 
     .details-grid {
@@ -389,6 +406,7 @@
       display: flex;
       border-bottom: 1px solid var(--light-gray);
       margin-bottom: 1.5rem;
+      overflow-x: auto;
     }
 
     .tab {
@@ -397,6 +415,7 @@
       border-bottom: 3px solid transparent;
       transition: var(--transition);
       font-weight: 500;
+      white-space: nowrap;
     }
 
     .tab.active {
@@ -414,6 +433,66 @@
 
     .tab-content.active {
       display: block;
+    }
+
+    /* Portfolio Charts */
+    .portfolio-charts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chart-container {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 1.5rem;
+    }
+
+    .chart-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .chart {
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f8f9fa;
+      border-radius: var(--border-radius);
+    }
+
+    .risk-indicator {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .risk-level {
+      flex: 1;
+      height: 10px;
+      background-color: var(--light-gray);
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .risk-fill {
+      height: 100%;
+      background: linear-gradient(to right, var(--success), var(--warning), var(--danger));
+      width: 0%;
+    }
+
+    .risk-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--gray);
+      margin-top: 0.5rem;
     }
 
     /* Responsive Design */
@@ -445,9 +524,8 @@
         grid-template-columns: 1fr 1fr;
       }
       
-      .stock-table {
-        display: block;
-        overflow-x: auto;
+      .portfolio-charts {
+        grid-template-columns: 1fr;
       }
       
       .action-buttons {
@@ -503,6 +581,11 @@
       background: white;
       border-radius: var(--border-radius);
       box-shadow: var(--box-shadow);
+    }
+
+    /* Chart Selector */
+    .chart-selector {
+      margin-bottom: 1rem;
     }
   </style>
 </head>
@@ -592,6 +675,18 @@
         </button>
       </div>
       
+      <div class="chart-selector">
+        <h3 class="filter-title">
+          <i class="fas fa-chart-bar"></i>
+          Chart Links Type
+        </h3>
+        <select id="chartValue">
+          <option value="Lm41gt6O">Active Signals</option>
+          <option value="tvXNIn4o">Analyst</option>
+          <option value="QfoQydxt">Daily Stocks</option>
+        </select>
+      </div>
+      
       <div class="file-info">
         <div><strong>Last Updated:</strong> <span id="last-updated">Loading...</span></div>
         <div><strong>Records Loaded:</strong> <span id="records-loaded">0</span></div>
@@ -674,24 +769,27 @@
               <i class="fas fa-shield-alt sector-icon"></i>
               Support - Nearing List
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="support-nearing-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="support-nearing-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Day Gap%</th>
-                  <th>Quality</th>
-                  <th>Volatility</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="support-nearing-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Day Gap%</th>
+                    <th>Quality</th>
+                    <th>Volatility</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="support-nearing-details"></div>
           </div>
         </div>
 
@@ -701,24 +799,27 @@
               <i class="fas fa-bullseye sector-icon"></i>
               Support - Hit List
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="support-hit-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="support-hit-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Day Gap%</th>
-                  <th>Quality</th>
-                  <th>Volatility</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="support-hit-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Day Gap%</th>
+                    <th>Quality</th>
+                    <th>Volatility</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="support-hit-details"></div>
           </div>
         </div>
       </div>
@@ -730,24 +831,27 @@
               <i class="fas fa-arrow-down sector-icon"></i>
               Underperform - High Quality
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="underperform-high-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="underperform-high-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Intrinsic Gap%</th>
-                  <th>Quality</th>
-                  <th>Volatility</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="underperform-high-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Intrinsic Gap%</th>
+                    <th>Quality</th>
+                    <th>Volatility</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="underperform-high-details"></div>
           </div>
         </div>
 
@@ -757,24 +861,27 @@
               <i class="fas fa-arrow-down sector-icon"></i>
               Underperform - Low Quality
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="underperform-low-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="underperform-low-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Intrinsic Gap%</th>
-                  <th>Quality</th>
-                  <th>Volatility</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="underperform-low-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Intrinsic Gap%</th>
+                    <th>Quality</th>
+                    <th>Volatility</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="underperform-low-details"></div>
           </div>
         </div>
       </div>
@@ -786,24 +893,27 @@
               <i class="fas fa-chart-area sector-icon"></i>
               NWE - Nearing List
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="nwe-nearing-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="nwe-nearing-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Day Gap%</th>
-                  <th>Quality</th>
-                  <th>Volatility</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="nwe-nearing-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Day Gap%</th>
+                    <th>Quality</th>
+                    <th>Volatility</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="nwe-nearing-details"></div>
           </div>
         </div>
 
@@ -813,24 +923,27 @@
               <i class="fas fa-bullseye sector-icon"></i>
               NWE - Hit List
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="nwe-hit-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="nwe-hit-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Day Gap%</th>
-                  <th>Quality</th>
-                  <th>Volatility</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="nwe-hit-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Day Gap%</th>
+                    <th>Quality</th>
+                    <th>Volatility</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="nwe-hit-details"></div>
           </div>
         </div>
       </div>
@@ -842,24 +955,28 @@
               <i class="fas fa-money-bill-wave sector-icon"></i>
               High Value - Dividend
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="dividend-high-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="dividend-high-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Dividend%</th>
-                  <th>Announced</th>
-                  <th>Quality</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="dividend-high-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Dividend%</th>
+                    <th>Announced</th>
+                    <th>Executed</th>
+                    <th>Quality</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="dividend-high-details"></div>
           </div>
         </div>
 
@@ -869,24 +986,28 @@
               <i class="fas fa-money-bill-wave sector-icon"></i>
               Low Value - Dividend
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="dividend-low-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="dividend-low-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>LTP</th>
-                  <th>Dividend%</th>
-                  <th>Announced</th>
-                  <th>Quality</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="dividend-low-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>LTP</th>
+                    <th>Dividend%</th>
+                    <th>Announced</th>
+                    <th>Executed</th>
+                    <th>Quality</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="dividend-low-details"></div>
           </div>
         </div>
       </div>
@@ -894,17 +1015,50 @@
       <div class="tab-content" id="portfolio-tab">
         <div class="card" style="margin-bottom: 1.5rem;">
           <h3 class="card-title">Portfolio Summary</h3>
-          <table class="stock-table">
-            <thead>
-              <tr>
-                <th>Metric</th>
-                <th>Value</th>
-              </tr>
-            </thead>
-            <tbody id="portfolio-summary">
-              <!-- Dynamically populated -->
-            </tbody>
-          </table>
+          <div class="stock-table-container">
+            <table class="stock-table">
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody id="portfolio-summary">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="portfolio-charts">
+          <div class="chart-container">
+            <h3 class="chart-title">Sector Allocation</h3>
+            <div class="chart" id="sector-allocation-chart">
+              <p>Sector allocation chart will be displayed here</p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <h3 class="chart-title">Quality Distribution</h3>
+            <div class="chart" id="quality-distribution-chart">
+              <p>Quality distribution chart will be displayed here</p>
+            </div>
+          </div>
+          <div class="chart-container">
+            <h3 class="chart-title">Portfolio Risk Level</h3>
+            <div class="chart">
+              <div class="risk-indicator">
+                <div class="risk-level">
+                  <div class="risk-fill" id="risk-fill"></div>
+                </div>
+                <span id="risk-value">0%</span>
+              </div>
+              <div class="risk-labels">
+                <span>Low</span>
+                <span>Medium</span>
+                <span>High</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="sector-card">
@@ -913,26 +1067,29 @@
               <i class="fas fa-wallet sector-icon"></i>
               Equity Holdings
             </div>
-            <div class="sector-count">0 stocks</div>
+            <div class="sector-count" id="portfolio-holdings-count">0 stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table" id="portfolio-holdings-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Current Value</th>
-                  <th>Qty</th>
-                  <th>Entry</th>
-                  <th>Target</th>
-                  <th>Profit</th>
-                  <th>Change%</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Dynamically populated -->
-              </tbody>
-            </table>
+            <div class="stock-table-container">
+              <table class="stock-table" id="portfolio-holdings-table">
+                <thead>
+                  <tr>
+                    <th>Symbol</th>
+                    <th>Current Value</th>
+                    <th>Qty</th>
+                    <th>Entry</th>
+                    <th>Target</th>
+                    <th>Profit</th>
+                    <th>Change%</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="portfolio-holdings-details"></div>
           </div>
         </div>
       </div>
@@ -1018,6 +1175,14 @@
                 stockData.sectors.add(row['Sector']);
               }
             }
+            
+            // Extract stock name from Details
+            if (header === 'Details' && value.includes('Stock Name:')) {
+              const nameMatch = value.match(/Stock Name:\s*([^;]+)/);
+              if (nameMatch) {
+                row['StockName'] = nameMatch[1].trim();
+              }
+            }
           });
           
           if (fileType === 'support') {
@@ -1089,6 +1254,14 @@
                 if (sectorMatch) {
                   row['Sector'] = sectorMatch[1].trim();
                   stockData.sectors.add(row['Sector']);
+                }
+              }
+              
+              // Extract stock name from Details
+              if (header === 'Details' && value.includes('Stock Name:')) {
+                const nameMatch = value.match(/Stock Name:\s*([^;]+)/);
+                if (nameMatch) {
+                  row['StockName'] = nameMatch[1].trim();
                 }
               }
             });
@@ -1167,24 +1340,40 @@
       
       // Update support tables
       updateTable('support-nearing-table', stockData.support.nearing, ['Symbol', 'LTP', 'Day Gap%', 'Quality Score', 'Volatility%']);
+      document.getElementById('support-nearing-count').textContent = `${stockData.support.nearing.length} stocks`;
+      
       updateTable('support-hit-table', stockData.support.hit, ['Symbol', 'LTP', 'Day Gap%', 'Quality Score', 'Volatility%']);
+      document.getElementById('support-hit-count').textContent = `${stockData.support.hit.length} stocks`;
       
       // Update underperform tables
       updateTable('underperform-high-table', stockData.underperform.high, ['Symbol', 'LTP', 'Intrinsic Gap%', 'Quality Score', 'Volatility%']);
+      document.getElementById('underperform-high-count').textContent = `${stockData.underperform.high.length} stocks`;
+      
       updateTable('underperform-low-table', stockData.underperform.low, ['Symbol', 'LTP', 'Intrinsic Gap%', 'Quality Score', 'Volatility%']);
+      document.getElementById('underperform-low-count').textContent = `${stockData.underperform.low.length} stocks`;
       
       // Update NWE tables
       updateTable('nwe-nearing-table', stockData.nwe.nearing, ['Symbol', 'LTP', 'Day Gap%', 'Quality Score', 'Volatility%']);
+      document.getElementById('nwe-nearing-count').textContent = `${stockData.nwe.nearing.length} stocks`;
+      
       updateTable('nwe-hit-table', stockData.nwe.hit, ['Symbol', 'LTP', 'Day Gap%', 'Quality Score', 'Volatility%']);
+      document.getElementById('nwe-hit-count').textContent = `${stockData.nwe.hit.length} stocks`;
       
       // Update dividend tables
-      updateTable('dividend-high-table', stockData.dividend.high, ['Symbol', 'LTP', 'Dividend%', 'Announced', 'Quality Score']);
-      updateTable('dividend-low-table', stockData.dividend.low, ['Symbol', 'LTP', 'Dividend%', 'Announced', 'Quality Score']);
+      updateTable('dividend-high-table', stockData.dividend.high, ['Symbol', 'LTP', 'Dividend%', 'Announced', 'Executed', 'Quality Score']);
+      document.getElementById('dividend-high-count').textContent = `${stockData.dividend.high.length} stocks`;
+      
+      updateTable('dividend-low-table', stockData.dividend.low, ['Symbol', 'LTP', 'Dividend%', 'Announced', 'Executed', 'Quality Score']);
+      document.getElementById('dividend-low-count').textContent = `${stockData.dividend.low.length} stocks`;
       
       // Update portfolio
       updatePortfolioSummary();
       updateTable('portfolio-holdings-table', stockData.portfolio.holdings, 
         ['Symbol', 'Current', 'Qty', 'Entry', 'Target', 'Profit', 'Change']);
+      document.getElementById('portfolio-holdings-count').textContent = `${stockData.portfolio.holdings.length} stocks`;
+      
+      // Update portfolio charts
+      updatePortfolioCharts();
     }
 
     // Update sector cards for dashboard view
@@ -1224,41 +1413,39 @@
             <div class="sector-count">${stocks.length} stocks</div>
           </div>
           <div class="sector-content">
-            <table class="stock-table">
-              <thead>
-                <tr>
-                  <th>Symbol</th>
-                  <th>Name</th>
-                  <th>LTP</th>
-                  <th>Change%</th>
-                  <th>Quality</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${stocks.map(stock => `
+            <div class="stock-table-container">
+              <table class="stock-table">
+                <thead>
                   <tr>
-                    <td class="stock-symbol">${stock.Symbol || ''}</td>
-                    <td>${getStockName(stock) || ''}</td>
-                    <td>${formatIndianNumber(stock.LTP) || ''}</td>
-                    <td>
-                      ${renderChangeIndicator(stock)}
-                    </td>
-                    <td>${stock['Quality Score'] || ''}</td>
-                    <td>
-                      <div class="action-buttons">
-                        <button class="btn btn-outline" style="padding: 0.5rem;" data-symbol="${stock.Symbol}">
-                          <i class="fas fa-chart-line"></i>
-                        </button>
-                        <button class="btn btn-outline" style="padding: 0.5rem;" data-symbol="${stock.Symbol}">
-                          <i class="fas fa-info-circle"></i>
-                        </button>
-                      </div>
-                    </td>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>LTP</th>
+                    <th>Change%</th>
+                    <th>Quality</th>
+                    <th>Actions</th>
                   </tr>
-                `).join('')}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  ${stocks.map(stock => `
+                    <tr>
+                      <td class="stock-symbol" data-symbol="${stock.Symbol}" data-details="${encodeURIComponent(stock.Details || '')}">${stock.Symbol || ''}</td>
+                      <td>${stock.StockName || getStockName(stock) || ''}</td>
+                      <td>₹${formatIndianNumber(stock.LTP) || ''}</td>
+                      <td>
+                        ${renderChangeIndicator(stock)}
+                      </td>
+                      <td>${stock['Quality Score'] || ''}</td>
+                      <td>
+                        <div class="action-buttons">
+                          ${renderActionButtons(stock.Symbol)}
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+            <div class="stock-details" id="sector-${sector.replace(/\s+/g, '-').toLowerCase()}-details"></div>
           </div>
         `;
         
@@ -1272,6 +1459,9 @@
           content.classList.toggle('expanded');
         });
       });
+      
+      // Add click handlers to stock symbols
+      addStockSymbolClickHandlers();
     }
 
     // Helper function to get stock name from details
@@ -1293,6 +1483,9 @@
       } else if (stock['Change'] !== undefined) {
         changeValue = stock['Change'];
         isPositive = changeValue > 0;
+      } else if (stock['Intrinsic Gap%'] !== undefined) {
+        changeValue = stock['Intrinsic Gap%'];
+        isPositive = changeValue > 0;
       } else {
         return '';
       }
@@ -1302,6 +1495,25 @@
           <i class="fas fa-arrow-${isPositive ? 'up' : 'down'}"></i>
           ${formatIndianNumber(Math.abs(changeValue))}%
         </span>
+      `;
+    }
+
+    // Helper function to render action buttons
+    function renderActionButtons(symbol) {
+      const chartValue = document.getElementById('chartValue').value;
+      return `
+        <a href="https://in.tradingview.com/symbols/${symbol}/" target="_blank" class="btn btn-outline" style="padding: 0.5rem;">
+          <i class="fas fa-info-circle"></i>
+        </a>
+        <a href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=D" target="_blank" class="btn btn-outline" style="padding: 0.5rem;">
+          <i class="fas fa-chart-line"></i> D
+        </a>
+        <a href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=W" target="_blank" class="btn btn-outline" style="padding: 0.5rem;">
+          <i class="fas fa-chart-line"></i> W
+        </a>
+        <a href="https://in.tradingview.com/chart/${chartValue}/?symbol=${symbol}&interval=M" target="_blank" class="btn btn-outline" style="padding: 0.5rem;">
+          <i class="fas fa-chart-line"></i> M
+        </a>
       `;
     }
 
@@ -1332,7 +1544,7 @@
         <tr>
           ${columns.map(col => {
             if (col === 'Symbol') {
-              return `<td class="stock-symbol">${stock[col] || ''}</td>`;
+              return `<td class="stock-symbol" data-symbol="${stock.Symbol}" data-details="${encodeURIComponent(stock.Details || '')}">${stock[col] || ''}</td>`;
             } else if (col === 'Day Gap%' || col === 'Change%' || col === 'Intrinsic Gap%') {
               const value = stock[col];
               const isPositive = value > 0;
@@ -1346,24 +1558,63 @@
               `;
             } else if (col === 'LTP' || col === 'Current' || col === 'Entry' || col === 'Target' || col === 'Profit') {
               return `<td>₹${formatIndianNumber(stock[col]) || ''}</td>`;
-            } else if (col === 'Quality Score') {
+            } else if (col === 'Quality Score' || col === 'Volatility%' || col === 'Dividend%' || col === 'Qty') {
               return `<td>${stock[col] || ''}</td>`;
+            } else if (col === 'Executed') {
+              return `<td>${stock[col] || stock['Announced'] || ''}</td>`;
             } else {
               return `<td>${stock[col] || ''}</td>`;
             }
           }).join('')}
           <td>
             <div class="action-buttons">
-              <button class="btn btn-outline" style="padding: 0.5rem;" data-symbol="${stock.Symbol}">
-                <i class="fas fa-chart-line"></i>
-              </button>
-              <button class="btn btn-outline" style="padding: 0.5rem;" data-symbol="${stock.Symbol}">
-                <i class="fas fa-info-circle"></i>
-              </button>
+              ${renderActionButtons(stock.Symbol)}
             </div>
           </td>
         </tr>
       `).join('');
+      
+      // Add click handlers to stock symbols
+      addStockSymbolClickHandlers();
+    }
+
+    // Add click handlers to stock symbols
+    function addStockSymbolClickHandlers() {
+      document.querySelectorAll('.stock-symbol').forEach(symbol => {
+        symbol.addEventListener('click', function() {
+          const details = decodeURIComponent(this.getAttribute('data-details'));
+          const symbol = this.getAttribute('data-symbol');
+          const tableId = this.closest('table').id;
+          const detailsId = `${tableId}-details`;
+          
+          if (details) {
+            const detailsContainer = document.getElementById(detailsId);
+            detailsContainer.innerHTML = `
+              <h3>${symbol} - Detailed Information</h3>
+              <div class="details-grid">
+                ${parseDetailsToGrid(details)}
+              </div>
+            `;
+            detailsContainer.classList.toggle('active');
+          }
+        });
+      });
+    }
+
+    // Parse details string to grid items
+    function parseDetailsToGrid(details) {
+      if (!details) return '';
+      
+      const items = details.split(';').map(item => item.trim());
+      return items.filter(item => item.includes(':')).map(item => {
+        const [label, value] = item.split(':').map(part => part.trim());
+        return `
+          <div class="detail-item">
+            <div class="detail-label">${label}</div>
+            <div class="detail-value">${value}</div>
+          </div>
+        `;
+      }).join('');
     }
 
     // Update portfolio summary
@@ -1405,6 +1656,63 @@
           <td>${summary['Green Stocks']}</td>
         </tr>
       `;
+    }
+
+    // Update portfolio charts
+    function updatePortfolioCharts() {
+      // Simple implementation - in a real app you would use a charting library like Chart.js
+      const sectorAllocation = {};
+      const qualityDistribution = { '1-2': 0, '2-3': 0, '3-4': 0, '4-5': 0, '5+': 0 };
+      let totalVolatility = 0;
+      let count = 0;
+      
+      stockData.portfolio.holdings.forEach(stock => {
+        // Sector allocation
+        const sector = stock.Sector || 'Unknown';
+        sectorAllocation[sector] = (sectorAllocation[sector] || 0) + 1;
+        
+        // Quality distribution
+        const quality = stock['Quality Score'] || 0;
+        if (quality >= 1 && quality < 2) qualityDistribution['1-2']++;
+        else if (quality >= 2 && quality < 3) qualityDistribution['2-3']++;
+        else if (quality >= 3 && quality < 4) qualityDistribution['3-4']++;
+        else if (quality >= 4 && quality < 5) qualityDistribution['4-5']++;
+        else if (quality >= 5) qualityDistribution['5+']++;
+        
+        // Volatility for risk calculation
+        if (stock['Volatility%']) {
+          totalVolatility += stock['Volatility%'];
+          count++;
+        }
+      });
+      
+      // Update sector allocation chart (placeholder)
+      const sectorChart = document.getElementById('sector-allocation-chart');
+      sectorChart.innerHTML = `
+        <p>Sector Allocation:</p>
+        <ul>
+          ${Object.entries(sectorAllocation).map(([sector, count]) => `
+            <li>${sector}: ${count} stocks (${Math.round((count / stockData.portfolio.holdings.length) * 100)}%)</li>
+          `).join('')}
+        </ul>
+      `;
+      
+      // Update quality distribution chart (placeholder)
+      const qualityChart = document.getElementById('quality-distribution-chart');
+      qualityChart.innerHTML = `
+        <p>Quality Distribution:</p>
+        <ul>
+          ${Object.entries(qualityDistribution).map(([range, count]) => `
+            <li>${range}: ${count} stocks</li>
+          `).join('')}
+        </ul>
+      `;
+      
+      // Update risk level
+      const avgVolatility = count > 0 ? totalVolatility / count : 0;
+      const riskPercentage = Math.min(100, Math.max(0, avgVolatility * 5)); // Simple risk calculation
+      document.getElementById('risk-fill').style.width = `${riskPercentage}%`;
+      document.getElementById('risk-value').textContent = `${Math.round(riskPercentage)}%`;
     }
 
     // Update sector filter dropdown
@@ -1484,6 +1792,11 @@
         } else {
           document.querySelector(`.tab[data-tab="${value}"]`).click();
         }
+      });
+      
+      // Update chart links when chart type changes
+      document.getElementById('chartValue').addEventListener('change', function() {
+        updateDashboard();
       });
     });
   </script>
