@@ -626,6 +626,7 @@
       }
 
       document.getElementById('content').innerHTML = html;
+      makeTablesResponsive();
       setTimeout(makeTablesResponsive, 0);
     }
 
@@ -760,7 +761,7 @@
     });
     
     // Call this after rendering the table
-    makeTablesResponsive();
+    
 
     window.addEventListener('resize', makeTablesResponsive);
 	
