@@ -703,6 +703,17 @@
           </div>
         </div>
         
+        <div class="filter-group">
+          <label for="mtf-range" class="filter-title">
+            <i class="fas fa-chart-margin"></i>
+            MTF
+          </label>
+          <div style="display: flex; gap: 0.5rem;">
+            <input type="number" id="min-mtf" placeholder="Min" min="1" max="5" step="5" style="flex: 1;">
+            <input type="number" id="max-mtf" placeholder="Max" min="1" max="5" step="5" style="flex: 1;">
+          </div>
+        </div>
+        
         <button id="apply-filters" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">
           <i class="fas fa-filter"></i>
           Apply Filters
