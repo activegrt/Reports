@@ -1236,296 +1236,415 @@
       }
     
     // Column configurations for each table
+     // Column configurations for each table
     const tableConfigs = {
-  'support-nearing-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Day Gap%
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Volatility
-    { sortable: false } // Actions
-  ],
-  'support-hit-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Day Gap%
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Volatility
-    { sortable: false } // Actions
-  ],
-  'underperform-high-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Intrinsic Gap%
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Volatility
-    { sortable: false } // Actions
-  ],
-  'underperform-low-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Intrinsic Gap%
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Volatility
-    { sortable: false } // Actions
-  ],
-  'nwe-nearing-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Day Gap%
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Volatility
-    { sortable: false } // Actions
-  ],
-  'nwe-hit-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Day Gap%
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Volatility
-    { sortable: false } // Actions
-  ],
-  'dividend-high-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Dividend%
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const parseDate = (str) => {
-          if (!str) return 0;
-          if (str.includes('-')) { // Aug-07 format
-            const [month, day] = str.split('-');
-            return new Date(`${month} ${day}, 2023`).getTime();
+      'support-nearing-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          if (str.includes('.')) { // 08.07 format
-            const [day, month] = str.split('.');
-            return new Date(`2023-${month}-${day}`).getTime();
+        }, // LTP (numeric)
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          return new Date(str).getTime() || 0;
-        };
-        return direction === 'asc' 
-          ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
-          : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
-      }
-    }, // Announced
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const parseDate = (str) => {
-          if (!str) return 0;
-          if (str.includes('-')) {
-            const [month, day] = str.split('-');
-            return new Date(`${month} ${day}, 2023`).getTime();
+        }, // Day Gap% (from trend indicator)
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          if (str.includes('.')) {
-            const [day, month] = str.split('.');
-            return new Date(`2023-${month}-${day}`).getTime();
+        }, // Quality (numeric)
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          return new Date(str).getTime() || 0;
-        };
-        return direction === 'asc' 
-          ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
-          : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
-      }
-    }, // Executed
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { sortable: false } // Actions
-  ],
-  'dividend-low-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // LTP
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Dividend%
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const parseDate = (str) => {
-          if (!str) return 0;
-          if (str.includes('-')) {
-            const [month, day] = str.split('-');
-            return new Date(`${month} ${day}, 2023`).getTime();
+        }, // Volatility (numeric)
+        { sortable: false } // Actions
+      ],
+      'support-hit-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          if (str.includes('.')) {
-            const [day, month] = str.split('.');
-            return new Date(`2023-${month}-${day}`).getTime();
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          return new Date(str).getTime() || 0;
-        };
-        return direction === 'asc' 
-          ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
-          : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
-      }
-    }, // Announced
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const parseDate = (str) => {
-          if (!str) return 0;
-          if (str.includes('-')) {
-            const [month, day] = str.split('-');
-            return new Date(`${month} ${day}, 2023`).getTime();
+        }, // Day Gap%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          if (str.includes('.')) {
-            const [day, month] = str.split('.');
-            return new Date(`2023-${month}-${day}`).getTime();
+        }, // Quality
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
           }
-          return new Date(str).getTime() || 0;
-        };
-        return direction === 'asc' 
-          ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
-          : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
-      }
-    }, // Executed
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Quality
-    { sortable: false } // Actions
-  ],
-  'portfolio-holdings-table': [
-    { sortable: true }, // Symbol
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Current Value
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Qty
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Entry
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Target
-    { 
-      sortable: true,
-      sortFn: defaultSortFn
-    }, // Profit
-    { 
-      sortable: true,
-      sortFn: (aCell, bCell, direction) => {
-        const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
-        return direction === 'asc' ? aValue - bValue : bValue - aValue;
-      }
-    }, // Change%
-    { sortable: false } // Actions
-  ]
-};
+        }, // Volatility
+        { sortable: false } // Actions
+      ],
+      'underperform-high-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Intrinsic Gap%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Quality
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Volatility
+        { sortable: false } // Actions
+      ],
+      'underperform-low-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Intrinsic Gap%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Quality
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Volatility
+        { sortable: false } // Actions
+      ],
+      'nwe-nearing-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Day Gap%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Quality
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Volatility
+        { sortable: false } // Actions
+      ],
+      'nwe-hit-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Day Gap%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Quality
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Volatility
+        { sortable: false } // Actions
+      ],
+      'dividend-high-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Dividend%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            // Handle potential date formats (Aug-07, 08.07, etc.)
+            const parseDate = (str) => {
+              if (!str) return 0;
+              if (str.includes('-')) { // Aug-07 format
+                const [month, day] = str.split('-');
+                return new Date(`${month} ${day}, 2023`).getTime();
+              }
+              if (str.includes('.')) { // 08.07 format
+                const [day, month] = str.split('.');
+                return new Date(`2023-${month}-${day}`).getTime();
+              }
+              return new Date(str).getTime() || 0;
+            };
+            return direction === 'asc' 
+              ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
+              : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
+          }
+        }, // Announced
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            // Same date parsing as above
+            const parseDate = (str) => {
+              if (!str) return 0;
+              if (str.includes('-')) {
+                const [month, day] = str.split('-');
+                return new Date(`${month} ${day}, 2023`).getTime();
+              }
+              if (str.includes('.')) {
+                const [day, month] = str.split('.');
+                return new Date(`2023-${month}-${day}`).getTime();
+              }
+              return new Date(str).getTime() || 0;
+            };
+            return direction === 'asc' 
+              ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
+              : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
+          }
+        }, // Executed
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Quality
+        { sortable: false } // Actions
+      ],
+      'dividend-low-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // LTP
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Dividend%
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const parseDate = (str) => {
+              if (!str) return 0;
+              if (str.includes('-')) {
+                const [month, day] = str.split('-');
+                return new Date(`${month} ${day}, 2023`).getTime();
+              }
+              if (str.includes('.')) {
+                const [day, month] = str.split('.');
+                return new Date(`2023-${month}-${day}`).getTime();
+              }
+              return new Date(str).getTime() || 0;
+            };
+            return direction === 'asc' 
+              ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
+              : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
+          }
+        }, // Announced
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const parseDate = (str) => {
+              if (!str) return 0;
+              if (str.includes('-')) {
+                const [month, day] = str.split('-');
+                return new Date(`${month} ${day}, 2023`).getTime();
+              }
+              if (str.includes('.')) {
+                const [day, month] = str.split('.');
+                return new Date(`2023-${month}-${day}`).getTime();
+              }
+              return new Date(str).getTime() || 0;
+            };
+            return direction === 'asc' 
+              ? parseDate(aCell.textContent.trim()) - parseDate(bCell.textContent.trim())
+              : parseDate(bCell.textContent.trim()) - parseDate(aCell.textContent.trim());
+          }
+        }, // Executed
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Quality
+        { sortable: false } // Actions
+      ],
+      'portfolio-holdings-table': [
+        { sortable: true }, // Symbol
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Current Value
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.trim());
+            const bValue = parseFloat(bCell.textContent.trim());
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Qty
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Entry
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Target
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.textContent.replace(/[^0-9.-]/g, ''));
+            const bValue = parseFloat(bCell.textContent.replace(/[^0-9.-]/g, ''));
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Profit
+        { 
+          sortable: true,
+          sortFn: (aCell, bCell, direction) => {
+            const aValue = parseFloat(aCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            const bValue = parseFloat(bCell.querySelector('.trend-indicator')?.textContent.trim() || '0');
+            return direction === 'asc' ? aValue - bValue : bValue - aValue;
+          }
+        }, // Change%
+        { sortable: false } // Actions
+      ]
+    };
 
     // Parse file content
     function parseFileContent(text, fileType) {
