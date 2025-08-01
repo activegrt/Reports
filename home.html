@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StockMaster Pro - Comprehensive Analysis</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <style>
     :root {
       --primary: #4361ee;
@@ -324,6 +326,12 @@
     .trend-down {
       background-color: rgba(247, 37, 133, 0.1);
       color: var(--danger);
+    }
+
+    .chart canvas {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 300px;
     }
 
     .action-buttons {
@@ -1033,14 +1041,14 @@
         <div class="portfolio-charts">
           <div class="chart-container">
             <h3 class="chart-title">Sector Allocation</h3>
-            <div class="chart" id="sector-allocation-chart">
-              <p>Sector allocation chart will be displayed here</p>
+            <div class="chart">
+              <canvas id="sectorAllocationChart"></canvas>
             </div>
           </div>
           <div class="chart-container">
             <h3 class="chart-title">Quality Distribution</h3>
-            <div class="chart" id="quality-distribution-chart">
-              <p>Quality distribution chart will be displayed here</p>
+            <div class="chart">
+              <canvas id="qualityDistributionChart"></canvas>
             </div>
           </div>
           <div class="chart-container">
@@ -1660,60 +1668,111 @@
 
     // Update portfolio charts
     function updatePortfolioCharts() {
-      // Simple implementation - in a real app you would use a charting library like Chart.js
-      const sectorAllocation = {};
-      const qualityDistribution = { '1-2': 0, '2-3': 0, '3-4': 0, '4-5': 0, '5+': 0 };
-      let totalVolatility = 0;
-      let count = 0;
-      
-      stockData.portfolio.holdings.forEach(stock => {
-        // Sector allocation
-        const sector = stock.Sector || 'Unknown';
-        sectorAllocation[sector] = (sectorAllocation[sector] || 0) + 1;
-        
-        // Quality distribution
-        const quality = stock['Quality Score'] || 0;
-        if (quality >= 1 && quality < 2) qualityDistribution['1-2']++;
-        else if (quality >= 2 && quality < 3) qualityDistribution['2-3']++;
-        else if (quality >= 3 && quality < 4) qualityDistribution['3-4']++;
-        else if (quality >= 4 && quality < 5) qualityDistribution['4-5']++;
-        else if (quality >= 5) qualityDistribution['5+']++;
-        
-        // Volatility for risk calculation
-        if (stock['Volatility%']) {
-          totalVolatility += stock['Volatility%'];
-          count++;
-        }
-      });
-      
-      // Update sector allocation chart (placeholder)
-      const sectorChart = document.getElementById('sector-allocation-chart');
-      sectorChart.innerHTML = `
-        <p>Sector Allocation:</p>
-        <ul>
-          ${Object.entries(sectorAllocation).map(([sector, count]) => `
-            <li>${sector}: ${count} stocks (${Math.round((count / stockData.portfolio.holdings.length) * 100)}%)</li>
-          `).join('')}
-        </ul>
-      `;
-      
-      // Update quality distribution chart (placeholder)
-      const qualityChart = document.getElementById('quality-distribution-chart');
-      qualityChart.innerHTML = `
-        <p>Quality Distribution:</p>
-        <ul>
-          ${Object.entries(qualityDistribution).map(([range, count]) => `
-            <li>${range}: ${count} stocks</li>
-          `).join('')}
-        </ul>
-      `;
-      
-      // Update risk level
-      const avgVolatility = count > 0 ? totalVolatility / count : 0;
-      const riskPercentage = Math.min(100, Math.max(0, avgVolatility * 5)); // Simple risk calculation
-      document.getElementById('risk-fill').style.width = `${riskPercentage}%`;
-      document.getElementById('risk-value').textContent = `${Math.round(riskPercentage)}%`;
+  // Prepare sector allocation data
+  const sectorData = {};
+  stockData.portfolio.holdings.forEach(stock => {
+    const sector = stock.Sector || 'Unknown';
+    sectorData[sector] = (sectorData[sector] || 0) + 1;
+  });
+
+  // Prepare quality distribution data
+  const qualityData = { '1-2': 0, '2-3': 0, '3-4': 0, '4-5': 0, '5+': 0 };
+  stockData.portfolio.holdings.forEach(stock => {
+    const quality = stock['Quality Score'] || 0;
+    if (quality >= 1 && quality < 2) qualityData['1-2']++;
+    else if (quality >= 2 && quality < 3) qualityData['2-3']++;
+    else if (quality >= 3 && quality < 4) qualityData['3-4']++;
+    else if (quality >= 4 && quality < 5) qualityData['4-5']++;
+    else if (quality >= 5) qualityData['5+']++;
+  });
+
+  // Calculate risk level (based on average volatility)
+  let totalVolatility = 0;
+  let count = 0;
+  stockData.portfolio.holdings.forEach(stock => {
+    if (stock['Volatility%']) {
+      totalVolatility += stock['Volatility%'];
+      count++;
     }
+  });
+  const avgVolatility = count > 0 ? totalVolatility / count : 0;
+  const riskPercentage = Math.min(100, Math.max(0, avgVolatility * 5));
+
+  // Destroy existing charts if they exist
+  const sectorCtx = document.getElementById('sectorAllocationChart');
+  const qualityCtx = document.getElementById('qualityDistributionChart');
+  
+  if (window.sectorChart) window.sectorChart.destroy();
+  if (window.qualityChart) window.qualityChart.destroy();
+
+  // Create sector allocation chart (doughnut)
+  window.sectorChart = new Chart(sectorCtx, {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(sectorData),
+      datasets: [{
+        data: Object.values(sectorData),
+        backgroundColor: [
+          '#4361ee', '#3f37c9', '#4895ef', '#4cc9f0', '#f72585',
+          '#b5179e', '#7209b7', '#560bad', '#480ca8', '#3a0ca3'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'right',
+        },
+        title: {
+          display: true,
+          text: 'Sector Allocation'
+        }
+      }
+    }
+  });
+
+  // Create quality distribution chart (bar)
+  window.qualityChart = new Chart(qualityCtx, {
+    type: 'bar',
+    data: {
+      labels: ['1-2', '2-3', '3-4', '4-5', '5+'],
+      datasets: [{
+        label: 'Number of Stocks',
+        data: Object.values(qualityData),
+        backgroundColor: [
+          '#f72585', '#b5179e', '#7209b7', '#4361ee', '#4cc9f0'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: false
+        },
+        title: {
+          display: true,
+          text: 'Quality Score Distribution'
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1
+          }
+        }
+      }
+    }
+  });
+
+  // Update risk level indicator
+  document.getElementById('risk-fill').style.width = `${riskPercentage}%`;
+  document.getElementById('risk-value').textContent = `${Math.round(riskPercentage)}%`;
+}
 
     // Update sector filter dropdown
     function updateSectorFilter() {
