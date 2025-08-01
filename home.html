@@ -1155,98 +1155,29 @@
       return parseFloat(str.replace(/,/g, ''));
     }
 
-    // Add to your JavaScript, before the DOMContentLoaded event
-    function makeTableSortable(tableId, columnsConfig) {
-      const table = document.getElementById(tableId);
-      if (!table) return;
-    
-      const thead = table.querySelector('thead');
-      const tbody = table.querySelector('tbody');
-      const headers = thead.querySelectorAll('th');
-    
-      headers.forEach((header, index) => {
-        const config = columnsConfig[index];
-        if (config && config.sortable !== false) {
-          header.classList.add('sortable-header');
-          header.addEventListener('click', () => {
-            // Remove sort classes from all headers
-            headers.forEach(h => {
-              h.classList.remove('asc', 'desc');
-            });
-    
-            // Determine new sort direction
-            const isAsc = !header.classList.contains('asc');
-            const direction = isAsc ? 'asc' : 'desc';
-            header.classList.add(direction);
-    
-            // Sort the table
-            sortTable(tableId, index, direction, config);
-          });
-        }
-      });
-    
-      function sortTable(tableId, columnIndex, direction, config) {
-        const rows = Array.from(tbody.querySelectorAll('tr'));
-        const sortFn = config && config.sortFn ? config.sortFn : defaultSortFn;
-    
-        rows.sort((a, b) => {
-          const aCell = a.cells[columnIndex];
-          const bCell = b.cells[columnIndex];
-          return sortFn(aCell, bCell, direction);
-        });
-    
-        // Reattach sorted rows
-        rows.forEach(row => tbody.appendChild(row));
-      }
-    
-      // Improved default sorting function
-function defaultSortFn(aCell, bCell, direction) {
-    let aValue = aCell.textContent.trim();
-    let bValue = bCell.textContent.trim();
-
-    // Handle numeric values (including currency symbols and commas)
-    const aNum = parseFloat(aValue.replace(/[^\d.-]/g, ''));
-    const bNum = parseFloat(bValue.replace(/[^\d.-]/g, ''));
-    
-    // If both values are numbers, compare numerically
-    if (!isNaN(aNum) && !isNaN(bNum)) {
-        return direction === 'asc' ? aNum - bNum : bNum - aNum;
-    }
-
-    // Handle percentage values
-    if (aValue.endsWith('%') && bValue.endsWith('%')) {
-        const aPercent = parseFloat(aValue);
-        const bPercent = parseFloat(bValue);
-        return direction === 'asc' ? aPercent - bPercent : bPercent - aPercent;
-    }
-
-    // Handle empty values
-    if (aValue === '' || aValue === null || aValue === undefined) {
-        return direction === 'asc' ? 1 : -1;
-    }
-    if (bValue === '' || bValue === null || bValue === undefined) {
-        return direction === 'asc' ? -1 : 1;
-    }
-
-    // Default to case-insensitive string comparison
-    return direction === 'asc' 
-        ? aValue.localeCompare(bValue, undefined, { sensitivity: 'base' })
-        : bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
+    // New improved sorting functions
+function parseNumber(value) {
+    if (typeof value === 'number') return value;
+    if (typeof value !== 'string') return NaN;
+    return parseFloat(value.replace(/[^\d.-]/g, ''));
 }
 
-// Special sorting function for trend indicators
+function sortNumeric(a, b, direction) {
+    const aNum = parseNumber(a);
+    const bNum = parseNumber(b);
+    if (isNaN(aNum) || isNaN(bNum)) return 0;
+    return direction === 'asc' ? aNum - bNum : bNum - aNum;
+}
+
 function sortTrendIndicator(aCell, bCell, direction) {
-    const aIndicator = aCell.querySelector('.trend-indicator');
-    const bIndicator = bCell.querySelector('.trend-indicator');
-    
-    const aValue = aIndicator ? parseFloat(aIndicator.textContent.trim()) : 0;
-    const bValue = bIndicator ? parseFloat(bIndicator.textContent.trim()) : 0;
-    
-    return direction === 'asc' ? aValue - bValue : bValue - aValue;
+    const getValue = (cell) => {
+        const indicator = cell.querySelector('.trend-indicator');
+        return indicator ? parseNumber(indicator.textContent) : 0;
+    };
+    return sortNumeric(getValue(aCell), getValue(bCell), direction);
 }
 
-// Special sorting function for dates
-function sortDates(aCell, bCell, direction) {
+function sortDates(a, b, direction) {
     const parseDate = (str) => {
         if (!str) return 0;
         if (str.includes('-')) { // Aug-07 format
@@ -1259,88 +1190,222 @@ function sortDates(aCell, bCell, direction) {
         }
         return new Date(str).getTime() || 0;
     };
-
-    const aDate = parseDate(aCell.textContent.trim());
-    const bDate = parseDate(bCell.textContent.trim());
     
+    const aDate = parseDate(a);
+    const bDate = parseDate(b);
     return direction === 'asc' ? aDate - bDate : bDate - aDate;
 }
 
-// Complete table configurations
-const tableConfigs = {
+function defaultSort(a, b, direction) {
+    // Try numeric sort first
+    const numericResult = sortNumeric(a, b, direction);
+    if (numericResult !== 0) return numericResult;
+    
+    // Fall back to string comparison
+    return direction === 'asc' 
+        ? String(a).localeCompare(String(b))
+        : String(b).localeCompare(String(a));
+}
+
+    // Add to your JavaScript, before the DOMContentLoaded event
+    function makeTableSortable(tableId, columnsConfig) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+    
+    const thead = table.querySelector('thead');
+    const tbody = table.querySelector('tbody');
+    const headers = thead.querySelectorAll('th');
+    
+    headers.forEach((header, index) => {
+        const config = columnsConfig[index];
+        if (config && config.sortable !== false) {
+            header.classList.add('sortable-header');
+            
+            header.addEventListener('click', () => {
+                // Remove sort classes from all headers
+                headers.forEach(h => h.classList.remove('asc', 'desc'));
+                
+                // Determine new sort direction
+                const isAsc = !header.classList.contains('asc');
+                const direction = isAsc ? 'asc' : 'desc';
+                header.classList.add(direction);
+                
+                // Sort the table
+                sortTable(tableId, index, direction, config);
+            });
+        }
+    });
+    
+    function sortTable(tableId, columnIndex, direction, config) {
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        rows.sort((a, b) => {
+            const aCell = a.cells[columnIndex];
+            const bCell = b.cells[columnIndex];
+            
+            // Use the configured sort function or default
+            const sortFn = config.sortFn || defaultSort;
+            
+            // Get cell values
+            const aValue = aCell.textContent.trim();
+            const bValue = bCell.textContent.trim();
+            
+            // For special sort functions that need the cell element
+            if (sortFn === sortTrendIndicator) {
+                return sortTrendIndicator(aCell, bCell, direction);
+            }
+            
+            // For other sort functions
+            return sortFn(aValue, bValue, direction);
+        });
+        
+        // Reattach sorted rows
+        rows.forEach(row => tbody.appendChild(row));
+    }
+}
+    
+      // Improved default sorting function
+    function defaultSortFn(aCell, bCell, direction) {
+        let aValue = aCell.textContent.trim();
+        let bValue = bCell.textContent.trim();
+    
+        // Handle numeric values (including currency symbols and commas)
+        const aNum = parseFloat(aValue.replace(/[^\d.-]/g, ''));
+        const bNum = parseFloat(bValue.replace(/[^\d.-]/g, ''));
+        
+        // If both values are numbers, compare numerically
+        if (!isNaN(aNum) && !isNaN(bNum)) {
+            return direction === 'asc' ? aNum - bNum : bNum - aNum;
+        }
+    
+        // Handle percentage values
+        if (aValue.endsWith('%') && bValue.endsWith('%')) {
+            const aPercent = parseFloat(aValue);
+            const bPercent = parseFloat(bValue);
+            return direction === 'asc' ? aPercent - bPercent : bPercent - aPercent;
+        }
+    
+        // Handle empty values
+        if (aValue === '' || aValue === null || aValue === undefined) {
+            return direction === 'asc' ? 1 : -1;
+        }
+        if (bValue === '' || bValue === null || bValue === undefined) {
+            return direction === 'asc' ? -1 : 1;
+        }
+    
+        // Default to case-insensitive string comparison
+        return direction === 'asc' 
+            ? aValue.localeCompare(bValue, undefined, { sensitivity: 'base' })
+            : bValue.localeCompare(aValue, undefined, { sensitivity: 'base' });
+    }
+    
+    // Special sorting function for trend indicators
+    function sortTrendIndicator(aCell, bCell, direction) {
+        const aIndicator = aCell.querySelector('.trend-indicator');
+        const bIndicator = bCell.querySelector('.trend-indicator');
+        
+        const aValue = aIndicator ? parseFloat(aIndicator.textContent.trim()) : 0;
+        const bValue = bIndicator ? parseFloat(bIndicator.textContent.trim()) : 0;
+        
+        return direction === 'asc' ? aValue - bValue : bValue - aValue;
+    }
+    
+    // Special sorting function for dates
+    function sortDates(aCell, bCell, direction) {
+        const parseDate = (str) => {
+            if (!str) return 0;
+            if (str.includes('-')) { // Aug-07 format
+                const [month, day] = str.split('-');
+                return new Date(`${month} ${day}, 2023`).getTime();
+            }
+            if (str.includes('.')) { // 08.07 format
+                const [day, month] = str.split('.');
+                return new Date(`2023-${month}-${day}`).getTime();
+            }
+            return new Date(str).getTime() || 0;
+        };
+    
+        const aDate = parseDate(aCell.textContent.trim());
+        const bDate = parseDate(bCell.textContent.trim());
+        
+        return direction === 'asc' ? aDate - bDate : bDate - aDate;
+    }
+    
+    // Complete table configurations
+    const tableConfigs = {
     'support-nearing-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
         { sortable: true, sortFn: sortTrendIndicator }, // Day Gap%
-        { sortable: true, sortFn: defaultSortFn }, // Quality
-        { sortable: true, sortFn: defaultSortFn }, // Volatility
+        { sortable: true, sortFn: sortNumeric }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Volatility
         { sortable: false } // Actions
     ],
     'support-hit-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
         { sortable: true, sortFn: sortTrendIndicator }, // Day Gap%
-        { sortable: true, sortFn: defaultSortFn }, // Quality
-        { sortable: true, sortFn: defaultSortFn }, // Volatility
+        { sortable: true, sortFn: sortNumeric }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Volatility
         { sortable: false } // Actions
     ],
     'underperform-high-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
         { sortable: true, sortFn: sortTrendIndicator }, // Intrinsic Gap%
-        { sortable: true, sortFn: defaultSortFn }, // Quality
-        { sortable: true, sortFn: defaultSortFn }, // Volatility
+        { sortable: true, sortFn: sortNumeric }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Volatility
         { sortable: false } // Actions
     ],
     'underperform-low-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
         { sortable: true, sortFn: sortTrendIndicator }, // Intrinsic Gap%
-        { sortable: true, sortFn: defaultSortFn }, // Quality
-        { sortable: true, sortFn: defaultSortFn }, // Volatility
+        { sortable: true, sortFn: sortNumeric }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Volatility
         { sortable: false } // Actions
     ],
     'nwe-nearing-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
         { sortable: true, sortFn: sortTrendIndicator }, // Day Gap%
-        { sortable: true, sortFn: defaultSortFn }, // Quality
-        { sortable: true, sortFn: defaultSortFn }, // Volatility
+        { sortable: true, sortFn: sortNumeric }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Volatility
         { sortable: false } // Actions
     ],
     'nwe-hit-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
         { sortable: true, sortFn: sortTrendIndicator }, // Day Gap%
-        { sortable: true, sortFn: defaultSortFn }, // Quality
-        { sortable: true, sortFn: defaultSortFn }, // Volatility
+        { sortable: true, sortFn: sortNumeric }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Volatility
         { sortable: false } // Actions
     ],
     'dividend-high-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
-        { sortable: true, sortFn: defaultSortFn }, // Dividend%
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
+        { sortable: true, sortFn: sortNumeric }, // Dividend%
         { sortable: true, sortFn: sortDates }, // Announced
         { sortable: true, sortFn: sortDates }, // Executed
-        { sortable: true, sortFn: defaultSortFn }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Quality
         { sortable: false } // Actions
     ],
     'dividend-low-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // LTP
-        { sortable: true, sortFn: defaultSortFn }, // Dividend%
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // LTP
+        { sortable: true, sortFn: sortNumeric }, // Dividend%
         { sortable: true, sortFn: sortDates }, // Announced
         { sortable: true, sortFn: sortDates }, // Executed
-        { sortable: true, sortFn: defaultSortFn }, // Quality
+        { sortable: true, sortFn: sortNumeric }, // Quality
         { sortable: false } // Actions
     ],
     'portfolio-holdings-table': [
-        { sortable: true }, // Symbol
-        { sortable: true, sortFn: defaultSortFn }, // Current Value
-        { sortable: true, sortFn: defaultSortFn }, // Qty
-        { sortable: true, sortFn: defaultSortFn }, // Entry
-        { sortable: true, sortFn: defaultSortFn }, // Target
-        { sortable: true, sortFn: defaultSortFn }, // Profit
+        { sortable: true, sortFn: defaultSort }, // Symbol
+        { sortable: true, sortFn: sortNumeric }, // Current Value
+        { sortable: true, sortFn: sortNumeric }, // Qty
+        { sortable: true, sortFn: sortNumeric }, // Entry
+        { sortable: true, sortFn: sortNumeric }, // Target
+        { sortable: true, sortFn: sortNumeric }, // Profit
         { sortable: true, sortFn: sortTrendIndicator }, // Change%
         { sortable: false } // Actions
     ]
