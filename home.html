@@ -266,6 +266,8 @@
       overflow-x: auto;
       margin-top: 1rem;
       position: relative;
+      max-height: 600px;
+      overflow-y: auto;
     }
 
     .stock-table {
@@ -406,6 +408,8 @@
       padding: 1.5rem;
       margin-top: 1rem;
       display: none;
+      max-height: 500px;
+      overflow-y: auto;
     }
 
     .stock-details.active {
@@ -1218,7 +1222,7 @@
 
     // Format number in Indian style
     function formatIndianNumber(num) {
-      if (isNaN(num) || num === null || num === undefined) return '';
+      if (isNaN(num) return '';
       return num.toLocaleString('en-IN');
     }
 
@@ -1248,8 +1252,13 @@
             });
     
             // Determine new sort direction
-            const isAsc = !header.classList.contains('asc');
-            const direction = isAsc ? 'asc' : 'desc';
+            let direction = 'asc';
+            if (header.classList.contains('asc')) {
+              direction = 'desc';
+            } else if (header.classList.contains('desc')) {
+              direction = 'asc';
+            }
+            
             header.classList.add(direction);
     
             // Sort the table
@@ -2253,9 +2262,25 @@
     function parseDetailsToGrid(details) {
       if (!details) return '';
       
-      const items = details.split(';').map(item => item.trim());
-      return items.filter(item => item.includes(':')).map(item => {
-        const [label, value] = item.split(':').map(part => part.trim());
+      // Extract all key-value pairs from the details string
+      const pairs = details.match(/([^;:]+):\s*([^;]+)/g) || [];
+      
+      return pairs.map(pair => {
+        // Clean up the pair by removing parentheses and trimming
+        const cleanPair = pair.replace(/[()]/g, '').trim();
+        const colonIndex = cleanPair.indexOf(':');
+        if (colonIndex === -1) return '';
+        
+        const label = cleanPair.substring(0, colonIndex).trim();
+        let value = cleanPair.substring(colonIndex + 1).trim();
+        
+        // Format specific values
+        if (value.endsWith('%')) {
+          value = parseFloat(value).toFixed(2) + '%';
+        } else if (!isNaN(parseFloat(value)) {
+          value = formatIndianNumber(parseFloat(value));
+        }
+        
         return `
           <div class="detail-item">
             <div class="detail-label">${label}</div>
