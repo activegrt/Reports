@@ -6,7 +6,7 @@
   <title>Dividend Analysis - Equity</title>
   <style>
     :root {
-      --primary-color: #464a4de3; --1976d2;
+      --primary-color: #464a4de3;
       --secondary-color: #f5f5f5;
       --focus-color: #1976d2;
       --accent-color: #1565c0;
@@ -57,11 +57,6 @@
       align-items: center;
     }
 
-    .header-title:hover {
-      text-decoration: none;
-      color: var(--focus-color);
-    }
-
     .controls {
       padding: 1rem;
       background-color: white;
@@ -86,23 +81,12 @@
       font-size: 1rem;
       border: none;
       border-radius: 4px;
-      /*background-color: var(--primary-color);
-      color: white;*/
-	  color: black;
+      color: black;
       cursor: pointer;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-    }
-
-    button:hover {
-      /*background-color: var(--accent-color);*/
-      transform: translateY(-1px);
-    }
-
-    button:active {
-      transform: translateY(0);
     }
 
     .file-info {
@@ -115,59 +99,72 @@
       flex: 1;
       padding: 1rem;
       max-width: 100%;
-      overflow-x: auto;
     }
 
     .sector {
-      margin-bottom: 2rem;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
+      margin-bottom: 1.5rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem;
+    }
+
+    .sector-header {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .sector-header button {
+      margin-right: 10px;
+      font-size: 1rem;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      min-width: 30px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .record-count {
+      margin-left: 10px;
+      font-size: 0.9rem;
+      color: var(--light-text);
     }
 
     .sector-title {
-      /*padding: 1rem;
-      background-color: var(--primary-color);
-      font-size: 1.2rem;
-      color: white;*/
-	  color: black;
+      color: black;
       font-weight: 500;
     }
-	.sector {
-		margin-bottom: 1.5rem;
-		border: 1px solid #ccc;
-		border-radius: 6px;
-		padding: 0.5rem;
-	}
-	.sector-header {
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		font-weight: bold;
-		margin-bottom: 0.5rem;
-	}
-	.sector-header button {
-		margin-right: 10px;
-		font-size: 1rem;
-		padding: 0.2rem 0.5rem;
-		cursor: pointer;
-	}
-	.sector-grid {
-		transition: all 0.3s ease;
-	}
+
+    .table-responsive-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+      max-width: 100vw;
+      margin: 0 auto;
+      max-height: 70vh;
+      overflow-y: auto;
+      position: relative;
+    }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      table-layout: fixed;
+      table-layout: auto;
     }
 
     th, td {
-      padding: 0.75rem 1rem;
+      padding: 0.75rem 0.5rem;
       text-align: center;
       border-bottom: 1px solid var(--border-color);
       word-wrap: break-word;
+    }
+
+    thead {
+      position: sticky;
+      top: 0;
+      z-index: 20;
     }
 
     th {
@@ -175,6 +172,13 @@
       font-weight: 600;
       position: sticky;
       top: 0;
+    }
+
+    .filter-row {
+      position: sticky;
+      top: 48px; /* Height of the header row */
+      z-index: 15;
+      background-color: var(--secondary-color);
     }
 
     th.filter-cell input {
@@ -204,7 +208,7 @@
     }
 
     .stock-btn {
-      padding: 0.5rem;
+      padding: 0.5rem 0.8rem;
       background-color: var(--primary-color);
       color: white;
       border: none;
@@ -212,11 +216,10 @@
       cursor: pointer;
       transition: background-color 0.2s;
       font-size: 0.9rem;
-      width: 100%;
-    }
-
-    .stock-btn:hover {
-      background-color: var(--accent-color);
+      min-width: 80px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .chart-links {
@@ -270,6 +273,7 @@
       border: none;
     }
 
+    /* Responsive styles */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -284,11 +288,34 @@
 
       .file-info {
         margin-left: 0;
+        margin-top: 0.5rem;
+      }
+
+      .sector-header {
+        flex-wrap: wrap;
+      }
+
+      .sector-header button {
+        margin-bottom: 0.5rem;
       }
 
       th, td {
         padding: 0.5rem;
+        font-size: 0.85rem;
+      }
+
+      .filter-row th {
+        top: 40px; /* Adjusted for mobile header height */
+      }
+
+      .stock-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+      }
+
+      .chart-links a {
         font-size: 0.9rem;
+        margin: 0 2px;
       }
 
       .details-content {
@@ -302,8 +329,12 @@
       }
 
       th, td {
-        padding: 0.5rem 0.25rem;
-        font-size: 0.8rem;
+        padding: 0.4rem 0.2rem;
+        font-size: 0.75rem;
+      }
+
+      .filter-row th {
+        top: 35px; /* Further adjusted for smaller screens */
       }
 
       .tag {
@@ -311,10 +342,16 @@
       }
 
       .stock-btn {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        min-width: 60px;
       }
 
       .chart-links a {
+        font-size: 0.8rem;
+      }
+
+      .sector-header button {
+        padding: 0.2rem 0.5rem;
         font-size: 0.9rem;
       }
     }
@@ -351,42 +388,53 @@
   <div class="content" id="content">Loading...</div>
 
   <script>
-  
-	let chart_ref = 'Lm41gt6O';
-	let sectorData = {};
-	let currentSort = { sector: '', key: '', direction: 1 };
-	let fileLines = [];
+    let chart_ref = 'Lm41gt6O';
+    let sectorData = {};
+    let currentSort = { sector: '', key: '', direction: 1 };
+    let fileLines = [];
 
-	const pdfFilePath = 'https://activegrt.github.io/Reports/dividend_list.pdf'
-	const fileUrl = 'https://activegrt.github.io/Reports/dividend_list.txt';
-	const fileModifiedTimeEl = document.getElementById('file-modified-time');
-	const contentEl = document.getElementById('content');
+    const pdfFilePath = 'https://activegrt.github.io/Reports/dividend_list.pdf'
+    const fileUrl = 'https://activegrt.github.io/Reports/dividend_list.txt';
+    const fileModifiedTimeEl = document.getElementById('file-modified-time');
+    const contentEl = document.getElementById('content');
 
-	// Show last modified time
-	fetch(fileUrl, { method: 'HEAD' })
-	  .then(response => {
-		const lastModified = response.headers.get('Last-Modified');
-		if (lastModified && fileModifiedTimeEl) {
-		  fileModifiedTimeEl.innerText = `Last updated: ${new Date(lastModified).toLocaleString()}`;
-		}
-	  })
-	  .catch(err => console.warn('Could not fetch file modified time:', err));
+    // Format number in Indian style
+    function formatIndianNumber(num) {
+      if (isNaN(num) || num === null || num === undefined) return '';
+      return num.toLocaleString('en-IN');
+    }
 
-	// Fetch file content and render
-	fetch(fileUrl)
-	  .then(response => {
-		if (!response.ok) throw new Error('Failed to load file');
-		return response.text();
-	  })
-	  .then(text => {
-		fileLines = text.trim().split('\n');
-		const initialChart = document.getElementById('valuation-select')?.value || '';
-		renderTable(initialChart);
-	  })
-	  .catch(err => {
-		contentEl.innerText = 'Error loading stock data.';
-		console.error('File load failed:', err);
-	  });
+    // Parse Indian formatted numbers back to float
+    function parseIndianNumber(str) {
+      if (!str) return NaN;
+      return parseFloat(str.replace(/,/g, ''));
+    }
+
+    // Show last modified time
+    fetch(fileUrl, { method: 'HEAD' })
+      .then(response => {
+        const lastModified = response.headers.get('Last-Modified');
+        if (lastModified && fileModifiedTimeEl) {
+          fileModifiedTimeEl.innerText = `Last updated: ${new Date(lastModified).toLocaleString()}`;
+        }
+      })
+      .catch(err => console.warn('Could not fetch file modified time:', err));
+
+    // Fetch file content and render
+    fetch(fileUrl)
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load file');
+        return response.text();
+      })
+      .then(text => {
+        fileLines = text.trim().split('\n');
+        const initialChart = document.getElementById('valuation-select')?.value || '';
+        renderTable(initialChart);
+      })
+      .catch(err => {
+        contentEl.innerText = 'Error loading stock data.';
+        console.error('File load failed:', err);
+      });
 
     function viewPDF() {
       const container = document.getElementById('pdf-container');
@@ -394,8 +442,6 @@
       
       frame.src = pdfFilePath;
       container.style.display = 'block';
-      
-      // Scroll to PDF viewer
       container.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -415,19 +461,21 @@
         const raw = input.value.trim();
         if (!raw) return;
 
-        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(\.\d+)?)$/);
+        const match = raw.match(/^([<>]=?|=)?\s*(-?\d+(,\d+)*(\.\d+)?)$/);
         if (!match) return;
 
-        const operator = match[1] || '>=';
-        const value = parseFloat(match[2]);
+        const operator = match[1] || '=';
+        const value = parseIndianNumber(match[2]);
 
-        filters[input.dataset.key] = { operator, value };
+        if (!isNaN(value)) {
+          filters[input.dataset.key] = { operator, value };
+        }
       });
 
-      const filtered = rows.filter(row => {
+      const filteredRows = rows.filter(row => {
         return Object.entries(filters).every(([key, cond]) => {
           const val = row[key];
-          if (typeof val !== 'number') return false;
+          if (typeof val !== 'number') return true;
 
           switch (cond.operator) {
             case '>': return val > cond.value;
@@ -440,7 +488,15 @@
         });
       });
 
-      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref, sector);
+      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(filteredRows, headers, chart_ref, sector);
+      updateRecordCount(sector, filteredRows.length);
+    }
+    
+    function updateRecordCount(sector, count) {
+      const countEl = document.querySelector(`#grid-${sector}`).previousElementSibling.querySelector('.record-count');
+      if (countEl) {
+        countEl.textContent = `${count} records`;
+      }
     }
     
     function isNumericColumn(rows, key) {
@@ -449,7 +505,7 @@
     
     function renderTable(chartValue) {
       chart_ref = chartValue;
-	  let html = '';
+      let html = '';
       let currentSector = '';
       let currentHeaders = [];
       let expectHeaders = false;
@@ -471,8 +527,12 @@
           const row = {};
           sectorData[currentSector].headers.forEach((key, idx) => {
             const val = values[idx];
-            const num = parseFloat(val);
-            row[key] = isNaN(num) || key === 'symbol' || key === 'name' || key === 'valuation' || key === 'mtf' ? val : num;
+            if (val === '') {
+              row[key] = null;
+            } else {
+              const num = parseFloat(val);
+              row[key] = isNaN(num) || key === 'Symbol' || key === 'MTF' || key === 'Quality Score' ? val : num;
+            }
           });
           sectorData[currentSector].rows.push(row);
         }
@@ -480,56 +540,61 @@
 
       for (const sector in sectorData) {
         const { headers, rows } = sectorData[sector];
-        
-        // Filter out the Details column from display
         const displayHeaders = headers.filter(h => h !== 'Details');
 
         html += `<div class="sector">
-		  <div class="sector-header">
-			<button onclick="toggleSector('${sector}')">➖</button>
-			<span class="sector-title">${sector}</span>
-		  </div>
-		  <div id="grid-${sector}" class="sector-grid">
-			<table>
-			  <thead>
-				<tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
-				<tr>${displayHeaders.map(h => {
-				  return isNumericColumn(rows, h)
-					? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
-					: `<th></th>`;
-				}).join('')}</tr>
-			  </thead>
-			  <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref, sector)}</tbody>
-			</table>
-		  </div>
-		</div>`;
+          <div class="sector-header">
+            <button onclick="toggleSector('${sector}')">➕</button>
+            <span class="sector-title">${sector}</span>
+            <span class="record-count">${rows.length} records</span>
+          </div>
+          <div id="grid-${sector}" class="sector-grid" style="display:none;">
+            <div class="table-responsive-container">
+              <table>
+                <thead>
+                  <tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
+                  <tr class="filter-row">${displayHeaders.map(h => {
+                    return isNumericColumn(rows, h)
+                      ? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
+                      : `<th></th>`;
+                  }).join('')}</tr>
+                </thead>
+                <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref, sector)}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>`;
       }
 
       document.getElementById('content').innerHTML = html;
+      makeTablesResponsive();
     }
 
     function renderRows(rows, headers, chartValue, sector) {
       return rows.map((row, rowIndex) => {
-        // Filter out the Details column from display
         const displayHeaders = headers.filter(h => h !== 'Details');
         
         const rowHtml = `<tr>
           ${displayHeaders.map(h => {
-            if (h === 'change' || h === 'ema') {
-              const tag = row[h] > 0 ? 'defensive' : 'aggressive';
-              return `<td><span class="tag ${tag}">${row[h]}%</span></td>`;
+            if (h === 'Day Gap%' || h === 'Week Gap%' || h === 'Month Gap%' || h === 'Volatility%') {
+              const val = row[h];
+              if (val === null || val === undefined) return '<td></td>';
+              const tag = val > 0 ? 'defensive' : 'aggressive';
+              return `<td><span class="tag ${tag}">${formatIndianNumber(val)}%</span></td>`;
             } else if (h === 'Symbol') {
               return `<td>
                 <button class="stock-btn" onclick="toggleDetails('${sector}', ${rowIndex})">
                   ${row[h]}
                 </button>
                 <div class="chart-links">
-                  <a target="_blank" href="https://in.tradingview.com/symbols/${row[h]}/" title="Stock info">ℹ️</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=D" title="Daily chart">📊</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=W" title="Weekly chart">🆆</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=${row[h]}&interval=M" title="Monthly chart">📅</a>
+                  <a target="_blank" href="https://in.tradingview.com/symbols/NSE:${row[h]}/" title="Stock info">ℹ️</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=D" title="Daily chart">📊</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=W" title="Weekly chart">🆆</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=M" title="Monthly chart">📅</a>
                 </div>
               </td>`;
+            } else if (typeof row[h] === 'number') {
+              return `<td>${formatIndianNumber(row[h])}</td>`;
             } else {
               return `<td>${row[h] ?? ''}</td>`;
             }
@@ -565,7 +630,7 @@
         if (typeof valA === 'number' && typeof valB === 'number') {
           return (valA - valB) * direction;
         }
-        return valA.toString().localeCompare(valB.toString()) * direction;
+        return String(valA).localeCompare(String(valB)) * direction;
       });
 
       const headers = sectorInfo.headers;
@@ -573,46 +638,70 @@
     }
 
     function toggleDetails(sector, rowIndex) {
-	  const detailRow = document.getElementById(`details-${sector}-${rowIndex}`);
+      const detailRow = document.getElementById(`details-${sector}-${rowIndex}`);
       if (detailRow) {
         detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
       }
     }
-	
-	function toggleSector(sector) {
-	  const el = document.getElementById(`grid-${sector}`);
-	  const btn = el.previousElementSibling.querySelector('button');
-	  const isVisible = el.style.display !== 'none';
-	  el.style.display = isVisible ? 'none' : 'block';
-	  btn.textContent = isVisible ? '➕' : '➖';
-	}
+    
+    function toggleSector(sector) {
+      const el = document.getElementById(`grid-${sector}`);
+      const btn = el.previousElementSibling.querySelector('button');
+      const isVisible = el.style.display !== 'none';
+      el.style.display = isVisible ? 'none' : 'block';
+      btn.textContent = isVisible ? '➕' : '➖';
+    }
 
     function formatDetails(detailStr) {
       if (!detailStr) return '';
       
-      // Clean up the details string
       const cleaned = detailStr.replace(/^\(|\)$/g, '').trim();
       if (!cleaned) return '';
       
-      // Split into key-value pairs
       const pairs = cleaned.split(';').filter(pair => pair.trim() !== '');
       
-      // Create detail items
       return pairs.map(pair => {
         const [key, value] = pair.split(':').map(part => part.trim());
         if (!key || !value) return '';
-        return `<div class="detail-item"><strong>${key}</strong>${value}</div>`;
+        
+        // Format numeric values in details
+        const numMatch = value.match(/^(-?\d+(\.\d+)?)$/);
+        const formattedValue = numMatch ? formatIndianNumber(parseFloat(numMatch[1])) : value;
+        
+        return `<div class="detail-item"><strong>${key}</strong>${formattedValue}</div>`;
       }).join('');
     }
 
-    // Initialize the page
-    const initialChart = document.getElementById('valuation-select').value;
-    renderTable(initialChart);
+    function makeTablesResponsive() {
+      const isMobile = window.innerWidth <= 768;
+      
+      document.querySelectorAll('table').forEach(table => {
+        if (isMobile) {
+          if (!table.classList.contains('responsive-mobile')) {
+            table.classList.add('responsive-mobile');
+            const container = table.closest('.table-responsive-container') || table.parentElement;
+            container.style.overflowX = 'auto';
+            container.style.webkitOverflowScrolling = 'touch';
+          }
+        } else {
+          table.classList.remove('responsive-mobile');
+          const container = table.closest('.table-responsive-container') || table.parentElement;
+          container.style.overflowX = '';
+        }
+      });
+    }
 
-    document.getElementById('valuation-select').addEventListener('change', function () {
+    // Handle screen orientation changes
+    window.addEventListener('orientationchange', function() {
+      setTimeout(makeTablesResponsive, 100);
+    });
+
+    // Initialize the page
+    document.getElementById('valuation-select').addEventListener('change', function() {
       renderTable(this.value);
     });
-	
+
+    window.addEventListener('resize', makeTablesResponsive);
   </script>
 </body>
 </html>
