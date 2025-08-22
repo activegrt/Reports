@@ -1,1 +1,585 @@
-html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Options Chain Viewer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            overflow: hidden;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.2rem;
+        }
+        
+        .description {
+            color: #7f8c8d;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .stock-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .stock-selector label {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .stock-selector select {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: white;
+            font-size: 1rem;
+            cursor: pointer;
+            min-width: 120px;
+        }
+        
+        .instructions {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 4px solid #3498db;
+        }
+        
+        .table-container {
+            overflow: auto;
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            max-height: 70vh;
+            position: relative;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px;
+        }
+        
+        thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        
+        th, td {
+            padding: 12px 10px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(to bottom, #2c3e50, #1a2530);
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        tr.header-row th {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            font-size: 1rem;
+            padding: 14px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4fc;
+            transition: background-color 0.2s;
+        }
+        
+        .strike-cell {
+            font-weight: bold;
+            background-color: #f1f8ff;
+            font-size: 1rem;
+            color: #2c3e50;
+            position: sticky;
+            left: 0;
+            z-index: 2;
+        }
+        
+        .strike-header {
+            position: sticky;
+            left: 0;
+            z-index: 11;
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+        }
+        
+        .bid-row {
+            background-color: #e8f5e9 !important;
+        }
+        
+        .bid-row:hover {
+            background-color: #d5ecd7 !important;
+        }
+        
+        .ask-row {
+            background-color: #ffebee !important;
+        }
+        
+        .ask-row:hover {
+            background-color: #fcdde0 !important;
+        }
+        
+        .price-cell {
+            font-weight: 600;
+            width: 70px;
+        }
+        
+        .call-price {
+            color: #27ae60;
+        }
+        
+        .put-price {
+            color: #e74c3c;
+        }
+        
+        .empty-cell {
+            background-color: #fafafa;
+        }
+        
+        .expiry-header {
+            background-color: #8e44ad;
+            color: white;
+        }
+        
+        .premium-highlight {
+            background-color: #fff3cd;
+            font-weight: bold;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { background-color: #fff3cd; }
+            50% { background-color: #ffeaa7; }
+            100% { background-color: #fff3cd; }
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+        
+        .error {
+            text-align: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #e74c3c;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1024px) {
+            th, td {
+                padding: 10px 8px;
+                font-size: 0.8rem;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .description {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            th, td {
+                padding: 8px 6px;
+                font-size: 0.75rem;
+            }
+            
+            .strike-cell {
+                font-size: 0.85rem;
+            }
+            
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .instructions {
+                font-size: 0.9rem;
+                padding: 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.4rem;
+            }
+            
+            th, td {
+                padding: 6px 4px;
+                font-size: 0.7rem;
+            }
+            
+            .strike-cell {
+                font-size: 0.8rem;
+            }
+            
+            .stock-selector {
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="stock-selector">
+                <label for="stockSelect">Select Stock:</label>
+                <select id="stockSelect">
+                    <option value="adanient">ADANIENT</option>
+					<option value="adaniports">ADANIPORTS</option>
+					<option value="apollohosp">APOLLOHOSP</option>
+					<option value="asianpaint">ASIANPAINT</option>
+					<option value="axisbank">AXISBANK</option>
+					<option value="bajaj-auto">BAJAJ-AUTO</option>
+					<option value="bajfinance">BAJFINANCE</option>
+					<option value="bajajfinsv">BAJAJFINSV</option>
+					<option value="bhartiartl">BHARTIARTL</option>
+					<option value="cipla">CIPLA</option>
+					<option value="coalindia">COALINDIA</option>
+					<option value="drreddy">DRREDDY</option>
+					<option value="eichermot">EICHERMOT</option>
+					<option value="eternal">ETERNAL</option>
+					<option value="grasim">GRASIM</option>
+					<option value="hcltech">HCLTECH</option>
+					<option value="hdfcbank">HDFCBANK</option>
+					<option value="hdfclife">HDFCLIFE</option>
+					<option value="heromotoco">HEROMOTOCO</option>
+					<option value="hindalco">HINDALCO</option>
+					<option value="hindunilvr">HINDUNILVR</option>
+					<option value="icicibank">ICICIBANK</option>
+					<option value="indusindbk">INDUSINDBK</option>
+					<option value="infy">INFY</option>
+					<option value="itc">ITC</option>
+					<option value="jiofin">JIOFIN</option>
+					<option value="jswsteel">JSWSTEEL</option>
+					<option value="kotakbank">KOTAKBANK</option>
+					<option value="lt">LT</option>
+					<option value="m&m">M&M</option>
+					<option value="maruti">MARUTI</option>
+					<option value="nestleind">NESTLEIND</option>
+					<option value="ntpc">NTPC</option>
+					<option value="ongc">ONGC</option>
+					<option value="powergrid">POWERGRID</option>
+                    <option value="reliance" selected>RELIANCE</option>
+					<option value="sbilife">SBILIFE</option>
+					<option value="sbin">SBIN</option>
+					<option value="sunpharma">SUNPHARMA</option>
+					<option value="tcs">TCS</option>
+					<option value="tataconsum">TATACONSUM</option>
+					<option value="tatamotors">TATAMOTORS</option>
+					<option value="tatasteel">TATASTEEL</option>
+					<option value="techm">TECHM</option>
+					<option value="titan">TITAN</option>
+					<option value="trent">TRENT</option>
+					<option value="ultracemco">ULTRACEMCO</option>
+					<option value="wipro">WIPRO</option>
+                </select>
+            </div>
+        </header>
+        
+        <div class="table-container">
+            <div id="data-container" class="loading">Loading options data...</div>
+        </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dataContainer = document.getElementById('data-container');
+            const stockSelect = document.getElementById('stockSelect');
+            
+            // Load data when page loads
+            loadData('reliance');
+            
+            // Load data when selection changes
+            stockSelect.addEventListener('change', function() {
+                loadData(this.value);
+            });
+            
+            // Function to load CSV data
+            function loadData(stock) {
+                dataContainer.innerHTML = '<div class="loading">Loading options data for ' + stock + '...</div>';
+                
+             
+				const csvUrl = `https://activegrt.github.io/Reports/options/options_${stock}.csv`;
+                
+                fetch(csvUrl)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(csvData => {
+                        processCSVData(csvData);
+                    })
+                    .catch(error => {
+                        dataContainer.innerHTML = '<div class="error">Error loading data: ' + error.message + '</div>';
+                        console.error('Error:', error);
+                    });
+            }
+            
+            // Parse CSV data
+            function processCSVData(csv) {
+                try {
+                    const lines = csv.split('\n');
+                    const headers = lines[0].split(',').map(header => header.trim());
+                    
+                    const data = [];
+                    for (let i = 1; i < lines.length; i++) {
+                        if (lines[i].trim() === '') continue;
+                        
+                        const values = lines[i].split(',').map(value => value.trim());
+                        const row = {};
+                        
+                        headers.forEach((header, index) => {
+                            row[header] = values[index] || '';
+                        });
+                        
+                        data.push(row);
+                    }
+                    
+                    displayData(data, headers);
+                } catch (error) {
+                    dataContainer.innerHTML = '<div class="error">Error processing CSV data: ' + error.message + '</div>';
+                }
+            }
+            
+            // Process data and generate HTML table
+            function displayData(data, headers) {
+                // Group data by strikePrice
+                const strikeGroups = {};
+                
+                data.forEach(row => {
+                    const strikePrice = row.strikePrice;
+                    if (!strikeGroups[strikePrice]) {
+                        strikeGroups[strikePrice] = { bid: null, ask: null };
+                    }
+                    
+                    if (row.Chain === 'Bid') {
+                        strikeGroups[strikePrice].bid = row;
+                    } else if (row.Chain === 'Ask') {
+                        strikeGroups[strikePrice].ask = row;
+                    }
+                });
+                
+                // Get all unique expiry dates from column headers
+                const expiries = [];
+                
+                headers.forEach(header => {
+                    if (header.startsWith('CE_') || header.startsWith('PE_')) {
+                        const expiry = header.split('_')[1];
+                        if (expiry && !expiries.includes(expiry)) {
+                            expiries.push(expiry);
+                        }
+                    }
+                });
+                
+                // Sort expiries chronologically (assuming format MM-YY)
+                expiries.sort((a, b) => {
+                    const [aMonth, aYear] = a.split('-').map(Number);
+                    const [bMonth, bYear] = b.split('-').map(Number);
+                    
+                    if (aYear !== bYear) {
+                        return aYear - bYear;
+                    }
+                    return aMonth - bMonth;
+                });
+                
+                // Call options: latest first, Put options: earliest first
+                const callExpiries = [...expiries].reverse();
+                const putExpiries = [...expiries]; // Keep in ascending order for puts
+                
+                // Generate HTML table
+                let tableHTML = `
+                    <table>
+                        <thead>
+                            <tr class="header-row">
+                                <th colspan="${callExpiries.length}">Call Options</th>
+                                <th class="strike-header" rowspan="3">Strike</th>
+                                <th colspan="${putExpiries.length}">Put Options</th>
+                            </tr>
+                            <tr>
+                `;
+                
+                // Add call expiry headers (latest first)
+                callExpiries.forEach(expiry => {
+                    tableHTML += `<th colspan="1" class="expiry-header">${formatExpiry(expiry)}</th>`;
+                });
+                
+                // Add put expiry headers (earliest first)
+                putExpiries.forEach(expiry => {
+                    tableHTML += `<th colspan="1" class="expiry-header">${formatExpiry(expiry)}</th>`;
+                });
+                
+                
+                tableHTML += `</tr></thead><tbody>`;
+                
+                // Add data rows
+                const strikePrices = Object.keys(strikeGroups).sort((a, b) => a - b);
+                
+                strikePrices.forEach(strikePrice => {
+                    const group = strikeGroups[strikePrice];
+                    
+                    // Call bid prices (latest expiry first)
+                    const callBidValues = [];
+                    callExpiries.forEach(expiry => {
+                        const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
+                        callBidValues.push(value);
+                        tableHTML += `<td class="call-price">${value || '-'}</td>`;
+                    });
+                    
+                    tableHTML += `<td class="strike-cell" rowspan="2">${strikePrice}</td>`;
+                    
+                    // Put bid prices (earliest first)
+                    const putBidValues = [];
+                    putExpiries.forEach(expiry => {
+                        const value = group.bid ? group.bid[`PE_${expiry}`] || '' : '';
+                        putBidValues.push(value);
+                        tableHTML += `<td class="put-price">${value || '-'}</td>`;
+                    });
+                    
+                    tableHTML += `</tr>`;
+                    
+                    // Ask row
+                    tableHTML += `<tr class="ask-row">`;
+                    
+                    // Call ask prices (latest expiry first)
+                    const callAskValues = [];
+                    callExpiries.forEach(expiry => {
+                        const value = group.ask ? group.ask[`CE_${expiry}`] || '' : '';
+                        callAskValues.push(value);
+                        const highlightClass = shouldHighlightPremium(callAskValues, callExpiries, expiry, 'call') ? 'premium-highlight' : '';
+                        tableHTML += `<td class="call-price ${highlightClass}">${value || '-'}</td>`;
+                    });
+                    
+                    // Put ask prices (earliest first)
+                    const putAskValues = [];
+                    putExpiries.forEach(expiry => {
+                        const value = group.ask ? group.ask[`PE_${expiry}`] || '' : '';
+                        putAskValues.push(value);
+                        const highlightClass = shouldHighlightPremium(putAskValues, putExpiries, expiry, 'put') ? 'premium-highlight' : '';
+                        tableHTML += `<td class="put-price ${highlightClass}">${value || '-'}</td>`;
+                    });
+                    
+                    tableHTML += `</tr>`;
+                });
+                
+                tableHTML += `</tbody></table>`;
+                
+                dataContainer.innerHTML = tableHTML;
+            }
+            
+            // Check if premium should be highlighted
+            function shouldHighlightPremium(values, expiries, currentExpiry, optionType) {
+                if (values.length < 2) return false;
+                
+                const currentIndex = expiries.indexOf(currentExpiry);
+                if (currentIndex === 0) return false;
+                
+                const currentValue = parseFloat(values[currentIndex] || 0);
+                if (isNaN(currentValue)) return false;
+                
+                // For calls: check if current premium is lower than previous (closer expiry)
+                // For puts: check if current premium is higher than previous (closer expiry)
+                if (optionType === 'call') {
+                    for (let i = currentIndex - 1; i >= 0; i--) {
+                        const prevValue = parseFloat(values[i] || 0);
+                        if (!isNaN(prevValue) && prevValue > 0 && currentValue > 0) {
+                            return currentValue > prevValue;
+                        }
+                    }
+                } else {
+                    for (let i = currentIndex - 1; i >= 0; i--) {
+                        const prevValue = parseFloat(values[i] || 0);
+                        if (!isNaN(prevValue) && prevValue > 0 && currentValue > 0) {
+                            return currentValue < prevValue;
+                        }
+                    }
+                }
+                
+                return false;
+            }
+            
+            // Format expiry date for display
+            function formatExpiry(expiry) {
+                if (!expiry) return '';
+                const [month, year] = expiry.split('-');
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                return `${monthNames[parseInt(month) - 1]} '${year}`;
+            }
+        });
+    </script>
+</body>
+</html>
