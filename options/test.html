@@ -4,294 +4,296 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options Chain Viewer</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 25px;
-            overflow: hidden;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eaeaea;
-        }
-        
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2.2rem;
-        }
-        
-        .description {
-            color: #7f8c8d;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-        }
-        
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 25px 0;
-            flex-wrap: wrap;
-        }
-        
-        .stock-selector {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .stock-selector label {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-        
-        .stock-selector select {
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: white;
-            font-size: 1rem;
-            cursor: pointer;
-            min-width: 120px;
-        }
-        
-        .instructions {
-            background-color: #e8f4fc;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #3498db;
-        }
-        
-        .table-container {
-            overflow: auto;
-            margin-top: 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            max-height: 70vh;
-            position: relative;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            min-width: 800px;
-        }
-        
-        thead {
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        color: #333;
+        line-height: 1.6;
+        padding: 20px;
+        min-height: 100vh;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        overflow: hidden;
+    }
+    
+    header {
+        text-align: center;
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eaeaea;
+    }
+    
+    .description {
+        color: #7f8c8d;
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 1rem;
+    }
+    
+    .controls {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0;
+        flex-wrap: wrap;
+    }
+    
+    .stock-selector {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .stock-selector label {
+        font-weight: 600;
+        color: #2c3e50;
+    }
+    
+    .stock-selector select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: white;
+        font-size: 0.95rem;
+        cursor: pointer;
+        min-width: 110px;
+    }
+    
+    .instructions {
+        background-color: #e8f4fc;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 15px 0;
+        border-left: 4px solid #3498db;
+        font-size: 0.95rem;
+    }
+    
+    .table-container {
+        overflow: auto;
+        margin-top: 15px;
+        border: 1px solid #e0e0e0;
+        border-radius: 6px;
+        max-height: 480px;
+        position: relative;
+    }
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 700px;
+    }
+    
+    thead {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    th, td {
+        text-align: center;
+        border: 1px solid #e0e0e0;
+        font-size: 0.9rem;
+    }
+    
+    th {
+        background: linear-gradient(to bottom, #2c3e50, #1a2530);
+        color: white;
+        font-weight: 600;
+    }
+    
+    tr.header-row th {
+        background: linear-gradient(to bottom, #3498db, #2980b9);
+        padding: 12px;
+    }
+    
+    tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    tr:hover {
+        background-color: #e8f4fc;
+        transition: background-color 0.2s;
+    }
+    
+    .strike-cell {
+        font-weight: bold;
+        background-color: #f1f8ff;
+        color: #2c3e50;
+        position: sticky;
+        left: 0;
+        z-index: 2;
+        min-width: 60px;
+    }
+    
+    .strike-header {
+        position: sticky;
+        left: 0;
+        z-index: 11;
+        background: linear-gradient(to bottom, #3498db, #2980b9);
+        min-width: 60px;
+    }
+    
+    .bid-row {
+        background-color: #e8f5e9 !important;
+    }
+    
+    .bid-row:hover {
+        background-color: #d5ecd7 !important;
+    }
+    
+    .ask-row {
+        background-color: #ffebee !important;
+    }
+    
+    .ask-row:hover {
+        background-color: #fcdde0 !important;
+    }
+    
+    .price-cell {
+        font-weight: 600;
+        width: 60px;
+    }
+    
+    .call-price {
+        color: #27ae60;
+    }
+    
+    .put-price {
+        color: #e74c3c;
+    }
+    
+    .empty-cell {
+        background-color: #fafafa;
+    }
+    
+    .expiry-header {
+        background-color: #8e44ad;
+        color: white;
+    }
+    
+    .premium-highlight {
+        background-color: #fff3cd;
+        font-weight: bold;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { background-color: #fff3cd; }
+        50% { background-color: #ffeaa7; }
+        100% { background-color: #fff3cd; }
+    }
+    
+    .loading, .error {
+        text-align: center;
+        padding: 30px;
+        font-size: 1.1rem;
+    }
+    
+    .error {
+        color: #e74c3c;
+    }
+    
+    footer {
+        text-align: center;
+        margin-top: 25px;
+        color: #7f8c8d;
+        font-size: 0.85rem;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
         th, td {
-            padding: 12px 10px;
-            text-align: center;
-            border: 1px solid #e0e0e0;
-        }
-        
-        th {
-            background: linear-gradient(to bottom, #2c3e50, #1a2530);
-            color: white;
-            font-weight: 600;
+            padding: 8px 6px;
             font-size: 0.85rem;
         }
         
-        tr.header-row th {
-            background: linear-gradient(to bottom, #3498db, #2980b9);
-            font-size: 1rem;
-            padding: 14px;
-        }
-        
-        tr:nth-child(even) {
-            background-color: #f8f9fa;
-        }
-        
-        tr:hover {
-            background-color: #e8f4fc;
-            transition: background-color 0.2s;
-        }
-        
-        .strike-cell {
-            font-weight: bold;
-            background-color: #f1f8ff;
-            font-size: 1rem;
-            color: #2c3e50;
-            position: sticky;
-            left: 0;
-            z-index: 2;
-        }
-        
-        .strike-header {
-            position: sticky;
-            left: 0;
-            z-index: 11;
-            background: linear-gradient(to bottom, #3498db, #2980b9);
-        }
-        
-        .bid-row {
-            background-color: #e8f5e9 !important;
-        }
-        
-        .bid-row:hover {
-            background-color: #d5ecd7 !important;
-        }
-        
-        .ask-row {
-            background-color: #ffebee !important;
-        }
-        
-        .ask-row:hover {
-            background-color: #fcdde0 !important;
+        .strike-cell, .strike-header {
+            min-width: 55px;
         }
         
         .price-cell {
-            font-weight: 600;
-            width: 70px;
+            width: 55px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .container {
+            padding: 12px;
         }
         
-        .call-price {
-            color: #27ae60;
+        h1 {
+            font-size: 1.5rem;
         }
         
-        .put-price {
-            color: #e74c3c;
+        .description {
+            font-size: 0.95rem;
         }
         
-        .empty-cell {
-            background-color: #fafafa;
+        th, td {
+            padding: 7px 5px;
+            font-size: 0.8rem;
         }
         
-        .expiry-header {
-            background-color: #8e44ad;
-            color: white;
+        .strike-cell, .strike-header {
+            min-width: 50px;
         }
         
-        .premium-highlight {
-            background-color: #fff3cd;
-            font-weight: bold;
-            animation: pulse 1.5s infinite;
+        .price-cell {
+            width: 50px;
         }
         
-        @keyframes pulse {
-            0% { background-color: #fff3cd; }
-            50% { background-color: #ffeaa7; }
-            100% { background-color: #fff3cd; }
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            color: #7f8c8d;
-        }
-        
-        .error {
-            text-align: center;
-            padding: 40px;
-            font-size: 1.2rem;
-            color: #e74c3c;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #7f8c8d;
+        .instructions {
             font-size: 0.9rem;
+            padding: 10px;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        body {
+            padding: 10px;
         }
         
-        @media (max-width: 1024px) {
-            th, td {
-                padding: 10px 8px;
-                font-size: 0.8rem;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .description {
-                font-size: 1rem;
-            }
+        h1 {
+            font-size: 1.3rem;
         }
         
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-            
-            h1 {
-                font-size: 1.6rem;
-            }
-            
-            th, td {
-                padding: 8px 6px;
-                font-size: 0.75rem;
-            }
-            
-            .strike-cell {
-                font-size: 0.85rem;
-            }
-            
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .instructions {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
+        th, td {
+            padding: 6px 4px;
+            font-size: 0.75rem;
         }
         
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.4rem;
-            }
-            
-            th, td {
-                padding: 6px 4px;
-                font-size: 0.7rem;
-            }
-            
-            .strike-cell {
-                font-size: 0.8rem;
-            }
-            
-            .stock-selector {
-                flex-direction: column;
-                gap: 5px;
-            }
+        .strike-cell, .strike-header {
+            min-width: 45px;
+            font-size: 0.8rem;
         }
-    </style>
+        
+        .price-cell {
+            width: 45px;
+        }
+        
+        .stock-selector {
+            flex-direction: column;
+            gap: 5px;
+        }
+    }
+</style>
 </head>
 <body>
     <div class="container">
-        <header>
             <div class="stock-selector">
                 <label for="stockSelect">Select Stock:</label>
                 <select id="stockSelect">
@@ -345,7 +347,6 @@
 					<option value="wipro">WIPRO</option>
                 </select>
             </div>
-        </header>
         
         <div class="table-container">
             <div id="data-container" class="loading">Loading options data...</div>
