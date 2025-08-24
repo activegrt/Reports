@@ -498,6 +498,11 @@
                         const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
                         callBidValues.push(value);
                         tableHTML += `<td class="buy-price">${value || '-'}</td>`;
+						if (group.bid.Chain === 'Bid') {
+                        	tableHTML += `<td class="buy-price">${value || '-'}</td>`;
+	                    } else if (group.bid.Chain === 'Ask') {
+	                        tableHTML += `<td class="sell-price">${value || '-'}</td>`;
+	                    }
                     });
                     
                     tableHTML += `<td class="strike-cell" rowspan="2">${strikePrice}</td>`;
