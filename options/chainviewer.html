@@ -487,36 +487,12 @@
                 tableHTML += `</tr></thead><tbody>`;
                 
                 // Add data rows
-                const strikePrices = Object.keys(strikeGroups).sort((a, b) => a - b);
+                const strikePrices = Object.keys(strikeGroups).sort((a, b) => b - a);
                 
                 strikePrices.forEach(strikePrice => {
                     const group = strikeGroups[strikePrice];
                     
-                    // Call bid prices (latest expiry first)
-                    const callBidValues = [];
-                    callExpiries.forEach(expiry => {
-                        const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
-                        callBidValues.push(value);
-                        tableHTML += `<td class="buy-price">${value || '-'}</td>`;
-						if (group.bid.Chain === 'Bid') {
-                        	tableHTML += `<td class="buy-price">${value || '-'}</td>`;
-	                    } else if (group.bid.Chain === 'Ask') {
-	                        tableHTML += `<td class="sell-price">${value || '-'}</td>`;
-	                    }
-                    });
-                    
-                    tableHTML += `<td class="strike-cell" rowspan="2">${strikePrice}</td>`;
-                    
-                    // Put bid prices (earliest first)
-                    const putBidValues = [];
-                    putExpiries.forEach(expiry => {
-                        const value = group.bid ? group.bid[`PE_${expiry}`] || '' : '';
-                        putBidValues.push(value);
-                        tableHTML += `<td class="sell-price">${value || '-'}</td>`;
-                    });
-                    
-                    tableHTML += `</tr>`;
-                    
+                   
                     // Ask row
                     tableHTML += `<tr class="ask-row">`;
                     
@@ -526,8 +502,11 @@
                         const value = group.ask ? group.ask[`CE_${expiry}`] || '' : '';
                         callAskValues.push(value);
                         const highlightClass = shouldHighlightPremium(callAskValues, callExpiries, expiry, 'call') ? 'premium-highlight' : '';
+						//LB
                         tableHTML += `<td class="buy-price ${highlightClass}">${value || '-'}</td>`;
                     });
+					
+                    tableHTML += `<td class="strike-cell" rowspan="2">${strikePrice}</td>`;
                     
                     // Put ask prices (earliest first)
                     const putAskValues = [];
@@ -535,7 +514,32 @@
                         const value = group.ask ? group.ask[`PE_${expiry}`] || '' : '';
                         putAskValues.push(value);
                         const highlightClass = shouldHighlightPremium(putAskValues, putExpiries, expiry, 'put') ? 'premium-highlight' : '';
-                        tableHTML += `<td class="sell-price ${highlightClass}">${value || '-'}</td>`;
+						//RB
+                        tableHTML += `<td class="buy-price ${highlightClass}">${value || '-'}</td>`;
+                    });
+                    
+                    tableHTML += `</tr>`;
+					
+					 // Bid row
+                    tableHTML += `<tr class="bid-row">`;
+					
+                    // Call bid prices (latest expiry first)
+                    const callBidValues = [];
+                    callExpiries.forEach(expiry => {
+                        const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
+                        callBidValues.push(value);
+						//LT
+						tableHTML += `<td class="sell-price">${value || '-'}</td>`;
+                    });
+                    
+                    
+                    // Put bid prices (earliest first)
+                    const putBidValues = [];
+                    putExpiries.forEach(expiry => {
+                        const value = group.bid ? group.bid[`PE_${expiry}`] || '' : '';
+                        putBidValues.push(value);
+						//RT
+						tableHTML += `<td class="sell-price">${value || '-'}</td>`;
                     });
                     
                     tableHTML += `</tr>`;
