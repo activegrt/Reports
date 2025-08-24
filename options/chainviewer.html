@@ -168,12 +168,12 @@
         width: 60px;
     }
     
-    .call-price {
-        color: #27ae60;
+    .buy-price {
+        color: #e74c3c;
     }
     
-    .put-price {
-        color: #e74c3c;
+    .sell-price {
+        color: #27ae60;
     }
     
     .empty-cell {
@@ -497,7 +497,7 @@
                     callExpiries.forEach(expiry => {
                         const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
                         callBidValues.push(value);
-                        tableHTML += `<td class="call-price">${value || '-'}</td>`;
+                        tableHTML += `<td class="buy-price">${value || '-'}</td>`;
                     });
                     
                     tableHTML += `<td class="strike-cell" rowspan="2">${strikePrice}</td>`;
@@ -507,7 +507,7 @@
                     putExpiries.forEach(expiry => {
                         const value = group.bid ? group.bid[`PE_${expiry}`] || '' : '';
                         putBidValues.push(value);
-                        tableHTML += `<td class="put-price">${value || '-'}</td>`;
+                        tableHTML += `<td class="sell-price">${value || '-'}</td>`;
                     });
                     
                     tableHTML += `</tr>`;
@@ -521,7 +521,7 @@
                         const value = group.ask ? group.ask[`CE_${expiry}`] || '' : '';
                         callAskValues.push(value);
                         const highlightClass = shouldHighlightPremium(callAskValues, callExpiries, expiry, 'call') ? 'premium-highlight' : '';
-                        tableHTML += `<td class="call-price ${highlightClass}">${value || '-'}</td>`;
+                        tableHTML += `<td class="buy-price ${highlightClass}">${value || '-'}</td>`;
                     });
                     
                     // Put ask prices (earliest first)
@@ -530,7 +530,7 @@
                         const value = group.ask ? group.ask[`PE_${expiry}`] || '' : '';
                         putAskValues.push(value);
                         const highlightClass = shouldHighlightPremium(putAskValues, putExpiries, expiry, 'put') ? 'premium-highlight' : '';
-                        tableHTML += `<td class="put-price ${highlightClass}">${value || '-'}</td>`;
+                        tableHTML += `<td class="sell-price ${highlightClass}">${value || '-'}</td>`;
                     });
                     
                     tableHTML += `</tr>`;
