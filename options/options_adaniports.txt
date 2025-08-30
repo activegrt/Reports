@@ -1,4 +1,5 @@
-ADANIPORTS | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ADANIPORTS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ADANIPORTS/">🎯</a>,1320.9,288.263,26,2025-06-13,0.53,7.0,32,645 cr,11,294 cr,strong_buy,1331.6,995.65,395.1,1231.4,1110.47,1009.75,1.54,4.8,4.8/nChain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
+ADANIPORTS | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ADANIPORTS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ADANIPORTS/">🎯</a>,1320.9,288.263,26,2025-06-13,0.53,7.0,32,645 cr,11,294 cr,strong_buy,1331.6,995.65,395.1,1231.4,1110.47,1009.75,1.54,4.8,4.8
+Chain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
 Bid,,0.55,0.45,1600,274.85,,
 Ask,,0.0,0.55,1600,285.1,,
 Ask,,,0.9,1560,247.3,,
