@@ -1,4 +1,4 @@
-Chain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
+ASIANPAINT | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ASIANPAINT&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ASIANPAINT/">🎯</a>,2502.2,202.25,35,2025-06-10,0.82,20.55,33,840 cr,3,597 cr,hold,2174.8,2124.75,nan,2377.88,2011.68,1857.46,1.66,3.76,3.76/nChain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
 Bid,,,1.7,2920,364.6,,
 Ask,,,1.85,2920,397.8,,
 Ask,,8.55,2.5,2880,351.0,,
