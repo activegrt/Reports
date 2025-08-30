@@ -1,4 +1,5 @@
-BHARTIARTL | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BHARTIARTL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BHARTIARTL/">🎯</a>,1887.0,196.589,4,2025-07-18,0.85,16.0,183,941 cr,35,344 cr,buy,1559.5,628.75,249.51,1805.45,1694.8,1414.68,1.11,3.76,3.76/nChain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
+BHARTIARTL | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BHARTIARTL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BHARTIARTL/">🎯</a>,1887.0,196.589,4,2025-07-18,0.85,16.0,183,941 cr,35,344 cr,buy,1559.5,628.75,249.51,1805.45,1694.8,1414.68,1.11,3.76,3.76
+Chain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
 Bid,,,0.55,2200,288.1,,
 Ask,,,0.65,2200,306.2,,
 Ask,,7.5,0.95,2160,265.15,259.9,
