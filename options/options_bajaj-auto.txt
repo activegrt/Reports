@@ -1,4 +1,5 @@
-BAJAJ-AUTO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJ-AUTO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJAJ-AUTO/">🎯</a>,8668.5,1260.082,34,2025-06-20,2.42,210.0,53,235 cr,7,593 cr,hold,7089.35,3027.05,1788.65,8107.46,6430.48,7041.97,1.61,3.82,3.82/nChain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
+BAJAJ-AUTO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJ-AUTO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJAJ-AUTO/">🎯</a>,8668.5,1260.082,34,2025-06-20,2.42,210.0,53,235 cr,7,593 cr,hold,7089.35,3027.05,1788.65,8107.46,6430.48,7041.97,1.61,3.82,3.82
+Chain,CE_11-25,CE_10-25,CE_09-25,strikePrice,PE_09-25,PE_10-25,PE_11-25
 Bid,,0.0,7.0,10000,1261.75,1220.9,
 Ask,,0.0,7.25,10000,1351.05,1466.85,
 Ask,,213.55,20.55,9800,1158.1,1269.3,
