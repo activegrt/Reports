@@ -1,0 +1,649 @@
+<html><head><style>
+    .table-container {
+        width: 100%;
+        max-height: 600px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    thead th {
+        position: sticky;
+        top: 0;
+        background: #a6cff7;
+        z-index: 2;
+    }
+    th.sortable:hover {
+        background-color: #e2e6ea;
+    }
+    .asc::after {
+        content: " ▲";
+    }
+    .desc::after {
+        content: " ▼";
+    }
+    </style></head><p>Page last refreshed on 2025-08-31 00:48</p><body><H2>Option Chain Viewer</H2><div class="table-container"><table id="sortableTable"border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th class='sortable' onclick='sortTable(0)'>#</th>
+      <th class='sortable' onclick='sortTable(1)'>Symbol</th>
+      <th class='sortable' onclick='sortTable(2)'>ltp</th>
+      <th class='sortable' onclick='sortTable(3)'>Strike_Price</th>
+      <th class='sortable' onclick='sortTable(4)'>Put_Buy_Per</th>
+      <th class='sortable' onclick='sortTable(5)'>Call_Buy_Per</th>
+      <th class='sortable' onclick='sortTable(6)'>Call_Sell_Per</th>
+      <th class='sortable' onclick='sortTable(7)'>Day_Range</th>
+      <th class='sortable' onclick='sortTable(8)'>Week_Range</th>
+      <th class='sortable' onclick='sortTable(9)'>Month_Range</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>RELIANCE | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=RELIANCE&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/RELIANCE/">🎯</a></td>
+      <td>1388.30</td>
+      <td>1390</td>
+      <td>3.4</td>
+      <td>1.5</td>
+      <td>2.6</td>
+      <td>1.56</td>
+      <td>4.00</td>
+      <td>10.37</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>HDFCBANK | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HDFCBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HDFCBANK/">🎯</a></td>
+      <td>958.60</td>
+      <td>960</td>
+      <td>1.8</td>
+      <td>1.8</td>
+      <td>3</td>
+      <td>1.27</td>
+      <td>2.98</td>
+      <td>6.96</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>TCS | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TCS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TCS/">🎯</a></td>
+      <td>3100.70</td>
+      <td>3100</td>
+      <td>2.1</td>
+      <td>2.1</td>
+      <td>3.2</td>
+      <td>1.85</td>
+      <td>3.02</td>
+      <td>11.08</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>BHARTIARTL | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BHARTIARTL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BHARTIARTL/">🎯</a></td>
+      <td>1887.00</td>
+      <td>1880</td>
+      <td>1.3</td>
+      <td>2.5</td>
+      <td>2.4</td>
+      <td>1.13</td>
+      <td>3.76</td>
+      <td>8.59</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>ICICIBANK | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ICICIBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ICICIBANK/">🎯</a></td>
+      <td>1401.10</td>
+      <td>1400</td>
+      <td>1.4</td>
+      <td>1.9</td>
+      <td>3</td>
+      <td>0.85</td>
+      <td>2.74</td>
+      <td>6.9</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>SBIN | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SBIN&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SBIN/">🎯</a></td>
+      <td>804.05</td>
+      <td>800</td>
+      <td>1.5</td>
+      <td>2.2</td>
+      <td>3.9</td>
+      <td>0.95</td>
+      <td>2.88</td>
+      <td>8.38</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>HINDUNILVR | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HINDUNILVR&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HINDUNILVR/">🎯</a></td>
+      <td>2660.20</td>
+      <td>2660</td>
+      <td>1.9</td>
+      <td>2.6</td>
+      <td>2.5</td>
+      <td>1.99</td>
+      <td>4.94</td>
+      <td>8.1</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>INFY | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=INFY&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/INFY/">🎯</a></td>
+      <td>1486.40</td>
+      <td>1480</td>
+      <td>2.5</td>
+      <td>2.3</td>
+      <td>3.3</td>
+      <td>1.55</td>
+      <td>4.56</td>
+      <td>10.97</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>BAJFINANCE | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJFINANCE&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJFINANCE/">🎯</a></td>
+      <td>885.00</td>
+      <td>890</td>
+      <td>2.9</td>
+      <td>2.2</td>
+      <td>3.6</td>
+      <td>1.62</td>
+      <td>4.93</td>
+      <td>10.18</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>ITC | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ITC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ITC/">🎯</a></td>
+      <td>406.90</td>
+      <td>405</td>
+      <td>1</td>
+      <td>2.5</td>
+      <td>2.5</td>
+      <td>1.28</td>
+      <td>3.12</td>
+      <td>7.97</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>LT | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=LT&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/LT/">🎯</a></td>
+      <td>3606.40</td>
+      <td>3600</td>
+      <td>1.5</td>
+      <td>2.2</td>
+      <td>2.1</td>
+      <td>1.31</td>
+      <td>3.49</td>
+      <td>9.57</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>MARUTI | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=MARUTI&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/MARUTI/">🎯</a></td>
+      <td>14734.00</td>
+      <td>14700</td>
+      <td>2</td>
+      <td>2.9</td>
+      <td>2.9</td>
+      <td>1.40</td>
+      <td>3.38</td>
+      <td>5.94</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>HCLTECH | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HCLTECH&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HCLTECH/">🎯</a></td>
+      <td>1460.10</td>
+      <td>1460</td>
+      <td>2.4</td>
+      <td>2.6</td>
+      <td>2.5</td>
+      <td>1.64</td>
+      <td>4.40</td>
+      <td>12.44</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>M&M | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=M&M&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/M&M/">🎯</a></td>
+      <td>3228.50</td>
+      <td>3250</td>
+      <td>3.5</td>
+      <td>2.5</td>
+      <td>3.7</td>
+      <td>1.82</td>
+      <td>4.98</td>
+      <td>11.16</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>KOTAKBANK | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=KOTAKBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/KOTAKBANK/">🎯</a></td>
+      <td>1966.30</td>
+      <td>1960</td>
+      <td>1.6</td>
+      <td>2.3</td>
+      <td>2.9</td>
+      <td>1.25</td>
+      <td>3.98</td>
+      <td>10.54</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>SUNPHARMA | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SUNPHARMA&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SUNPHARMA/">🎯</a></td>
+      <td>1585.50</td>
+      <td>1580</td>
+      <td>1.7</td>
+      <td>3</td>
+      <td>2.8</td>
+      <td>1.62</td>
+      <td>4.55</td>
+      <td>10.23</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>ULTRACEMCO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ULTRACEMCO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ULTRACEMCO/">🎯</a></td>
+      <td>12690.00</td>
+      <td>12700</td>
+      <td>2.1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1.62</td>
+      <td>2.62</td>
+      <td>8.56</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>AXISBANK | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=AXISBANK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/AXISBANK/">🎯</a></td>
+      <td>1057.20</td>
+      <td>1060</td>
+      <td>2.2</td>
+      <td>1.7</td>
+      <td>2.4</td>
+      <td>1.14</td>
+      <td>3.79</td>
+      <td>10.03</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>TITAN | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TITAN&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TITAN/">🎯</a></td>
+      <td>3615.60</td>
+      <td>3600</td>
+      <td>1.4</td>
+      <td>2.7</td>
+      <td>2.6</td>
+      <td>1.36</td>
+      <td>3.80</td>
+      <td>9.85</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>NTPC | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=NTPC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NTPC/">🎯</a></td>
+      <td>328.60</td>
+      <td>330</td>
+      <td>2.6</td>
+      <td>1.7</td>
+      <td>2.1</td>
+      <td>1.29</td>
+      <td>3.24</td>
+      <td>9.44</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>BAJAJFINSV | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJFINSV&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJAJFINSV/">🎯</a></td>
+      <td>1923.40</td>
+      <td>1920</td>
+      <td>2.3</td>
+      <td>2.5</td>
+      <td>3.3</td>
+      <td>1.31</td>
+      <td>3.95</td>
+      <td>10.28</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>ONGC | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ONGC&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ONGC/">🎯</a></td>
+      <td>232.67</td>
+      <td>235</td>
+      <td>2.7</td>
+      <td>1.8</td>
+      <td>1.7</td>
+      <td>1.15</td>
+      <td>3.11</td>
+      <td>11.42</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>ADANIPORTS | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ADANIPORTS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ADANIPORTS/">🎯</a></td>
+      <td>1320.90</td>
+      <td>1320</td>
+      <td>2.5</td>
+      <td>2.5</td>
+      <td>2.4</td>
+      <td>1.55</td>
+      <td>4.83</td>
+      <td>11.74</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>ETERNAL | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ETERNAL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ETERNAL/">🎯</a></td>
+      <td>310.95</td>
+      <td>310</td>
+      <td>2.6</td>
+      <td>5.2</td>
+      <td>7</td>
+      <td>2.47</td>
+      <td>7.60</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>WIPRO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=WIPRO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/WIPRO/">🎯</a></td>
+      <td>250.99</td>
+      <td>250</td>
+      <td>2.9</td>
+      <td>2.1</td>
+      <td>3.2</td>
+      <td>1.51</td>
+      <td>4.49</td>
+      <td>11.32</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>ADANIENT | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ADANIENT&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ADANIENT/">🎯</a></td>
+      <td>2265.00</td>
+      <td>2250</td>
+      <td>2.8</td>
+      <td>3.4</td>
+      <td>3.3</td>
+      <td>1.98</td>
+      <td>6.40</td>
+      <td>12.35</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td>POWERGRID | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=POWERGRID&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/POWERGRID/">🎯</a></td>
+      <td>275.40</td>
+      <td>275</td>
+      <td>1.7</td>
+      <td>2.6</td>
+      <td>2.9</td>
+      <td>1.47</td>
+      <td>3.47</td>
+      <td>11.36</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td>JSWSTEEL | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=JSWSTEEL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/JSWSTEEL/">🎯</a></td>
+      <td>1033.10</td>
+      <td>1030</td>
+      <td>2.3</td>
+      <td>2.7</td>
+      <td>2.7</td>
+      <td>1.38</td>
+      <td>3.67</td>
+      <td>8.73</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td>TATAMOTORS | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TATAMOTORS&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TATAMOTORS/">🎯</a></td>
+      <td>676.20</td>
+      <td>680</td>
+      <td>3.3</td>
+      <td>2.4</td>
+      <td>3.7</td>
+      <td>1.42</td>
+      <td>4.78</td>
+      <td>13.29</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td>BAJAJ-AUTO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=BAJAJ-AUTO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/BAJAJ-AUTO/">🎯</a></td>
+      <td>8668.50</td>
+      <td>8700</td>
+      <td>2.6</td>
+      <td>2.4</td>
+      <td>2.4</td>
+      <td>1.62</td>
+      <td>3.83</td>
+      <td>10.05</td>
+    </tr>
+    <tr>
+      <td>31</td>
+      <td>ASIANPAINT | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=ASIANPAINT&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/ASIANPAINT/">🎯</a></td>
+      <td>2502.20</td>
+      <td>2500</td>
+      <td>1.7</td>
+      <td>3.1</td>
+      <td>3.1</td>
+      <td>1.65</td>
+      <td>3.73</td>
+      <td>8.31</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>COALINDIA | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=COALINDIA&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/COALINDIA/">🎯</a></td>
+      <td>377.50</td>
+      <td>380</td>
+      <td>2.4</td>
+      <td>1.5</td>
+      <td>2.5</td>
+      <td>1.42</td>
+      <td>3.19</td>
+      <td>9.84</td>
+    </tr>
+    <tr>
+      <td>33</td>
+      <td>NESTLEIND | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=NESTLEIND&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/NESTLEIND/">🎯</a></td>
+      <td>1154.00</td>
+      <td>1150</td>
+      <td>1.7</td>
+      <td>2.8</td>
+      <td>2.8</td>
+      <td>1.85</td>
+      <td>4.76</td>
+      <td>8.92</td>
+    </tr>
+    <tr>
+      <td>34</td>
+      <td>JIOFIN | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=JIOFIN&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/JIOFIN/">🎯</a></td>
+      <td>313.60</td>
+      <td>315</td>
+      <td>3.4</td>
+      <td>2.7</td>
+      <td>2.6</td>
+      <td>1.91</td>
+      <td>5.11</td>
+      <td>13.19</td>
+    </tr>
+    <tr>
+      <td>35</td>
+      <td>TATASTEEL | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TATASTEEL&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TATASTEEL/">🎯</a></td>
+      <td>154.86</td>
+      <td>155</td>
+      <td>2.5</td>
+      <td>2.7</td>
+      <td>4</td>
+      <td>1.43</td>
+      <td>4.52</td>
+      <td>11.5</td>
+    </tr>
+    <tr>
+      <td>36</td>
+      <td>TRENT | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TRENT&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TRENT/">🎯</a></td>
+      <td>5336.50</td>
+      <td>5300</td>
+      <td>3.1</td>
+      <td>3.7</td>
+      <td>3.6</td>
+      <td>1.91</td>
+      <td>5.04</td>
+      <td>17.65</td>
+    </tr>
+    <tr>
+      <td>37</td>
+      <td>GRASIM | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=GRASIM&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/GRASIM/">🎯</a></td>
+      <td>2786.30</td>
+      <td>2780</td>
+      <td>2</td>
+      <td>2.3</td>
+      <td>2.1</td>
+      <td>1.79</td>
+      <td>3.70</td>
+      <td>9.38</td>
+    </tr>
+    <tr>
+      <td>38</td>
+      <td>SBILIFE | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=SBILIFE&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/SBILIFE/">🎯</a></td>
+      <td>1817.70</td>
+      <td>1820</td>
+      <td>2.4</td>
+      <td>2.3</td>
+      <td>2.2</td>
+      <td>1.52</td>
+      <td>4.03</td>
+      <td>8.98</td>
+    </tr>
+    <tr>
+      <td>39</td>
+      <td>EICHERMOT | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=EICHERMOT&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/EICHERMOT/">🎯</a></td>
+      <td>6123.00</td>
+      <td>6100</td>
+      <td>2.2</td>
+      <td>2.6</td>
+      <td>2.6</td>
+      <td>1.99</td>
+      <td>3.88</td>
+      <td>9.16</td>
+    </tr>
+    <tr>
+      <td>40</td>
+      <td>HDFCLIFE | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HDFCLIFE&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HDFCLIFE/">🎯</a></td>
+      <td>772.85</td>
+      <td>770</td>
+      <td>2</td>
+      <td>2.9</td>
+      <td>2.9</td>
+      <td>1.51</td>
+      <td>4.27</td>
+      <td>9.49</td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>HINDALCO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HINDALCO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HINDALCO/">🎯</a></td>
+      <td>705.25</td>
+      <td>710</td>
+      <td>2.8</td>
+      <td>2.4</td>
+      <td>2.4</td>
+      <td>1.44</td>
+      <td>3.77</td>
+      <td>10.9</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>TECHM | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TECHM&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TECHM/">🎯</a></td>
+      <td>1498.00</td>
+      <td>1500</td>
+      <td>2.7</td>
+      <td>2.2</td>
+      <td>2.1</td>
+      <td>1.62</td>
+      <td>4.61</td>
+      <td>13.02</td>
+    </tr>
+    <tr>
+      <td>43</td>
+      <td>CIPLA | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=CIPLA&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/CIPLA/">🎯</a></td>
+      <td>1584.00</td>
+      <td>1580</td>
+      <td>1.8</td>
+      <td>2.8</td>
+      <td>2.7</td>
+      <td>1.57</td>
+      <td>4.20</td>
+      <td>7.39</td>
+    </tr>
+    <tr>
+      <td>44</td>
+      <td>APOLLOHOSP | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=APOLLOHOSP&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/APOLLOHOSP/">🎯</a></td>
+      <td>7659.00</td>
+      <td>7650</td>
+      <td>1.9</td>
+      <td>2.2</td>
+      <td>2</td>
+      <td>1.55</td>
+      <td>4.60</td>
+      <td>7.7</td>
+    </tr>
+    <tr>
+      <td>45</td>
+      <td>TATACONSUM | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=TATACONSUM&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/TATACONSUM/">🎯</a></td>
+      <td>1064.50</td>
+      <td>1060</td>
+      <td>1.9</td>
+      <td>2.9</td>
+      <td>2.9</td>
+      <td>1.48</td>
+      <td>3.87</td>
+      <td>8.88</td>
+    </tr>
+    <tr>
+      <td>46</td>
+      <td>DRREDDY | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=DRREDDY&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/DRREDDY/">🎯</a></td>
+      <td>1259.20</td>
+      <td>1260</td>
+      <td>2.8</td>
+      <td>2.3</td>
+      <td>2.2</td>
+      <td>1.57</td>
+      <td>4.36</td>
+      <td>9.79</td>
+    </tr>
+    <tr>
+      <td>47</td>
+      <td>HEROMOTOCO | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=HEROMOTOCO&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/HEROMOTOCO/">🎯</a></td>
+      <td>5092.70</td>
+      <td>5100</td>
+      <td>2.8</td>
+      <td>3.2</td>
+      <td>3.1</td>
+      <td>2.17</td>
+      <td>5.19</td>
+      <td>9.26</td>
+    </tr>
+    <tr>
+      <td>48</td>
+      <td>INDUSINDBK | <a target="_blank" href="https://www.tradingview.com/chart/Lm41gt6O/?symbol=INDUSINDBK&interval=D">📊</a><a target="_blank" href="https://in.tradingview.com/symbols/INDUSINDBK/">🎯</a></td>
+      <td>748.55</td>
+      <td>750</td>
+      <td>3.4</td>
+      <td>2.7</td>
+      <td>2.6</td>
+      <td>1.77</td>
+      <td>6.09</td>
+      <td>20.59</td>
+    </tr>
+  </tbody>
+</table></div>
+            <script>
+                function sortTable(columnIndex) {
+                    let table = document.getElementById('sortableTable');
+                    let tbody = table.getElementsByTagName('tbody')[0];
+                    let rows = Array.from(tbody.getElementsByTagName('tr'));
+                    let isAscending = table.dataset.sortOrder !== 'asc';
+                    
+                    rows.sort((rowA, rowB) => {
+                        let cellA = rowA.getElementsByTagName('td')[columnIndex].innerText.trim();
+                        let cellB = rowB.getElementsByTagName('td')[columnIndex].innerText.trim();
+            
+                        let isNumeric = !isNaN(cellA) && !isNaN(cellB);
+                        return isAscending ? 
+                            (isNumeric ? cellA - cellB : cellA.localeCompare(cellB)) :
+                            (isNumeric ? cellB - cellA : cellB.localeCompare(cellA));
+                    });
+            
+                    rows.forEach(row => tbody.appendChild(row));
+            
+                    // Update sort order data attribute
+                    table.dataset.sortOrder = isAscending ? 'asc' : 'desc';
+            
+                    // Reset column classes
+                    document.querySelectorAll('th').forEach(th => th.classList.remove('asc', 'desc'));
+                    document.querySelectorAll('th')[columnIndex].classList.add(isAscending ? 'asc' : 'desc');
+                }
+            </script>
+            </body></html>
+            
