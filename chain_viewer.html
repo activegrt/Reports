@@ -208,7 +208,7 @@
         <div class="stock-selector">
             <label for="stockSelect">Select Stock:</label>
             <select id="stockSelect">
-                <OPTION VALUE="ADANIENT" SELECTED>ADANIENT</OPTION>
+                <OPTION VALUE="ADANIENT">ADANIENT</OPTION>
 					<OPTION VALUE="ADANIPORTS">ADANIPORTS</OPTION>
 					<OPTION VALUE="APOLLOHOSP">APOLLOHOSP</OPTION>
 					<OPTION VALUE="ASIANPAINT">ASIANPAINT</OPTION>
@@ -271,9 +271,20 @@
             const dataContainer = document.getElementById('data-container');
             const stockSelect = document.getElementById('stockSelect');
             const tableContainer = document.querySelector('.table-container');
-            
+		            
+		    // Function to get URL parameters
+		    function getQueryParam(param) {
+		        const urlParams = new URLSearchParams(window.location.search);
+		        return urlParams.get(param);
+		    }
+			
             // Load data when page loads
-            loadData('ADANIENT');
+			const symbol = getQueryParam('symbol') || 'ADANIENT';
+            // Update page title with the symbol
+		    document.title = `${symbol} - Chain Viewer`;
+		    
+		    // Load data with the dynamic symbol
+		    loadData(symbol);
             
             // Load data when selection changes
             stockSelect.addEventListener('change', function() {
