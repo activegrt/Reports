@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iron Condor Strategy Analyzer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --put-color: #e74c3c;
+            --call-color: #3498db;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        @media (max-width: 900px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .input-section, .output-section {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+            color: var(--primary);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .strike-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .premium-input {
+            display: flex;
+            align-items: center;
+        }
+        
+        .premium-input input {
+            flex: 1;
+        }
+        
+        .premium-input span {
+            margin-left: 10px;
+            font-weight: 600;
+        }
+        
+        .put-premium {
+            color: var(--put-color);
+        }
+        
+        .call-premium {
+            color: var(--call-color);
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        button {
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: var(--primary);
+        }
+        
+        .btn-fullscreen {
+            background-color: var(--warning);
+        }
+        
+        .btn-fullscreen:hover {
+            background-color: #e67e22;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .chart-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+        }
+        
+        .close-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--accent);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .summary-item {
+            background-color: var(--light);
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .summary-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .profit { color: var(--success); }
+        .loss { color: var(--accent); }
+        .neutral { color: var(--warning); }
+        
+        .breakeven {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .explanation {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .explanation h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .strategy-visual {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            position: relative;
+            height: 100px;
+        }
+        
+        .strike-line {
+            position: absolute;
+            height: 4px;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #ddd;
+        }
+        
+        .strike-point {
+            position: absolute;
+            width: 80px;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+        
+        .strike-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .strike-value {
+            padding: 5px;
+            border-radius: 4px;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .put-strike {
+            background-color: var(--put-color);
+        }
+        
+        .call-strike {
+            background-color: var(--call-color);
+        }
+        
+        .toggle-container {
+            display: flex;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--secondary);
+        }
+        
+        .toggle-btn {
+            flex: 1;
+            padding: 10px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .toggle-btn.active {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .validation-error {
+            color: var(--accent);
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Iron Condor Strategy Analyzer</h1>
+            <p class="subtitle">Visualize potential profits and losses for iron condor options strategies</p>
+        </header>
+        
+        <div class="content">
+            <div class="input-section">
+                <h2 class="section-title">Strategy Parameters</h2>
+                
+                <div class="form-group">
+                    <label for="underlying-price">Underlying Price ($)</label>
+                    <input type="number" id="underlying-price" value="100" min="1" step="0.01">
+                </div>
+                
+                <div class="toggle-container">
+                    <div class="toggle-btn active" id="toggle-both">Both</div>
+                    <div class="toggle-btn" id="toggle-put">Puts Only</div>
+                    <div class="toggle-btn" id="toggle-call">Calls Only</div>
+                </div>
+                
+                <h3>Put Options</h3>
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-put-strike">Short Put Strike Price ($)</label>
+                        <input type="number" id="short-put-strike" value="95" min="1" step="0.01">
+                        <div class="validation-error" id="put-validation">Short put must be higher than long put</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-put-strike">Long Put Strike Price ($)</label>
+                        <input type="number" id="long-put-strike" value="90" min="1" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-put-premium">Short Put Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="short-put-premium" value="2.50" min="0" step="0.01">
+                            <span class="put-premium">Per Contract</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-put-premium">Long Put Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="long-put-premium" value="1.00" min="0" step="0.01">
+                            <span class="put-premium">Per Contract</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Call Options</h3>
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-call-strike">Short Call Strike Price ($)</label>
+                        <input type="number" id="short-call-strike" value="105" min="1" step="0.01">
+                        <div class="validation-error" id="call-validation">Short call must be lower than long call</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-call-strike">Long Call Strike Price ($)</label>
+                        <input type="number" id="long-call-strike" value="110" min="1" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-call-premium">Short Call Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="short-call-premium" value="2.00" min="0" step="0.01">
+                            <span class="call-premium">Per Contract</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-call-premium">Long Call Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="long-call-premium" value="0.80" min="0" step="0.01">
+                            <span class="call-premium">Per Contract</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contracts">Number of Contracts</label>
+                    <input type="number" id="contracts" value="1" min="1" step="1">
+                </div>
+                
+                <div class="button-group">
+                    <button id="calculate-btn">Calculate Payoff</button>
+                    <button id="reset-btn">Reset Values</button>
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <h2 class="section-title">Strategy Visualization</h2>
+                <div class="strategy-visual">
+                    <div class="strike-line"></div>
+                    <div class="strike-point" style="left: 20%;">
+                        <div class="strike-label">Long Put</div>
+                        <div class="strike-value put-strike" id="vis-long-put">$90.00</div>
+                    </div>
+                    <div class="strike-point" style="left: 35%;">
+                        <div class="strike-label">Short Put</div>
+                        <div class="strike-value put-strike" id="vis-short-put">$95.00</div>
+                    </div>
+                    <div class="strike-point" style="left: 65%;">
+                        <div class="strike-label">Short Call</div>
+                        <div class="strike-value call-strike" id="vis-short-call">$105.00</div>
+                    </div>
+                    <div class="strike-point" style="left: 80%;">
+                        <div class="strike-label">Long Call</div>
+                        <div class="strike-value call-strike" id="vis-long-call">$110.00</div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Payoff Diagram</h2>
+                <div class="chart-container" id="chart-container">
+                    <canvas id="payoff-chart"></canvas>
+                </div>
+                
+                <div class="button-group">
+                    <button id="fullscreen-btn" class="btn-fullscreen">Expand Chart</button>
+                </div>
+                
+                <h2 class="section-title">Trade Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div>Max Profit</div>
+                        <div class="summary-value profit" id="max-profit">$270.00</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div>Max Loss</div>
+                        <div class="summary-value loss" id="max-loss">$230.00</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div>Upper Break-Even</div>
+                        <div class="summary-value neutral" id="upper-break-even">$107.70</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div>Lower Break-Even</div>
+                        <div class="summary-value neutral" id="lower-break-even">$92.30</div>
+                    </div>
+                </div>
+                
+                <div class="breakeven">
+                    <h3>Profit Zone</h3>
+                    <p id="profit-zone">The underlying price between $92.30 and $107.70 at expiration</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h3>About Iron Condor Strategy</h3>
+            <p>An Iron Condor is a neutral options strategy that profits from low volatility in the underlying asset. It involves selling one put spread and one call spread on the same underlying asset with the same expiration date. The goal is to profit from the premium collected when the underlying asset price stays between the short put and short call strikes.</p>
+            <p>This strategy has limited profit potential (the net premium received) and limited risk (the difference between strike prices minus the premium received).</p>
+        </div>
+        
+        <footer>
+            <p>Disclaimer: This tool is for educational purposes only. Options trading involves significant risk and is not suitable for all investors.</p>
+            <p>© 2023 Iron Condor Analyzer</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('payoff-chart').getContext('2d');
+            let payoffChart = null;
+            let chartType = 'both'; // 'both', 'put', or 'call'
+            let isFullscreen = false;
+            
+            // Initialize with default values
+            calculatePayoff();
+            
+            // Calculate on button click
+            document.getElementById('calculate-btn').addEventListener('click', calculatePayoff);
+            
+            // Reset values
+            document.getElementById('reset-btn').addEventListener('click', resetValues);
+            
+            // Fullscreen chart
+            document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
+            
+            // Toggle chart type
+            document.getElementById('toggle-both').addEventListener('click', function() {
+                setChartType('both');
+            });
+            
+            document.getElementById('toggle-put').addEventListener('click', function() {
+                setChartType('put');
+            });
+            
+            document.getElementById('toggle-call').addEventListener('click', function() {
+                setChartType('call');
+            });
+            
+            // Calculate on input change
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('change', calculatePayoff);
+                input.addEventListener('input', calculatePayoff);
+            });
+            
+            function setChartType(type) {
+                chartType = type;
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById(`toggle-${type}`).classList.add('active');
+                calculatePayoff();
+            }
+            
+            function toggleFullscreen() {
+                const chartContainer = document.getElementById('chart-container');
+                const fullscreenBtn = document.getElementById('fullscreen-btn');
+                
+                if (!isFullscreen) {
+                    chartContainer.classList.add('chart-fullscreen');
+                    fullscreenBtn.textContent = 'Close Fullscreen';
+                    
+                    // Add close button
+                    const closeBtn = document.createElement('button');
+                    closeBtn.textContent = 'Close';
+                    closeBtn.classList.add('close-fullscreen');
+                    closeBtn.addEventListener('click', toggleFullscreen);
+                    chartContainer.appendChild(closeBtn);
+                    
+                    isFullscreen = true;
+                } else {
+                    chartContainer.classList.remove('chart-fullscreen');
+                    fullscreenBtn.textContent = 'Expand Chart';
+                    
+                    // Remove close button
+                    const closeBtn = chartContainer.querySelector('.close-fullscreen');
+                    if (closeBtn) {
+                        chartContainer.removeChild(closeBtn);
+                    }
+                    
+                    isFullscreen = false;
+                }
+                
+                if (payoffChart) {
+                    payoffChart.resize();
+                }
+            }
+            
+            function resetValues() {
+                document.getElementById('underlying-price').value = 100;
+                document.getElementById('short-put-strike').value = 95;
+                document.getElementById('long-put-strike').value = 90;
+                document.getElementById('short-call-strike').value = 105;
+                document.getElementById('long-call-strike').value = 110;
+                document.getElementById('short-put-premium').value = 2.50;
+                document.getElementById('long-put-premium').value = 1.00;
+                document.getElementById('short-call-premium').value = 2.00;
+                document.getElementById('long-call-premium').value = 0.80;
+                document.getElementById('contracts').value = 1;
+                
+                calculatePayoff();
+            }
+            
+            function calculatePayoff() {
+                // Get input values
+                const underlyingPrice = parseFloat(document.getElementById('underlying-price').value);
+                const contracts = parseInt(document.getElementById('contracts').value);
+                const shortPutStrike = parseFloat(document.getElementById('short-put-strike').value);
+                const longPutStrike = parseFloat(document.getElementById('long-put-strike').value);
+                const shortCallStrike = parseFloat(document.getElementById('short-call-strike').value);
+                const longCallStrike = parseFloat(document.getElementById('long-call-strike').value);
+                const shortPutPremium = parseFloat(document.getElementById('short-put-premium').value);
+                const longPutPremium = parseFloat(document.getElementById('long-put-premium').value);
+                const shortCallPremium = parseFloat(document.getElementById('short-call-premium').value);
+                const longCallPremium = parseFloat(document.getElementById('long-call-premium').value);
+                
+                // Update visualization
+                document.getElementById('vis-long-put').textContent = `$${longPutStrike.toFixed(2)}`;
+                document.getElementById('vis-short-put').textContent = `$${shortPutStrike.toFixed(2)}`;
+                document.getElementById('vis-short-call').textContent = `$${shortCallStrike.toFixed(2)}`;
+                document.getElementById('vis-long-call').textContent = `$${longCallStrike.toFixed(2)}`;
+                
+                // Validate inputs without alerts
+                const putValidation = document.getElementById('put-validation');
+                const callValidation = document.getElementById('call-validation');
+                
+                if (longPutStrike >= shortPutStrike) {
+                    putValidation.style.display = 'block';
+                    return;
+                } else {
+                    putValidation.style.display = 'none';
+                }
+                
+                if (shortCallStrike >= longCallStrike) {
+                    callValidation.style.display = 'block';
+                    return;
+                } else {
+                    callValidation.style.display = 'none';
+                }
+                
+                if (shortPutStrike >= shortCallStrike) {
+                    // Just don't calculate rather than showing an alert
+                    return;
+                }
+                
+                // Calculate strategy values
+                const putSpreadWidth = shortPutStrike - longPutStrike;
+                const callSpreadWidth = longCallStrike - shortCallStrike;
+                
+                // Calculate net credit per contract
+                const netCredit = (shortPutPremium + shortCallPremium) - (longPutPremium + longCallPremium);
+                const totalNetCredit = netCredit * contracts * 100;
+                
+                // Max profit is the net credit received
+                const maxProfit = totalNetCredit;
+                
+                // Max loss is the wider of the two spreads minus the net credit
+                const maxLossPerContract = Math.max(putSpreadWidth, callSpreadWidth) - netCredit;
+                const maxLoss = maxLossPerContract * contracts * 100;
+                
+                // Break-even points
+                const lowerBreakEven = shortPutStrike - netCredit;
+                const upperBreakEven = shortCallStrike + netCredit;
+                
+                // Update summary
+                document.getElementById('max-profit').textContent = `$${maxProfit.toFixed(2)}`;
+                document.getElementById('max-loss').textContent = `$${maxLoss.toFixed(2)}`;
+                document.getElementById('upper-break-even').textContent = `$${upperBreakEven.toFixed(2)}`;
+                document.getElementById('lower-break-even').textContent = `$${lowerBreakEven.toFixed(2)}`;
+                document.getElementById('profit-zone').textContent = 
+                    `The underlying price between $${lowerBreakEven.toFixed(2)} and $${upperBreakEven.toFixed(2)} at expiration`;
+                
+                // Generate data for chart
+                const minPrice = Math.max(0, longPutStrike - 10);
+                const maxPrice = longCallStrike + 10;
+                const pricePoints = [];
+                const payoffPoints = [];
+                const putPayoffPoints = [];
+                const callPayoffPoints = [];
+                
+                for (let price = minPrice; price <= maxPrice; price += (maxPrice - minPrice) / 100) {
+                    pricePoints.push(price);
+                    
+                    // Calculate put spread payoff
+                    let putPayoff = 0;
+                    if (chartType === 'both' || chartType === 'put') {
+                        if (price < longPutStrike) {
+                            putPayoff = (shortPutStrike - longPutStrike) - (shortPutPremium - longPutPremium);
+                        } else if (price < shortPutStrike) {
+                            putPayoff = (shortPutStrike - price) - (shortPutPremium - longPutPremium);
+                        } else {
+                            putPayoff = (shortPutPremium - longPutPremium);
+                        }
+                    }
+                    
+                    // Calculate call spread payoff
+                    let callPayoff = 0;
+                    if (chartType === 'both' || chartType === 'call') {
+                        if (price > longCallStrike) {
+                            callPayoff = (longCallStrike - shortCallStrike) - (shortCallPremium - longCallPremium);
+                        } else if (price > shortCallStrike) {
+                            callPayoff = (shortCallStrike - price) - (shortCallPremium - longCallPremium);
+                        } else {
+                            callPayoff = (shortCallPremium - longCallPremium);
+                        }
+                    }
+                    
+                    // Total payoff
+                    const totalPayoff = (putPayoff + callPayoff) * 100 * contracts;
+                    
+                    payoffPoints.push(totalPayoff);
+                    putPayoffPoints.push(putPayoff * 100 * contracts);
+                    callPayoffPoints.push(callPayoff * 100 * contracts);
+                }
+                
+                // Create datasets based on chart type
+                const datasets = [];
+                
+                if (chartType === 'both' || chartType === 'put') {
+                    datasets.push({
+                        label: 'Put Spread Payoff',
+                        data: putPayoffPoints,
+                        borderColor: '#e74c3c',
+                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.3
+                    });
+                }
+                
+                if (chartType === 'both' || chartType === 'call') {
+                    datasets.push({
+                        label: 'Call Spread Payoff',
+                        data: callPayoffPoints,
+                        borderColor: '#3498db',
+                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.3
+                    });
+                }
+                
+                if (chartType === 'both') {
+                    datasets.push({
+                        label: 'Total Payoff',
+                        data: payoffPoints,
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    });
+                }
+                
+                // Create or update chart
+                if (payoffChart) {
+                    payoffChart.destroy();
+                }
+                
+                payoffChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: pricePoints,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: getChartTitle(),
+                                font: {
+                                    size: 16
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: $${context.raw.toFixed(2)} at $${context.label}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Underlying Price at Expiration ($)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Profit/Loss ($)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            function getChartTitle() {
+                switch(chartType) {
+                    case 'put':
+                        return 'Put Spread Payoff Diagram';
+                    case 'call':
+                        return 'Call Spread Payoff Diagram';
+                    default:
+                        return 'Iron Condor Payoff Diagram';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
