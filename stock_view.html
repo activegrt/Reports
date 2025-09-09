@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Trading Analytics Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #334155;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo i {
+            font-size: 2.5rem;
+            color: #3b82f6;
+        }
+        
+        .logo h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(90deg, #3b82f6, #2563eb);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(90deg, #2563eb, #1d4ed8);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #3b82f6;
+            color: #3b82f6;
+        }
+        
+        .btn-outline:hover {
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 25px;
+        }
+        
+        .card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #e2e8f0;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: #334155;
+            border: none;
+            border-radius: 20px;
+            color: #cbd5e1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #334155;
+        }
+        
+        th {
+            background-color: #334155;
+            color: #94a3b8;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        th:hover {
+            background-color: #475569;
+        }
+        
+        tbody tr {
+            transition: background-color 0.2s ease;
+        }
+        
+        tbody tr:hover {
+            background-color: #2d374850;
+            cursor: pointer;
+        }
+        
+        .positive {
+            color: #10b981;
+        }
+        
+        .negative {
+            color: #ef4444;
+        }
+        
+        .neutral {
+            color: #94a3b8;
+        }
+        
+        .stock-details {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .detail-card {
+            background: linear-gradient(135deg, #1e293b, #1e40af);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .stock-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+        }
+        
+        .stock-symbol {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+        
+        .stock-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .price-change {
+            font-size: 1rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 12px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #334155;
+        }
+        
+        .detail-label {
+            color: #94a3b8;
+        }
+        
+        .detail-value {
+            font-weight: 500;
+        }
+        
+        .trend-indicator {
+            display: inline-block;
+            margin-left: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #94a3b8;
+        }
+        
+        .loading i {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #3b82f6;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .stock-details {
+                position: relative;
+                top: 0;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .filters {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <h1>Stock Analytics Dashboard</h1>
+            </div>
+            <div class="controls">
+                <button class="btn btn-primary" id="loadData">
+                    <i class="fas fa-sync-alt"></i> Load Data
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-download"></i> Export
+                </button>
+            </div>
+        </header>
+        
+        <div class="main-content">
+            <div class="analytics-section">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Analytics Results</h2>
+                        <div class="filters">
+                            <button class="filter-btn active" data-filter="all">All</button>
+                            <button class="filter-btn" data-filter="Dividend">Dividend</button>
+                            <button class="filter-btn" data-filter="NWE">NWE</button>
+                            <button class="filter-btn" data-filter="Support">Support</button>
+                            <button class="filter-btn" data-filter="Undervalued">Undervalued</button>
+                        </div>
+                    </div>
+                    <div class="table-container">
+                        <table id="analyticsTable">
+                            <thead>
+                                <tr>
+                                    <th>Symbol <i class="fas fa-sort"></i></th>
+                                    <th>Method <i class="fas fa-sort"></i></th>
+                                    <th>Rank <i class="fas fa-sort"></i></th>
+                                    <th>MTF <i class="fas fa-sort"></i></th>
+                                    <th>LTP <i class="fas fa-sort"></i></th>
+                                    <th>Intrinsic <i class="fas fa-sort"></i></th>
+                                    <th>Value 1 <i class="fas fa-sort"></i></th>
+                                    <th>Value 2 <i class="fas fa-sort"></i></th>
+                                    <th>Value 3 <i class="fas fa-sort"></i></th>
+                                    <th>Volatility% <i class="fas fa-sort"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="10" class="loading">
+                                        <i class="fas fa-spinner fa-spin"></i><br>
+                                        Loading analytics data...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Stock Master List</h2>
+                    </div>
+                    <div class="table-container">
+                        <table id="masterTable">
+                            <thead>
+                                <tr>
+                                    <th>Symbol <i class="fas fa-sort"></i></th>
+                                    <th>Rank <i class="fas fa-sort"></i></th>
+                                    <th>LTP <i class="fas fa-sort"></i></th>
+                                    <th>Stock Name <i class="fas fa-sort"></i></th>
+                                    <th>Sector <i class="fas fa-sort"></i></th>
+                                    <th>Intrinsic <i class="fas fa-sort"></i></th>
+                                    <th>RSI <i class="fas fa-sort"></i></th>
+                                    <th>Day Trend <i class="fas fa-sort"></i></th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td colspan="9" class="loading">
+                                        <i class="fas fa-spinner fa-spin"></i><br>
+                                        Loading master data...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stock-details">
+                <div class="card detail-card">
+                    <div class="detail-header">
+                        <div>
+                            <h2 class="stock-name">Select a Stock</h2>
+                            <div class="stock-symbol">Click on a symbol to view details</div>
+                        </div>
+                        <i class="fas fa-info-circle" style="font-size: 2.5rem; color: #3b82f6;"></i>
+                    </div>
+                    
+                    <div class="stock-price">-</div>
+                    <div class="price-change neutral">-</div>
+                    
+                    <div class="detail-item">
+                        <span class="detail-label">Sector</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Intrinsic Value</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Dividend%</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">RSI</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Recommended</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Day Volatility</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Week Volatility</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Projected High</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">All Time High</span>
+                        <span class="detail-value">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM elements
+            const analyticsTable = document.getElementById('analyticsTable');
+            const masterTable = document.getElementById('masterTable');
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const loadDataBtn = document.getElementById('loadData');
+            
+            // Data storage
+            let analyticsData = [];
+            let masterData = [];
+            let currentFilter = 'all';
+            
+            // Load data from files
+            function loadData() {
+                loadAnalyticsData();
+                loadMasterData();
+            }
+            
+            // Load analytics data from stock_filter_list.txt
+            function loadAnalyticsData() {
+                const analyticsBody = analyticsTable.querySelector('tbody');
+                analyticsBody.innerHTML = '<tr><td colspan="10" class="loading"><i class="fas fa-spinner fa-spin"></i><br>Loading analytics data...</td></tr>';
+                
+                Papa.parse('https://activegrt.github.io/Reports/stock_filter_list.txt', {
+                    download: true,
+                    header: false,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        analyticsData = results.data.map(row => {
+                            const method = row[1];
+                            return {
+                                symbol: row[0],
+                                method: method,
+                                rank: parseFloat(row[2]),
+                                mtf: parseFloat(row[3]),
+                                ltp: parseFloat(row[4]),
+                                intrinsic: parseFloat(row[5]),
+                                value1: parseFloat(row[6]),
+                                value2: parseFloat(row[7]),
+                                value3: parseFloat(row[8]),
+                                volatility: parseFloat(row[9])
+                            };
+                        });
+                        
+                        renderAnalyticsData();
+                    },
+                    error: function(error) {
+                        analyticsBody.innerHTML = '<tr><td colspan="10" class="loading">Error loading analytics data. Please check if stock_filter_list.txt exists.</td></tr>';
+                        console.error('Error loading analytics data:', error);
+                    }
+                });
+            }
+            
+            // Load master data from stock_list.txt
+            function loadMasterData() {
+                const masterBody = masterTable.querySelector('tbody');
+                masterBody.innerHTML = '<tr><td colspan="9" class="loading"><i class="fas fa-spinner fa-spin"></i><br>Loading master data...</td></tr>';
+                
+                Papa.parse('https://activegrt.github.io/Reports/stock_list.txt', {
+                    download: true,
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: function(results) {
+                        masterData = results.data.map(row => ({
+                            symbol: row.Symbol,
+                            rank: parseFloat(row.Rank),
+                            mtf: parseFloat(row.MTF),
+                            qualityScore: parseFloat(row['Quality Score']),
+                            ltp: parseFloat(row.LTP),
+                            name: row['Stock Name'],
+                            sector: row.Sector,
+                            intrinsic: parseFloat(row.Intrinsic),
+                            dividend: row['Dividend%'],
+                            announced: row.Announced,
+                            executed: row.Executed,
+                            revenue: row.Revenue,
+                            netProfit: row['Net Profit'],
+                            recommended: row.Recommended,
+                            projectedHigh: parseFloat(row['Projected High']),
+                            projectedMedium: parseFloat(row['Projected Medium']),
+                            projectedLow: parseFloat(row['Projected Low']),
+                            allTimeHigh: row['All time high'],
+                            sma200: row['SMA 200'],
+                            rsi: parseFloat(row.RSI),
+                            dayVolatility: parseFloat(row['Day Volatility']),
+                            weekVolatility: parseFloat(row['Week Volatility']),
+                            monthVolatility: parseFloat(row['Month Volatility']),
+                            dayTrend: row['Day Trend'],
+                            weekTrend: row['Week Trend'],
+                            monthTrend: row['Month Trend'],
+                            daySupport: row['Day Support'],
+                            weekSupport: row['Week Support'],
+                            monthSupport: row['Month Support'],
+                            dayNWE: row['Day NWE'],
+                            weekNWE: row['Week NWE'],
+                            monthNWE: row['Month NWE']
+                        }));
+                        
+                        renderMasterData();
+                    },
+                    error: function(error) {
+                        masterBody.innerHTML = '<tr><td colspan="9" class="loading">Error loading master data. Please check if stock_list.txt exists.</td></tr>';
+                        console.error('Error loading master data:', error);
+                    }
+                });
+            }
+            
+            // Render analytics data based on current filter
+            function renderAnalyticsData() {
+                const analyticsBody = analyticsTable.querySelector('tbody');
+                
+                if (analyticsData.length === 0) {
+                    analyticsBody.innerHTML = '<tr><td colspan="10" class="loading">No analytics data available</td></tr>';
+                    return;
+                }
+                
+                let filteredData = analyticsData;
+                if (currentFilter !== 'all') {
+                    filteredData = analyticsData.filter(item => item.method === currentFilter);
+                }
+                
+                if (filteredData.length === 0) {
+                    analyticsBody.innerHTML = '<tr><td colspan="10" class="loading">No data for selected filter</td></tr>';
+                    return;
+                }
+                
+                analyticsBody.innerHTML = '';
+                
+                filteredData.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    // Add click event to show details
+                    row.addEventListener('click', () => {
+                        showStockDetails(item.symbol);
+                    });
+                    
+                    row.innerHTML = `
+                        <td>${item.symbol}</td>
+                        <td><span class="method-tag ${item.method.toLowerCase()}">${item.method}</span></td>
+                        <td>${item.rank}</td>
+                        <td>${item.mtf}</td>
+                        <td>${item.ltp}</td>
+                        <td>${item.intrinsic}</td>
+                        <td>${item.value1}</td>
+                        <td>${item.value2}</td>
+                        <td>${item.value3}</td>
+                        <td>${item.volatility}%</td>
+                    `;
+                    
+                    analyticsBody.appendChild(row);
+                });
+            }
+            
+            // Render master data
+            function renderMasterData() {
+                const masterBody = masterTable.querySelector('tbody');
+                
+                if (masterData.length === 0) {
+                    masterBody.innerHTML = '<tr><td colspan="9" class="loading">No master data available</td></tr>';
+                    return;
+                }
+                
+                masterBody.innerHTML = '';
+                
+                masterData.forEach(item => {
+                    const row = document.createElement('tr');
+                    
+                    // Add click event to show details
+                    row.addEventListener('click', () => {
+                        showStockDetails(item.symbol);
+                    });
+                    
+                    // Determine trend color
+                    let trendColor = 'neutral';
+                    if (item.dayTrend === 'Uptrend') trendColor = 'positive';
+                    if (item.dayTrend === 'Downtrend') trendColor = 'negative';
+                    
+                    row.innerHTML = `
+                        <td>${item.symbol}</td>
+                        <td>${item.rank}</td>
+                        <td>${item.ltp}</td>
+                        <td>${item.name}</td>
+                        <td>${item.sector}</td>
+                        <td>${item.intrinsic}</td>
+                        <td>${item.rsi}</td>
+                        <td class="${trendColor}">${item.dayTrend} <i class="fas ${item.dayTrend === 'Uptrend' ? 'fa-arrow-up' : 'fa-arrow-down'}"></i></td>
+                        <td><button class="btn btn-outline">View</button></td>
+                    `;
+                    
+                    masterBody.appendChild(row);
+                });
+            }
+            
+            // Show stock details
+            function showStockDetails(symbol) {
+                const stock = masterData.find(item => item.symbol === symbol);
+                if (!stock) return;
+                
+                const detailCard = document.querySelector('.detail-card');
+                const stockName = detailCard.querySelector('.stock-name');
+                const stockSymbol = detailCard.querySelector('.stock-symbol');
+                const stockPrice = detailCard.querySelector('.stock-price');
+                const priceChange = detailCard.querySelector('.price-change');
+                
+                // Update header
+                stockName.textContent = stock.name;
+                stockSymbol.textContent = symbol;
+                stockPrice.textContent = `₹${stock.ltp}`;
+                
+                // Calculate price change (for demo purposes)
+                const changePercent = (Math.random() * 4 - 2).toFixed(2);
+                const isPositive = changePercent >= 0;
+                priceChange.textContent = `${isPositive ? '+' : ''}${changePercent}%`;
+                priceChange.className = `price-change ${isPositive ? 'positive' : 'negative'}`;
+                
+                // Update details
+                updateDetailItem('Sector', stock.sector);
+                updateDetailItem('Intrinsic Value', `₹${stock.intrinsic}`);
+                updateDetailItem('Dividend%', stock.dividend || 'N/A');
+                updateDetailItem('RSI', stock.rsi);
+                updateDetailItem('Recommended', stock.recommended);
+                updateDetailItem('Day Volatility', `${stock.dayVolatility}%`);
+                updateDetailItem('Week Volatility', `${stock.weekVolatility}%`);
+                updateDetailItem('Projected High', `₹${stock.projectedHigh}`);
+                updateDetailItem('All Time High', stock.allTimeHigh);
+            }
+            
+            // Update detail item in the details card
+            function updateDetailItem(label, value) {
+                const detailItems = document.querySelectorAll('.detail-item');
+                for (let item of detailItems) {
+                    if (item.querySelector('.detail-label').textContent === label) {
+                        item.querySelector('.detail-value').textContent = value;
+                        break;
+                    }
+                }
+            }
+            
+            // Event listeners
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    currentFilter = button.getAttribute('data-filter');
+                    renderAnalyticsData();
+                });
+            });
+            
+            loadDataBtn.addEventListener('click', loadData);
+            
+            // Initial load
+            loadData();
+        });
+    </script>
+</body>
+</html>
