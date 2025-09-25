@@ -373,10 +373,11 @@
     </nav>
     <nav id="nav-menu">
       <select id="valuation-select">
-        <option value="Lm41gt6O">Active Signals</option>
-        <option value="tvXNIn4o">Analyst</option>
-        <option value="QfoQydxt">Daily Stocks</option>
-        <option value="tvXNIn4o">Reply</option>
+        <option value="/">Current</option>
+        <option value="/Lm41gt6O/">Active Signals</option>
+        <option value="/tvXNIn4o/">Analyst</option>
+        <option value="/QfoQydxt/">Daily Stocks</option>
+        <option value="/tvXNIn4o/">Reply</option>
       </select>
     </nav>
   </header>
@@ -404,7 +405,7 @@
 	let fileUrl    = 'https://activegrt.github.io/Reports/' + selectedValue + '.txt';
 	console.log(pdfFilePath, fileUrl);
 	
-	let chart_ref = document.getElementById('valuation-select')?.value || 'Lm41gt6O';
+	let chart_ref = document.getElementById('valuation-select')?.value || '/';
 	console.log(chart_ref);
 
     let sectorData = {};
@@ -603,10 +604,10 @@
                   ${row[h]}
                 </button>
                 <div class="chart-links">
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=60" title="Daily chart">H</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=D" title="Daily chart">D</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=W" title="Weekly chart">W</a>
-                  <a target="_blank" href="https://in.tradingview.com/chart/${chartValue}/?symbol=NSE:${row[h]}&interval=M" title="Monthly chart">M</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart${chartValue}?symbol=NSE:${row[h]}&interval=60" title="Daily chart">H</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart${chartValue}?symbol=NSE:${row[h]}&interval=D" title="Daily chart">D</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart${chartValue}?symbol=NSE:${row[h]}&interval=W" title="Weekly chart">W</a>
+                  <a target="_blank" href="https://in.tradingview.com/chart${chartValue}?symbol=NSE:${row[h]}&interval=M" title="Monthly chart">M</a>
                   <a target="_blank" href="https://in.tradingview.com/symbols/NSE:${row[h]}/" title="Stock info">ℹ️</a>
                 </div>
               </td>`;
