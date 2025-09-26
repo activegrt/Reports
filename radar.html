@@ -593,7 +593,7 @@
         
         const rowHtml = `<tr>
           ${displayHeaders.map(h => {
-            if (h === 'Day Gap%' || h === 'Week Gap%' || h === 'Month Gap%' || h === 'Volatility%') {
+            if (h.includes('%')) {
               const val = row[h];
               if (val === null || val === undefined) return '<td></td>';
               const tag = val > 0 ? 'defensive' : 'aggressive';
