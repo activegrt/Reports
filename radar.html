@@ -16,6 +16,7 @@
       --defensive-color: #2c7be5;
       --aggressive-color: #e53935;
       --header-bg: #1a237e;
+      --sort-indicator-color: #1976d2;
     }
 
     * {
@@ -172,6 +173,24 @@
       font-weight: 600;
       position: sticky;
       top: 0;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    th:hover {
+      background-color: #e0e0e0;
+    }
+
+    th.sorted-asc::after {
+      content: " ▲";
+      color: var(--sort-indicator-color);
+      font-size: 0.8em;
+    }
+
+    th.sorted-desc::after {
+      content: " ▼";
+      color: var(--sort-indicator-color);
+      font-size: 0.8em;
     }
 
     .filter-row {
@@ -220,6 +239,10 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+    }
+
+    .stock-btn:hover {
+      background-color: var(--accent-color);
     }
 
     .chart-links {
@@ -398,7 +421,7 @@
   
   <div class="content" id="content">Loading...</div>
 
-  <script>
+<script>
 	
 	let selectedValue = document.getElementById('model-select')?.value || 'nwe_list';
 	let pdfFilePath = 'https://activegrt.github.io/Reports/' + selectedValue + '.pdf';
@@ -425,6 +448,11 @@
     function parseIndianNumber(str) {
       if (!str) return NaN;
       return parseFloat(str.replace(/,/g, ''));
+    }
+
+    // Escape CSS selector for special characters
+    function escapeCssSelector(selector) {
+      return selector.replace(/([!"#$%&'()*+,\-./:;<=>?@[\\\]^`{|}~])/g, '\\$1');
     }
 
     // Show last modified time
@@ -470,7 +498,12 @@
     }
     
     function applyFilters(sector) {
-      const { headers, rows } = sectorData[sector];
+      const sectorInfo = sectorData[sector];
+      const headers = sectorInfo.headers;
+      const rows = sectorInfo.rows;
+      
+      // Escape the sector name for selector
+      const escapedSector = escapeCssSelector(sector);
       const inputs = document.querySelectorAll(`input[data-sector="${sector}"]`);
       const filters = {};
 
@@ -505,14 +538,22 @@
         });
       });
 
-      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(filteredRows, headers, chart_ref, sector);
-      updateRecordCount(sector, filteredRows.length);
+      // Use escaped sector name for the selector
+      const tbody = document.getElementById(`tbody-${escapedSector}`);
+      if (tbody) {
+        tbody.innerHTML = renderRows(filteredRows, headers, chart_ref, sector);
+        updateRecordCount(sector, filteredRows.length);
+      }
     }
     
     function updateRecordCount(sector, count) {
-      const countEl = document.querySelector(`#grid-${sector}`).previousElementSibling.querySelector('.record-count');
-      if (countEl) {
-        countEl.textContent = `${count} records`;
+      const escapedSector = escapeCssSelector(sector);
+      const sectorElement = document.getElementById(`grid-${escapedSector}`);
+      if (sectorElement) {
+        const countEl = sectorElement.previousElementSibling.querySelector('.record-count');
+        if (countEl) {
+          countEl.textContent = `${count} records`;
+        }
       }
     }
     
@@ -547,8 +588,13 @@
             if (val === '') {
               row[key] = null;
             } else {
-              const num = parseFloat(val);
-              row[key] = isNaN(num) || key === 'Symbol' || key === 'MTF' || key === 'Quality Score' ? val : num;
+              // Check if the value is a date in yyyy-mm-dd format
+              if (/^\d{4}-\d{2}-\d{2}$/.test(val)) {
+                row[key] = val; // Keep as string for proper display
+              } else {
+                const num = parseFloat(val);
+                row[key] = isNaN(num) || key === 'Symbol' || key === 'MTF' || key === 'Quality Score' ? val : num;
+              }
             }
           });
           sectorData[currentSector].rows.push(row);
@@ -558,25 +604,26 @@
       for (const sector in sectorData) {
         const { headers, rows } = sectorData[sector];
         const displayHeaders = headers.filter(h => h !== 'Details');
+        const escapedSector = escapeCssSelector(sector);
 
         html += `<div class="sector">
           <div class="sector-header">
-            <button onclick="toggleSector('${sector}')">➕</button>
+            <button onclick="toggleSector('${sector.replace(/'/g, "\\'")}')">➕</button>
             <span class="sector-title">${sector}</span>
             <span class="record-count">${rows.length} records</span>
           </div>
-          <div id="grid-${sector}" class="sector-grid" style="display:none;">
+          <div id="grid-${escapedSector}" class="sector-grid" style="display:none;">
             <div class="table-responsive-container">
               <table>
                 <thead>
-                  <tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector}', '${h}')">${h}</th>`).join('')}</tr>
+                  <tr>${displayHeaders.map(h => `<th onclick="sortSector('${sector.replace(/'/g, "\\'")}', '${h.replace(/'/g, "\\'")}')">${h}</th>`).join('')}</tr>
                   <tr class="filter-row">${displayHeaders.map(h => {
                     return isNumericColumn(rows, h)
-                      ? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector}')"></th>`
+                      ? `<th class="filter-cell"><input type="text" data-key="${h}" data-sector="${sector}" placeholder="Filter" oninput="applyFilters('${sector.replace(/'/g, "\\'")}')"></th>`
                       : `<th></th>`;
                   }).join('')}</tr>
                 </thead>
-                <tbody id="tbody-${sector}">${renderRows(rows, headers, chart_ref, sector)}</tbody>
+                <tbody id="tbody-${escapedSector}">${renderRows(rows, headers, chart_ref, sector)}</tbody>
               </table>
             </div>
           </div>
@@ -588,6 +635,8 @@
     }
 
     function renderRows(rows, headers, chartValue, sector) {
+      const escapedSector = escapeCssSelector(sector);
+      
       return rows.map((row, rowIndex) => {
         const displayHeaders = headers.filter(h => h !== 'Details');
         
@@ -600,7 +649,7 @@
               return `<td><span class="tag ${tag}">${formatIndianNumber(val)}%</span></td>`;
             } else if (h === 'Symbol') {
               return `<td>
-                <button class="stock-btn" onclick="toggleDetails('${sector}', ${rowIndex})">
+                <button class="stock-btn" onclick="toggleDetails('${sector.replace(/'/g, "\\'")}', ${rowIndex})">
                   ${row[h]}
                 </button>
                 <div class="chart-links">
@@ -613,6 +662,11 @@
               </td>`;
             } else if (typeof row[h] === 'number') {
               return `<td>${formatIndianNumber(row[h])}</td>`;
+            } else if (typeof row[h] === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(row[h])) {
+              // Format date as dd-mm-yyyy for better readability
+              const dateParts = row[h].split('-');
+              const formattedDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+              return `<td>${formattedDate}</td>`;
             } else {
               return `<td>${row[h] ?? ''}</td>`;
             }
@@ -620,7 +674,7 @@
         </tr>`;
 
         const detailsRow = row['Details']
-          ? `<tr id="details-${sector}-${rowIndex}" class="details-row" style="display:none;">
+          ? `<tr id="details-${escapedSector}-${rowIndex}" class="details-row" style="display:none;">
                <td colspan="${displayHeaders.length}">
                  <div class="details-content">${formatDetails(row['Details'])}</div>
                </td>
@@ -635,39 +689,81 @@
       const sectorInfo = sectorData[sector];
       const rows = sectorInfo.rows;
 
+      // Clear previous sort indicators
+      const escapedSector = escapeCssSelector(sector);
+      const gridElement = document.getElementById(`grid-${escapedSector}`);
+      if (gridElement) {
+        const headerCells = gridElement.querySelectorAll('th');
+        headerCells.forEach(th => {
+          th.classList.remove('sorted-asc', 'sorted-desc');
+        });
+      }
+
       const direction = (currentSort.sector === sector && currentSort.key === key)
         ? -currentSort.direction
         : 1;
 
       currentSort = { sector, key, direction };
 
+      // Add sort indicator to the clicked column
+      if (gridElement) {
+        const headerCells = gridElement.querySelectorAll('th');
+        headerCells.forEach((th, index) => {
+          if (th.textContent.trim() === key) {
+            th.classList.add(direction === 1 ? 'sorted-asc' : 'sorted-desc');
+          }
+        });
+      }
+
       rows.sort((a, b) => {
         const valA = a[key];
         const valB = b[key];
 
+        // Handle blank/null values - always push them to the end
+        if (valA === null || valA === undefined || valA === '') {
+          return 1; // Push A to the end
+        }
+        if (valB === null || valB === undefined || valB === '') {
+          return -1; // Push B to the end
+        }
+
+        // Handle date comparison
+        if (typeof valA === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(valA) && 
+            typeof valB === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(valB)) {
+          return (new Date(valA) - new Date(valB)) * direction;
+        }
+        
         if (typeof valA === 'number' && typeof valB === 'number') {
           return (valA - valB) * direction;
         }
+        
         return String(valA).localeCompare(String(valB)) * direction;
       });
 
       const headers = sectorInfo.headers;
-      document.getElementById(`tbody-${sector}`).innerHTML = renderRows(rows, headers, chart_ref, sector);
+      const tbody = document.getElementById(`tbody-${escapedSector}`);
+      if (tbody) {
+        tbody.innerHTML = renderRows(rows, headers, chart_ref, sector);
+      }
     }
 
     function toggleDetails(sector, rowIndex) {
-      const detailRow = document.getElementById(`details-${sector}-${rowIndex}`);
+      const escapedSector = escapeCssSelector(sector);
+      const detailRow = document.getElementById(`details-${escapedSector}-${rowIndex}`);
       if (detailRow) {
         detailRow.style.display = detailRow.style.display === 'none' ? 'table-row' : 'none';
       }
     }
     
     function toggleSector(sector) {
-      const el = document.getElementById(`grid-${sector}`);
-      const btn = el.previousElementSibling.querySelector('button');
-      const isVisible = el.style.display !== 'none';
-      el.style.display = isVisible ? 'none' : 'block';
-      btn.textContent = isVisible ? '➕' : '➖';
+      const escapedSector = escapeCssSelector(sector);
+      const el = document.getElementById(`grid-${escapedSector}`);
+      if (el) {
+        const btn = el.previousElementSibling.querySelector('button');
+        const isVisible = el.style.display !== 'none';
+        el.style.display = isVisible ? 'none' : 'block';
+        btn.textContent = isVisible ? '➕' : '➖';
+      }
     }
 
     function formatDetails(detailStr) {
@@ -756,6 +852,7 @@
 	});
 
     window.addEventListener('resize', makeTablesResponsive);
-  </script>
+</script>
+
 </body>
 </html>
