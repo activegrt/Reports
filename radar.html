@@ -85,7 +85,28 @@
       color: #333;
     }
 
-    /* Controls */
+    /* Icon buttons for header */
+    .icon-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+    }
+
+    .icon-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Controls - Removed the buttons from here */
     .controls {
       padding: 10px 12px;
       background-color: white;
@@ -94,21 +115,6 @@
       gap: 10px;
       align-items: center;
       flex-wrap: wrap;
-    }
-
-    .control-btn {
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      border: none;
-      border-radius: 4px;
-      background-color: var(--primary-color);
-      color: white;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      min-height: 36px;
     }
 
     .file-info {
@@ -376,10 +382,11 @@
         padding: 8px;
       }
       
-      .control-btn {
-        padding: 6px 8px;
-        font-size: 0.8rem;
-        min-height: 32px;
+      .icon-btn {
+        font-size: 1.1rem;
+        width: 32px;
+        height: 32px;
+        padding: 4px;
       }
       
       .content {
@@ -402,6 +409,12 @@
   <div class="mobile-header">
     <a href="index.html" class="header-title">Equity Radar</a>
     <div class="header-controls">
+      <button class="icon-btn" onclick="viewPDF()" title="View Report">
+        📄
+      </button>
+      <button class="icon-btn" onclick="downloadPDF()" title="Download Report">
+        ⬇️
+      </button>
       <select id="model-select" class="header-select">
         <option value="radar_list" selected>Radar</option>
         <option value="nwe_list">NWE</option>
@@ -422,14 +435,8 @@
     </div>
   </div>
   
-  <!-- Controls -->
+  <!-- Controls - Now only contains file info -->
   <div class="controls">
-    <button class="control-btn" onclick="viewPDF()">
-      📄 Read Report
-    </button>
-    <button class="control-btn" onclick="downloadPDF()">
-      ⬇️ Download
-    </button>
     <div id="file-modified-time" class="file-info"></div>
   </div>
   
