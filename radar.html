@@ -651,10 +651,15 @@
               const tag = val > 0 ? 'defensive' : 'aggressive';
               return `<td><span class="tag ${tag}">${formatIndianNumber(val)}%</span></td>`;
             } else if (h === 'Symbol') {
+              // Fixed: Use ternary operator instead of if statement
+              const optionsLink = selectedValue === 'chain_list' 
+                ? `<a href="https://activegrt.github.io/Reports/chain_viewer.html?symbol=${row[h]}">📶</a>`
+                : '';
               return `<td>
                 <button class="stock-btn" onclick="toggleDetails('${sector.replace(/'/g, "\\'")}', ${rowIndex})">
-                  ${row[h]}
+                  ${row[h]} ${optionsLink}
                 </button>
+				
                 <div class="chart-links">
                   <a target="_blank" href="https://in.tradingview.com/chart${chartValue}?symbol=NSE:${row[h]}&interval=60" title="Daily chart">H</a>
                   <a target="_blank" href="https://in.tradingview.com/chart${chartValue}?symbol=NSE:${row[h]}&interval=D" title="Daily chart">D</a>
