@@ -17,8 +17,8 @@
             --aggressive-color: #e53935;
             --header-bg: #1a237e;
             --sort-indicator-color: #1976d2;
-            --buy-color: #e53935;  /* Red for buy */
-            --sell-color: #2c7be5; /* Blue for sell */
+            --buy-color: #e53935;
+            --sell-color: #2c7be5;
             --strike-highlight: #ffc107;
         }
 
@@ -50,7 +50,7 @@
             flex-direction: column;
         }
 
-        /* Compact Header - Matching Equity Radar */
+        /* Compact Header */
         .mobile-header {
             background-color: var(--header-bg);
             color: white;
@@ -119,7 +119,7 @@
             overflow-x: hidden;
         }
 
-        /* Info Container - Matching Equity Radar style */
+        /* Info Container */
         #info-container {
             padding: 12px;
             background-color: white;
@@ -153,7 +153,18 @@
             font-weight: 500;
         }
 
-        /* Table Container - Matching Equity Radar */
+        /* Strike Price Info */
+        .strike-info {
+            text-align: center;
+            padding: 8px;
+            background-color: #e3f2fd;
+            color: var(--focus-color);
+            font-size: 0.75rem;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+
+        /* Table Container - Auto-resizing */
         .table-container {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -163,12 +174,18 @@
             max-height: 60vh;
             overflow-y: auto;
             background-color: white;
+            width: 100%;
+        }
+
+        #data-container {
+            width: 100%;
+            overflow-x: auto;
         }
 
         #data-container table {
-            width: 100%;
+            width: auto;
+            min-width: 100%;
             border-collapse: collapse;
-            min-width: 800px;
         }
 
         #data-container th, #data-container td {
@@ -176,6 +193,7 @@
             text-align: center;
             border: 1px solid var(--border-color);
             font-size: 0.75rem;
+            white-space: nowrap;
         }
 
         #data-container th {
@@ -194,7 +212,6 @@
 
         .expiry-header {
             font-size: 0.7rem;
-            white-space: nowrap;
         }
 
         .strike-cell {
@@ -203,15 +220,15 @@
             color: var(--primary-color);
         }
 
-        /* Buy/Sell colors matching Equity Radar theme */
+        /* Buy/Sell colors */
         .buy-price {
-            background-color: rgba(229, 57, 53, 0.1); /* Light red */
+            background-color: rgba(229, 57, 53, 0.1);
             color: var(--aggressive-color);
             font-weight: 600;
         }
 
         .sell-price {
-            background-color: rgba(44, 123, 229, 0.1); /* Light blue */
+            background-color: rgba(44, 123, 229, 0.1);
             color: var(--defensive-color);
             font-weight: 600;
         }
@@ -238,7 +255,7 @@
             color: #333;
         }
 
-        /* Status messages matching Equity Radar */
+        /* Status messages */
         .loading, .error {
             text-align: center;
             padding: 20px;
@@ -248,16 +265,6 @@
 
         .error {
             color: var(--aggressive-color);
-        }
-
-        .scroll-info {
-            text-align: center;
-            padding: 8px;
-            background-color: #e3f2fd;
-            color: var(--focus-color);
-            font-size: 0.75rem;
-            border-radius: 4px;
-            margin-top: 8px;
         }
 
         /* Very Small Screens */
@@ -311,14 +318,27 @@
             .content {
                 padding: 15px;
             }
+            
+            #data-container table {
+                width: 100%;
+                min-width: auto;
+            }
+        }
+
+        /* Large Screens */
+        @media (min-width: 1200px) {
+            #data-container table {
+                width: 100%;
+                min-width: auto;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Compact Mobile Header - Matching Equity Radar -->
+        <!-- Compact Mobile Header -->
         <div class="mobile-header">
-            <a href="radar.html" class="header-title">Options Chain</a>
+            <a href="index.html" class="header-title">Options Chain</a>
             <div class="header-controls">
                 <div class="stock-selector">
                     <select id="stockSelect" class="header-select">
@@ -378,6 +398,7 @@
         <!-- Content Area -->
         <div class="content">
             <div id="info-container" class="loading">Loading stock details...</div>
+            <div id="strike-info" class="strike-info"></div>
             <div class="table-container">
                 <div id="data-container" class="loading">Loading options data...</div>
             </div>
@@ -388,6 +409,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const infoContainer = document.getElementById('info-container');
             const dataContainer = document.getElementById('data-container');
+            const strikeInfo = document.getElementById('strike-info');
             const stockSelect = document.getElementById('stockSelect');
             
             // Function to get URL parameters
@@ -419,6 +441,7 @@
             function loadData(stock) {
                 infoContainer.innerHTML = '<div class="loading">Loading stock details...</div>';
                 dataContainer.innerHTML = '<div class="loading">Loading options data for ' + stock + '...</div>';
+                strikeInfo.innerHTML = '';
                 
                 const csvHdrUrl = `https://activegrt.github.io/Reports/oi_header.txt`;
                 const csvDetUrl = `https://activegrt.github.io/Reports/oi_details.txt`;
@@ -606,6 +629,9 @@
                     }
                 });
                 
+                // Update strike info above the table
+                strikeInfo.innerHTML = `Current strike price: <strong>${closestStrike}</strong> (Closest to LTP: ${ltp})`;
+                
                 strikePrices.forEach(strikePrice => {
                     const group = strikeGroups[strikePrice];
                     const isCurrentStrike = strikePrice === closestStrike;
@@ -657,12 +683,6 @@
                 
                 infoContainer.innerHTML = hdrHTML;
                 dataContainer.innerHTML = tableHTML;
-                
-                // Add scroll info message
-                const scrollInfo = document.createElement('div');
-                scrollInfo.className = 'scroll-info';
-                scrollInfo.innerHTML = `Current strike price: <strong>${closestStrike}</strong> (Closest to LTP: ${ltp})`;
-                dataContainer.appendChild(scrollInfo);
                 
                 // Scroll to the current strike price
                 setTimeout(() => {
