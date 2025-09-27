@@ -2,110 +2,168 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Iron Condor Strategy Analyzer</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
-            --primary: #2c3e50;
-            --secondary: #3498db;
-            --accent: #e74c3c;
-            --light: #ecf0f1;
-            --dark: #2c3e50;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --put-color: #e74c3c;
-            --call-color: #3498db;
+            --primary-color: #464a4de3;
+            --secondary-color: #f5f5f5;
+            --focus-color: #1976d2;
+            --accent-color: #1565c0;
+            --text-color: #333;
+            --light-text: #777;
+            --border-color: #e0e0e0;
+            --defensive-color: #2c7be5;
+            --aggressive-color: #e53935;
+            --header-bg: #1a237e;
+            --sort-indicator-color: #1976d2;
+            --put-color: #e53935;
+            --call-color: #2c7be5;
+            --success-color: #27ae60;
+            --warning-color: #ffc107;
         }
         
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
-            background-color: #f5f7fa;
-            color: var(--dark);
-            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.5;
+            min-height: 100vh;
+            font-size: 14px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
-            padding: 20px;
+            background: white;
+            border-radius: 0;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
-        
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+
+        /* Compact Header - Matching Options Chain Viewer */
+        .mobile-header {
+            background-color: var(--header-bg);
             color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-height: 50px;
         }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 40%;
+            color: white;
+            text-decoration: none;
         }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
+
+        .header-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .calculator-btn {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 10px;
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            white-space: nowrap;
+        }
+
+        .calculator-btn:hover {
+            background-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .calculator-btn:active {
+            transform: translateY(0);
+            box-shadow: none;
         }
         
         .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            flex: 1;
+            padding: 10px;
+            overflow-x: hidden;
         }
         
-        @media (max-width: 900px) {
+        @media (min-width: 900px) {
             .content {
-                grid-template-columns: 1fr;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
             }
         }
         
         .input-section, .output-section {
             background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 15px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         
         .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--light);
-            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--primary-color);
         }
         
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 600;
+            font-size: 0.85rem;
         }
         
         input, select {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
             border-radius: 4px;
-            font-size: 16px;
+            font-size: 0.85rem;
         }
         
         .strike-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 10px;
         }
         
         .premium-input {
@@ -118,8 +176,9 @@
         }
         
         .premium-input span {
-            margin-left: 10px;
+            margin-left: 8px;
             font-weight: 600;
+            font-size: 0.8rem;
         }
         
         .put-premium {
@@ -133,37 +192,37 @@
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 10px;
             margin-top: 10px;
         }
         
         button {
-            background-color: var(--secondary);
+            background-color: var(--focus-color);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 15px;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 0.85rem;
             font-weight: 600;
             transition: background-color 0.3s;
         }
         
         button:hover {
-            background-color: var(--primary);
+            background-color: var(--accent-color);
         }
         
         .btn-fullscreen {
-            background-color: var(--warning);
+            background-color: var(--warning-color);
         }
         
         .btn-fullscreen:hover {
-            background-color: #e67e22;
+            background-color: #e0a800;
         }
         
         .chart-container {
-            height: 300px;
-            margin-bottom: 30px;
+            height: 250px;
+            margin-bottom: 15px;
             position: relative;
         }
         
@@ -183,95 +242,96 @@
             top: 20px;
             right: 20px;
             z-index: 1001;
-            background: var(--accent);
+            background: var(--aggressive-color);
         }
         
         .summary-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
+            gap: 10px;
         }
         
         .summary-item {
-            background-color: var(--light);
-            padding: 15px;
+            background-color: var(--secondary-color);
+            padding: 10px;
             border-radius: 4px;
             text-align: center;
         }
         
         .summary-value {
-            font-size: 1.5rem;
+            font-size: 1.1rem;
             font-weight: bold;
             margin-top: 5px;
         }
         
-        .profit { color: var(--success); }
-        .loss { color: var(--accent); }
-        .neutral { color: var(--warning); }
+        .profit { color: var(--success-color); }
+        .loss { color: var(--aggressive-color); }
+        .neutral { color: var(--warning-color); }
         
         .breakeven {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 12px;
             background-color: #f8f9fa;
             border-radius: 4px;
-            border-left: 4px solid var(--secondary);
+            border-left: 4px solid var(--focus-color);
         }
         
         .explanation {
-            margin-top: 30px;
-            padding: 20px;
+            margin-top: 20px;
+            padding: 15px;
             background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
         }
         
         .explanation h3 {
-            margin-bottom: 15px;
-            color: var(--primary);
+            margin-bottom: 10px;
+            color: var(--primary-color);
         }
         
         footer {
             text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 15px;
+            color: var(--light-text);
+            font-size: 0.8rem;
         }
         
         .strategy-visual {
             display: flex;
             justify-content: space-between;
-            margin: 20px 0;
+            margin: 15px 0;
             position: relative;
-            height: 100px;
+            height: 80px;
         }
         
         .strike-line {
             position: absolute;
-            height: 4px;
+            height: 3px;
             width: 100%;
             top: 50%;
             transform: translateY(-50%);
-            background: #ddd;
+            background: var(--border-color);
         }
         
         .strike-point {
             position: absolute;
-            width: 80px;
+            width: 70px;
             text-align: center;
             transform: translateX(-50%);
         }
         
         .strike-label {
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
+            font-size: 0.75rem;
         }
         
         .strike-value {
-            padding: 5px;
-            border-radius: 4px;
+            padding: 4px;
+            border-radius: 3px;
             color: white;
-            font-size: 14px;
+            font-size: 0.75rem;
         }
         
         .put-strike {
@@ -284,40 +344,81 @@
         
         .toggle-container {
             display: flex;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-radius: 4px;
             overflow: hidden;
-            border: 1px solid var(--secondary);
+            border: 1px solid var(--focus-color);
         }
         
         .toggle-btn {
             flex: 1;
-            padding: 10px;
+            padding: 8px;
             text-align: center;
             background: white;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 0.8rem;
         }
         
         .toggle-btn.active {
-            background: var(--secondary);
+            background: var(--focus-color);
             color: white;
         }
         
         .validation-error {
-            color: var(--accent);
-            font-size: 14px;
-            margin-top: 5px;
+            color: var(--aggressive-color);
+            font-size: 0.75rem;
+            margin-top: 3px;
             display: none;
+        }
+
+        /* Very Small Screens */
+        @media (max-width: 360px) {
+            .mobile-header {
+                padding: 6px 8px;
+                min-height: 44px;
+            }
+            
+            .header-title {
+                font-size: 1rem;
+                max-width: 35%;
+            }
+            
+            .calculator-btn {
+                padding: 5px 8px;
+                font-size: 0.75rem;
+            }
+            
+            .content {
+                padding: 8px;
+            }
+            
+            .input-section, .output-section {
+                padding: 10px;
+            }
+            
+            .strike-group {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Iron Condor Strategy Analyzer</h1>
-            <p class="subtitle">Visualize potential profits and losses for iron condor options strategies</p>
-        </header>
+        <!-- Compact Mobile Header -->
+        <div class="mobile-header">
+            <div class="header-title">Options Estimator - Iron Condor</div>
+            <div class="header-controls">
+                <a href="options_chain.html" class="calculator-btn">
+                    <span>📊</span> Chain
+                </a>
+            </div>
+        </div>
         
         <div class="content">
             <div class="input-section">
@@ -337,13 +438,13 @@
                 <h3>Put Options</h3>
                 <div class="strike-group">
                     <div class="form-group">
-                        <label for="short-put-strike">Short Put Strike Price ($)</label>
+                        <label for="short-put-strike">Short Put Strike ($)</label>
                         <input type="number" id="short-put-strike" value="95" min="1" step="0.01">
                         <div class="validation-error" id="put-validation">Short put must be higher than long put</div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="long-put-strike">Long Put Strike Price ($)</label>
+                        <label for="long-put-strike">Long Put Strike ($)</label>
                         <input type="number" id="long-put-strike" value="90" min="1" step="0.01">
                     </div>
                 </div>
@@ -369,13 +470,13 @@
                 <h3>Call Options</h3>
                 <div class="strike-group">
                     <div class="form-group">
-                        <label for="short-call-strike">Short Call Strike Price ($)</label>
+                        <label for="short-call-strike">Short Call Strike ($)</label>
                         <input type="number" id="short-call-strike" value="105" min="1" step="0.01">
                         <div class="validation-error" id="call-validation">Short call must be lower than long call</div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="long-call-strike">Long Call Strike Price ($)</label>
+                        <label for="long-call-strike">Long Call Strike ($)</label>
                         <input type="number" id="long-call-strike" value="110" min="1" step="0.01">
                     </div>
                 </div>
@@ -471,14 +572,11 @@
         </div>
         
         <div class="explanation">
-            <h3>About Iron Condor Strategy</h3>
-            <p>An Iron Condor is a neutral options strategy that profits from low volatility in the underlying asset. It involves selling one put spread and one call spread on the same underlying asset with the same expiration date. The goal is to profit from the premium collected when the underlying asset price stays between the short put and short call strikes.</p>
             <p>This strategy has limited profit potential (the net premium received) and limited risk (the difference between strike prices minus the premium received).</p>
         </div>
         
         <footer>
             <p>Disclaimer: This tool is for educational purposes only. Options trading involves significant risk and is not suitable for all investors.</p>
-            <p>© 2023 Iron Condor Analyzer</p>
         </footer>
     </div>
 
@@ -698,8 +796,8 @@
                     datasets.push({
                         label: 'Put Spread Payoff',
                         data: putPayoffPoints,
-                        borderColor: '#e74c3c',
-                        backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                        borderColor: '#e53935',
+                        backgroundColor: 'rgba(229, 57, 53, 0.1)',
                         borderWidth: 2,
                         fill: false,
                         tension: 0.3
@@ -710,8 +808,8 @@
                     datasets.push({
                         label: 'Call Spread Payoff',
                         data: callPayoffPoints,
-                        borderColor: '#3498db',
-                        backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                        borderColor: '#2c7be5',
+                        backgroundColor: 'rgba(44, 123, 229, 0.1)',
                         borderWidth: 2,
                         fill: false,
                         tension: 0.3
@@ -749,7 +847,7 @@
                                 display: true,
                                 text: getChartTitle(),
                                 font: {
-                                    size: 16
+                                    size: 14
                                 }
                             },
                             tooltip: {
