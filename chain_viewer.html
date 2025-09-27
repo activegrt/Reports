@@ -2,85 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Options Chain Viewer</title>
     <style>
-        /* Your existing CSS styles remain the same */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
             background-color: #f5f7fa;
             color: #333;
             line-height: 1.6;
-            padding: 20px;
+            padding: 0;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1400px;
+            max-width: 100%;
             margin: 0 auto;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 0;
+            box-shadow: none;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         
-        .header {
+        /* Compact Header */
+        .mobile-header {
             background: linear-gradient(135deg, #2c3e50, #4a6491);
             color: white;
-            padding: 20px;
-            text-align: center;
+            padding: 10px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            min-height: 50px;
+        }
+        
+        .header-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 40%;
+        }
+        
+        .header-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
         }
         
         .stock-selector {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px;
-            padding: 15px;
-            background-color: #f0f4f8;
-            border-bottom: 1px solid #ddd;
+            gap: 8px;
         }
         
         .stock-selector label {
             font-weight: 600;
-            color: #2c3e50;
+            color: white;
+            font-size: 0.85rem;
+            white-space: nowrap;
         }
         
         .stock-selector select {
-            padding: 10px 15px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: white;
-            color: #333;
+            padding: 6px 8px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 0.85rem;
+            min-width: 100px;
+            max-width: 120px;
             cursor: pointer;
-            transition: all 0.3s;
         }
         
-        .stock-selector select:hover {
-            border-color: #4a6491;
-            box-shadow: 0 0 0 2px rgba(74, 100, 145, 0.2);
+        .stock-selector select option {
+            background-color: white;
+            color: #333;
+        }
+        
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: 10px;
+            overflow-x: hidden;
         }
         
         #info-container {
-            padding: 20px;
+            padding: 12px;
             background-color: #fff;
             border-bottom: 1px solid #eee;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
         
         #info-container table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
         }
         
         #info-container th, #info-container td {
-            padding: 12px;
+            padding: 8px 6px;
             text-align: center;
             border: 1px solid #e0e0e0;
         }
@@ -98,22 +135,25 @@
         
         .table-container {
             overflow-x: auto;
-            padding: 20px;
-            max-height: 70vh;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            max-height: 60vh;
             overflow-y: auto;
         }
         
         #data-container table {
             width: 100%;
             border-collapse: collapse;
-            margin: 0 auto;
+            min-width: 800px; /* Minimum width for tables */
         }
         
         #data-container th, #data-container td {
-            padding: 10px 8px;
+            padding: 8px 6px;
             text-align: center;
             border: 1px solid #e0e0e0;
-            font-size: 14px;
+            font-size: 0.75rem;
         }
         
         #data-container th {
@@ -130,7 +170,8 @@
         }
         
         .expiry-header {
-            font-size: 12px;
+            font-size: 0.7rem;
+            white-space: nowrap;
         }
         
         .strike-cell {
@@ -150,17 +191,19 @@
             color: #388e3c;
             font-weight: 600;
         }
+        
         .buy-price a,
-		.sell-price a {
-			text-decoration: none;
-			color: inherit;
-		}
+        .sell-price a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-		.buy-price a:hover,
-		.sell-price a:hover {
-			text-decoration: none;
-			color: inherit;
-		}
+        .buy-price a:hover,
+        .sell-price a:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+        
         .premium-highlight {
             background-color: #fff8e1;
             font-weight: 700;
@@ -173,8 +216,8 @@
         
         .loading, .error {
             text-align: center;
-            padding: 30px;
-            font-size: 18px;
+            padding: 20px;
+            font-size: 0.9rem;
             color: #666;
         }
         
@@ -184,95 +227,136 @@
         
         .scroll-info {
             text-align: center;
-            padding: 10px;
+            padding: 8px;
             background-color: #e3f2fd;
             color: #1976d2;
-            font-size: 14px;
+            font-size: 0.75rem;
             border-radius: 4px;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
-        @media (max-width: 768px) {
-            .stock-selector {
-                flex-direction: column;
-                gap: 10px;
+        /* Very Small Screens */
+        @media (max-width: 360px) {
+            .mobile-header {
+                padding: 8px 10px;
+                min-height: 44px;
+            }
+            
+            .header-title {
+                font-size: 1rem;
+                max-width: 35%;
+            }
+            
+            .stock-selector select {
+                padding: 4px 6px;
+                font-size: 0.8rem;
+                min-width: 90px;
+                max-width: 100px;
+            }
+            
+            .content {
+                padding: 8px;
+            }
+            
+            #info-container th, #info-container td {
+                padding: 6px 4px;
+                font-size: 0.75rem;
             }
             
             #data-container th, #data-container td {
                 padding: 6px 4px;
-                font-size: 12px;
+                font-size: 0.7rem;
+            }
+        }
+        
+        /* Medium Screens */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 1400px;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                margin: 10px auto;
+                min-height: calc(100vh - 20px);
             }
             
-            .expiry-header {
-                font-size: 10px;
+            .mobile-header {
+                border-radius: 12px 12px 0 0;
+            }
+            
+            .content {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Options Chain Viewer</h1>
-            <p>Real-time options data with strike price analysis</p>
+        <!-- Compact Mobile Header -->
+        <div class="mobile-header">
+            <div class="header-title">Options Chain</div>
+            <div class="header-controls">
+                <div class="stock-selector">
+                    <label for="stockSelect">Stock:</label>
+                    <select id="stockSelect">
+                        <option value="ADANIENT">ADANIENT</option>
+                        <option value="ADANIPORTS">ADANIPORTS</option>
+                        <option value="APOLLOHOSP">APOLLOHOSP</option>
+                        <option value="ASIANPAINT">ASIANPAINT</option>
+                        <option value="AXISBANK">AXISBANK</option>
+                        <option value="BAJAJ-AUTO">BAJAJ-AUTO</option>
+                        <option value="BAJFINANCE">BAJFINANCE</option>
+                        <option value="BAJAJFINSV">BAJAJFINSV</option>
+                        <option value="BHARTIARTL">BHARTIARTL</option>
+                        <option value="CIPLA">CIPLA</option>
+                        <option value="COALINDIA">COALINDIA</option>
+                        <option value="DRREDDY">DRREDDY</option>
+                        <option value="EICHERMOT">EICHERMOT</option>
+                        <option value="ETERNAL">ETERNAL</option>
+                        <option value="GRASIM">GRASIM</option>
+                        <option value="HCLTECH">HCLTECH</option>
+                        <option value="HDFCBANK">HDFCBANK</option>
+                        <option value="HDFCLIFE">HDFCLIFE</option>
+                        <option value="HEROMOTOCO">HEROMOTOCO</option>
+                        <option value="HINDALCO">HINDALCO</option>
+                        <option value="HINDUNILVR">HINDUNILVR</option>
+                        <option value="ICICIBANK">ICICIBANK</option>
+                        <option value="INDUSINDBK">INDUSINDBK</option>
+                        <option value="INFY">INFY</option>
+                        <option value="ITC">ITC</option>
+                        <option value="JIOFIN">JIOFIN</option>
+                        <option value="JSWSTEEL">JSWSTEEL</option>
+                        <option value="KOTAKBANK">KOTAKBANK</option>
+                        <option value="LT">LT</option>
+                        <option value="M&M">M&M</option>
+                        <option value="MARUTI">MARUTI</option>
+                        <option value="NESTLEIND">NESTLEIND</option>
+                        <option value="NTPC">NTPC</option>
+                        <option value="ONGC">ONGC</option>
+                        <option value="POWERGRID">POWERGRID</option>
+                        <option value="RELIANCE">RELIANCE</option>
+                        <option value="SBILIFE">SBILIFE</option>
+                        <option value="SBIN">SBIN</option>
+                        <option value="SUNPHARMA">SUNPHARMA</option>
+                        <option value="TCS">TCS</option>
+                        <option value="TATACONSUM">TATACONSUM</option>
+                        <option value="TATAMOTORS">TATAMOTORS</option>
+                        <option value="TATASTEEL">TATASTEEL</option>
+                        <option value="TECHM">TECHM</option>
+                        <option value="TITAN">TITAN</option>
+                        <option value="TRENT">TRENT</option>
+                        <option value="ULTRACEMCO">ULTRACEMCO</option>
+                        <option value="WIPRO">WIPRO</option>
+                    </select>
+                </div>
+            </div>
         </div>
         
-        <div class="stock-selector">
-            <label for="stockSelect">Select Stock:</label>
-            <select id="stockSelect">
-                <OPTION VALUE="ADANIENT">ADANIENT</OPTION>
-					<OPTION VALUE="ADANIPORTS">ADANIPORTS</OPTION>
-					<OPTION VALUE="APOLLOHOSP">APOLLOHOSP</OPTION>
-					<OPTION VALUE="ASIANPAINT">ASIANPAINT</OPTION>
-					<OPTION VALUE="AXISBANK">AXISBANK</OPTION>
-					<OPTION VALUE="BAJAJ-AUTO">BAJAJ-AUTO</OPTION>
-					<OPTION VALUE="BAJFINANCE">BAJFINANCE</OPTION>
-					<OPTION VALUE="BAJAJFINSV">BAJAJFINSV</OPTION>
-					<OPTION VALUE="BHARTIARTL">BHARTIARTL</OPTION>
-					<OPTION VALUE="CIPLA">CIPLA</OPTION>
-					<OPTION VALUE="COALINDIA">COALINDIA</OPTION>
-					<OPTION VALUE="DRREDDY">DRREDDY</OPTION>
-					<OPTION VALUE="EICHERMOT">EICHERMOT</OPTION>
-					<OPTION VALUE="ETERNAL">ETERNAL</OPTION>
-					<OPTION VALUE="GRASIM">GRASIM</OPTION>
-					<OPTION VALUE="HCLTECH">HCLTECH</OPTION>
-					<OPTION VALUE="HDFCBANK">HDFCBANK</OPTION>
-					<OPTION VALUE="HDFCLIFE">HDFCLIFE</OPTION>
-					<OPTION VALUE="HEROMOTOCO">HEROMOTOCO</OPTION>
-					<OPTION VALUE="HINDALCO">HINDALCO</OPTION>
-					<OPTION VALUE="HINDUNILVR">HINDUNILVR</OPTION>
-					<OPTION VALUE="ICICIBANK">ICICIBANK</OPTION>
-					<OPTION VALUE="INDUSINDBK">INDUSINDBK</OPTION>
-					<OPTION VALUE="INFY">INFY</OPTION>
-					<OPTION VALUE="ITC">ITC</OPTION>
-					<OPTION VALUE="JIOFIN">JIOFIN</OPTION>
-					<OPTION VALUE="JSWSTEEL">JSWSTEEL</OPTION>
-					<OPTION VALUE="KOTAKBANK">KOTAKBANK</OPTION>
-					<OPTION VALUE="LT">LT</OPTION>
-					<OPTION VALUE="M&M">M&M</OPTION>
-					<OPTION VALUE="MARUTI">MARUTI</OPTION>
-					<OPTION VALUE="NESTLEIND">NESTLEIND</OPTION>
-					<OPTION VALUE="NTPC">NTPC</OPTION>
-					<OPTION VALUE="ONGC">ONGC</OPTION>
-					<OPTION VALUE="POWERGRID">POWERGRID</OPTION>
-					<OPTION VALUE="RELIANCE">RELIANCE</OPTION>
-					<OPTION VALUE="SBILIFE">SBILIFE</OPTION>
-					<OPTION VALUE="SBIN">SBIN</OPTION>
-					<OPTION VALUE="SUNPHARMA">SUNPHARMA</OPTION>
-					<OPTION VALUE="TCS">TCS</OPTION>
-					<OPTION VALUE="TATACONSUM">TATACONSUM</OPTION>
-					<OPTION VALUE="TATAMOTORS">TATAMOTORS</OPTION>
-					<OPTION VALUE="TATASTEEL">TATASTEEL</OPTION>
-					<OPTION VALUE="TECHM">TECHM</OPTION>
-					<OPTION VALUE="TITAN">TITAN</OPTION>
-					<OPTION VALUE="TRENT">TRENT</OPTION>
-					<OPTION VALUE="ULTRACEMCO">ULTRACEMCO</OPTION>
-					<OPTION VALUE="WIPRO">WIPRO</OPTION>
-            </select>
-        </div>
-        
-        <div id="info-container" class="loading">Loading stock details...</div>
-        <div class="table-container">
-            <div id="data-container" class="loading">Loading options data...</div>
+        <!-- Content Area -->
+        <div class="content">
+            <div id="info-container" class="loading">Loading stock details...</div>
+            <div class="table-container">
+                <div id="data-container" class="loading">Loading options data...</div>
+            </div>
         </div>
     </div>
 
@@ -403,7 +487,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${stock[3]}</td>
+                                <td>${selectedStock}</td>
                                 <td>${stock[4]}</td>
                                 <td>${stock[5]}</td>
                                 <td>${stock[21]}</td>
