@@ -686,66 +686,78 @@
     }
 
     function sortSector(sector, key) {
-      const sectorInfo = sectorData[sector];
-      const rows = sectorInfo.rows;
+	  const sectorInfo = sectorData[sector];
+	  const rows = sectorInfo.rows;
 
-      // Clear previous sort indicators
-      const escapedSector = escapeCssSelector(sector);
-      const gridElement = document.getElementById(`grid-${escapedSector}`);
-      if (gridElement) {
-        const headerCells = gridElement.querySelectorAll('th');
-        headerCells.forEach(th => {
-          th.classList.remove('sorted-asc', 'sorted-desc');
-        });
-      }
+	  // Clear previous sort indicators
+	  const escapedSector = escapeCssSelector(sector);
+	  const gridElement = document.getElementById(`grid-${escapedSector}`);
+	  if (gridElement) {
+		const headerCells = gridElement.querySelectorAll('th');
+		headerCells.forEach(th => {
+		  th.classList.remove('sorted-asc', 'sorted-desc');
+		});
+	  }
 
-      const direction = (currentSort.sector === sector && currentSort.key === key)
-        ? -currentSort.direction
-        : 1;
+	  // Check if this is a date column
+	  const isDateColumn = rows.some(row => {
+		const val = row[key];
+		return typeof val === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(val);
+	  });
 
-      currentSort = { sector, key, direction };
+	  // For date columns: start with descending, for others: start with ascending
+	  let direction;
+	  if (currentSort.sector === sector && currentSort.key === key) {
+		// Toggle the current direction
+		direction = -currentSort.direction;
+	  } else {
+		// First click: descending for dates, ascending for others
+		direction = isDateColumn ? -1 : 1;
+	  }
 
-      // Add sort indicator to the clicked column
-      if (gridElement) {
-        const headerCells = gridElement.querySelectorAll('th');
-        headerCells.forEach((th, index) => {
-          if (th.textContent.trim() === key) {
-            th.classList.add(direction === 1 ? 'sorted-asc' : 'sorted-desc');
-          }
-        });
-      }
+	  currentSort = { sector, key, direction };
 
-      rows.sort((a, b) => {
-        const valA = a[key];
-        const valB = b[key];
+	  // Add sort indicator to the clicked column
+	  if (gridElement) {
+		const headerCells = gridElement.querySelectorAll('th');
+		headerCells.forEach((th, index) => {
+		  if (th.textContent.trim() === key) {
+			th.classList.add(direction === 1 ? 'sorted-asc' : 'sorted-desc');
+		  }
+		});
+	  }
 
-        // Handle blank/null values - always push them to the end
-        if (valA === null || valA === undefined || valA === '') {
-          return 1; // Push A to the end
-        }
-        if (valB === null || valB === undefined || valB === '') {
-          return -1; // Push B to the end
-        }
+	  rows.sort((a, b) => {
+		const valA = a[key];
+		const valB = b[key];
 
-        // Handle date comparison
-        if (typeof valA === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(valA) && 
-            typeof valB === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(valB)) {
-          return (new Date(valA) - new Date(valB)) * direction;
-        }
-        
-        if (typeof valA === 'number' && typeof valB === 'number') {
-          return (valA - valB) * direction;
-        }
-        
-        return String(valA).localeCompare(String(valB)) * direction;
-      });
+		// Handle blank/null values - always push them to the end
+		if (valA === null || valA === undefined || valA === '') {
+		  return 1; // Push A to the end
+		}
+		if (valB === null || valB === undefined || valB === '') {
+		  return -1; // Push B to the end
+		}
 
-      const headers = sectorInfo.headers;
-      const tbody = document.getElementById(`tbody-${escapedSector}`);
-      if (tbody) {
-        tbody.innerHTML = renderRows(rows, headers, chart_ref, sector);
-      }
-    }
+		// Handle date comparison
+		if (typeof valA === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(valA) && 
+			typeof valB === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(valB)) {
+		  return (new Date(valA) - new Date(valB)) * direction;
+		}
+		
+		if (typeof valA === 'number' && typeof valB === 'number') {
+		  return (valA - valB) * direction;
+		}
+		
+		return String(valA).localeCompare(String(valB)) * direction;
+	  });
+
+	  const headers = sectorInfo.headers;
+	  const tbody = document.getElementById(`tbody-${escapedSector}`);
+	  if (tbody) {
+		tbody.innerHTML = renderRows(rows, headers, chart_ref, sector);
+	  }
+	}
 
     function toggleDetails(sector, rowIndex) {
       const escapedSector = escapeCssSelector(sector);
