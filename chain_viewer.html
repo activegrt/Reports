@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Options Chain Viewer</title>
     <style>
+        :root {
+            --primary-color: #464a4de3;
+            --secondary-color: #f5f5f5;
+            --focus-color: #1976d2;
+            --accent-color: #1565c0;
+            --text-color: #333;
+            --light-text: #777;
+            --border-color: #e0e0e0;
+            --defensive-color: #2c7be5;
+            --aggressive-color: #e53935;
+            --header-bg: #1a237e;
+            --sort-indicator-color: #1976d2;
+            --buy-color: #e53935;  /* Red for buy */
+            --sell-color: #2c7be5; /* Blue for sell */
+            --strike-highlight: #ffc107;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -12,32 +29,32 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
+            background-color: #f9f9f9;
+            color: var(--text-color);
+            line-height: 1.5;
             padding: 0;
             min-height: 100vh;
+            font-size: 14px;
         }
-        
+
         .container {
             max-width: 100%;
             margin: 0 auto;
             background: white;
             border-radius: 0;
-            box-shadow: none;
             overflow: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
-        
-        /* Compact Header */
+
+        /* Compact Header - Matching Equity Radar */
         .mobile-header {
-            background: linear-gradient(135deg, #2c3e50, #4a6491);
+            background-color: var(--header-bg);
             color: white;
-            padding: 10px 12px;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -47,7 +64,7 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             min-height: 50px;
         }
-        
+
         .header-title {
             font-size: 1.1rem;
             font-weight: 600;
@@ -55,143 +72,150 @@
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 40%;
+            color: white;
+            text-decoration: none;
         }
-        
+
         .header-controls {
             display: flex;
             gap: 8px;
             align-items: center;
         }
-        
+
         .stock-selector {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .stock-selector label {
             font-weight: 600;
             color: white;
             font-size: 0.85rem;
             white-space: nowrap;
         }
-        
-        .stock-selector select {
+
+        .header-select {
             padding: 6px 8px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 4px;
             background-color: rgba(255, 255, 255, 0.1);
             color: white;
             font-size: 0.85rem;
-            min-width: 100px;
-            max-width: 120px;
+            min-width: 120px;
+            max-width: 140px;
             cursor: pointer;
         }
-        
-        .stock-selector select option {
+
+        .header-select option {
             background-color: white;
             color: #333;
         }
-        
+
         /* Content Area */
         .content {
             flex: 1;
             padding: 10px;
             overflow-x: hidden;
         }
-        
+
+        /* Info Container - Matching Equity Radar style */
         #info-container {
             padding: 12px;
-            background-color: #fff;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 10px;
+            background-color: white;
+            border: 1px solid var(--border-color);
             border-radius: 6px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
-        
+
         #info-container table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 8px;
             font-size: 0.8rem;
         }
-        
+
         #info-container th, #info-container td {
             padding: 8px 6px;
             text-align: center;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
         }
-        
+
         #info-container th {
-            background-color: #f0f4f8;
+            background-color: var(--secondary-color);
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--primary-color);
         }
-        
+
         #info-container td {
             background-color: #fff;
             font-weight: 500;
         }
-        
+
+        /* Table Container - Matching Equity Radar */
         .table-container {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
             border-radius: 6px;
             margin-bottom: 10px;
             max-height: 60vh;
             overflow-y: auto;
+            background-color: white;
         }
-        
+
         #data-container table {
             width: 100%;
             border-collapse: collapse;
-            min-width: 800px; /* Minimum width for tables */
+            min-width: 800px;
         }
-        
+
         #data-container th, #data-container td {
             padding: 8px 6px;
             text-align: center;
-            border: 1px solid #e0e0e0;
+            border: 1px solid var(--border-color);
             font-size: 0.75rem;
         }
-        
+
         #data-container th {
-            background: linear-gradient(135deg, #4a6491, #2c3e50);
-            color: white;
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
             font-weight: 600;
             position: sticky;
             top: 0;
             z-index: 10;
         }
-        
+
         .strike-header {
-            background: linear-gradient(135deg, #3a5b8a, #2c3e50) !important;
+            background-color: var(--primary-color) !important;
+            color: white !important;
         }
-        
+
         .expiry-header {
             font-size: 0.7rem;
             white-space: nowrap;
         }
-        
+
         .strike-cell {
-            background-color: #f0f4f8;
+            background-color: var(--secondary-color);
             font-weight: 700;
-            color: #2c3e50;
+            color: var(--primary-color);
         }
-        
+
+        /* Buy/Sell colors matching Equity Radar theme */
         .buy-price {
-            background-color: #ffebee;
-            color: #d32f2f;
+            background-color: rgba(229, 57, 53, 0.1); /* Light red */
+            color: var(--aggressive-color);
             font-weight: 600;
         }
-        
+
         .sell-price {
-            background-color: #e8f5e9;
-            color: #388e3c;
+            background-color: rgba(44, 123, 229, 0.1); /* Light blue */
+            color: var(--defensive-color);
             font-weight: 600;
         }
-        
+
         .buy-price a,
         .sell-price a {
             text-decoration: none;
@@ -200,45 +224,46 @@
 
         .buy-price a:hover,
         .sell-price a:hover {
-            text-decoration: none;
-            color: inherit;
+            text-decoration: underline;
         }
-        
+
         .premium-highlight {
             background-color: #fff8e1;
             font-weight: 700;
         }
-        
+
         .current-strike {
-            background-color: #ffc107 !important;
+            background-color: var(--strike-highlight) !important;
             font-weight: 700;
+            color: #333;
         }
-        
+
+        /* Status messages matching Equity Radar */
         .loading, .error {
             text-align: center;
             padding: 20px;
             font-size: 0.9rem;
-            color: #666;
+            color: var(--light-text);
         }
-        
+
         .error {
-            color: #d32f2f;
+            color: var(--aggressive-color);
         }
-        
+
         .scroll-info {
             text-align: center;
             padding: 8px;
             background-color: #e3f2fd;
-            color: #1976d2;
+            color: var(--focus-color);
             font-size: 0.75rem;
             border-radius: 4px;
             margin-top: 8px;
         }
-        
+
         /* Very Small Screens */
         @media (max-width: 360px) {
             .mobile-header {
-                padding: 8px 10px;
+                padding: 6px 8px;
                 min-height: 44px;
             }
             
@@ -247,11 +272,11 @@
                 max-width: 35%;
             }
             
-            .stock-selector select {
+            .header-select {
                 padding: 4px 6px;
                 font-size: 0.8rem;
-                min-width: 90px;
-                max-width: 100px;
+                min-width: 100px;
+                max-width: 120px;
             }
             
             .content {
@@ -268,19 +293,19 @@
                 font-size: 0.7rem;
             }
         }
-        
+
         /* Medium Screens */
         @media (min-width: 768px) {
             .container {
                 max-width: 1400px;
-                border-radius: 12px;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+                border-radius: 6px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
                 margin: 10px auto;
                 min-height: calc(100vh - 20px);
             }
             
             .mobile-header {
-                border-radius: 12px 12px 0 0;
+                border-radius: 6px 6px 0 0;
             }
             
             .content {
@@ -291,13 +316,12 @@
 </head>
 <body>
     <div class="container">
-        <!-- Compact Mobile Header -->
+        <!-- Compact Mobile Header - Matching Equity Radar -->
         <div class="mobile-header">
-            <div class="header-title">Options Chain</div>
+            <a href="radar.html" class="header-title">Options Chain</a>
             <div class="header-controls">
                 <div class="stock-selector">
-                    <label for="stockSelect">Stock:</label>
-                    <select id="stockSelect">
+                    <select id="stockSelect" class="header-select">
                         <option value="ADANIENT">ADANIENT</option>
                         <option value="ADANIPORTS">ADANIPORTS</option>
                         <option value="APOLLOHOSP">APOLLOHOSP</option>
@@ -365,26 +389,25 @@
             const infoContainer = document.getElementById('info-container');
             const dataContainer = document.getElementById('data-container');
             const stockSelect = document.getElementById('stockSelect');
-            const tableContainer = document.querySelector('.table-container');
-		            
-		    // Function to get URL parameters
-		    function getQueryParam(param) {
-		        const urlParams = new URLSearchParams(window.location.search);
-		        return urlParams.get(param);
-		    }
-			
+            
+            // Function to get URL parameters
+            function getQueryParam(param) {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get(param);
+            }
+            
             // Load data when page loads
-			let currentSymbol = getQueryParam('symbol') || 'ADANIENT';
+            let currentSymbol = getQueryParam('symbol') || 'ADANIENT';
             // Update page title with the symbol
-		    document.title = `${currentSymbol} - Chain Viewer`;
-		    
-		    // Set the dropdown to the current symbol
-		    if (stockSelect.querySelector(`option[value="${currentSymbol}"]`)) {
-		        stockSelect.value = currentSymbol;
-		    }
-		    
-		    // Load data with the dynamic symbol
-		    loadData(currentSymbol);
+            document.title = `${currentSymbol} - Options Chain Viewer`;
+            
+            // Set the dropdown to the current symbol
+            if (stockSelect.querySelector(`option[value="${currentSymbol}"]`)) {
+                stockSelect.value = currentSymbol;
+            }
+            
+            // Load data with the dynamic symbol
+            loadData(currentSymbol);
             
             // Load data when selection changes
             stockSelect.addEventListener('change', function() {
@@ -487,7 +510,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>${selectedStock}</td>
+                                <td>${stock[3]}</td>
                                 <td>${stock[4]}</td>
                                 <td>${stock[5]}</td>
                                 <td>${stock[21]}</td>
@@ -547,7 +570,7 @@
                         <thead>
                             <tr class="header-row">
                                 <th colspan="${callExpiries.length}">Call Options</th>
-                                <th class="strike-header"><span style="color: green;">⬆️</span><span style="color: red;">⬇️</span></th>
+                                <th class="strike-header">Strike</th>
                                 <th colspan="${putExpiries.length}">Put Options</th>
                             </tr>
                             <tr>
@@ -557,8 +580,8 @@
                 callExpiries.forEach(expiry => {
                     tableHTML += `<th colspan="1" class="expiry-header">${formatExpiry(expiry)}</th>`;
                 });
-				
-				tableHTML += `<th colspan="1" class="strike-header">Strike</th>`;
+                
+                tableHTML += `<th colspan="1" class="strike-header">Price</th>`;
                 
                 // Add put expiry headers (earliest first)
                 putExpiries.forEach(expiry => {
@@ -660,7 +683,7 @@
                 let lastTuesday = lastDay;
                 
                 // Find the last Tuesday by going backwards from the last day
-                while (lastTuesday.getDay() !== 2) { // 4 = Tuesday
+                while (lastTuesday.getDay() !== 2) { // 2 = Tuesday
                     lastTuesday.setDate(lastTuesday.getDate() - 1);
                 }
                 
