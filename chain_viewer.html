@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Options Chain Viewer</title>
+    <title>Iron Condor Strategy Analyzer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #464a4de3;
@@ -17,11 +18,12 @@
             --aggressive-color: #e53935;
             --header-bg: #1a237e;
             --sort-indicator-color: #1976d2;
-            --buy-color: #e53935;
-            --sell-color: #2c7be5;
-            --strike-highlight: #ffc107;
+            --put-color: #e53935;
+            --call-color: #2c7be5;
+            --success-color: #27ae60;
+            --warning-color: #ffc107;
         }
-
+        
         * {
             box-sizing: border-box;
             margin: 0;
@@ -29,16 +31,15 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
-
+        
         body {
             background-color: #f9f9f9;
             color: var(--text-color);
             line-height: 1.5;
-            padding: 0;
             min-height: 100vh;
             font-size: 14px;
         }
-
+        
         .container {
             max-width: 100%;
             margin: 0 auto;
@@ -50,7 +51,7 @@
             flex-direction: column;
         }
 
-        /* Compact Header */
+        /* Compact Header - Matching Options Chain Viewer */
         .mobile-header {
             background-color: var(--header-bg);
             color: white;
@@ -82,7 +83,6 @@
             align-items: center;
         }
 
-        /* Improved Calculator Button */
         .calculator-btn {
             display: flex;
             align-items: center;
@@ -109,190 +109,267 @@
             transform: translateY(0);
             box-shadow: none;
         }
-
-        .stock-selector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .stock-selector label {
-            font-weight: 600;
-            color: white;
-            font-size: 0.85rem;
-            white-space: nowrap;
-        }
-
-        .header-select {
-            padding: 6px 8px;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 0.85rem;
-            min-width: 120px;
-            max-width: 140px;
-            cursor: pointer;
-        }
-
-        .header-select option {
-            background-color: white;
-            color: #333;
-        }
-
-        /* Content Area */
+        
         .content {
             flex: 1;
             padding: 10px;
             overflow-x: hidden;
         }
-
-        /* Info Container */
-        #info-container {
-            padding: 12px;
-            background-color: white;
+        
+        @media (min-width: 900px) {
+            .content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+        }
+        
+        .input-section, .output-section {
+            background: white;
+            padding: 15px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
-
-        #info-container table {
+        
+        .section-title {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--primary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+        
+        input, select {
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 8px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        .strike-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .premium-input {
+            display: flex;
+            align-items: center;
+        }
+        
+        .premium-input input {
+            flex: 1;
+        }
+        
+        .premium-input span {
+            margin-left: 8px;
+            font-weight: 600;
             font-size: 0.8rem;
         }
-
-        #info-container th, #info-container td {
-            padding: 8px 6px;
-            text-align: center;
-            border: 1px solid var(--border-color);
+        
+        .put-premium {
+            color: var(--put-color);
         }
-
-        #info-container th {
-            background-color: var(--secondary-color);
-            font-weight: 600;
-            color: var(--primary-color);
+        
+        .call-premium {
+            color: var(--call-color);
         }
-
-        #info-container td {
-            background-color: #fff;
-            font-weight: 500;
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
         }
-
-        /* Strike Price Info */
-        .strike-info {
-            text-align: center;
-            padding: 8px;
-            background-color: #e3f2fd;
-            color: var(--focus-color);
-            font-size: 0.75rem;
+        
+        button {
+            background-color: var(--focus-color);
+            color: white;
+            border: none;
+            padding: 10px 15px;
             border-radius: 4px;
-            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
         }
-
-        /* Table Container - Auto-resizing */
-        .table-container {
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
+        
+        button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .btn-fullscreen {
+            background-color: var(--warning-color);
+        }
+        
+        .btn-fullscreen:hover {
+            background-color: #e0a800;
+        }
+        
+        .chart-container {
+            height: 250px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .chart-fullscreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            background: white;
+            padding: 20px;
+        }
+        
+        .close-fullscreen {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--aggressive-color);
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        
+        .summary-item {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .summary-value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        
+        .profit { color: var(--success-color); }
+        .loss { color: var(--aggressive-color); }
+        .neutral { color: var(--warning-color); }
+        
+        .breakeven {
+            margin-top: 15px;
+            padding: 12px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid var(--focus-color);
+        }
+        
+        .explanation {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
             border: 1px solid var(--border-color);
             border-radius: 6px;
+        }
+        
+        .explanation h3 {
             margin-bottom: 10px;
-            max-height: 60vh;
-            overflow-y: auto;
-            background-color: white;
-            width: 100%;
-        }
-
-        #data-container {
-            width: 100%;
-            overflow-x: auto;
-        }
-
-        #data-container table {
-            width: auto;
-            min-width: 100%;
-            border-collapse: collapse;
-        }
-
-        #data-container th, #data-container td {
-            padding: 8px 6px;
-            text-align: center;
-            border: 1px solid var(--border-color);
-            font-size: 0.75rem;
-            white-space: nowrap;
-        }
-
-        #data-container th {
-            background-color: var(--secondary-color);
-            color: var(--primary-color);
-            font-weight: 600;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .strike-header {
-            background-color: var(--primary-color) !important;
-            color: white !important;
-        }
-
-        .expiry-header {
-            font-size: 0.7rem;
-        }
-
-        .strike-cell {
-            background-color: var(--secondary-color);
-            font-weight: 700;
             color: var(--primary-color);
         }
-
-        /* Buy/Sell colors */
-        .buy-price {
-            background-color: rgba(229, 57, 53, 0.1);
-            color: var(--aggressive-color);
-            font-weight: 600;
-        }
-
-        .sell-price {
-            background-color: rgba(44, 123, 229, 0.1);
-            color: var(--defensive-color);
-            font-weight: 600;
-        }
-
-        .buy-price a,
-        .sell-price a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .buy-price a:hover,
-        .sell-price a:hover {
-            text-decoration: underline;
-        }
-
-        .premium-highlight {
-            background-color: #fff8e1;
-            font-weight: 700;
-        }
-
-        .current-strike {
-            background-color: var(--strike-highlight) !important;
-            font-weight: 700;
-            color: #333;
-        }
-
-        /* Status messages */
-        .loading, .error {
+        
+        footer {
             text-align: center;
-            padding: 20px;
-            font-size: 0.9rem;
+            margin-top: 20px;
+            padding: 15px;
             color: var(--light-text);
+            font-size: 0.8rem;
         }
-
-        .error {
+        
+        .strategy-visual {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            position: relative;
+            height: 80px;
+        }
+        
+        .strike-line {
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--border-color);
+        }
+        
+        .strike-point {
+            position: absolute;
+            width: 70px;
+            text-align: center;
+            transform: translateX(-50%);
+        }
+        
+        .strike-label {
+            font-weight: bold;
+            margin-bottom: 3px;
+            font-size: 0.75rem;
+        }
+        
+        .strike-value {
+            padding: 4px;
+            border-radius: 3px;
+            color: white;
+            font-size: 0.75rem;
+        }
+        
+        .put-strike {
+            background-color: var(--put-color);
+        }
+        
+        .call-strike {
+            background-color: var(--call-color);
+        }
+        
+        .toggle-container {
+            display: flex;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid var(--focus-color);
+        }
+        
+        .toggle-btn {
+            flex: 1;
+            padding: 8px;
+            text-align: center;
+            background: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 0.8rem;
+        }
+        
+        .toggle-btn.active {
+            background: var(--focus-color);
+            color: white;
+        }
+        
+        .validation-error {
             color: var(--aggressive-color);
+            font-size: 0.75rem;
+            margin-top: 3px;
+            display: none;
         }
 
         /* Very Small Screens */
@@ -307,13 +384,6 @@
                 max-width: 35%;
             }
             
-            .header-select {
-                padding: 4px 6px;
-                font-size: 0.8rem;
-                min-width: 100px;
-                max-width: 120px;
-            }
-            
             .calculator-btn {
                 padding: 5px 8px;
                 font-size: 0.75rem;
@@ -323,51 +393,17 @@
                 padding: 8px;
             }
             
-            #info-container th, #info-container td {
-                padding: 6px 4px;
-                font-size: 0.75rem;
+            .input-section, .output-section {
+                padding: 10px;
             }
             
-            #data-container th, #data-container td {
-                padding: 6px 4px;
-                font-size: 0.7rem;
-            }
-        }
-
-        /* Medium Screens */
-        @media (min-width: 768px) {
-            .container {
-                max-width: 1400px;
-                border-radius: 6px;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-                margin: 10px auto;
-                min-height: calc(100vh - 20px);
+            .strike-group {
+                grid-template-columns: 1fr;
+                gap: 8px;
             }
             
-            .mobile-header {
-                border-radius: 6px 6px 0 0;
-            }
-            
-            .content {
-                padding: 15px;
-            }
-            
-            #data-container table {
-                width: 100%;
-                min-width: auto;
-            }
-            
-            .calculator-btn {
-                padding: 7px 12px;
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Large Screens */
-        @media (min-width: 1200px) {
-            #data-container table {
-                width: 100%;
-                min-width: auto;
+            .summary-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -376,428 +412,481 @@
     <div class="container">
         <!-- Compact Mobile Header -->
         <div class="mobile-header">
-            <a href="radar.html" class="header-title">Options Chain</a>
+            <div class="header-title">Options Estimator - Iron Condor</div>
             <div class="header-controls">
-                <a href="options_calculator.html" class="calculator-btn">
-                    <span>🧮</span> Estimator
+                <a href="chain_viewer.html" class="calculator-btn">
+                    <span>📊</span> Chain
                 </a>
-                <div class="stock-selector">
-                    <select id="stockSelect" class="header-select">
-                        <option value="ADANIENT">ADANIENT</option>
-                        <option value="ADANIPORTS">ADANIPORTS</option>
-                        <option value="APOLLOHOSP">APOLLOHOSP</option>
-                        <option value="ASIANPAINT">ASIANPAINT</option>
-                        <option value="AXISBANK">AXISBANK</option>
-                        <option value="BAJAJ-AUTO">BAJAJ-AUTO</option>
-                        <option value="BAJFINANCE">BAJFINANCE</option>
-                        <option value="BAJAJFINSV">BAJAJFINSV</option>
-                        <option value="BHARTIARTL">BHARTIARTL</option>
-                        <option value="CIPLA">CIPLA</option>
-                        <option value="COALINDIA">COALINDIA</option>
-                        <option value="DRREDDY">DRREDDY</option>
-                        <option value="EICHERMOT">EICHERMOT</option>
-                        <option value="ETERNAL">ETERNAL</option>
-                        <option value="GRASIM">GRASIM</option>
-                        <option value="HCLTECH">HCLTECH</option>
-                        <option value="HDFCBANK">HDFCBANK</option>
-                        <option value="HDFCLIFE">HDFCLIFE</option>
-                        <option value="HEROMOTOCO">HEROMOTOCO</option>
-                        <option value="HINDALCO">HINDALCO</option>
-                        <option value="HINDUNILVR">HINDUNILVR</option>
-                        <option value="ICICIBANK">ICICIBANK</option>
-                        <option value="INDUSINDBK">INDUSINDBK</option>
-                        <option value="INFY">INFY</option>
-                        <option value="ITC">ITC</option>
-                        <option value="JIOFIN">JIOFIN</option>
-                        <option value="JSWSTEEL">JSWSTEEL</option>
-                        <option value="KOTAKBANK">KOTAKBANK</option>
-                        <option value="LT">LT</option>
-                        <option value="M&M">M&M</option>
-                        <option value="MARUTI">MARUTI</option>
-                        <option value="NESTLEIND">NESTLEIND</option>
-                        <option value="NTPC">NTPC</option>
-                        <option value="ONGC">ONGC</option>
-                        <option value="POWERGRID">POWERGRID</option>
-                        <option value="RELIANCE">RELIANCE</option>
-                        <option value="SBILIFE">SBILIFE</option>
-                        <option value="SBIN">SBIN</option>
-                        <option value="SUNPHARMA">SUNPHARMA</option>
-                        <option value="TCS">TCS</option>
-                        <option value="TATACONSUM">TATACONSUM</option>
-                        <option value="TATAMOTORS">TATAMOTORS</option>
-                        <option value="TATASTEEL">TATASTEEL</option>
-                        <option value="TECHM">TECHM</option>
-                        <option value="TITAN">TITAN</option>
-                        <option value="TRENT">TRENT</option>
-                        <option value="ULTRACEMCO">ULTRACEMCO</option>
-                        <option value="WIPRO">WIPRO</option>
-                    </select>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="input-section">
+                <h2 class="section-title">Strategy Parameters</h2>
+                
+                <div class="form-group">
+                    <label for="underlying-price">Underlying Price ($)</label>
+                    <input type="number" id="underlying-price" value="100" min="1" step="0.01">
+                </div>
+                
+                <div class="toggle-container">
+                    <div class="toggle-btn active" id="toggle-both">Both</div>
+                    <div class="toggle-btn" id="toggle-put">Puts Only</div>
+                    <div class="toggle-btn" id="toggle-call">Calls Only</div>
+                </div>
+                
+                <h3>Put Options</h3>
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-put-strike">Short Put Strike ($)</label>
+                        <input type="number" id="short-put-strike" value="95" min="1" step="0.01">
+                        <div class="validation-error" id="put-validation">Short put must be higher than long put</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-put-strike">Long Put Strike ($)</label>
+                        <input type="number" id="long-put-strike" value="90" min="1" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-put-premium">Short Put Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="short-put-premium" value="2.50" min="0" step="0.01">
+                            <span class="put-premium">Per Contract</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-put-premium">Long Put Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="long-put-premium" value="1.00" min="0" step="0.01">
+                            <span class="put-premium">Per Contract</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Call Options</h3>
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-call-strike">Short Call Strike ($)</label>
+                        <input type="number" id="short-call-strike" value="105" min="1" step="0.01">
+                        <div class="validation-error" id="call-validation">Short call must be lower than long call</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-call-strike">Long Call Strike ($)</label>
+                        <input type="number" id="long-call-strike" value="110" min="1" step="0.01">
+                    </div>
+                </div>
+                
+                <div class="strike-group">
+                    <div class="form-group">
+                        <label for="short-call-premium">Short Call Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="short-call-premium" value="2.00" min="0" step="0.01">
+                            <span class="call-premium">Per Contract</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="long-call-premium">Long Call Premium ($)</label>
+                        <div class="premium-input">
+                            <input type="number" id="long-call-premium" value="0.80" min="0" step="0.01">
+                            <span class="call-premium">Per Contract</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contracts">Number of Contracts</label>
+                    <input type="number" id="contracts" value="1" min="1" step="1">
+                </div>
+                
+                <div class="button-group">
+                    <button id="calculate-btn">Calculate Payoff</button>
+                    <button id="reset-btn">Reset Values</button>
+                </div>
+            </div>
+            
+            <div class="output-section">
+                <h2 class="section-title">Strategy Visualization</h2>
+                <div class="strategy-visual">
+                    <div class="strike-line"></div>
+                    <div class="strike-point" style="left: 20%;">
+                        <div class="strike-label">Long Put</div>
+                        <div class="strike-value put-strike" id="vis-long-put">$90.00</div>
+                    </div>
+                    <div class="strike-point" style="left: 35%;">
+                        <div class="strike-label">Short Put</div>
+                        <div class="strike-value put-strike" id="vis-short-put">$95.00</div>
+                    </div>
+                    <div class="strike-point" style="left: 65%;">
+                        <div class="strike-label">Short Call</div>
+                        <div class="strike-value call-strike" id="vis-short-call">$105.00</div>
+                    </div>
+                    <div class="strike-point" style="left: 80%;">
+                        <div class="strike-label">Long Call</div>
+                        <div class="strike-value call-strike" id="vis-long-call">$110.00</div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">Payoff Diagram</h2>
+                <div class="chart-container" id="chart-container">
+                    <canvas id="payoff-chart"></canvas>
+                </div>
+                
+                <div class="button-group">
+                    <button id="fullscreen-btn" class="btn-fullscreen">Expand Chart</button>
+                </div>
+                
+                <h2 class="section-title">Trade Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <div>Max Profit</div>
+                        <div class="summary-value profit" id="max-profit">$270.00</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div>Max Loss</div>
+                        <div class="summary-value loss" id="max-loss">$230.00</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div>Upper Break-Even</div>
+                        <div class="summary-value neutral" id="upper-break-even">$107.70</div>
+                    </div>
+                    
+                    <div class="summary-item">
+                        <div>Lower Break-Even</div>
+                        <div class="summary-value neutral" id="lower-break-even">$92.30</div>
+                    </div>
+                </div>
+                
+                <div class="breakeven">
+                    <h3>Profit Zone</h3>
+                    <p id="profit-zone">The underlying price between $92.30 and $107.70 at expiration</p>
                 </div>
             </div>
         </div>
         
-        <!-- Content Area -->
-        <div class="content">
-            <div id="info-container" class="loading">Loading stock details...</div>
-            <div id="strike-info" class="strike-info"></div>
-            <div class="table-container">
-                <div id="data-container" class="loading">Loading options data...</div>
-            </div>
+        <div class="explanation">
+            <p>This strategy has limited profit potential (the net premium received) and limited risk (the difference between strike prices minus the premium received).</p>
         </div>
+        
+        <footer>
+            <p>Disclaimer: This tool is for educational purposes only. Options trading involves significant risk and is not suitable for all investors.</p>
+        </footer>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const infoContainer = document.getElementById('info-container');
-            const dataContainer = document.getElementById('data-container');
-            const strikeInfo = document.getElementById('strike-info');
-            const stockSelect = document.getElementById('stockSelect');
+            const ctx = document.getElementById('payoff-chart').getContext('2d');
+            let payoffChart = null;
+            let chartType = 'both'; // 'both', 'put', or 'call'
+            let isFullscreen = false;
             
-            // Function to get URL parameters
-            function getQueryParam(param) {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get(param);
-            }
+            // Initialize with default values
+            calculatePayoff();
             
-            // Load data when page loads
-            let currentSymbol = getQueryParam('symbol') || 'ADANIENT';
-            // Update page title with the symbol
-            document.title = `${currentSymbol} - Options Chain Viewer`;
+            // Calculate on button click
+            document.getElementById('calculate-btn').addEventListener('click', calculatePayoff);
             
-            // Set the dropdown to the current symbol
-            if (stockSelect.querySelector(`option[value="${currentSymbol}"]`)) {
-                stockSelect.value = currentSymbol;
-            }
+            // Reset values
+            document.getElementById('reset-btn').addEventListener('click', resetValues);
             
-            // Load data with the dynamic symbol
-            loadData(currentSymbol);
+            // Fullscreen chart
+            document.getElementById('fullscreen-btn').addEventListener('click', toggleFullscreen);
             
-            // Load data when selection changes
-            stockSelect.addEventListener('change', function() {
-                currentSymbol = this.value;
-                loadData(currentSymbol);
+            // Toggle chart type
+            document.getElementById('toggle-both').addEventListener('click', function() {
+                setChartType('both');
             });
             
-            // Function to load CSV data
-            function loadData(stock) {
-                infoContainer.innerHTML = '<div class="loading">Loading stock details...</div>';
-                dataContainer.innerHTML = '<div class="loading">Loading options data for ' + stock + '...</div>';
-                strikeInfo.innerHTML = '';
-                
-                const csvHdrUrl = `https://activegrt.github.io/Reports/oi_header.txt`;
-                const csvDetUrl = `https://activegrt.github.io/Reports/oi_details.txt`;
-
-                // Fetch both CSV files in parallel
-                Promise.all([
-                    fetch(csvHdrUrl).then(response => {
-                        if (!response.ok) throw new Error('Header file network response was not ok');
-                        return response.text();
-                    }),
-                    fetch(csvDetUrl).then(response => {
-                        if (!response.ok) throw new Error('Details file network response was not ok');
-                        return response.text();
-                    })
-                ])
-                .then(([headerData, detailsData]) => {
-                    // Both files are loaded successfully
-                    processCSVData(headerData, detailsData, stock);
-                })
-                .catch(error => {
-                    dataContainer.innerHTML = `<div class="error">Error loading data: ${error.message}</div>`;
-                    console.error('Error:', error);
+            document.getElementById('toggle-put').addEventListener('click', function() {
+                setChartType('put');
+            });
+            
+            document.getElementById('toggle-call').addEventListener('click', function() {
+                setChartType('call');
+            });
+            
+            // Calculate on input change
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('change', calculatePayoff);
+                input.addEventListener('input', calculatePayoff);
+            });
+            
+            function setChartType(type) {
+                chartType = type;
+                document.querySelectorAll('.toggle-btn').forEach(btn => {
+                    btn.classList.remove('active');
                 });
+                document.getElementById(`toggle-${type}`).classList.add('active');
+                calculatePayoff();
             }
             
-            // Parse CSV data
-            function processCSVData(hdrData, detData, selectedStock) {
-                try {
-                    // Process header data to find the selected stock
-                    const headerLines = hdrData.split('\n');
-                    let stockData = null;
+            function toggleFullscreen() {
+                const chartContainer = document.getElementById('chart-container');
+                const fullscreenBtn = document.getElementById('fullscreen-btn');
+                
+                if (!isFullscreen) {
+                    chartContainer.classList.add('chart-fullscreen');
+                    fullscreenBtn.textContent = 'Close Fullscreen';
                     
-                    for (let i = 0; i < headerLines.length; i++) {
-                        if (headerLines[i].trim() === '') continue;
-                        
-                        const values = headerLines[i].split(',');
-                        if (values[0] === selectedStock) {
-                            stockData = values;
-                            break;
-                        }
-                    }
+                    // Add close button
+                    const closeBtn = document.createElement('button');
+                    closeBtn.textContent = 'Close';
+                    closeBtn.classList.add('close-fullscreen');
+                    closeBtn.addEventListener('click', toggleFullscreen);
+                    chartContainer.appendChild(closeBtn);
                     
-                    if (!stockData) {
-                        throw new Error(`Stock ${selectedStock} not found in header data`);
-                    }
-                    
-                    // Get the start and end rows for the selected stock in details file
-                    const startRow = parseInt(stockData[1]);
-                    const endRow = parseInt(stockData[2]);
-                    
-                    // Process details data for the selected stock
-                    const detailLines = detData.split('\n');
-                    const headers = detailLines[0].split(',').map(header => header.trim());
-                    
-                    const data = [];
-                    for (let i = startRow; i <= endRow; i++) {
-                        if (i >= detailLines.length || detailLines[i].trim() === '') continue;
-                        
-                        const values = detailLines[i].split(',').map(value => value.trim());
-                        const row = {};
-                        
-                        headers.forEach((header, index) => {
-                            row[header] = values[index] || '';
-                        });
-                        
-                        data.push(row);
-                    }
-                    
-                    displayData(data, headers, stockData, selectedStock);
-                } catch (error) {
-                    dataContainer.innerHTML = '<div class="error">Error processing CSV data: ' + error.message + '</div>';
-                }
-            }
-            
-            // Process data and generate HTML table
-            function displayData(data, headers, stock, selectedStock) {
-                // Generate HTML table for stock info
-                let hdrHTML = `
-                    <table border="1" cellspacing="0" cellpadding="5">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>LTP</th>
-                                <th>Book Value</th>
-                                <th>Day Volatile</th>
-                                <th>Week Volatile</th>
-                                <th>Month Volatile</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>${stock[3]}</td>
-                                <td>${stock[4]}</td>
-                                <td>${stock[5]}</td>
-                                <td>${stock[21]}</td>
-                                <td>${stock[22]}</td>
-                                <td>${stock[23]}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                `;
-                
-                // Group data by strikePrice
-                const strikeGroups = {};
-                
-                data.forEach(row => {
-                    const strikePrice = row.strikePrice;
-                    if (!strikeGroups[strikePrice]) {
-                        strikeGroups[strikePrice] = { bid: null, ask: null };
-                    }
-                    
-                    if (row.Chain === 'Bid') {
-                        strikeGroups[strikePrice].bid = row;
-                    } else if (row.Chain === 'Ask') {
-                        strikeGroups[strikePrice].ask = row;
-                    }
-                });
-                
-                // Get all unique expiry dates from column headers
-                const expiries = [];
-                
-                headers.forEach(header => {
-                    if (header.startsWith('CE_') || header.startsWith('PE_')) {
-                        const expiry = header.split('_')[1];
-                        if (expiry && !expiries.includes(expiry)) {
-                            expiries.push(expiry);
-                        }
-                    }
-                });
-                
-                // Sort expiries chronologically (assuming format MM-YY)
-                expiries.sort((a, b) => {
-                    const [aMonth, aYear] = a.split('-').map(Number);
-                    const [bMonth, bYear] = b.split('-').map(Number);
-                    
-                    if (aYear !== bYear) {
-                        return aYear - bYear;
-                    }
-                    return aMonth - bMonth;
-                });
-                
-                // Call options: latest first, Put options: earliest first
-                const callExpiries = [...expiries].reverse();
-                const putExpiries = [...expiries]; // Keep in ascending order for puts
-                
-                // Generate HTML table
-                let tableHTML = `
-                    <table>
-                        <thead>
-                            <tr class="header-row">
-                                <th colspan="${callExpiries.length}">Call Options</th>
-                                <th class="strike-header">Strike</th>
-                                <th colspan="${putExpiries.length}">Put Options</th>
-                            </tr>
-                            <tr>
-                `;
-                
-                // Add call expiry headers (latest first)
-                callExpiries.forEach(expiry => {
-                    tableHTML += `<th colspan="1" class="expiry-header">${formatExpiry(expiry)}</th>`;
-                });
-                
-                tableHTML += `<th colspan="1" class="strike-header">Price</th>`;
-                
-                // Add put expiry headers (earliest first)
-                putExpiries.forEach(expiry => {
-                    tableHTML += `<th colspan="1" class="expiry-header">${formatExpiry(expiry)}</th>`;
-                });
-                
-                tableHTML += `</tr></thead><tbody>`;
-                
-                // Add data rows
-                const strikePrices = Object.keys(strikeGroups).sort((a, b) => b - a);
-                const ltp = parseFloat(stock[4]);
-                let closestStrike = null;
-                let minDiff = Infinity;
-                
-                // Find the closest strike price to LTP
-                strikePrices.forEach(strikePrice => {
-                    const strike = parseFloat(strikePrice);
-                    const diff = Math.abs(strike - ltp);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        closestStrike = strikePrice;
-                    }
-                });
-                
-                // Update strike info above the table
-                strikeInfo.innerHTML = `Current strike price: <strong>${closestStrike}</strong> (Closest to LTP: ${ltp})`;
-                
-                strikePrices.forEach(strikePrice => {
-                    const group = strikeGroups[strikePrice];
-                    const isCurrentStrike = strikePrice === closestStrike;
-                    
-                    // Ask row
-                    tableHTML += `<tr class="ask-row">`;
-                    
-                    // Call ask prices (latest expiry first)
-                    callExpiries.forEach(expiry => {
-                        const value = group.ask ? group.ask[`CE_${expiry}`] || '' : '';
-                        const highlightClass = shouldHighlightPremium(value, expiry, callExpiries, 'call') ? 'premium-highlight' : '';
-                        const expiryCode = getExpiryCode(expiry);
-                        tableHTML += `<td class="buy-price ${highlightClass}"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}C${strikePrice}&interval=5">${value || '-'}</a></td>`;
-                    });
-                    
-                    tableHTML += `<td class="strike-cell ${isCurrentStrike ? 'current-strike' : ''}" rowspan="2">${strikePrice}</td>`;
-                    
-                    // Put ask prices (earliest first)
-                    putExpiries.forEach(expiry => {
-                        const value = group.ask ? group.ask[`PE_${expiry}`] || '' : '';
-                        const highlightClass = shouldHighlightPremium(value, expiry, putExpiries, 'put') ? 'premium-highlight' : '';
-                        const expiryCode = getExpiryCode(expiry);
-                        tableHTML += `<td class="buy-price ${highlightClass}"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}P${strikePrice}&interval=5">${value || '-'}</a></td>`;
-                    });
-                    
-                    tableHTML += `</tr>`;
-                    
-                    // Bid row
-                    tableHTML += `<tr class="bid-row">`;
-                    
-                    // Call bid prices (latest expiry first)
-                    callExpiries.forEach(expiry => {
-                        const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
-                        const expiryCode = getExpiryCode(expiry);
-                        tableHTML += `<td class="sell-price"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}C${strikePrice}&interval=5">${value || '-'}</a></td>`;
-                    });
-                    
-                    // Put bid prices (earliest first)
-                    putExpiries.forEach(expiry => {
-                        const value = group.bid ? group.bid[`PE_${expiry}`] || '' : '';
-                        const expiryCode = getExpiryCode(expiry);
-                        tableHTML += `<td class="sell-price"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}P${strikePrice}&interval=5">${value || '-'}</a></td>`;
-                    });
-                    
-                    tableHTML += `</tr>`;
-                });
-                
-                tableHTML += `</tbody></table>`;
-                
-                infoContainer.innerHTML = hdrHTML;
-                dataContainer.innerHTML = tableHTML;
-                
-                // Scroll to the current strike price
-                setTimeout(() => {
-                    const currentStrikeElement = document.querySelector('.current-strike');
-                    if (currentStrikeElement) {
-                        const rowElement = currentStrikeElement.closest('tr');
-                        if (rowElement) {
-                            rowElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        }
-                    }
-                }, 100);
-            }
-            
-            // Function to get the last Tuesday of the month
-            function getLastTuesday(year, month) {
-                // month is 0-indexed in JavaScript Date (0 = January, 11 = December)
-                const lastDay = new Date(year, month + 1, 0); // Last day of the month
-                let lastTuesday = lastDay;
-                
-                // Find the last Tuesday by going backwards from the last day
-                while (lastTuesday.getDay() !== 2) { // 2 = Tuesday
-                    lastTuesday.setDate(lastTuesday.getDate() - 1);
-                }
-                
-                return lastTuesday;
-            }
-            
-            // Convert expiry format from MM-YY to TradingView format (YYMMDD)
-            function getExpiryCode(expiry) {
-                if (!expiry) return ''; // Default expiry if not found
-                
-                const [month, year] = expiry.split('-');
-                const fullYear = 2000 + parseInt(year); // Convert YY to YYYY
-                const monthIndex = parseInt(month) - 1; // Convert to 0-indexed month
-                
-                // Get the last Tuesday of the month
-                const lastTuesday = getLastTuesday(fullYear, monthIndex);
-                
-                // Format as YYMMDD (2-digit year, 2-digit month, 2-digit day)
-                const shortYear = lastTuesday.getFullYear().toString().slice(-2);
-                const formattedMonth = (lastTuesday.getMonth() + 1).toString().padStart(2, '0');
-                const formattedDay = lastTuesday.getDate().toString().padStart(2, '0');
-                
-                return shortYear + formattedMonth + formattedDay;
-            }
-            
-            // Check if premium should be highlighted
-            function shouldHighlightPremium(value, currentExpiry, expiries, optionType) {
-                if (!value || value === '-' || value === '0' || value === '0.0') return false;
-                
-                const currentIndex = expiries.indexOf(currentExpiry);
-                if (currentIndex <= 0) return false;
-                
-                const currentValue = parseFloat(value);
-                if (isNaN(currentValue)) return false;
-                
-                // For calls: check if current premium is higher than previous (closer expiry)
-                // For puts: check if current premium is lower than previous (closer expiry)
-                // This would require comparing with previous expiry values
-                // For simplicity, we'll just highlight based on position in expiry list
-                if (optionType === 'call') {
-                    return currentIndex > 0; // Highlight all except the nearest expiry for calls
+                    isFullscreen = true;
                 } else {
-                    return currentIndex > 0; // Highlight all except the nearest expiry for puts
+                    chartContainer.classList.remove('chart-fullscreen');
+                    fullscreenBtn.textContent = 'Expand Chart';
+                    
+                    // Remove close button
+                    const closeBtn = chartContainer.querySelector('.close-fullscreen');
+                    if (closeBtn) {
+                        chartContainer.removeChild(closeBtn);
+                    }
+                    
+                    isFullscreen = false;
+                }
+                
+                if (payoffChart) {
+                    payoffChart.resize();
                 }
             }
             
-            // Format expiry date for display
-            function formatExpiry(expiry) {
-                if (!expiry) return '';
-                const [month, year] = expiry.split('-');
-                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                                   'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-                return `${monthNames[parseInt(month) - 1]} '${year}`;
+            function resetValues() {
+                document.getElementById('underlying-price').value = 100;
+                document.getElementById('short-put-strike').value = 95;
+                document.getElementById('long-put-strike').value = 90;
+                document.getElementById('short-call-strike').value = 105;
+                document.getElementById('long-call-strike').value = 110;
+                document.getElementById('short-put-premium').value = 2.50;
+                document.getElementById('long-put-premium').value = 1.00;
+                document.getElementById('short-call-premium').value = 2.00;
+                document.getElementById('long-call-premium').value = 0.80;
+                document.getElementById('contracts').value = 1;
+                
+                calculatePayoff();
+            }
+            
+            function calculatePayoff() {
+                // Get input values
+                const underlyingPrice = parseFloat(document.getElementById('underlying-price').value);
+                const contracts = parseInt(document.getElementById('contracts').value);
+                const shortPutStrike = parseFloat(document.getElementById('short-put-strike').value);
+                const longPutStrike = parseFloat(document.getElementById('long-put-strike').value);
+                const shortCallStrike = parseFloat(document.getElementById('short-call-strike').value);
+                const longCallStrike = parseFloat(document.getElementById('long-call-strike').value);
+                const shortPutPremium = parseFloat(document.getElementById('short-put-premium').value);
+                const longPutPremium = parseFloat(document.getElementById('long-put-premium').value);
+                const shortCallPremium = parseFloat(document.getElementById('short-call-premium').value);
+                const longCallPremium = parseFloat(document.getElementById('long-call-premium').value);
+                
+                // Update visualization
+                document.getElementById('vis-long-put').textContent = `$${longPutStrike.toFixed(2)}`;
+                document.getElementById('vis-short-put').textContent = `$${shortPutStrike.toFixed(2)}`;
+                document.getElementById('vis-short-call').textContent = `$${shortCallStrike.toFixed(2)}`;
+                document.getElementById('vis-long-call').textContent = `$${longCallStrike.toFixed(2)}`;
+                
+                // Validate inputs without alerts
+                const putValidation = document.getElementById('put-validation');
+                const callValidation = document.getElementById('call-validation');
+                
+                if (longPutStrike >= shortPutStrike) {
+                    putValidation.style.display = 'block';
+                    return;
+                } else {
+                    putValidation.style.display = 'none';
+                }
+                
+                if (shortCallStrike >= longCallStrike) {
+                    callValidation.style.display = 'block';
+                    return;
+                } else {
+                    callValidation.style.display = 'none';
+                }
+                
+                if (shortPutStrike >= shortCallStrike) {
+                    // Just don't calculate rather than showing an alert
+                    return;
+                }
+                
+                // Calculate strategy values
+                const putSpreadWidth = shortPutStrike - longPutStrike;
+                const callSpreadWidth = longCallStrike - shortCallStrike;
+                
+                // Calculate net credit per contract
+                const netCredit = (shortPutPremium + shortCallPremium) - (longPutPremium + longCallPremium);
+                const totalNetCredit = netCredit * contracts * 100;
+                
+                // Max profit is the net credit received
+                const maxProfit = totalNetCredit;
+                
+                // Max loss is the wider of the two spreads minus the net credit
+                const maxLossPerContract = Math.max(putSpreadWidth, callSpreadWidth) - netCredit;
+                const maxLoss = maxLossPerContract * contracts * 100;
+                
+                // Break-even points
+                const lowerBreakEven = shortPutStrike - netCredit;
+                const upperBreakEven = shortCallStrike + netCredit;
+                
+                // Update summary
+                document.getElementById('max-profit').textContent = `$${maxProfit.toFixed(2)}`;
+                document.getElementById('max-loss').textContent = `$${maxLoss.toFixed(2)}`;
+                document.getElementById('upper-break-even').textContent = `$${upperBreakEven.toFixed(2)}`;
+                document.getElementById('lower-break-even').textContent = `$${lowerBreakEven.toFixed(2)}`;
+                document.getElementById('profit-zone').textContent = 
+                    `The underlying price between $${lowerBreakEven.toFixed(2)} and $${upperBreakEven.toFixed(2)} at expiration`;
+                
+                // Generate data for chart
+                const minPrice = Math.max(0, longPutStrike - 10);
+                const maxPrice = longCallStrike + 10;
+                const pricePoints = [];
+                const payoffPoints = [];
+                const putPayoffPoints = [];
+                const callPayoffPoints = [];
+                
+                for (let price = minPrice; price <= maxPrice; price += (maxPrice - minPrice) / 100) {
+                    pricePoints.push(price);
+                    
+                    // Calculate put spread payoff
+                    let putPayoff = 0;
+                    if (chartType === 'both' || chartType === 'put') {
+                        if (price < longPutStrike) {
+                            putPayoff = (shortPutStrike - longPutStrike) - (shortPutPremium - longPutPremium);
+                        } else if (price < shortPutStrike) {
+                            putPayoff = (shortPutStrike - price) - (shortPutPremium - longPutPremium);
+                        } else {
+                            putPayoff = (shortPutPremium - longPutPremium);
+                        }
+                    }
+                    
+                    // Calculate call spread payoff
+                    let callPayoff = 0;
+                    if (chartType === 'both' || chartType === 'call') {
+                        if (price > longCallStrike) {
+                            callPayoff = (longCallStrike - shortCallStrike) - (shortCallPremium - longCallPremium);
+                        } else if (price > shortCallStrike) {
+                            callPayoff = (shortCallStrike - price) - (shortCallPremium - longCallPremium);
+                        } else {
+                            callPayoff = (shortCallPremium - longCallPremium);
+                        }
+                    }
+                    
+                    // Total payoff
+                    const totalPayoff = (putPayoff + callPayoff) * 100 * contracts;
+                    
+                    payoffPoints.push(totalPayoff);
+                    putPayoffPoints.push(putPayoff * 100 * contracts);
+                    callPayoffPoints.push(callPayoff * 100 * contracts);
+                }
+                
+                // Create datasets based on chart type
+                const datasets = [];
+                
+                if (chartType === 'both' || chartType === 'put') {
+                    datasets.push({
+                        label: 'Put Spread Payoff',
+                        data: putPayoffPoints,
+                        borderColor: '#e53935',
+                        backgroundColor: 'rgba(229, 57, 53, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.3
+                    });
+                }
+                
+                if (chartType === 'both' || chartType === 'call') {
+                    datasets.push({
+                        label: 'Call Spread Payoff',
+                        data: callPayoffPoints,
+                        borderColor: '#2c7be5',
+                        backgroundColor: 'rgba(44, 123, 229, 0.1)',
+                        borderWidth: 2,
+                        fill: false,
+                        tension: 0.3
+                    });
+                }
+                
+                if (chartType === 'both') {
+                    datasets.push({
+                        label: 'Total Payoff',
+                        data: payoffPoints,
+                        borderColor: '#27ae60',
+                        backgroundColor: 'rgba(39, 174, 96, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.3
+                    });
+                }
+                
+                // Create or update chart
+                if (payoffChart) {
+                    payoffChart.destroy();
+                }
+                
+                payoffChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: pricePoints,
+                        datasets: datasets
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: getChartTitle(),
+                                font: {
+                                    size: 14
+                                }
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false,
+                                callbacks: {
+                                    label: function(context) {
+                                        return `${context.dataset.label}: $${context.raw.toFixed(2)} at $${context.label}`;
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Underlying Price at Expiration ($)'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Profit/Loss ($)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            function getChartTitle() {
+                switch(chartType) {
+                    case 'put':
+                        return 'Put Spread Payoff Diagram';
+                    case 'call':
+                        return 'Call Spread Payoff Diagram';
+                    default:
+                        return 'Iron Condor Payoff Diagram';
+                }
             }
         });
     </script>
