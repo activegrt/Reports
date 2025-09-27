@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Options Chain Viewer</title>
     <style>
+        /* Your existing CSS styles remain the same */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -149,7 +150,17 @@
             color: #388e3c;
             font-weight: 600;
         }
-        
+        .buy-price a,
+		.sell-price a {
+			text-decoration: none;
+			color: inherit;
+		}
+
+		.buy-price a:hover,
+		.sell-price a:hover {
+			text-decoration: none;
+			color: inherit;
+		}
         .premium-highlight {
             background-color: #fff8e1;
             font-weight: 700;
@@ -279,16 +290,22 @@
 		    }
 			
             // Load data when page loads
-			const symbol = getQueryParam('symbol') || 'ADANIENT';
+			let currentSymbol = getQueryParam('symbol') || 'ADANIENT';
             // Update page title with the symbol
-		    document.title = `${symbol} - Chain Viewer`;
+		    document.title = `${currentSymbol} - Chain Viewer`;
+		    
+		    // Set the dropdown to the current symbol
+		    if (stockSelect.querySelector(`option[value="${currentSymbol}"]`)) {
+		        stockSelect.value = currentSymbol;
+		    }
 		    
 		    // Load data with the dynamic symbol
-		    loadData(symbol);
+		    loadData(currentSymbol);
             
             // Load data when selection changes
             stockSelect.addEventListener('change', function() {
-                loadData(this.value);
+                currentSymbol = this.value;
+                loadData(currentSymbol);
             });
             
             // Function to load CSV data
@@ -363,14 +380,14 @@
                         data.push(row);
                     }
                     
-                    displayData(data, headers, stockData);
+                    displayData(data, headers, stockData, selectedStock);
                 } catch (error) {
                     dataContainer.innerHTML = '<div class="error">Error processing CSV data: ' + error.message + '</div>';
                 }
             }
             
             // Process data and generate HTML table
-            function displayData(data, headers, stock) {
+            function displayData(data, headers, stock, selectedStock) {
                 // Generate HTML table for stock info
                 let hdrHTML = `
                     <table border="1" cellspacing="0" cellpadding="5">
@@ -493,7 +510,8 @@
                     callExpiries.forEach(expiry => {
                         const value = group.ask ? group.ask[`CE_${expiry}`] || '' : '';
                         const highlightClass = shouldHighlightPremium(value, expiry, callExpiries, 'call') ? 'premium-highlight' : '';
-                        tableHTML += `<td class="buy-price ${highlightClass}">${value || '-'}</td>`;
+                        const expiryCode = getExpiryCode(expiry);
+                        tableHTML += `<td class="buy-price ${highlightClass}"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}C${strikePrice}&interval=5">${value || '-'}</a></td>`;
                     });
                     
                     tableHTML += `<td class="strike-cell ${isCurrentStrike ? 'current-strike' : ''}" rowspan="2">${strikePrice}</td>`;
@@ -502,7 +520,8 @@
                     putExpiries.forEach(expiry => {
                         const value = group.ask ? group.ask[`PE_${expiry}`] || '' : '';
                         const highlightClass = shouldHighlightPremium(value, expiry, putExpiries, 'put') ? 'premium-highlight' : '';
-                        tableHTML += `<td class="buy-price ${highlightClass}">${value || '-'}</td>`;
+                        const expiryCode = getExpiryCode(expiry);
+                        tableHTML += `<td class="buy-price ${highlightClass}"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}P${strikePrice}&interval=5">${value || '-'}</a></td>`;
                     });
                     
                     tableHTML += `</tr>`;
@@ -513,13 +532,15 @@
                     // Call bid prices (latest expiry first)
                     callExpiries.forEach(expiry => {
                         const value = group.bid ? group.bid[`CE_${expiry}`] || '' : '';
-                        tableHTML += `<td class="sell-price">${value || '-'}</td>`;
+                        const expiryCode = getExpiryCode(expiry);
+                        tableHTML += `<td class="sell-price"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}C${strikePrice}&interval=5">${value || '-'}</a></td>`;
                     });
                     
                     // Put bid prices (earliest first)
                     putExpiries.forEach(expiry => {
                         const value = group.bid ? group.bid[`PE_${expiry}`] || '' : '';
-                        tableHTML += `<td class="sell-price">${value || '-'}</td>`;
+                        const expiryCode = getExpiryCode(expiry);
+                        tableHTML += `<td class="sell-price"><a target="_blank" href="https://www.tradingview.com/chart/?symbol=NSE:${selectedStock}${expiryCode}P${strikePrice}&interval=5">${value || '-'}</a></td>`;
                     });
                     
                     tableHTML += `</tr>`;
@@ -546,6 +567,39 @@
                         }
                     }
                 }, 100);
+            }
+            
+            // Function to get the last Tuesday of the month
+            function getLastTuesday(year, month) {
+                // month is 0-indexed in JavaScript Date (0 = January, 11 = December)
+                const lastDay = new Date(year, month + 1, 0); // Last day of the month
+                let lastTuesday = lastDay;
+                
+                // Find the last Tuesday by going backwards from the last day
+                while (lastTuesday.getDay() !== 2) { // 4 = Tuesday
+                    lastTuesday.setDate(lastTuesday.getDate() - 1);
+                }
+                
+                return lastTuesday;
+            }
+            
+            // Convert expiry format from MM-YY to TradingView format (YYMMDD)
+            function getExpiryCode(expiry) {
+                if (!expiry) return ''; // Default expiry if not found
+                
+                const [month, year] = expiry.split('-');
+                const fullYear = 2000 + parseInt(year); // Convert YY to YYYY
+                const monthIndex = parseInt(month) - 1; // Convert to 0-indexed month
+                
+                // Get the last Tuesday of the month
+                const lastTuesday = getLastTuesday(fullYear, monthIndex);
+                
+                // Format as YYMMDD (2-digit year, 2-digit month, 2-digit day)
+                const shortYear = lastTuesday.getFullYear().toString().slice(-2);
+                const formattedMonth = (lastTuesday.getMonth() + 1).toString().padStart(2, '0');
+                const formattedDay = lastTuesday.getDate().toString().padStart(2, '0');
+                
+                return shortYear + formattedMonth + formattedDay;
             }
             
             // Check if premium should be highlighted
