@@ -2,4 +2,3 @@
 Symbol,Rank,MTF,Quality Score,LTP,Dividend%,Announced,Executed,Volatility%,Details
 [Low Value - Dividend Announcements]
 Symbol,Rank,MTF,Quality Score,LTP,Dividend%,Announced,Executed,Volatility%,Details
-PFC,77,5.0,6,362.65,1.01,Nov-21,Nov-26,1.49,(Stock Name: POWER FIN CORP LTD.; Sector: Financial Services; Intrinsic: 384.79; Dividend: 3.65; Revenue: 50038 cr; Net Profit: 24755 cr; Recommended: strong_buy; Projected High: 540.0; Projected Medium: 497.5; Projected Low: 410.0; All time high: 580.0 => 37.0%; SMA 200: 403.82 => -11.35%; RSI: 24.65; Day Volatility: 1.49; Week Volatility: 4.5; Month Volatility: 11.48; Day Trend: Downtrend; Week Trend: Downtrend; Month Trend: Downtrend; Day Support: 357.25 => 1.49%; Week Support: 357.25 => 1.49%; Month Support: 77.68 => 78.58%; Day NWE: 357.51 => 1.42%; Week NWE: 323.59 => 10.77%; Month NWE: 331.74 => 8.52%)
