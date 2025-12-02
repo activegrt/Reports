@@ -10,7 +10,7 @@ Red Stocks,82
 Green Stocks,10
 Large Cap,214823.0 - 18.0%
 Mid Cap,173860.0 - 15.0%
-Small Cap,776329.0 - 65.0%
+Small Cap,802208.0 - 67.0%
 [Equity Summary]
 Symbol,Rank,Quality,ATH%,Current,Investment,MTFValue,Qty,LTP,Entry,Target,Profit,Change,Progress,Details
 UNIONBANK,84.0,4.0,64.0%,23366.0,22566.0,22566.0,💰150,155.77,150.44,161.0,800.0,🚀 4.0,50.0,(Stock Name: UNION BANK OF INDIA; Sector: Financial Services; Investment: 22566.0; Intrinsic: 164.79; Revenue: 52212 cr; Net Profit: 18488 cr; Recommended: none; Projected High: 180.0; Projected Medium: 160.0; Projected Low: 140.0; All time high: 426.95 => 64.0%; SMA 200: 135.34 => 12.22%; RSI: 58.37; Day Volatility: 1.85; Week Volatility: 4.74; Month Volatility: 12.88; Day Trend: Downtrend; Week Trend: Downtrend; Month Trend: Downtrend; Day Support: 100.81 => 34.62%; Week Support: 100.81 => 34.62%; Month Support: 100.81 => 34.62%; Day NWE: 142.93 => 7.31%; Week NWE: 119.35 => 22.6%; Month NWE: 94.33 => 38.82%)
