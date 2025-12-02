@@ -421,8 +421,8 @@
         <option value="support_list">Support</option>
         <option value="dividend_list">Dividend</option>
         <option value="up_list">Undervalued</option>
-        <option value="chain_list">Options Chain</option>
         <option value="eq_analysis_list">Equity Analysis</option>
+        <option value="chain_list">Options Chain</option>
         <option value="eq_summary_list">Equity Summary</option>
         <option value="gtt_list">GTT Monitor</option>
       </select>
@@ -595,7 +595,7 @@
       
       // Track if we're rendering Equity Summary
       const isEquitySummary = selectedValue === 'eq_summary_list';
-      const isOnlyItem = ['chain_list', 'dividend_list', 'gtt_list', 'eq_analysis_list'].includes(selectedValue);
+      const isOnlyItem = ['chain_list', 'dividend_list', 'gtt_list'].includes(selectedValue);
       let firstSector = null;
 
       fileLines.forEach(line => {
